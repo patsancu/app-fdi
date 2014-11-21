@@ -10,9 +10,9 @@ public class EdicionNoticiasController {
 	
 	@RequestMapping
 	public String welcome(Model model) {
-		model.addAttribute("greeting", "Bienvenido a la aplicación de noticias de Fdi-UCM");
+		model.addAttribute("greeting", "Bienvenido a la aplicación de avisos de Fdi-UCM");
 		model.addAttribute("tagline", "Seleccione la opción deseada");
 
-		return "welcome";
+		return "gestorAvisos";
 	}
 }
