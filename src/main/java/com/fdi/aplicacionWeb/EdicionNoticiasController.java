@@ -5,13 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/avisos/editar")
+@RequestMapping("/avisos/gestor")
 public class EdicionNoticiasController {
 	
 	@RequestMapping
 	public String welcome(Model model) {
-		model.addAttribute("greeting", "Bienvenido a la aplicación de avisos de Fdi-UCM");
-		model.addAttribute("tagline", "Seleccione la opción deseada");
+		model.addAttribute("greeting", "Bienvenido a la aplicaciï¿½n de avisos de Fdi-UCM");
+		model.addAttribute("tagline", "Seleccione la opciï¿½n deseada");
 
 		return "gestorAvisos";
 	}

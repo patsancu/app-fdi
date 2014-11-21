@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<ul>
-			<li><a href="<spring:url value= "/avisos/editar" />">Editor de avisos</a></li>
+			<li><a href="<spring:url value= "/avisos/gestor" />">Gestor de avisos</a></li>
 			<li><a href="<spring:url value= "/avisos/ver" />">Visor de avisos</a></li>
 			
 		</ul>
