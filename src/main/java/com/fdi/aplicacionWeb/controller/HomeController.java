@@ -1,4 +1,4 @@
-package com.fdi.aplicacionWeb;
+package com.fdi.aplicacionWeb.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +9,8 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String welcome(Model model) {
-		model.addAttribute("greeting", "Bienvenido a la aplicación de noticias de Fdi-UCM");
-		model.addAttribute("tagline", "Seleccione la opción deseada");
+		model.addAttribute("greeting", "Bienvenido a la aplicaciï¿½n de noticias de Fdi-UCM");
+		model.addAttribute("tagline", "Seleccione la opciï¿½n deseada");
 
 		return "welcome";
 	}
