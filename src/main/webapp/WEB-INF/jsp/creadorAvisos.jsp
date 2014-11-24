@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <html>
@@ -19,7 +19,7 @@
 
 <c:url var="jq"
 	value="/js/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js" />
-<script type="text/javascript" href="${jq}"></script>
+<script type="text/javascript" src="${jq}"></script>
 
 
 <title>Crear aviso</title>
@@ -37,9 +37,9 @@
 		</div>
 	</section>
 	<section class="container">
-		<form:form modelAttribute="nuevoAviso" class="form-horizontal" enctype="multipart/form-data">
+		<form:form modelAttribute = "nuevoAviso" class="form-horizontal" enctype="multipart/form-data" >
 			<%-- nuevoAviso is called form-backing bean --%>
-			<form:errors path="*" cssClass="alert alert-danger" element="div" />
+			<%-- <form:errors path="*" cssClass="alert alert-danger" element="div" /> --%>
 			<fieldset>
 				<legend>Añadir nuevo aviso</legend>
 
@@ -94,7 +94,7 @@
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<input type="submit" id="btnAdd" class="btn btn-primary"
-							value="Add" />
+							value="Crear aviso" />
 					</div>
 				</div>
 

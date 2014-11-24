@@ -3,13 +3,13 @@ package com.fdi.aplicacionWeb.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.fdi.aplicacionWeb.domain.Aviso;
 import com.fdi.aplicacionWeb.domain.repository.AvisoRepository;
 import com.fdi.aplicacionWeb.service.AvisoService;
 
-@Repository
+@Service	
 public class AvisoServiceImpl implements AvisoService{
 	@Autowired
 	AvisoRepository avisoRepository;

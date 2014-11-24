@@ -18,7 +18,7 @@ import com.fdi.aplicacionWeb.service.AvisoService;
 
 @Controller
 @RequestMapping("/avisos/gestor")
-public class GestorNoticiasController {
+public class GestorAvisosController {
 	
 	@Autowired
 	AvisoService avisoService;
@@ -36,7 +36,7 @@ public class GestorNoticiasController {
 	@RequestMapping(value="/crear", method = RequestMethod.POST)	
 	public String procesarNuevoAviso(@ModelAttribute("nuevoAviso") Aviso nuevoAviso, BindingResult result, HttpServletRequest request) {
 		if(result.hasErrors()) {
-			return "addProduct";
+			return "gestorAvisos";
 		}
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
@@ -56,6 +56,10 @@ public class GestorNoticiasController {
 //				throw new RuntimeException("Product Image saving failed",e);
 //			}
 //		}
+		
+		System.out.println("GestorAvisosController");
+		System.out.print(nuevoAviso);
+		
 		avisoService.addAviso(nuevoAviso);
 		return "redirect:/avisos/gestor";
 	}

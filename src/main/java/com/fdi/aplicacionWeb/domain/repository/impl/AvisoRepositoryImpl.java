@@ -17,11 +17,11 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 
 	public List<Aviso> getAllAvisos() {
 		Session session = SessionUtil.getSession();
-        Transaction tx = session.beginTransaction();
-        List<Aviso> products = (List<Aviso>)  session.createQuery("from Aviso a").list();
-        tx.commit();
-        session.close();
-        return products;
+		Transaction tx = session.beginTransaction();
+		List<Aviso> products = (List<Aviso>)  session.createQuery("from Aviso a").list();
+		tx.commit();
+		session.close();
+		return products;
 	}
 
 	public Aviso getAvisoById(String avisotID) {
@@ -39,9 +39,14 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 		return null;
 	}
 
-	public void addAviso(Aviso product) {
-		// TODO Auto-generated method stub
-		
+	public void addAviso(Aviso aviso) {
+		//listOfProducts.add(product);
+		System.out.println(aviso);
+		Session session = SessionUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		session.save(aviso);
+		tx.commit();
+		session.close();
 	}
 
 }

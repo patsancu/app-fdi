@@ -6,16 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Aviso {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long postInternalId;	
-	
-	//@NotNull(message= "{NotNull.Aviso.titulo.validation}")
+
 	@Size(min=4, max=50, message="{Size.Aviso.titulo.validation}")
 	private String titulo;
 	private Date fechaPublicacion;
@@ -24,8 +22,8 @@ public class Aviso {
 	private String tipoDestino; //URL, archivo, contenidoPost
 	private String tipoAviso; // Normal, importante
 	private String etiqueta;
-	
-	
+
+
 	public long getPostInternalId() {
 		return postInternalId;
 	}
@@ -82,7 +80,7 @@ public class Aviso {
 				+ ", tipoDestino=" + tipoDestino + ", tipoAviso=" + tipoAviso
 				+ ", etiqueta=" + etiqueta + "]";
 	}
-	
-	
-	
+
+
+
 }

@@ -6,39 +6,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Products</title>
+<title>Avisos</title>
 
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Products</h1>
-				<p>All the available products in our store</p>
+				<h1>Avisos</h1>
+				<p>Avisos disponibles</p>
 			</div>
 		</div>
 	</section>
 
 	<section class="container">
 		<div class="row">
-			<c:forEach items="${products}" var="product">
+			<c:forEach items="${avisos}" var="aviso">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
-						<img
-							src="<c:url value="/resource/images/${product.productId}.png"></c:url>"
-							alt="image" style="width: 100%" />
+						<%-- <img
+							src="<c:url value="/resource/images/${aviso.avisoId}.png"></c:url>"
+							alt="image" style="width: 100%" /> --%>
 						<div class="caption">
-							<h3>${product.name}</h3>
-							<p>${product.description}</p>
-							<p>$${product.unitPrice}</p>
-							<p>Available ${product.unitsInStock} units in stock</p>
+							<h3>${aviso.titulo}</h3>
+							<p>${aviso.fechaPublicacion}</p>
+							<p>$${aviso.tipoAviso}</p>
+							<%-- <p>Available ${aviso.unitsInStock} units in stock</p>
 							<p>
 								<a
-									href=" <spring:url value=  "/products/product?id=${product.productId}" /> "
+									href=" <spring:url value=  "/avisos/aviso?id=${aviso.avisoId}" /> "
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sign glyphicon" /></span> Details
 								</a>
-							</p>
+							</p> --%>
 						</div>
 					</div>
 				</div>

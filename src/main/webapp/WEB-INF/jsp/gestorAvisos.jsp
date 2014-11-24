@@ -16,18 +16,14 @@
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="list-group">
-				<li class="list-group-item">
-					<a href="<spring:url value="/avisos/gestor/crear"/>" class="btn btn-default"> 
-						<span class="glyphicon-hand-right glyphicon"></span> 
-							Crear aviso
-					</a>
-				</li>
-				<li class="list-group-item">
-					<a href="<spring:url value= '/avisos/gestor/listar' />">  Listar avisos  </a>
-				</li>
-				<li class="list-group-item">
-					<a> Modificar aviso </a>
-				</li>
+				<li class="list-group-item"><a
+					href="<spring:url value="/avisos/gestor/crear"/>"
+					class="btn btn-default"> <span
+						class="glyphicon-hand-right glyphicon"></span> Crear aviso
+				</a></li>
+				<li class="list-group-item"><a
+					href="<spring:url value= '/avisos/ver' />"> Listar avisos </a></li>
+				<li class="list-group-item"><a> Modificar aviso </a></li>
 			</ul>
 		</div>
 	</div>
