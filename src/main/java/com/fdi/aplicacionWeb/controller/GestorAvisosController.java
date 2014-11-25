@@ -31,7 +31,8 @@ public class GestorAvisosController {
 
 	@RequestMapping
 	public String gestor(Model model) {
-		return "gestorAvisos";
+		model.addAttribute("avisos", avisoService.getAllAvisos());
+		return "gestorAvisos";		
 	}
 
 	@RequestMapping("/editar")
@@ -43,7 +44,7 @@ public class GestorAvisosController {
 	@RequestMapping("/eliminar")
 	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {
 		avisoService.eliminarAviso(avisoID);
-		return "redirect:/";	
+		return "redirect:/avisos/gestor";	
 	}
 	
 	
