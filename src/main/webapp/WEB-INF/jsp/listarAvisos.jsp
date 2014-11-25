@@ -20,18 +20,20 @@
 	</section>
 
 	<section class="container">
-		<div class="row">
+		<!-- <div class="row"> -->
 			<c:forEach items="${avisos}" var="aviso">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-					<div class="thumbnail">
+					<!-- <div class="row "> -->
 						<%-- <img
 							src="<c:url value="/resource/images/${aviso.avisoId}.png"></c:url>"
 							alt="image" style="width: 100%" /> --%>
-						<div class="caption">
-							<h3>${aviso.titulo}</h3>
-							<p>${aviso.fechaPublicacion}</p>
-							<p>${aviso.tipoAviso}</p>
-							<%-- <p>Available ${aviso.unitsInStock} units in stock</p>
+						<div class="caption panel panel-info">
+							<div class="panel-heading">${aviso.titulo}</div>
+							<h3></h3>
+							<div class="panel-body">
+								<p>${aviso.fechaPublicacion}</p>
+								<p>${aviso.tipoAviso}</p>
+								<%-- <p>Available ${aviso.unitsInStock} units in stock</p>
 							<p>
 								<a
 									href=" <spring:url value=  "/avisos/aviso?id=${aviso.avisoId}" /> "
@@ -39,11 +41,12 @@
 									class="glyphicon-info-sign glyphicon" /></span> Details
 								</a>
 							</p> --%>
+							</div>
 						</div>
-					</div>
+					<!-- </div> -->
 				</div>
 			</c:forEach>
-		</div>
+		<!-- </div> -->
 	</section>
 </body>
 </html>

@@ -18,23 +18,27 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Avisos</h1>
+				<h1>Aviso</h1>
 			</div>
 		</div>
 	</section>
 	<section class="container">
-		<div class="row">
-			<div class="col-md-5">
-			</div>
-			<div class="col-md-5">
-				<h3>${aviso.titulo}</h3>
-				<p>${aviso.contenidoAviso}</p>
-				<p>
-					<strong>Etiqueta : </strong><span class="label label-warning">${aviso.etiqueta}</span>
-				</p>
-				<p>
-					<strong>Tipo aviso</strong> : ${aviso.tipoAviso}
-				</p>
+		<div class=" panel panel-info">
+			<!-- <div class="col-md-5 "> -->
+				<%-- <h3>${aviso.titulo}</h3> --%>
+				<div class="panel-heading">
+				${aviso.titulo}
+				</div>
+				<div class="panel-body">
+					<p>${aviso.contenidoAviso}</p>
+					<p>
+						<strong>Etiqueta : </strong><span class="label label-warning">${aviso.etiqueta}</span>
+					</p>
+					<p>
+						<strong>Tipo aviso</strong> : ${aviso.tipoAviso}
+					</p>
+				</div>
+				
 			</div>
 		</div>
 	</section>
