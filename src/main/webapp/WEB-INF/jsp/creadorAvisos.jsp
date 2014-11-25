@@ -37,7 +37,8 @@
 		</div>
 	</section>
 	<section class="container">
-		<form:form modelAttribute = "nuevoAviso" class="form-horizontal" enctype="multipart/form-data" >
+		<form:form modelAttribute = "nuevoAviso" class="form-horizontal">
+		<!-- enctype="multipart/form-data" SOLO cuando haya subida de archivos -->
 			<%-- nuevoAviso is called form-backing bean --%>
 			<%-- <form:errors path="*" cssClass="alert alert-danger" element="div" /> --%>
 			<fieldset>
@@ -86,10 +87,12 @@
 
 				<div id="datetimepicker" class="form-group input-append date">
 				<label class="control-label col-lg-2 col-lg-2" for="fechaPublicacion">Fecha</label>
-					<input type="text"></input> <span class="add-on"> <i
-						data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-					</span>
+					<input type="text"> <span class="add-on"> 
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+					</span></input> 
+					
 				</div>
+				
 				
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
@@ -98,90 +101,10 @@
 					</div>
 				</div>
 
-				<%--
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="unitPrice">Unit
-						price</label>
-					<div class="col-lg-10">
-						<form:input id="unitPrice" path="unitPrice" type="text"
-							class="form:input-large" />
-					</div>
-				</div>
-
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="manufacturer">Manufacturer</label>
-					<div class="col-lg-10">
-						<form:input id="manufacturer" path="manufacturer" type="text"
-							class="form:input-large" />
-					</div>
-				</div>
-
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="category">Category</label>
-					<div class="col-lg-10">
-						<form:input id="category" path="category" type="text"
-							class="form:input-large" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="name">Description</label>
-					<div class="col-lg-10">
-						<form:textarea id="description" path="description" rows="2" />
-
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="discontinued">Discontinued</label>
-					<div class="col-lg-10">
-						<form:checkbox id="discontinued" path="discontinued" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="unitsInStock">Units
-						in stock</label>
-					<div class="col-lg-10">
-						<form:input id="unitsInStock" path="unitsInStock" type="text"
-							class="form:input-large" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="unitsInOrder">Units
-						in order</label>
-					<div class="col-lg-10">
-						<form:input id="unitsInOrder" path="unitsInOrder" type="text"
-							class="form:input-large" /> 
-					</div>
-				</div>
-
 				
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="productImage"><spring:message
-							code="addProdcut.form.productImage.label" /></label>
-					<div class="col-lg-10">
-						<form:input id="productImage" path="productImage" type="file"
-							class="form:input-large" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-lg-offset-2 col-lg-10">
-						<input type="submit" id="btnAdd" class="btn btn-primary"
-							value="Add" />
-					</div>
-				</div> --%>
 			</fieldset>
 		</form:form>
 	</section>
-
-
-
-
 
 
 
@@ -201,7 +124,8 @@
     </script>
 	<script type="text/javascript">
       $('#datetimepicker').datetimepicker({
-        format: 'dd/MM/yyyy hh:mm:ss',
+        //format: 'dd/MM/yyyy hh:mm:ss',
+        format: 'dd/MM/yyyy hh:mm',
         //language: 'pt-BR'
         language: 'en-US'
       });

@@ -30,7 +30,7 @@
 						<div class="caption">
 							<h3>${aviso.titulo}</h3>
 							<p>${aviso.fechaPublicacion}</p>
-							<p>$${aviso.tipoAviso}</p>
+							<p>${aviso.tipoAviso}</p>
 							<%-- <p>Available ${aviso.unitsInStock} units in stock</p>
 							<p>
 								<a

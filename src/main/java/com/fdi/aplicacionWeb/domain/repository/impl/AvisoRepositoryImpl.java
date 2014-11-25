@@ -40,7 +40,7 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 	}
 
 	public void addAviso(Aviso aviso) {
-		//listOfProducts.add(product);
+		System.out.println("AvisoRepositoryImpl");
 		System.out.println(aviso);
 		Session session = SessionUtil.getSession();
 		Transaction tx = session.beginTransaction();
