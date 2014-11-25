@@ -45,7 +45,9 @@
 							<td><a 
 								href="<c:url value="/avisos/gestor/eliminar?id=${item.postInternalId}"></c:url>"
 								class="btn btn-danger">Eliminar aviso</a></td>
-							<td><a class="btn btn-primary">Ver aviso</a></td>
+							<td><a 
+								href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
+								class="btn btn-primary">Ver aviso</a></td>
 							<td><a class="btn btn-success	"> Editar aviso</a></td>
 
 						</tr>

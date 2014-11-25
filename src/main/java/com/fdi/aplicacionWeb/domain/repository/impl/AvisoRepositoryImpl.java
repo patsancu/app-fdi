@@ -18,16 +18,23 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 
 	public List<Aviso> getAllAvisos() {
 		Session session = SessionUtil.getSession();
-		Transaction tx = session.beginTransaction();
-		List<Aviso> products = (List<Aviso>)  session.createQuery("from Aviso a").list();
+			Transaction tx = session.beginTransaction();
+			List<Aviso> products = (List<Aviso>)  session.createQuery("from Aviso a").list();
 		tx.commit();
 		session.close();
 		return products;
 	}
 
 	public Aviso getAvisoById(String avisotID) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = SessionUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        Query query = session.createQuery("from Aviso a where a.postInternalId =:postInternalId");
+        query.setString("postInternalId", avisotID);
+        Aviso aviso = (Aviso)query.uniqueResult();
+        tx.commit();
+        session.close();
+        
+        return aviso;
 	}
 
 	public List<Aviso> getAvisosByCategory(String category) {
