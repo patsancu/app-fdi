@@ -25,6 +25,10 @@ public class AvisoServiceImpl implements AvisoService{
 	public List<Aviso> getAvisosByCategory(String category) {
 		return avisoRepository.getAvisosByCategory(category);
 	}
+	
+	public void eliminarAviso(String avisoID){
+		avisoRepository.eliminarAviso(avisoID);
+	}
 
 //	public List<Aviso> getAvisosByManufacturer(String manufacturer) {
 //		// TODO Auto-generated method stub

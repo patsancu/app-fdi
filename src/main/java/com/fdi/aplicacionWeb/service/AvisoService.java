@@ -11,4 +11,5 @@ public interface AvisoService {
 //	List<Aviso> getAvisosByManufacturer(String manufacturer);
 //	Set<Aviso> getAvisosByFilter(Map<String, List<String>> filterParams);
 	void addAviso(Aviso aviso);
+	void eliminarAviso(String avisoID);
 }

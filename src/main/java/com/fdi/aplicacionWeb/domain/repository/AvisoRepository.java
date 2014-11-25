@@ -12,5 +12,6 @@ public interface AvisoRepository {
 	List<Aviso> getAvisosByCategory(String category);
 	Set<Aviso> getAvisosByFilter(Map<String, List<String>> filterParams);
 	//List <Aviso> getAvisosByManufacturer(String manufacturer);
+	void eliminarAviso(String avisoID);
 	void addAviso(Aviso product);
 }

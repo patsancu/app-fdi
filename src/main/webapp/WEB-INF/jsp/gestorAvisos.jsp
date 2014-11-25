@@ -21,9 +21,12 @@
 					class="btn btn-default"> <span
 						class="glyphicon-hand-right glyphicon"></span> Crear aviso
 				</a></li>
-				<li class="list-group-item"><a
-					href="<spring:url value= '/avisos/ver' />"> Listar avisos </a></li>
-				<li class="list-group-item"><a> Modificar aviso </a></li>
+				<li class="list-group-item">
+					<a href="<spring:url value= '/avisos/ver' />"> Listar avisos </a>
+				</li>
+				<li class="list-group-item">
+					<a href="<spring:url value= "/avisos/gestor/editar" />">Editor de avisos</a>
+				</li>
 			</ul>
 		</div>
 	</div>

@@ -22,9 +22,8 @@
 			</div>
 		</div>
 		<ul>
-			<li><a href="<spring:url value= "/avisos/gestor" />">Gestor de avisos</a></li>
-			<li><a href="<spring:url value= "/avisos/ver" />">Visor de avisos</a></li>
-			
+			<li class="list-group-item"><a href="<spring:url value= "/avisos/gestor" />">Gestor de avisos</a></li>
+			<li class="list-group-item"><a href="<spring:url value= "/avisos/ver" />">Visor de avisos</a></li>
 		</ul>
 	</section>
 </body>

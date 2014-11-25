@@ -26,6 +26,19 @@
 	    <servlet-name>statCont</servlet-name>
 	    <url-pattern>*.js</url-pattern>
 	  </servlet-mapping>
+	  
+	  <servlet>
+	    <servlet-name>statContCss</servlet-name>
+	    <servlet-class>
+	      org.apache.catalina.servlets.DefaultServlet
+	    </servlet-class>
+	    <load-on-startup>1</load-on-startup>
+	 </servlet>
+
+	  <servlet-mapping>
+	    <servlet-name>statContCss</servlet-name>
+	    <url-pattern>*.css</url-pattern>
+	  </servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>

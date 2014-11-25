@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdi.aplicacionWeb.domain.Aviso;
 import com.fdi.aplicacionWeb.service.AvisoService;
@@ -33,6 +34,19 @@ public class GestorAvisosController {
 		return "gestorAvisos";
 	}
 
+	@RequestMapping("/editar")
+	public String editarAvisos(Model model) {
+		model.addAttribute("avisos", avisoService.getAllAvisos());
+		return "editarAvisos";
+	}
+	
+	@RequestMapping("/eliminar")
+	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {
+		avisoService.eliminarAviso(avisoID);
+		return "redirect:/";	
+	}
+	
+	
 	@RequestMapping(value="/crear", method = RequestMethod.GET)	
 	public String formularioCreadorAvisos(@ModelAttribute("nuevoAviso") Aviso nuevoAviso) {
 		return "creadorAvisos";
