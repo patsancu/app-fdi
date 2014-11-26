@@ -22,24 +22,33 @@
 			</div>
 		</div>
 	</section>
-	<section class="container">
-		<div class=" panel panel-info">
-			<!-- <div class="col-md-5 "> -->
-				<%-- <h3>${aviso.titulo}</h3> --%>
-				<div class="panel-heading">
-				${aviso.titulo}
+	<section class="container col-md-offset-2 col-md-6 center">
+		<div class="panel panel-info">
+			<%-- <h3>${aviso.titulo}</h3> --%>
+			<div class="panel-heading">
+
+				<div class="panel-title">
+					${aviso.titulo} 
+					<a class="pull-right"
+						href="<c:url value="/avisos/gestor/editar?id=${aviso.postInternalId}"></c:url>">
+						<span hint="Editar aviso"
+						class="glyphicon glyphicon-edit "></span>
+					</a>
+
 				</div>
-				<div class="panel-body">
-					<p>${aviso.contenidoAviso}</p>
-					<p>
-						<strong>Etiqueta : </strong><span class="label label-warning">${aviso.etiqueta}</span>
-					</p>
-					<p>
-						<strong>Tipo aviso</strong> : ${aviso.tipoAviso}
-					</p>
-				</div>
-				
+
 			</div>
+			<div class="panel-body clearfix" style="padding-top: 7.5px;">
+				<p>${aviso.contenidoAviso}</p>
+				<p>
+					<strong>Etiqueta : </strong> <span class=" label label-warning">${aviso.etiqueta}</span>
+				</p>
+				<p>
+					<strong>Tipo aviso</strong> : ${aviso.tipoAviso}
+				</p>
+			</div>
+
+		</div>
 		</div>
 	</section>
 </body>

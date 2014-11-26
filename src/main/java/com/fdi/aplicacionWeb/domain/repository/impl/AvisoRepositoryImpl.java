@@ -64,7 +64,8 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 		System.out.println(aviso);
 		Session session = SessionUtil.getSession();
 		Transaction tx = session.beginTransaction();
-		session.save(aviso);
+		//session.save(aviso);
+		session.saveOrUpdate(aviso);
 		tx.commit();
 		session.close();
 	}

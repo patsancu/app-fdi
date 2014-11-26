@@ -1,18 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<title>Avisos</title>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-<script src="/webstore/resource/js/controllers.js"></script>
-
-<title>Editar avisos</title>
 </head>
 <body>
 	<section>
@@ -20,48 +15,49 @@
 			<div class="container">
 				<h1>Avisos</h1>
 				<h3><a href="<spring:url value="/avisos/gestor/crear"></spring:url>" >Crear nuevo aviso</a></h3>
-
 			</div>
 		</div>
 	</section>
 
 	<section class="container">
-		<table class="table table-hover">
-			<tr>
-				<th>Título</th>
-				<th>Contenido del post</th>
-				<th>Tipo de aviso</th>
-				<th>Etiqueta</th>
-			</tr>
-			<!-- <tr ng-repeat="item in cart.cartItems"> -->
-			<c:forEach items="${avisos}" var="item">
-				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-					<div class="caption">
-						<tr>
-							<td>${item.titulo}</td>
-							<td>${item.contenidoAviso}</td>
-							<td>${item.tipoAviso}</td>
-							<td>${item.etiqueta}</p>
-							<td><a 
-								href="<c:url value="/avisos/gestor/eliminar?id=${item.postInternalId}"></c:url>"
-								class="btn btn-danger">Eliminar aviso</a></td>
-							<td><a 
-								href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
-								class="btn btn-primary">Ver aviso</a></td>
-							<td><a class="btn btn-success	"> Editar aviso</a></td>
-
-						</tr>
+		<!-- <div class="row"> -->
+		<c:forEach items="${avisos}" var="aviso">
+			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+				<!-- <div class="row "> -->
+				<%-- <img
+							src="<c:url value="/resource/images/${aviso.avisoId}.png"></c:url>"
+							alt="image" style="width: 100%" /> --%>
+				<div class="caption panel panel-info">
+					<div class="panel-heading">
+						<div class="panel-title">
+						<!-- Ver aviso -->
+						<a href="<c:url value="/avisos/ver/individual?id=${aviso.postInternalId}"></c:url>">${aviso.titulo}</a>
+						<!-- Editar aviso -->
+						<a class="pull-right" href="<c:url value="/avisos/gestor/editar?id=${aviso.postInternalId}"></c:url>">
+							<span hint="Editar aviso" class="glyphicon glyphicon-edit "></span>								
+						</a>
+						<!-- Eliminar aviso -->
+						<a class="pull-right" href="<c:url value="/avisos/gestor/eliminar?id=${aviso.postInternalId}"></c:url>">
+							<span class="glyphicon glyphicon-remove-sign"></span>
+						</a>
+						</div>
+						
+					</div>
+					<h3></h3>
+					<div class="panel-body">
+						<p>${aviso.fechaPublicacion}</p>
+						<p>${aviso.tipoAviso}</p>
+					</div>
+					<div class="panel-footer">
+						<p>
+							<span class="label label-warning">${aviso.etiqueta}</span>
+						</p>
 					</div>
 				</div>
-			</c:forEach>
-
-		</table>
-
-		<a href="<spring:url value="/" />" class="btn btn-default"> <span
-			class="glyphicon-hand-left glyphicon"></span> Volver
-		</a>
+				<!-- </div> -->
+			</div>
+		</c:forEach>
+		<!-- </div> -->
 	</section>
-
-
 </body>
 </html>

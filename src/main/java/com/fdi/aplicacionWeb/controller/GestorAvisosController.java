@@ -49,14 +49,15 @@ public class GestorAvisosController {
 	
 	
 	@RequestMapping(value="/crear", method = RequestMethod.GET)	
-	public String formularioCreadorAvisos(@ModelAttribute("nuevoAviso") Aviso nuevoAviso) {
-		return "creadorAvisos";
+	public String formularioCreadorAvisos(@ModelAttribute("aviso") Aviso aviso) {
+		//return "creadorAvisos";
+		return "creadorEditorAvisos";
 	}
 
 	@RequestMapping(value="/crear", method = RequestMethod.POST)	
-	public String procesarNuevoAviso(@ModelAttribute("nuevoAviso") Aviso nuevoAviso, BindingResult result, HttpServletRequest request) {
+	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso, BindingResult result, HttpServletRequest request) {
 		System.out.println("GestorAvisosController");
-		System.out.print(nuevoAviso);
+		System.out.print(aviso);
 		if(result.hasErrors()) {
 			return "gestorAvisos";
 		}
@@ -81,9 +82,23 @@ public class GestorAvisosController {
 
 
 
-		avisoService.addAviso(nuevoAviso);
+		avisoService.addAviso(aviso);
 		//return "redirect:/avisos/gestor";
 		return "redirect:/avisos/ver";
+	}
+	
+	@RequestMapping(value="/editar", method = RequestMethod.GET)
+	public String editarAviso(@ModelAttribute("aviso") Aviso aviso, @RequestParam("id") String avisoID,Model model){		
+		model.addAttribute("aviso",avisoService.getAvisoById(avisoID));
+		return "creadorEditorAvisos";
+	}
+
+
+	@RequestMapping(value="/editar", method = RequestMethod.POST)
+	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){	
+		System.out.println("GestorAvisosController---guardarEdicionAviso");
+		avisoService.addAviso(aviso);		
+		return "redirect:/avisos/gestor";
 	}
 
 	@InitBinder

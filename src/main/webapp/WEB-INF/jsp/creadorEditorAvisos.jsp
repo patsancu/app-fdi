@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <html>
@@ -20,11 +20,22 @@
 <c:url var="jq"
 	value="/js/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js" />
 <script type="text/javascript" src="${jq}"></script>
+<c:set var="atributo" value="aviso"/>
+<c:choose>
+	<c:when test="${not empty aviso.titulo}">
+		<c:set var="modo" value="Editar" />
+		<%-- <c:set var="atributo" value="aviso"/> --%>
+	</c:when>
+	<c:otherwise>
+		<c:set var="modo" value="Crear" />
+		<%-- <c:set var="atributo" value="nuevoAviso"/> --%>
+	</c:otherwise>
+</c:choose>
 
-
-<title>Crear aviso</title>
+<title><c:out value="${modo}"></c:out> aviso</title>
 </head>
 <body>
+	
 	<section>
 		<div class="jumbotron">
 
@@ -32,31 +43,30 @@
 				<%-- <a href="<c:url value="/j_spring_security_logout" />"
 					class="btn btn-danger btn-mini pull-right">logout</a> --%>
 				<h1>Avisos</h1>
-				<p>Crear aviso</p>
 			</div>
 		</div>
 	</section>
 	<section class="container">
-		<%-- <form:form modelAttribute = "nuevoAviso" class="form-horizontal"> --%>
-		<form:form modelAttribute = "aviso" class="form-horizontal">
-		<!-- enctype="multipart/form-data" SOLO cuando haya subida de archivos -->
+		<%-- <form:form modelAttribute="nuevoAviso" class="form-horizontal"> --%>
+		<form:form modelAttribute="${atributo}" class="form-horizontal">
+			<!-- enctype="multipart/form-data" SOLO cuando haya subida de archivos -->
 			<%-- nuevoAviso is called form-backing bean --%>
 			<%-- <form:errors path="*" cssClass="alert alert-danger" element="div" /> --%>
 			<fieldset>
-				<legend>Añadir nuevo aviso</legend>
-
-
-
+				<legend><c:out value="${modo}"></c:out> aviso</legend>
+				
+				<!-- Titulo -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="titulo"><spring:message
 							code="addAviso.form.titulo.label" /></label>
 					<div class="col-lg-10">
 						<form:input id="titulo" path="titulo" type="text"
-							class="form:input-large" />
+							class="form:input-large"/>
 						<form:errors path="titulo" cssClass="text-danger" />
 					</div>
 				</div>
 
+				<!-- Contenido -->
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="contenidoAviso">Contenido
 						de aviso</label>
@@ -65,7 +75,8 @@
 							type="text" class="form:input-large" />
 					</div>
 				</div>
-
+				
+				<!-- Tipo de aviso -->
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="tipoAviso">Tipo
 						de aviso</label>
@@ -77,15 +88,17 @@
 					</div>
 				</div>
 
+				<!-- Etiqueta -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="etiqueta">Etiqueta</label>
 					<div class="col-lg-10">
 						<form:input id="etiqueta" path="etiqueta" type="text"
 							class="form:input-large" />
-						<form:errors path="etiqueta" cssClass="text-danger" />
+						<form:errors path="etiqueta" cssClass="text-danger" />	
 					</div>
 				</div>
 
+				<!-- Fecha publicación -->
 				<div id="datetimepicker" class="form-group input-append date">
 				<label class="control-label col-lg-2 col-lg-2" for="fechaPublicacion">Fecha</label>
 					<input type="text"> <span class="add-on"> 
@@ -93,16 +106,14 @@
 					</span></input> 
 					
 				</div>
-				
-				
+
+				<!-- Botón crear aviso -->
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<input type="submit" id="btnAdd" class="btn btn-primary"
 							value="Crear aviso" />
 					</div>
 				</div>
-
-				
 			</fieldset>
 		</form:form>
 	</section>
@@ -113,24 +124,28 @@
 
 	<script type="text/javascript"
 		src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-    </script>
+		
+	</script>
 	<script type="text/javascript"
 		src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-    </script>
+		
+	</script>
 	<script type="text/javascript"
 		src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-    </script>
+		
+	</script>
 	<script type="text/javascript"
 		src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-    </script>
+		
+	</script>
 	<script type="text/javascript">
-      $('#datetimepicker').datetimepicker({
-        //format: 'dd/MM/yyyy hh:mm:ss',
-        format: 'dd/MM/yyyy hh:mm',
-        //language: 'pt-BR'
-        language: 'en-US'
-      });
-    </script>
+		$('#datetimepicker').datetimepicker({
+			//format: 'dd/MM/yyyy hh:mm:ss',
+			format : 'dd/MM/yyyy hh:mm',
+			//language: 'pt-BR'
+			language : 'en-US'
+		});
+	</script>
 
 
 
