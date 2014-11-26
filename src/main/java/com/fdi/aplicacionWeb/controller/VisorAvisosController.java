@@ -20,7 +20,6 @@ public class VisorAvisosController {
 		model.addAttribute("greeting", "Bienvenido a la aplicaci�n de noticias de Fdi-UCM");
 		model.addAttribute("tagline", "Seleccione la opci�n deseada");
 		model.addAttribute("avisos", avisoService.getAllAvisos());
-		System.out.println(avisoService.getAllAvisos());
 		return "listarAvisos";
 	}
 	
@@ -28,5 +27,16 @@ public class VisorAvisosController {
 	public String individual(@RequestParam("id") String avisoID, Model model){
 		model.addAttribute(avisoService.getAvisoById(avisoID));
 		return "verAviso";
+	}
+	
+	@RequestMapping("/iframe")
+	public String pruebaIframe(Model model){		
+		return "iframe";
+	}
+	
+	@RequestMapping("/basico")
+	public String basico(Model model){
+		model.addAttribute("avisos", avisoService.getAllAvisos());
+		return "basico";
 	}
 }

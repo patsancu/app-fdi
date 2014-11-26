@@ -14,7 +14,10 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Avisos</h1>
-				<h3><a href="<spring:url value="/avisos/gestor/crear"></spring:url>" >Crear nuevo aviso</a></h3>
+				<h3>
+					<a href="<spring:url value="/avisos/gestor/crear"></spring:url>">Crear
+						nuevo aviso</a>
+				</h3>
 			</div>
 		</div>
 	</section>
@@ -30,18 +33,20 @@
 				<div class="caption panel panel-info">
 					<div class="panel-heading">
 						<div class="panel-title">
-						<!-- Ver aviso -->
-						<a href="<c:url value="/avisos/ver/individual?id=${aviso.postInternalId}"></c:url>">${aviso.titulo}</a>
-						<!-- Editar aviso -->
-						<a class="pull-right" href="<c:url value="/avisos/gestor/editar?id=${aviso.postInternalId}"></c:url>">
-							<span hint="Editar aviso" class="glyphicon glyphicon-edit "></span>								
-						</a>
-						<!-- Eliminar aviso -->
-						<a class="pull-right" href="<c:url value="/avisos/gestor/eliminar?id=${aviso.postInternalId}"></c:url>">
-							<span class="glyphicon glyphicon-remove-sign"></span>
-						</a>
+							<!-- Ver aviso -->
+							<a
+								href="<c:url value="/avisos/ver/individual?id=${aviso.postInternalId}"></c:url>">${aviso.titulo}</a>
+							<!-- Editar aviso -->
+							<a class="pull-right"
+								href="<c:url value="/avisos/gestor/editar?id=${aviso.postInternalId}"></c:url>">
+								<span hint="Editar aviso" class="glyphicon glyphicon-edit "></span>
+							</a>
+							<!-- Eliminar aviso -->
+							<a class="pull-right"
+								href="<c:url value="/avisos/gestor/eliminar?id=${aviso.postInternalId}"></c:url>">
+								<span class="glyphicon glyphicon-remove-sign"></span>
+							</a>
 						</div>
-						
 					</div>
 					<h3></h3>
 					<div class="panel-body">

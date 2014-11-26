@@ -19,6 +19,7 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Avisos</h1>
+				<h4> <a href="<c:url value="/avisos/ver/iframe"></c:url>" >Probar versión con iframe</a> </h4>
 			</div>
 		</div>
 	</section>
