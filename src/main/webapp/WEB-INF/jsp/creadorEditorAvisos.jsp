@@ -55,6 +55,10 @@
 			<fieldset>
 				<legend><c:out value="${modo}"></c:out> aviso</legend>
 				
+				<!-- MUY IMPORTANTE PARA LA EDICIÓN
+				Si no se pone, crea un dato nuevo en la db -->
+				<form:input type="hidden" id="postInternalId" path="postInternalId" />
+				
 				<!-- Titulo -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="titulo"><spring:message
