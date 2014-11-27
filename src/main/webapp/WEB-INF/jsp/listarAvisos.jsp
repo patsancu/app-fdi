@@ -20,7 +20,7 @@
 <title>Listar avisos</title>
 </head>
 <body>
-	<section>
+	<%-- <section>
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Avisos</h1>
@@ -30,16 +30,16 @@
 				</h4>
 			</div>
 		</div>
-	</section>
+	</section> --%>
 
 	<section class="container">
 		<table class="table table-hover">
-			<tr>
+			<!-- <tr>
 				<th>Título</th>
 				<th>Contenido del aviso</th>
 				<th>Tipo de aviso</th>
 				<th>Etiqueta</th>
-			</tr>
+			</tr> -->
 			<!-- <tr ng-repeat="item in cart.cartItems"> -->
 			<c:forEach items="${avisos}" var="item">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
