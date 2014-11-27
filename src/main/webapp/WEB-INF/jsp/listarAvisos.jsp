@@ -2,6 +2,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -45,8 +48,11 @@
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="caption">
 						<tr>
-							<td>${item.titulo}</td>
-							<td>${item.contenidoAviso}</td>
+							<td><c:if test="${item.tipoAviso eq 'Importante'}"><span class=" glyphicon glyphicon-exclamation-sign"></span></c:if></td>
+							<td>   ${item.titulo}</td>
+							<td><%-- ${item.contenidoAviso} --%>
+							${fn:substring(item.contenidoAviso, 0, 25)} ...
+							</td>
 							<td>${item.tipoAviso}</td>
 							<td>${item.etiqueta}</p>
 							<td><a class="btn btn-success"
