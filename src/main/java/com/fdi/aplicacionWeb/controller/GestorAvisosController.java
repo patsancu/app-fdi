@@ -44,7 +44,7 @@ public class GestorAvisosController {
 	@RequestMapping("/eliminar")
 	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {
 		avisoService.eliminarAviso(avisoID);
-		return "redirect:/avisos/gestor";	
+		return "redirect:/avisos/ver";	
 	}
 	
 	

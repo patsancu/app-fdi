@@ -8,7 +8,10 @@
 		<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 			<div class="caption">
 				<p>${item.titulo}</p>
-				<p>${item.contenidoAviso}</p>
+				<p><a
+					href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
+					> ${item.contenidoAviso}
+				</a></p>
 				<p>${item.tipoAviso}</p>
 				<p>${item.etiqueta}</p>
 				<p>
@@ -17,11 +20,7 @@
 						<span class="glyphicon glyphicon-edit"></span>
 					</a>
 				</p>
-				<p><a
-					href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
-					class="btn btn-primary"> <span
-						class="glyphicon glyphicon-info-sign"></span>
-				</a></p>
+				<p></p>
 				<p><a
 					href="<c:url value="/avisos/gestor/eliminar?id=${item.postInternalId}"></c:url>"
 					class="btn btn-danger"><span

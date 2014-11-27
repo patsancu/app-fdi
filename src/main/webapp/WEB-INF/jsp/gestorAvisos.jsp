@@ -6,6 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	$('#myModal').modal({
+		show : false,
+		keyboard : false
+	});
+</script>
 <title>Avisos</title>
 
 </head>
@@ -41,11 +51,46 @@
 								href="<c:url value="/avisos/gestor/editar?id=${aviso.postInternalId}"></c:url>">
 								<span hint="Editar aviso" class="glyphicon glyphicon-edit "></span>
 							</a>
-							<!-- Eliminar aviso -->
+
+
+							<%-- <!-- Eliminar aviso -->
 							<a class="pull-right"
 								href="<c:url value="/avisos/gestor/eliminar?id=${aviso.postInternalId}"></c:url>">
 								<span class="glyphicon glyphicon-remove-sign"></span>
+							</a> --%>
+
+							<!-- Botón eliminar -->
+							<a data-toggle="modal" class="pull-right btn"
+								data-target=".bs-delete-modal-sm${aviso.postInternalId}"> <span
+								class="glyphicon glyphicon-remove"></span>
 							</a>
+
+							<!-- Popup de confirmación de eliminación -->
+							<div class="modal fade bs-delete-modal-sm${aviso.postInternalId}"
+								tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog modal-sm">
+									<div class="modal-content">
+										<div class="modal-header bg-primary">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">&times;</button>
+											<h4 class="modal-title" id="myModalLabel">Eliminar aviso</h4>
+										</div>
+										<div class="modal-body">¿Está seguro de que desea
+											eliminar el aviso "${aviso.titulo}"?</div>
+										<div class="modal-footer ">
+											<a class="btn btn-danger "
+												href="<c:url value="/avisos/gestor/eliminar?id=${aviso.postInternalId}"></c:url>">
+												Eliminar </a>
+											<button type="button" class="btn btn-warning "
+												data-dismiss="modal">Cancelar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Fin de  Popup de confirmación de eliminación -->
+
+
 						</div>
 					</div>
 					<h3></h3>

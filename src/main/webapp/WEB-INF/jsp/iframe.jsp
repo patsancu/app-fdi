@@ -10,7 +10,6 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-<script src="/webstore/resource/js/controllers.js"></script>
 
 <title>Listar avisos</title>
 </head>
@@ -24,7 +23,8 @@
 	</section>
 
 	<section class="container">
-		<iframe class="col-md-8" src="<c:url value="/avisos/ver/basico	"></c:url>">
+		<%-- <iframe class="col-md-8" src="<c:url value="/avisos/ver/basico	"></c:url>"> --%>
+		<iframe class="col-md-8" src="<c:url value="/avisos/ver	"></c:url>">
 		</iframe>
 	</section>
 
