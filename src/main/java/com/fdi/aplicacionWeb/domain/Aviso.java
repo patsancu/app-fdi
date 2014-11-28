@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,12 +24,26 @@ public class Aviso {
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date fechaPublicacion;
-	@Temporal(TemporalType.DATE)
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date fechaCreacion;
 	private String contenidoAviso;
 	private String tipoDestino; //URL, archivo, contenidoPost
 	private String tipoAviso; // Normal, importante
 	private String etiqueta;
+	
+	@Transient
+	private int mes;
+	@Transient
+	private int dia;
+	@Transient
+	private int anyo;
+	@Transient
+	private int hora;
+	@Transient
+	private int minuto;
+	@Transient
+	private int segundo;
 
 
 	
@@ -140,6 +155,90 @@ public class Aviso {
 
 	public void setEtiqueta(String etiqueta) {
 		this.etiqueta = etiqueta;
+	}
+
+
+
+
+	public int getMes() {
+		return mes;
+	}
+
+
+
+
+	public void setMes(int mes) {
+		this.mes = mes;
+	}
+
+
+
+
+	public int getDia() {
+		return dia;
+	}
+
+
+
+
+	public void setDia(int dia) {
+		this.dia = dia;
+	}
+
+
+
+
+	public int getAnyo() {
+		return anyo;
+	}
+
+
+
+
+	public void setAnyo(int anyo) {
+		this.anyo = anyo;
+	}
+
+
+
+
+	public int getHora() {
+		return hora;
+	}
+
+
+
+
+	public void setHora(int hora) {
+		this.hora = hora;
+	}
+
+
+
+
+	public int getMinuto() {
+		return minuto;
+	}
+
+
+
+
+	public void setMinuto(int minuto) {
+		this.minuto = minuto;
+	}
+
+
+
+
+	public int getSegundo() {
+		return segundo;
+	}
+
+
+
+
+	public void setSegundo(int segundo) {
+		this.segundo = segundo;
 	}
 
 

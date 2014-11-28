@@ -20,7 +20,7 @@
 <c:url var="jq"
 	value="/js/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js" />
 <script type="text/javascript" src="${jq}"></script>
-<c:set var="atributo" value="aviso"/>
+<c:set var="atributo" value="aviso" />
 <c:choose>
 	<c:when test="${not empty aviso.titulo}">
 		<c:set var="modo" value="Editar" />
@@ -35,7 +35,7 @@
 <title><c:out value="${modo}"></c:out> aviso</title>
 </head>
 <body>
-	
+
 	<section>
 		<div class="jumbotron">
 
@@ -53,19 +53,22 @@
 			<%-- nuevoAviso is called form-backing bean --%>
 			<%-- <form:errors path="*" cssClass="alert alert-danger" element="div" /> --%>
 			<fieldset>
-				<legend><c:out value="${modo}"></c:out> aviso</legend>
-				
+				<legend>
+					<c:out value="${modo}"></c:out>
+					aviso
+				</legend>
+
 				<!-- MUY IMPORTANTE PARA LA EDICIÓN
 				Si no se pone, crea un dato nuevo en la db -->
 				<form:input type="hidden" id="postInternalId" path="postInternalId" />
-				
+
 				<!-- Titulo -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="titulo"><spring:message
 							code="addAviso.form.titulo.label" /></label>
 					<div class="col-lg-10">
 						<form:input id="titulo" path="titulo" type="text"
-							class="form:input-large"/>
+							class="form:input-large" />
 						<form:errors path="titulo" cssClass="text-danger" />
 					</div>
 				</div>
@@ -79,7 +82,7 @@
 							type="text" class="form:input-large" />
 					</div>
 				</div>
-				
+
 				<!-- Tipo de aviso -->
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="tipoAviso">Tipo
@@ -98,22 +101,61 @@
 					<div class="col-lg-10">
 						<form:input id="etiqueta" path="etiqueta" type="text"
 							class="form:input-large" />
-						<form:errors path="etiqueta" cssClass="text-danger" />	
+						<form:errors path="etiqueta" cssClass="text-danger" />
 					</div>
 				</div>
 
+				<!-- Etiqueta -->
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="hora">Hora</label>
+					<div class="col-lg-10">
+						<form:select id="hora" path="hora">
+							<c:forEach items="${horas}" var="hora" varStatus="theCount">
+								<option value="${hora}">${hora}</option>
+							</c:forEach>
+						</form:select>
+
+						<form:select id="minuto" path="minuto">
+							<c:forEach items="${minutos}" var="minuto" varStatus="theCount">
+								<option value="${minuto}">${minuto}</option>
+							</c:forEach>
+						</form:select>
+					</div>
+				</div>
+
+
+
 				<!-- Fecha publicación -->
-				<div id="datetimepicker" class="form-group input-append date">
-				<label class="control-label col-lg-2 col-lg-2" for="fechaPublicacion">Fecha</label>
-					<input type="text"> <span class="add-on"> 
-						<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-					</span></input> 
-					
+				<div id="datetimepicker" class="form-group">
+					<label class="control-label col-lg-2s"
+						for="fechaPublicacion">Fecha</label>
+					<div class="col-lg-10">
+						<form:select id="dia" path="dia">
+							<c:forEach items="${dias}" var="dia" varStatus="theCount">
+								<option value="${dia}">${dia}</option>
+							</c:forEach>
+						</form:select>
+	
+						<form:select id="mes" path="mes">
+							<c:forEach items="${meses}" var="mes" varStatus="theCount">
+								<option value="${theCount.count}">${mes}</option>
+							</c:forEach>
+						</form:select>
+	
+						<form:select id="anyo" path="anyo">
+							<c:forEach items="${anyos}" var="anyo" varStatus="theCount">
+								<option value="${anyo}">${anyo}</option>
+							</c:forEach>
+						</form:select>
+					</div>
+
 				</div>
 
 				<!-- Botón crear aviso -->
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
+					<p>
+					<p>
 						<input type="submit" id="btnAdd" class="btn btn-primary"
 							value="Crear aviso" />
 					</div>

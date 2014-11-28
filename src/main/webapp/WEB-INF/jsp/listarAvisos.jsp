@@ -55,6 +55,8 @@
 							</td>
 							<td>${item.tipoAviso}</td>
 							<td>${item.etiqueta}</p>
+							<td>Creado: ${item.fechaCreacion}</p>
+							<td>Publicacion: ${item.fechaPublicacion}</p>
 							<td><a class="btn btn-success"
 								href="<c:url value="/avisos/gestor/editar?id=${item.postInternalId}"></c:url>">
 									<span class="glyphicon glyphicon-edit"></span>

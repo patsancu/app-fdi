@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Products</title>
+<title>Ver aviso: ${aviso.titulo}</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js">
 	

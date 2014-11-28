@@ -1,13 +1,15 @@
 package com.fdi.aplicacionWeb.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -40,17 +42,48 @@ public class GestorAvisosController {
 		model.addAttribute("avisos", avisoService.getAllAvisos());
 		return "editarAvisos";
 	}
-	
+
 	@RequestMapping("/eliminar")
 	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {
 		avisoService.eliminarAviso(avisoID);
 		return "redirect:/avisos/ver";	
 	}
-	
-	
+
+
 	@RequestMapping(value="/crear", method = RequestMethod.GET)	
-	public String formularioCreadorAvisos(@ModelAttribute("aviso") Aviso aviso) {
+	public String formularioCreadorAvisos(@ModelAttribute("aviso") Aviso aviso, Model model) {
 		//return "creadorAvisos";
+		Date date = new Date(System.currentTimeMillis());
+		System.out.println(date);
+		String []  meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+		ArrayList<Integer> dias = new ArrayList<Integer>();
+		for (int i = 1; i <= 31; i++){
+			dias.add(new Integer(i));
+		}
+		ArrayList<Integer> anyos = new ArrayList<Integer>();
+		for (int i = 2014; i <= 2015; i++){
+			anyos.add(new Integer(i));
+		}
+		ArrayList<Integer> horas = new ArrayList<Integer>();
+		for (int i = 0; i <= 23; i++){
+			horas.add(new Integer(i));
+		}
+		ArrayList<Integer> minutos = new ArrayList<Integer>();
+		for (int i = 0; i <= 59; i++){
+			minutos.add(new Integer(i));
+		}
+		ArrayList<Integer> segundos = new ArrayList<Integer>();
+		for (int i = 0; i <= 59; i++){
+			segundos.add(new Integer(i));
+		}
+		model.addAttribute("dias", dias);
+		model.addAttribute("meses", meses);
+		model.addAttribute("anyos", anyos);
+		model.addAttribute("horas", horas);
+		model.addAttribute("minutos", minutos);
+		model.addAttribute("segundos", segundos);
+
+
 		return "creadorEditorAvisos";
 	}
 
@@ -80,13 +113,37 @@ public class GestorAvisosController {
 		//			}
 		//		}
 
+		Date fechaCreacion = new Date(System.currentTimeMillis());
+		aviso.setFechaCreacion(fechaCreacion);
+		System.out.println(fechaCreacion);
+
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+		String dateInString = "" + aviso.getDia();
+		dateInString += "-" + aviso.getMes();//"31-08-1982 10:20:56";
+		dateInString += "-" + aviso.getAnyo();
+		dateInString += " ";
+		dateInString += aviso.getHora();
+		dateInString += ":" + aviso.getMinuto();
+		dateInString += ":" + aviso.getSegundo();
+		Date date = new Date();
+		System.out.println("Dia de hoy:" + date); //Tue Aug 31 10:2
+		try {
+			date = sdf.parse(dateInString);
+			aviso.setFechaPublicacion(date);			
+		}
+		catch(ParseException e){
+			System.out.println("Algo fue mal");
+		}
+
+		System.out.println(date); //Tue Aug 31 10:2
 
 
 		avisoService.addAviso(aviso);
 		//return "redirect:/avisos/gestor";
 		return "redirect:/avisos/ver";
 	}
-	
+
 	@RequestMapping(value="/editar", method = RequestMethod.GET)
 	public String editarAviso(@ModelAttribute("aviso") Aviso aviso, @RequestParam("id") String avisoID,Model model){		
 		model.addAttribute("aviso",avisoService.getAvisoById(avisoID));
