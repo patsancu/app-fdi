@@ -1,9 +1,9 @@
 package com.fdi.aplicacionWeb.controller;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fdi.aplicacionWeb.domain.Aviso;
 import com.fdi.aplicacionWeb.service.AvisoService;
@@ -54,7 +55,7 @@ public class GestorAvisosController {
 	public String formularioCreadorAvisos(@ModelAttribute("aviso") Aviso aviso, Model model) {
 		//return "creadorAvisos";
 		Date date = new Date(System.currentTimeMillis());
-		System.out.println(date);
+		
 		String []  meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 		ArrayList<Integer> dias = new ArrayList<Integer>();
 		for (int i = 1; i <= 31; i++){
@@ -89,8 +90,8 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/crear", method = RequestMethod.POST)	
 	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso, BindingResult result, HttpServletRequest request) {
-		System.out.println("GestorAvisosController");
-		System.out.print(aviso);
+//		System.out.println("GestorAvisosController");
+//		System.out.print(aviso);
 		if(result.hasErrors()) {
 			return "gestorAvisos";
 		}
@@ -100,34 +101,42 @@ public class GestorAvisosController {
 		}
 
 
-		//MultipartFile productImage = nuevoAviso.getProductImage();
+		MultipartFile archivoAdjunto = aviso.getAdjunto();
+		
+		String nuevoNombre = aviso.getPostInternalId() + archivoAdjunto.getOriginalFilename();
 
 
-		String rootDirectory =request.getSession().getServletContext().getRealPath("/");
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
-		//		if (productImage!=null && !productImage.isEmpty()) {
-		//			try {
-		//				productImage.transferTo(new File(rootDirectory+"resources/images/"+ nuevoAviso.getProductId() + ".png"));
-		//			} catch (Exception e) {
-		//				throw new RuntimeException("Product Image saving failed",e);
-		//			}
-		//		}
+		if (archivoAdjunto!=null && !archivoAdjunto.isEmpty()) {
+			try {
+				archivoAdjunto.transferTo(new File(rootDirectory+"/resources/archivosAdjuntos/"+ nuevoNombre));
+				System.out.println("Se ha guardado el archivo en : " + rootDirectory+"resources/archivosAdjuntos/"+ nuevoNombre);
+			} catch (Exception e) {
+				throw new RuntimeException("Product Image saving failed",e);
+			}
+		}
 
+		
+		
+		
+		//Formateado de fecha
 		Date fechaCreacion = new Date(System.currentTimeMillis());
 		aviso.setFechaCreacion(fechaCreacion);
-		System.out.println(fechaCreacion);
+//		System.out.println(fechaCreacion);
 
-
+		//Se combinan los datos individuales (no mapeadosa la bd) 
+		// para crear el campo definitivo de tipo Date
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
 		String dateInString = "" + aviso.getDia();
-		dateInString += "-" + aviso.getMes();//"31-08-1982 10:20:56";
+		dateInString += "-" + aviso.getMes();
 		dateInString += "-" + aviso.getAnyo();
 		dateInString += " ";
 		dateInString += aviso.getHora();
 		dateInString += ":" + aviso.getMinuto();
 		dateInString += ":" + aviso.getSegundo();
 		Date date = new Date();
-		System.out.println("Dia de hoy:" + date); //Tue Aug 31 10:2
+//		System.out.println("Dia de hoy:" + date);
 		try {
 			date = sdf.parse(dateInString);
 			aviso.setFechaPublicacion(date);			
@@ -136,11 +145,11 @@ public class GestorAvisosController {
 			System.out.println("Algo fue mal");
 		}
 
-		System.out.println(date); //Tue Aug 31 10:2
+		
+//		System.out.println(date); //DEBUG
 
 
 		avisoService.addAviso(aviso);
-		//return "redirect:/avisos/gestor";
 		return "redirect:/avisos/ver";
 	}
 
@@ -153,7 +162,7 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/editar", method = RequestMethod.POST)
 	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){	
-		System.out.println("GestorAvisosController---guardarEdicionAviso");
+//		System.out.println("GestorAvisosController---guardarEdicionAviso");
 		avisoService.addAviso(aviso);		
 		return "redirect:/avisos/gestor";
 	}

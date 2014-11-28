@@ -60,8 +60,8 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 	}
 
 	public void addAviso(Aviso aviso) {
-		System.out.println("AvisoRepositoryImpl");
-		System.out.println(aviso);
+//		System.out.println("AvisoRepositoryImpl");
+//		System.out.println(aviso);
 		Session session = SessionUtil.getSession();
 		Transaction tx = session.beginTransaction();
 		//session.save(aviso);

@@ -7,11 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Aviso {
@@ -44,6 +44,9 @@ public class Aviso {
 	private int minuto;
 	@Transient
 	private int segundo;
+	
+	@Transient
+	private MultipartFile adjunto;
 
 
 	
@@ -239,6 +242,20 @@ public class Aviso {
 
 	public void setSegundo(int segundo) {
 		this.segundo = segundo;
+	}
+
+
+
+
+	public MultipartFile getAdjunto() {
+		return adjunto;
+	}
+
+
+
+
+	public void setAdjunto(MultipartFile adjunto) {
+		this.adjunto = adjunto;
 	}
 
 

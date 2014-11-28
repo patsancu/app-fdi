@@ -48,7 +48,7 @@
 	</section>
 	<section class="container">
 		<%-- <form:form modelAttribute="nuevoAviso" class="form-horizontal"> --%>
-		<form:form modelAttribute="${atributo}" class="form-horizontal">
+		<form:form modelAttribute="${atributo}" class="form-horizontal" enctype="multipart/form-data">
 			<!-- enctype="multipart/form-data" SOLO cuando haya subida de archivos -->
 			<%-- nuevoAviso is called form-backing bean --%>
 			<%-- <form:errors path="*" cssClass="alert alert-danger" element="div" /> --%>
@@ -127,21 +127,20 @@
 
 				<!-- Fecha publicación -->
 				<div id="datetimepicker" class="form-group">
-					<label class="control-label col-lg-2s"
-						for="fechaPublicacion">Fecha</label>
+					<label class="control-label col-lg-2s" for="fechaPublicacion">Fecha</label>
 					<div class="col-lg-10">
 						<form:select id="dia" path="dia">
 							<c:forEach items="${dias}" var="dia" varStatus="theCount">
 								<option value="${dia}">${dia}</option>
 							</c:forEach>
 						</form:select>
-	
+
 						<form:select id="mes" path="mes">
 							<c:forEach items="${meses}" var="mes" varStatus="theCount">
 								<option value="${theCount.count}">${mes}</option>
 							</c:forEach>
 						</form:select>
-	
+
 						<form:select id="anyo" path="anyo">
 							<c:forEach items="${anyos}" var="anyo" varStatus="theCount">
 								<option value="${anyo}">${anyo}</option>
@@ -151,15 +150,30 @@
 
 				</div>
 
+
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="adjunto">
+						Añadir archivo adjunto
+					</label>
+					<div class="col-lg-10">
+						<form:input id="adjunto" path="adjunto" type="file"
+							class="form:input-large" />
+					</div>
+				</div>
+
 				<!-- Botón crear aviso -->
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-					<p>
-					<p>
-						<input type="submit" id="btnAdd" class="btn btn-primary"
-							value="Crear aviso" />
+						<p>
+						<p>
+							<input type="submit" id="btnAdd" class="btn btn-primary"
+								value="Crear aviso" />
 					</div>
 				</div>
+
+
+
+
 			</fieldset>
 		</form:form>
 	</section>
