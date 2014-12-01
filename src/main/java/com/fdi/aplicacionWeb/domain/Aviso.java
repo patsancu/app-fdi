@@ -31,6 +31,7 @@ public class Aviso {
 	private String tipoDestino; //URL, archivo, contenidoPost
 	private String tipoAviso; // Normal, importante
 	private String etiqueta;
+	private String urlDestino;
 	
 	@Transient
 	private int mes;
@@ -256,6 +257,20 @@ public class Aviso {
 
 	public void setAdjunto(MultipartFile adjunto) {
 		this.adjunto = adjunto;
+	}
+
+
+
+
+	public String getUrlDestino() {
+		return urlDestino;
+	}
+
+
+
+
+	public void setUrlDestino(String urlDestino) {
+		this.urlDestino = urlDestino;
 	}
 
 

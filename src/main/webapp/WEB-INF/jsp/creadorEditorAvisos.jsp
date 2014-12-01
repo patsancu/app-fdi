@@ -48,7 +48,8 @@
 	</section>
 	<section class="container">
 		<%-- <form:form modelAttribute="nuevoAviso" class="form-horizontal"> --%>
-		<form:form modelAttribute="${atributo}" class="form-horizontal" enctype="multipart/form-data">
+		<form:form modelAttribute="${atributo}" class="form-horizontal"
+			enctype="multipart/form-data">
 			<!-- enctype="multipart/form-data" SOLO cuando haya subida de archivos -->
 			<%-- nuevoAviso is called form-backing bean --%>
 			<%-- <form:errors path="*" cssClass="alert alert-danger" element="div" /> --%>
@@ -82,6 +83,31 @@
 							type="text" class="form:input-large" />
 					</div>
 				</div>
+				
+				<!-- Tipo de destino: Post, URL o archivo adjunto -->
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="tipoDestino">Tipo
+						de destino</label>
+					<div class="col-lg-10">
+						<form:radiobutton path="tipoDestino" value="URL" />
+						URL
+						<form:radiobutton path="tipoDestino" value="Post" />
+						Post
+						<form:radiobutton path="tipoDestino" value="Archivo" />
+						Archivo
+					</div>
+				</div>	
+				
+				<!-- urlDestino -->
+				<!-- Tipo de aviso -->
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="urlDestino">URL destino</label>
+					<div class="col-lg-10">
+						<form:input id="urlDestino" path="urlDestino" type="text"
+							class="form:input-large" />
+					</div>
+				</div>			
+				
 
 				<!-- Tipo de aviso -->
 				<div class="form-group">
@@ -105,7 +131,7 @@
 					</div>
 				</div>
 
-				<!-- Etiqueta -->
+				<!-- Hora publicación -->
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="hora">Hora</label>
 					<div class="col-lg-10">
@@ -152,9 +178,8 @@
 
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="adjunto">
-						Añadir archivo adjunto
-					</label>
+					<label class="control-label col-lg-2" for="adjunto"> Añadir
+						archivo adjunto </label>
 					<div class="col-lg-10">
 						<form:input id="adjunto" path="adjunto" type="file"
 							class="form:input-large" />

@@ -20,20 +20,11 @@
 	});
 </script>
 
+
+
 <title>Listar avisos</title>
 </head>
 <body>
-	<%-- <section>
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Avisos</h1>
-				<h4>
-					<a href="<c:url value="/avisos/ver/iframe"></c:url>">Probar
-						versión con iframe</a>
-				</h4>
-			</div>
-		</div>
-	</section> --%>
 
 	<section class="container">
 		<table class="table table-hover">
@@ -48,34 +39,60 @@
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="caption">
 						<tr>
-							<td><c:if test="${item.tipoAviso eq 'Importante'}"><span class=" glyphicon glyphicon-exclamation-sign"></span></c:if></td>
-							<td>   ${item.titulo}</td>
-							<td><%-- ${item.contenidoAviso} --%>
-							${fn:substring(item.contenidoAviso, 0, 25)} ...
+							<td><c:if test="${item.tipoAviso eq 'Importante'}">
+									<span class=" glyphicon glyphicon-exclamation-sign"></span>
+								</c:if></td>
+							<td>${item.titulo}</td>
+							<td>
+								${fn:substring(item.contenidoAviso, 0, 25)} ...
 							</td>
 							<td>${item.tipoAviso}</td>
 							<td>${item.etiqueta}</p>
-							<td>Creado el ${fn:substring(item.fechaCreacion,0,19	)}</p>
-							<td>Publicacion: ${fn:substring(item.fechaPublicacion,0,19	)}</p>
+							<td>Creado el ${fn:substring(item.fechaCreacion,0,19	)}
+								</p>
+							<td>Publicacion: ${fn:substring(item.fechaPublicacion,0,19	)}
+								</p>
 							<td><a class="btn btn-success"
 								href="<c:url value="/avisos/gestor/editar?id=${item.postInternalId}"></c:url>">
 									<span class="glyphicon glyphicon-edit"></span>
 							</a></td>
-							<td><a
-								href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
-								class="btn btn-primary"> <span
-									class="glyphicon glyphicon-info-sign"></span>
-							</a></td>
+							<td>
+							
+							<!-- Tipo de destino: Post, URL o archivo adjunto -->
+							<c:choose>
+									<c:when test="${item.tipoDestino eq 'Post'}">
+								       <a href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
+											class="btn btn-primary"> <span
+												class="glyphicon glyphicon-info-sign"></span>
+										</a>
+								    </c:when>	
+									<c:when test="${item.tipoDestino eq 'URL'}">
+								        <a href="${item.urlDestino }"
+											class="btn btn-primary"> <span
+												class="glyphicon glyphicon-info-sign"></span>
+										</a>
+								    </c:when>
+								    <c:when test="${item.tipoDestino eq 'Archivo'}">
+								         <a href="<c:url value="/resources/archivosAdjuntos/${item.postInternalId}"></c:url>"
+											class="btn btn-primary"> <span
+												class="glyphicon glyphicon-info-sign"></span>
+										</a>
+								    </c:when>
+								    <c:otherwise>
+								        <a href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
+											class="btn btn-primary"> <span
+												class="glyphicon glyphicon-info-sign"></span>
+										</a>
+								    </c:otherwise>
+								</c:choose>
+							</td>
 							<td>
 								<!-- Botón eliminar -->
 								<button type="button" class="btn btn-danger" data-toggle="modal"
 									data-target=".bs-delete-modal-sm${item.postInternalId}">
 									<span class="glyphicon glyphicon-remove"></span>
-								</button>
-								
-								<!-- Popup de confirmación de eliminación -->
-								<div
-									class="modal fade bs-delete-modal-sm${item.postInternalId}"
+								</button> <!-- Popup de confirmación de eliminación -->
+								<div class="modal fade bs-delete-modal-sm${item.postInternalId}"
 									tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 									aria-hidden="true">
 									<div class="modal-dialog modal-sm">

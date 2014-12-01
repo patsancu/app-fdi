@@ -53,9 +53,6 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/crear", method = RequestMethod.GET)	
 	public String formularioCreadorAvisos(@ModelAttribute("aviso") Aviso aviso, Model model) {
-		//return "creadorAvisos";
-		Date date = new Date(System.currentTimeMillis());
-		
 		String []  meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 		ArrayList<Integer> dias = new ArrayList<Integer>();
 		for (int i = 1; i <= 31; i++){
@@ -90,8 +87,8 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/crear", method = RequestMethod.POST)	
 	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso, BindingResult result, HttpServletRequest request) {
-//		System.out.println("GestorAvisosController");
-//		System.out.print(aviso);
+		//		System.out.println("GestorAvisosController");
+		//		System.out.print(aviso);
 		if(result.hasErrors()) {
 			return "gestorAvisos";
 		}
@@ -102,28 +99,11 @@ public class GestorAvisosController {
 
 
 		MultipartFile archivoAdjunto = aviso.getAdjunto();
-		
-		String nuevoNombre = aviso.getPostInternalId() + archivoAdjunto.getOriginalFilename();
 
-
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-
-		if (archivoAdjunto!=null && !archivoAdjunto.isEmpty()) {
-			try {
-				archivoAdjunto.transferTo(new File(rootDirectory+"/resources/archivosAdjuntos/"+ nuevoNombre));
-				System.out.println("Se ha guardado el archivo en : " + rootDirectory+"resources/archivosAdjuntos/"+ nuevoNombre);
-			} catch (Exception e) {
-				throw new RuntimeException("Product Image saving failed",e);
-			}
-		}
-
-		
-		
-		
 		//Formateado de fecha
 		Date fechaCreacion = new Date(System.currentTimeMillis());
 		aviso.setFechaCreacion(fechaCreacion);
-//		System.out.println(fechaCreacion);
+		//		System.out.println(fechaCreacion);
 
 		//Se combinan los datos individuales (no mapeadosa la bd) 
 		// para crear el campo definitivo de tipo Date
@@ -136,7 +116,7 @@ public class GestorAvisosController {
 		dateInString += ":" + aviso.getMinuto();
 		dateInString += ":" + aviso.getSegundo();
 		Date date = new Date();
-//		System.out.println("Dia de hoy:" + date);
+		
 		try {
 			date = sdf.parse(dateInString);
 			aviso.setFechaPublicacion(date);			
@@ -144,12 +124,27 @@ public class GestorAvisosController {
 		catch(ParseException e){
 			System.out.println("Algo fue mal");
 		}
+		
+		avisoService.addAviso(aviso);
+
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+
+		System.out.println(rootDirectory); //DEBUG
+		String nuevoNombre = "" + aviso.getPostInternalId();
+
+		//Si hay archivo, se guarda con su id interno, sin extensión
+		if (archivoAdjunto!=null && !archivoAdjunto.isEmpty()) {
+			try {		
+				String rutaArchivoNuevo = rootDirectory+"resources\\archivosAdjuntos\\"+ nuevoNombre;
+				archivoAdjunto.transferTo(new File(rutaArchivoNuevo));
+				System.out.println("Se ha guardado el archivo en : " + rutaArchivoNuevo);
+			} catch (Exception e) {
+				throw new RuntimeException("Product Image saving failed",e);
+			}
+		}
+
 
 		
-//		System.out.println(date); //DEBUG
-
-
-		avisoService.addAviso(aviso);
 		return "redirect:/avisos/ver";
 	}
 
@@ -162,7 +157,7 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/editar", method = RequestMethod.POST)
 	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){	
-//		System.out.println("GestorAvisosController---guardarEdicionAviso");
+		//		System.out.println("GestorAvisosController---guardarEdicionAviso");
 		avisoService.addAviso(aviso);		
 		return "redirect:/avisos/gestor";
 	}
