@@ -14,4 +14,9 @@ public class HomeController {
 
 		return "welcome";
 	}
+	
+	@RequestMapping("/prueba")
+	public String patata(Model model){
+		return "prueba";
+	}
 }
