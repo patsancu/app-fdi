@@ -1,7 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="elemento" tagdir="/WEB-INF/tags/elementos"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<html>
+<t:genericPage titulo="">
+	<jsp:body>
+		<table class="container">
+			<elemento:listarAvisos__listadoAvisos></elemento:listarAvisos__listadoAvisos>
+		</table>	
+	</jsp:body>
+	
+</t:genericPage>
+
+<%-- <html>
 <head></head>
 <body>
 	<c:forEach items="${avisos}" var="item">
@@ -33,3 +46,4 @@
 </body>
 </html>
 
+ --%>

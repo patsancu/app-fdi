@@ -24,7 +24,7 @@
 
 	<section class="container">
 		<%-- <iframe class="col-md-8" src="<c:url value="/avisos/ver/basico	"></c:url>"> --%>
-		<iframe class="col-md-8" src="<c:url value="/avisos/ver	"></c:url>">
+		<iframe class="col-md-8" src="<c:url value="/avisos/ver/basico	"></c:url>">
 		</iframe>
 	</section>
 

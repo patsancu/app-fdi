@@ -26,7 +26,7 @@
 					<th>Tipo de aviso</th>
 					<th>Etiqueta</th>
 				</tr>
-				<elemento:listadoAvisos />
+				<elemento:listarAvisos__listadoAvisos/>
 			</table>
 			<a href="<spring:url value="/" />" class="btn btn-default"> 
 				<span class="glyphicon-hand-left glyphicon"></span> Volver	
