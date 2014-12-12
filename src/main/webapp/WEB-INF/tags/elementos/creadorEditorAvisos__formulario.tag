@@ -1,45 +1,14 @@
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" media="screen"
-	href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-<link
-	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"
-	rel="stylesheet">
-
-<script
-	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<c:url var="jq"
-	value="/js/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js" />
-<script type="text/javascript" src="${jq}"></script>
-<c:set var="atributo" value="aviso" />
-<c:choose>
-	<c:when test="${not empty aviso.titulo}">
-		<c:set var="modo" value="Editar" />
-		<%-- <c:set var="atributo" value="aviso"/> --%>
-	</c:when>
-	<c:otherwise>
-		<c:set var="modo" value="Crear" />
-		<%-- <c:set var="atributo" value="nuevoAviso"/> --%>
-	</c:otherwise>
-</c:choose>
-
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <section class="container">
-	<%-- <form:form modelAttribute="nuevoAviso" class="form-horizontal"> --%>
 	<form:form modelAttribute="${atributo}" class="form-horizontal"
 		enctype="multipart/form-data">
 		<!-- enctype="multipart/form-data" SOLO cuando haya subida de archivos -->
-		<%-- nuevoAviso is called form-backing bean --%>
-		<%-- <form:errors path="*" cssClass="alert alert-danger" element="div" /> --%>
+		<!-- nuevoAviso is called form-backing bean -->
+		<form:errors path="*" cssClass="alert alert-danger" element="div" />
 		<fieldset>
 			<legend>
 				<c:out value="${modo}"></c:out>
@@ -47,7 +16,7 @@
 			</legend>
 
 			<!-- MUY IMPORTANTE PARA LA EDICIÓN
-					Si no se pone, crea un dato nuevo en la db -->
+				Si no se pone, crea un dato nuevo en la db -->
 			<form:input type="hidden" id="postInternalId" path="postInternalId" />
 
 			<!-- Titulo -->
@@ -190,32 +159,3 @@
 		</fieldset>
 	</form:form>
 </section>
-
-
-
-<!-- jQuery y librería JS para fecha -->
-
-<script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-	
-</script>
-<script type="text/javascript"
-	src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-	
-</script>
-<script type="text/javascript"
-	src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-	
-</script>
-<script type="text/javascript"
-	src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-	
-</script>
-<script type="text/javascript">
-	$('#datetimepicker').datetimepicker({
-		//format: 'dd/MM/yyyy hh:mm:ss',
-		format : 'dd/MM/yyyy hh:mm',
-		//language: 'pt-BR'
-		language : 'en-US'
-	});
-</script>

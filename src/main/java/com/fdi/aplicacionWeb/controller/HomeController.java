@@ -19,4 +19,6 @@ public class HomeController {
 	public String patata(Model model){
 		return "prueba";
 	}
+	
+	
 }

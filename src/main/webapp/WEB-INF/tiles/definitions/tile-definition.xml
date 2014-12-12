@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/tiles/template/baseLayout.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="heading" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/tiles/template/footer.jsp" />
+	</definition>
+	
+	<definition name="baseLayoutWithoutJumbotron" template="/WEB-INF/tiles/template/baseLayoutWithoutJumbotron.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/tiles/template/footer.jsp" />
+	</definition>
+	
+	<definition name="prueba" extends="baseLayout">
+		<put-attribute name="title" value="Prueba de Tiles"/>
+		<put-attribute name="heading" value="Prueba de Tiles" />
+		<put-attribute name="tagline" value="Prueba de Tiles2" />
+	</definition>
+	
+	<definition name="welcome" extends="baseLayout">
+		<put-attribute name="title" value="Products" />
+		<put-attribute name="heading" value="Página principal" />
+		<put-attribute name="tagline" value="Seleccione una opción" />
+		<put-attribute name="content" value="/WEB-INF/jsp/basico.jsp" />		
+	</definition>
+	
+	<!-- Gestor de avisos -->
+	<definition name="gestorAvisos" extends="baseLayout">
+		<put-attribute name="title" value="Gestionar avisos" />
+		<put-attribute name="heading" value="Gestionar avisos" />
+		<put-attribute name="tagline" value="Bla"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/gestorAvisos.jsp" />
+	</definition>
+	
+	<!-- Listado de avisos -->
+	<definition name="listarAvisos" extends="baseLayout">
+		<put-attribute name="title" value="Listado de avisos" />
+		<put-attribute name="heading" value="Listado de avisos" />
+		<put-attribute name="tagline" value=" a" />
+		<put-attribute name="content" value="/WEB-INF/jsp/listarAvisos.jsp" />
+	</definition>
+	
+	
+	<!-- Creador de avisos -->
+	<definition name="creadorEditorAvisos" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="Crear aviso" />
+		<put-attribute name="heading" value="Crear aviso" />
+		<put-attribute name="tagline" value="s " />
+		<put-attribute name="content" value="/WEB-INF/jsp/creadorEditorAvisos.jsp" />
+	</definition>
+	
+	
+	<!-- Visor de avisos -->
+	<definition name="creadorEditorAvisos" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="Ver aviso" />
+		<put-attribute name="heading" value="Ver aviso" />
+		<put-attribute name="tagline" value=" " />
+		<put-attribute name="content" value="/WEB-INF/jsp/verAviso.jsp" />
+	</definition>
+	
+	
+<!-- similarly, add definition tags for every logical view name. 
+I have skipped this here, but you can find the full definition file 
+in the code bundle of this book. -->
+</tiles-definitions>
