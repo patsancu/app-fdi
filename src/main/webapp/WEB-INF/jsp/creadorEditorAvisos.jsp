@@ -1,20 +1,10 @@
-
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" media="screen"
-	href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-<link
-	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"
-	rel="stylesheet">
-
-<script
-	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <c:url var="jq"
 	value="/js/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js" />
@@ -33,7 +23,7 @@
 
 
 
-<section class="container">
+<section class="container center">
 	<%-- <form:form modelAttribute="nuevoAviso" class="form-horizontal"> --%>
 	<form:form modelAttribute="${atributo}" class="form-horizontal"
 		enctype="multipart/form-data">
@@ -194,15 +184,6 @@
 
 
 <!-- jQuery y librería JS para fecha -->
-
-<script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-	
-</script>
-<script type="text/javascript"
-	src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-	
-</script>
 <script type="text/javascript"
 	src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
 	

@@ -14,7 +14,8 @@
 <section>
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Aviso</h1>
+			<h1>"${aviso.titulo}"</h1>
+			<b>Publicación</b>${fn:substring(aviso.fechaPublicacion,0,19	)}
 		</div>
 	</div>
 </section>

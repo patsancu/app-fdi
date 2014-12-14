@@ -8,14 +8,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initialscale=
 1.0">
-<title>
-	<tiles:insertAttribute name="title" />
-</title>
-<link href="http://getbootstrap.com/dist/css/bootstrap.css"
-	rel="stylesheet">
-<link href="http://getbootstrap.com/examples/jumbotron/
-jumbotron.css"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 	<div class="container">
@@ -23,7 +22,8 @@ jumbotron.css"
 			<ul class="nav nav-pills pull-right">
 				<tiles:insertAttribute name="navigation" />
 			</ul>
-			<h3 class="text-muted">Aplicación FdI-UCM</h3>
+
+			<!-- <h3 class="text-muted">Aplicación FdI-UCM</h3> -->
 		</div>
 		<div class="jumbotron">
 			<h1>
