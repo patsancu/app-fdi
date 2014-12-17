@@ -33,37 +33,29 @@ public class Aviso {
 	private String etiqueta;
 	private String urlDestino;
 
-	@Transient
-	private int mes;
-	@Transient
+	@DateTimeFormat(pattern="yy-MM-dd")
 	private String dia;
-	@Transient
-	private int anyo;
-	@Transient
+
+	@DateTimeFormat(pattern="hh:mm")
 	private String hora;
-	@Transient
-	private int minuto;
-	@Transient
-	private int segundo;
 
 	@Transient
 	private MultipartFile adjunto;
 
 
 
+	
+	
+	
 
 	public long getPostInternalId() {
 		return postInternalId;
 	}
 
-
-
-
+	
 	public void setPostInternalId(long postInternalId) {
 		this.postInternalId = postInternalId;
 	}
-
-
 
 
 	public String getTitulo() {
@@ -71,90 +63,64 @@ public class Aviso {
 	}
 
 
-
-
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
-
-
+	
 
 	public Date getFechaPublicacion() {
 		return fechaPublicacion;
 	}
-
-
-
+	
 
 	public void setFechaPublicacion(Date fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
-
-
-
+	
 
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
-
-
-
+	
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-
-
-
+	
 
 	public String getContenidoAviso() {
 		return contenidoAviso;
 	}
-
-
-
+	
 
 	public void setContenidoAviso(String contenidoAviso) {
 		this.contenidoAviso = contenidoAviso;
 	}
-
-
-
+	
 
 	public String getTipoDestino() {
 		return tipoDestino;
 	}
-
-
-
+	
 
 	public void setTipoDestino(String tipoDestino) {
 		this.tipoDestino = tipoDestino;
 	}
-
-
-
+	
 
 	public String getTipoAviso() {
 		return tipoAviso;
 	}
-
-
-
-
+	
+	
 	public void setTipoAviso(String tipoAviso) {
 		this.tipoAviso = tipoAviso;
 	}
-
-
-
+	
 
 	public String getEtiqueta() {
 		return etiqueta;
 	}
-
-
 
 
 	public void setEtiqueta(String etiqueta) {
@@ -162,27 +128,9 @@ public class Aviso {
 	}
 
 
-
-
-	public int getMes() {
-		return mes;
-	}
-
-
-
-
-	public void setMes(int mes) {
-		this.mes = mes;
-	}
-
-
-
-
 	public String getDia() {
 		return dia;
 	}
-
-
 
 
 	public void setDia(String dia) {
@@ -190,90 +138,34 @@ public class Aviso {
 	}
 
 
-
-
-	public int getAnyo() {
-		return anyo;
-	}
-
-
-
-
-	public void setAnyo(int anyo) {
-		this.anyo = anyo;
-	}
-
-
-
-
 	public String getHora() {
 		return hora;
 	}
 
 
-
-
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-
-
-
-
-	public int getMinuto() {
-		return minuto;
-	}
-
-
-
-
-	public void setMinuto(int minuto) {
-		this.minuto = minuto;
-	}
-
-
-
-
-	public int getSegundo() {
-		return segundo;
-	}
-
-
-
-
-	public void setSegundo(int segundo) {
-		this.segundo = segundo;
-	}
-
-
-
+	
 
 	public MultipartFile getAdjunto() {
 		return adjunto;
 	}
-
-
-
+	
 
 	public void setAdjunto(MultipartFile adjunto) {
 		this.adjunto = adjunto;
 	}
 
 
-
-
 	public String getUrlDestino() {
 		return urlDestino;
 	}
-
-
-
+	
 
 	public void setUrlDestino(String urlDestino) {
 		this.urlDestino = urlDestino;
 	}
-
-
 
 
 	@Override
@@ -284,7 +176,5 @@ public class Aviso {
 				+ ", tipoDestino=" + tipoDestino + ", tipoAviso=" + tipoAviso
 				+ ", etiqueta=" + etiqueta + "]";
 	}
-
-
-
+	
 }

@@ -38,11 +38,11 @@ public class GestorAvisosController {
 		return "gestorAvisos";		
 	}
 
-//	@RequestMapping("/editar")
-//	public String editarAvisos(Model model) {
-//		model.addAttribute("avisos", avisoService.getAllAvisos());
-//		return "editarAvisos";
-//	}
+	//	@RequestMapping("/editar")
+	//	public String editarAvisos(Model model) {
+	//		model.addAttribute("avisos", avisoService.getAllAvisos());
+	//		return "editarAvisos";
+	//	}
 
 	@RequestMapping("/eliminar")
 	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {
@@ -108,13 +108,13 @@ public class GestorAvisosController {
 
 		//Se combinan los datos individuales (no mapeadosa la bd) 
 		// para crear el campo definitivo de tipo Date
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
 		String dateInString = aviso.getDia() + " ";
 		dateInString += aviso.getHora();
 		Date date = new Date();
 		System.out.println(date);
 		System.out.println(dateInString);
-		
+
 		try {
 			date = sdf.parse(dateInString);
 			aviso.setFechaPublicacion(date);	
@@ -122,11 +122,11 @@ public class GestorAvisosController {
 		catch(ParseException e){
 			System.out.println("Algo fue mal");
 		}
-		
+
 		System.out.println("DAFUQ!");
 		System.out.println("DAFUQ!");
 		System.out.println("DAFUQ!");
-		
+
 		avisoService.addAviso(aviso);
 
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
@@ -145,8 +145,6 @@ public class GestorAvisosController {
 			}
 		}
 
-
-		
 		return "redirect:/avisos/ver";
 	}
 
@@ -159,17 +157,30 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/editar", method = RequestMethod.POST)
 	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){	
-		//		System.out.println("GestorAvisosController---guardarEdicionAviso");
-		avisoService.addAviso(aviso);		
-		return "redirect:/avisos/gestor";
+		Date fechaCreacion = new Date(System.currentTimeMillis());
+		aviso.setFechaCreacion(fechaCreacion);
+
+		//Se combinan los datos individuales (no mapeados a la bd) 
+		// para crear el campo definitivo de tipo Date
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
+		String dateInString = aviso.getDia() + " ";
+		dateInString += aviso.getHora();
+		Date date = new Date();
+		System.out.println(date);
+		System.out.println(dateInString);
+
+		try {
+			date = sdf.parse(dateInString);
+			aviso.setFechaPublicacion(date);	
+		}
+		catch(ParseException e){
+			System.out.println("Algo fue mal");
+		}	
+		
+		//Se guarda el aviso editado
+		avisoService.addAviso(aviso);
+		
+		return "redirect:/avisos/ver";
 	}
 
-	@InitBinder
-	public void initialiseBinder(WebDataBinder binder) {
-		binder.setDisallowedFields("fechaCreacion");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class,
-				new CustomDateEditor(dateFormat, false));	
-	}
 }

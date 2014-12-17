@@ -16,7 +16,7 @@
 <!-- Datepicker -->
 <script>
 $(function() {
-	$( "#datepicker" ).datepicker();
+	$( "#datepicker" ).datepicker({"dateFormat": "yy-mm-dd"});
 });
 </script>
 
@@ -142,7 +142,7 @@ $(function() {
 
 			<!-- Hora publicación -->
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="hora">Hora</label>
+				<label class="control-label col-lg-2" for="hora">Hora de publicación</label>
 				<div class="col-lg-10">
 					<form:input id="seleccionHora" path="hora" class="form:input-large" />
 				</div>
@@ -152,7 +152,7 @@ $(function() {
 
 			<!-- Fecha publicación -->
 			<div id="datetimepicker" class="form-group">
-				<label class="control-label col-lg-2" for="dia">Fecha</label>
+				<label class="control-label col-lg-2" for="dia">Fecha de publicación</label>
 				<div class="col-lg-10">
 					<form:input id="datepicker" path="dia" />
 				</div>
@@ -172,11 +172,14 @@ $(function() {
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnAdd" class="btn btn-primary"
-						value="Crear aviso" />
+						value="Guardar aviso" />
 				</div>
 			</div>
 		</fieldset>
 	</form:form>
+	
+	
+	
 </section>
 
 
