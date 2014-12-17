@@ -22,7 +22,7 @@ public class Aviso {
 	@Size(min=4, max=50, message="{Size.Aviso.titulo.validation}")
 	private String titulo;
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
+	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date fechaPublicacion;
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
@@ -32,26 +32,26 @@ public class Aviso {
 	private String tipoAviso; // Normal, importante
 	private String etiqueta;
 	private String urlDestino;
-	
+
 	@Transient
 	private int mes;
 	@Transient
-	private int dia;
+	private String dia;
 	@Transient
 	private int anyo;
 	@Transient
-	private int hora;
+	private String hora;
 	@Transient
 	private int minuto;
 	@Transient
 	private int segundo;
-	
+
 	@Transient
 	private MultipartFile adjunto;
 
 
-	
-	
+
+
 	public long getPostInternalId() {
 		return postInternalId;
 	}
@@ -178,14 +178,14 @@ public class Aviso {
 
 
 
-	public int getDia() {
+	public String getDia() {
 		return dia;
 	}
 
 
 
 
-	public void setDia(int dia) {
+	public void setDia(String dia) {
 		this.dia = dia;
 	}
 
@@ -206,14 +206,14 @@ public class Aviso {
 
 
 
-	public int getHora() {
+	public String getHora() {
 		return hora;
 	}
 
 
 
 
-	public void setHora(int hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 

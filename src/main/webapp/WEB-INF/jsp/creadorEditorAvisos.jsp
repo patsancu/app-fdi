@@ -10,12 +10,36 @@
 	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+<!-- Datepicker -->
+<script>
+$(function() {
+	$( "#datepicker" ).datepicker();
+});
+</script>
+
+<!-- Timepicker -->
 <script>
   $(function() {
-    $( "#datepicker" ).datepicker();
+    $('#seleccionHora').timepicker({ 'timeFormat': 'H:i:s','scrollDefault': 'now'  });
   });
   </script>
+<script>
+  $('#botonAhora').on('click', function (){
+      $('#seleccionHora').timepicker('setTime', new Date());
+  });
+</script>
+
+<c:url var="jq"
+	value="/js/jquery-timepicker-master/jquery.timepicker.min.js" />
+<script type="text/javascript" src="${jq}"></script>
+<c:url var="css1"
+	value="/js/jquery-timepicker-master/jquery.timepicker.css" />
+<link rel="stylesheet" href="${css1}">
+
+
 
 <c:set var="atributo" value="aviso" />
 <c:choose>
@@ -85,7 +109,6 @@
 			</div>
 
 			<!-- urlDestino -->
-			<!-- Tipo de aviso -->
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="urlDestino">URL
 					destino</label>
@@ -112,12 +135,8 @@
 			<div class="form-group">
 				<label class="control-label col-lg-2 col-lg-2" for="etiqueta">Etiqueta</label>
 				<div class="col-lg-10">
-					<%-- <form:input id="etiqueta" path="etiqueta" type="text"
-						class="form:input-large" /> --%>
-						<form:input id="datepicker" path="etiqueta" type="text"
+					<form:input id="etiqueta" path="etiqueta" type="text"
 						class="form:input-large" />
-					
-					<form:errors path="etiqueta" cssClass="text-danger" />
 				</div>
 			</div>
 
@@ -125,17 +144,7 @@
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="hora">Hora</label>
 				<div class="col-lg-10">
-					<form:select id="hora" path="hora">
-						<c:forEach items="${horas}" var="hora" varStatus="theCount">
-							<option value="${hora}">${hora}</option>
-						</c:forEach>
-					</form:select>
-
-					<form:select id="minuto" path="minuto">
-						<c:forEach items="${minutos}" var="minuto" varStatus="theCount">
-							<option value="${minuto}">${minuto}</option>
-						</c:forEach>
-					</form:select>
+					<form:input id="seleccionHora" path="hora" class="form:input-large" />
 				</div>
 			</div>
 
@@ -143,30 +152,13 @@
 
 			<!-- Fecha publicación -->
 			<div id="datetimepicker" class="form-group">
-				<label class="control-label col-lg-2s" for="fechaPublicacion">Fecha</label>
+				<label class="control-label col-lg-2" for="dia">Fecha</label>
 				<div class="col-lg-10">
-					<form:select id="dia" path="dia">
-						<c:forEach items="${dias}" var="dia" varStatus="theCount">
-							<option value="${dia}">${dia}</option>
-						</c:forEach>
-					</form:select>
-
-					<form:select id="mes" path="mes">
-						<c:forEach items="${meses}" var="mes" varStatus="theCount">
-							<option value="${theCount.count}">${mes}</option>
-						</c:forEach>
-					</form:select>
-
-					<form:select id="anyo" path="anyo">
-						<c:forEach items="${anyos}" var="anyo" varStatus="theCount">
-							<option value="${anyo}">${anyo}</option>
-						</c:forEach>
-					</form:select>
+					<form:input id="datepicker" path="dia" />
 				</div>
-
 			</div>
 
-
+			<!-- Archivo adjunto -->
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="adjunto"> Añadir
 					archivo adjunto </label>
@@ -179,10 +171,8 @@
 			<!-- Botón crear aviso -->
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<p>
-					<p>
-						<input type="submit" id="btnAdd" class="btn btn-primary"
-							value="Crear aviso" />
+					<input type="submit" id="btnAdd" class="btn btn-primary"
+						value="Crear aviso" />
 				</div>
 			</div>
 		</fieldset>

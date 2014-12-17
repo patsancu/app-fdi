@@ -13,12 +13,15 @@
 
 <section class="container">
 	<table class="table table-hover">
-		<!-- <tr>	
-				<th>Título</th>
-				<th>Contenido del aviso</th>
-				<th>Tipo de aviso</th>
-				<th>Etiqueta</th>
-			</tr> -->
+		<tr>
+			<th>Importancia</th>
+			<th>Título</th>
+			<th>Contenido del aviso</th>
+			<th>Tipo de aviso</th>
+			<th>Etiqueta</th>
+			<th> Fecha creación </th>
+			<th> Fecha publicación </th>
+		</tr>
 		<!-- <tr ng-repeat="item in cart.cartItems"> -->
 		<c:forEach items="${avisos}" var="item">
 			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
@@ -28,7 +31,7 @@
 								<span class=" glyphicon glyphicon-exclamation-sign"></span>
 							</c:if></td>
 						<td>${item.titulo}</td>
-						<td>${fn:substring(item.contenidoAviso, 0, 25)} ...</td>
+						<td>${fn:substring(item.contenidoAviso, 0, 25)}...</td>
 						<td>${item.tipoAviso}</td>
 						<td>${item.etiqueta}</p>
 						<td>Creado el ${fn:substring(item.fechaCreacion,0,19	)}

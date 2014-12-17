@@ -38,11 +38,11 @@ public class GestorAvisosController {
 		return "gestorAvisos";		
 	}
 
-	@RequestMapping("/editar")
-	public String editarAvisos(Model model) {
-		model.addAttribute("avisos", avisoService.getAllAvisos());
-		return "editarAvisos";
-	}
+//	@RequestMapping("/editar")
+//	public String editarAvisos(Model model) {
+//		model.addAttribute("avisos", avisoService.getAllAvisos());
+//		return "editarAvisos";
+//	}
 
 	@RequestMapping("/eliminar")
 	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {
@@ -87,9 +87,11 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/crear", method = RequestMethod.POST)	
 	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso, BindingResult result, HttpServletRequest request) {
-		//		System.out.println("GestorAvisosController");
-		//		System.out.print(aviso);
+		System.out.println("DAFUQ!");
+		System.out.println("DAFUQ!");
+		System.out.println("DAFUQ!");
 		if(result.hasErrors()) {
+			System.out.println(result.getAllErrors());
 			return "gestorAvisos";
 		}
 		String[] suppressedFields = result.getSuppressedFields();
@@ -103,27 +105,27 @@ public class GestorAvisosController {
 		//Formateado de fecha
 		Date fechaCreacion = new Date(System.currentTimeMillis());
 		aviso.setFechaCreacion(fechaCreacion);
-		//		System.out.println(fechaCreacion);
 
 		//Se combinan los datos individuales (no mapeadosa la bd) 
 		// para crear el campo definitivo de tipo Date
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-		String dateInString = "" + aviso.getDia();
-		dateInString += "-" + aviso.getMes();
-		dateInString += "-" + aviso.getAnyo();
-		dateInString += " ";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		String dateInString = aviso.getDia() + " ";
 		dateInString += aviso.getHora();
-		dateInString += ":" + aviso.getMinuto();
-		dateInString += ":" + aviso.getSegundo();
 		Date date = new Date();
+		System.out.println(date);
+		System.out.println(dateInString);
 		
 		try {
 			date = sdf.parse(dateInString);
-			aviso.setFechaPublicacion(date);			
+			aviso.setFechaPublicacion(date);	
 		}
 		catch(ParseException e){
 			System.out.println("Algo fue mal");
 		}
+		
+		System.out.println("DAFUQ!");
+		System.out.println("DAFUQ!");
+		System.out.println("DAFUQ!");
 		
 		avisoService.addAviso(aviso);
 

@@ -49,7 +49,7 @@
 	<definition name="listarAvisos" extends="baseLayout">
 		<put-attribute name="title" value="Listado de avisos" />
 		<put-attribute name="heading" value="Listado de avisos" />
-		<put-attribute name="tagline" value=" a" />
+		<put-attribute name="tagline" value="" />
 		<put-attribute name="content" value="/WEB-INF/jsp/listarAvisos.jsp" />
 	</definition>
 	
@@ -58,7 +58,7 @@
 	<definition name="creadorEditorAvisos" extends="baseLayoutWithoutJumbotron">
 		<put-attribute name="title" value="Crear aviso" />
 		<put-attribute name="heading" value="Crear aviso" />
-		<put-attribute name="tagline" value="s " />
+		<put-attribute name="tagline" value="" />
 		<put-attribute name="content" value="/WEB-INF/jsp/creadorEditorAvisos.jsp" />
 	</definition>
 	
