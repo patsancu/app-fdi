@@ -70,4 +70,15 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 		session.close();
 	}
 
+	public void incrementarVisitas(String avisoID) {
+		Session session = SessionUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        Query query = session.createQuery("UPDATE Aviso a SET a.numeroVisitas = a.numeroVisitas+1 where a.postInternalId= :postInternalId");
+        query.setString("postInternalId", avisoID);
+        int rowCount = query.executeUpdate();
+        System.out.println("Rows affected: " + rowCount);
+        tx.commit();
+        session.close();				
+	}
+
 }

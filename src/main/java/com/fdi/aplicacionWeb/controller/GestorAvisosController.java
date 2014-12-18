@@ -86,6 +86,8 @@ public class GestorAvisosController {
 		Date date = new Date();
 		System.out.println(date);
 		System.out.println(dateInString);
+		
+		aviso.setNumeroVisitas(0);
 
 		try {
 			date = sdf.parse(dateInString);

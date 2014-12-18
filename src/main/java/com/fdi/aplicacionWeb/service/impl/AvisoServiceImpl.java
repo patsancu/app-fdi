@@ -44,6 +44,9 @@ public class AvisoServiceImpl implements AvisoService{
 		avisoRepository.addAviso(aviso);		
 	}
 	
+	public void incrementarVisitas(String avisoID){
+		avisoRepository.incrementarVisitas(avisoID);
+	}
 	
 
 }

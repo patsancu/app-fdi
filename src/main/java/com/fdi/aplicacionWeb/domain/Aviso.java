@@ -68,7 +68,18 @@ public class Aviso {
 	private MultipartFile adjunto;
 	
 	
+	private Integer numeroVisitas;
 	
+	
+	
+
+	public int getNumeroVisitas() {
+		return numeroVisitas;
+	}
+
+	public void setNumeroVisitas(int numeroVisitas) {
+		this.numeroVisitas = numeroVisitas;
+	}
 
 	public long getPostInternalId() {
 		return postInternalId;

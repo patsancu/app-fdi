@@ -14,4 +14,5 @@ public interface AvisoRepository {
 	//List <Aviso> getAvisosByManufacturer(String manufacturer);
 	void eliminarAviso(String avisoID);
 	void addAviso(Aviso product);
+	void incrementarVisitas(String avisoID);
 }

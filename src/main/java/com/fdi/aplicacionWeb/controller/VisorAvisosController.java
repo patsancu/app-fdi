@@ -25,7 +25,8 @@ public class VisorAvisosController {
 	
 	@RequestMapping("/individual")
 	public String individual(@RequestParam("id") String avisoID, Model model){
-		model.addAttribute(avisoService.getAvisoById(avisoID));
+		avisoService.incrementarVisitas(avisoID);
+		model.addAttribute(avisoService.getAvisoById(avisoID));				
 		return "verAviso";
 	}
 	
