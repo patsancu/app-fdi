@@ -2,23 +2,19 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js">
-	
-</script>
 <script src="/webstore/resource/js/controllers.js"></script>
 
 <section>
 	<div class="jumbotron">
 		<div class="container">
 			<h1>"${aviso.titulo}"</h1>
-			<b>Publicación</b>${fn:substring(aviso.fechaPublicacion,0,19	)}
+			<b>Publicación</b>${fn:substring(aviso.fechaPublicacionInicio,0,19	)}
 		</div>
 	</div>
 </section>
+
 <section class="container col-md-offset-2 col-md-6 center">
 	<div class="panel panel-info">
 		<%-- <h3>${aviso.titulo}</h3> --%>
@@ -47,7 +43,7 @@
 			</p>
 			<p>
 				<strong>Fecha publicación:</strong>
-				${fn:substring(aviso.fechaPublicacion,0,19	)}
+				${fn:substring(aviso.fechaPublicacionInicio,0,19	)}
 			</p>
 		</div>
 
@@ -67,7 +63,7 @@
 					<strong>Fecha creación:</strong> ${fn:substring(aviso.fechaCreacion,0,19	)}
 				</p>
 				<p>
-					<strong>Fecha publicación:</strong> ${fn:substring(aviso.fechaPublicacion,0,19	)}
+					<strong>Fecha publicación:</strong> ${fn:substring(aviso.fechaPublicacionInicio,0,19	)}
 				</p>
 			</div>
 			

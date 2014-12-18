@@ -13,31 +13,40 @@
 
 <section class="container">
 	<table class="table table-hover">
-		<tr>
+		<tr>			
 			<th>Importancia</th>
 			<th>Título</th>
+			<th>Lugar</th>
+			<th>Aforo</th>
+			<th>Duración estimada</th>
+			<th>Autor</th>
 			<th>Contenido del aviso</th>
-			<th>Tipo de aviso</th>
 			<th>Etiqueta</th>
 			<th> Fecha creación </th>
-			<th> Fecha publicación </th>
+			<th> Fecha publicación inicio </th>
+			<th> Fecha publicación fin </th>
 		</tr>
 		<!-- <tr ng-repeat="item in cart.cartItems"> -->
 		<c:forEach items="${avisos}" var="item">
 			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 				<div class="caption">
-					<tr>
+					<tr>						
 						<td><c:if test="${item.tipoAviso eq 'Importante'}">
 								<span class=" glyphicon glyphicon-exclamation-sign"></span>
 							</c:if></td>
 						<td>${item.titulo}</td>
+						<td>${item.lugar}</td>
+						<%-- <td>${item.aforo}</td> --%>
+						<td>${item.duracionEstimada }</td>
+						<td>${item.autor}</td>
 						<td>${fn:substring(item.contenidoAviso, 0, 25)}...</td>
 						<td>${item.tipoAviso}</td>
 						<td>${item.etiqueta}</p>
 						<td>Creado el ${fn:substring(item.fechaCreacion,0,19	)}
-							</p>
-						<td>Publicacion: ${fn:substring(item.fechaPublicacion,0,19	)}
-							</p>
+							
+						<td>${fn:substring(item.fechaPublicacionInicio,0,19	)}
+						<td>${fn:substring(item.fechaPublicacionFin,0,19	)}
+						
 						<td><a class="btn btn-success"
 							href="<c:url value="/avisos/gestor/editar?id=${item.postInternalId}"></c:url>">
 								<span class="glyphicon glyphicon-edit"></span>

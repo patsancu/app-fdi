@@ -53,35 +53,6 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/crear", method = RequestMethod.GET)	
 	public String formularioCreadorAvisos(@ModelAttribute("aviso") Aviso aviso, Model model) {
-		String []  meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-		ArrayList<Integer> dias = new ArrayList<Integer>();
-		for (int i = 1; i <= 31; i++){
-			dias.add(new Integer(i));
-		}
-		ArrayList<Integer> anyos = new ArrayList<Integer>();
-		for (int i = 2014; i <= 2015; i++){
-			anyos.add(new Integer(i));
-		}
-		ArrayList<Integer> horas = new ArrayList<Integer>();
-		for (int i = 0; i <= 23; i++){
-			horas.add(new Integer(i));
-		}
-		ArrayList<Integer> minutos = new ArrayList<Integer>();
-		for (int i = 0; i <= 59; i++){
-			minutos.add(new Integer(i));
-		}
-		ArrayList<Integer> segundos = new ArrayList<Integer>();
-		for (int i = 0; i <= 59; i++){
-			segundos.add(new Integer(i));
-		}
-		model.addAttribute("dias", dias);
-		model.addAttribute("meses", meses);
-		model.addAttribute("anyos", anyos);
-		model.addAttribute("horas", horas);
-		model.addAttribute("minutos", minutos);
-		model.addAttribute("segundos", segundos);
-
-
 		return "creadorEditorAvisos";
 	}
 
@@ -106,26 +77,41 @@ public class GestorAvisosController {
 		Date fechaCreacion = new Date(System.currentTimeMillis());
 		aviso.setFechaCreacion(fechaCreacion);
 
-		//Se combinan los datos individuales (no mapeadosa la bd) 
+		//Fecha inicio
+		// Se combinan los datos individuales 
 		// para crear el campo definitivo de tipo Date
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
-		String dateInString = aviso.getDia() + " ";
-		dateInString += aviso.getHora();
+		String dateInString = aviso.getDiaPublicacionInicio() + " ";
+		dateInString += aviso.getHoraPublicacionInicio();
 		Date date = new Date();
 		System.out.println(date);
 		System.out.println(dateInString);
 
 		try {
 			date = sdf.parse(dateInString);
-			aviso.setFechaPublicacion(date);	
+			aviso.setfechaPublicacionInicio(date);	
 		}
 		catch(ParseException e){
 			System.out.println("Algo fue mal");
 		}
 
-		System.out.println("DAFUQ!");
-		System.out.println("DAFUQ!");
-		System.out.println("DAFUQ!");
+		//	Fecha fin
+		// Se combinan los datos individuales 
+		// para crear el campo definitivo de tipo Date
+		sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
+		dateInString = aviso.getDiaPublicacionFin() + " ";
+		dateInString += aviso.getHoraPublicacionFin();
+		date = new Date();
+		System.out.println(date);
+		System.out.println(dateInString);
+
+		try {
+			date = sdf.parse(dateInString);
+			aviso.setFechaPublicacionFin(date);	
+		}
+		catch(ParseException e){
+			System.out.println("Algo fue mal");
+		}
 
 		avisoService.addAviso(aviso);
 
@@ -141,7 +127,7 @@ public class GestorAvisosController {
 				archivoAdjunto.transferTo(new File(rutaArchivoNuevo));
 				System.out.println("Se ha guardado el archivo en : " + rutaArchivoNuevo);
 			} catch (Exception e) {
-				throw new RuntimeException("Product Image saving failed",e);
+				throw new RuntimeException("El archivo adjunto no ha podido guardarse",e);
 			}
 		}
 
@@ -160,26 +146,43 @@ public class GestorAvisosController {
 		Date fechaCreacion = new Date(System.currentTimeMillis());
 		aviso.setFechaCreacion(fechaCreacion);
 
+		//Fecha inicio
 		//Se combinan los datos individuales (no mapeados a la bd) 
 		// para crear el campo definitivo de tipo Date
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
-		String dateInString = aviso.getDia() + " ";
-		dateInString += aviso.getHora();
+		String dateInString = aviso.getDiaPublicacionInicio() + " ";
+		dateInString += aviso.getHoraPublicacionInicio();
 		Date date = new Date();
 		System.out.println(date);
 		System.out.println(dateInString);
 
 		try {
 			date = sdf.parse(dateInString);
-			aviso.setFechaPublicacion(date);	
+			aviso.setfechaPublicacionInicio(date);	
 		}
 		catch(ParseException e){
 			System.out.println("Algo fue mal");
 		}	
-		
+
+		//Fecha fin
+		sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
+		dateInString = aviso.getDiaPublicacionFin() + " ";
+		dateInString += aviso.getHoraPublicacionFin();
+		date = new Date();
+		System.out.println(date);
+		System.out.println(dateInString);
+
+		try {
+			date = sdf.parse(dateInString);
+			aviso.setFechaPublicacionFin(date);	
+		}
+		catch(ParseException e){
+			System.out.println("Algo fue mal");
+		}	
+
 		//Se guarda el aviso editado
 		avisoService.addAviso(aviso);
-		
+
 		return "redirect:/avisos/ver";
 	}
 

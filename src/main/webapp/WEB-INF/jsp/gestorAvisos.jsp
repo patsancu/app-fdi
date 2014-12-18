@@ -81,7 +81,7 @@
 				</div>
 				<h3></h3>
 				<div class="panel-body">
-					<p>${aviso.fechaPublicacion}</p>
+					<p>${aviso.fechaPublicacionInicio}</p>
 					<p>${aviso.tipoAviso}</p>
 				</div>
 				<div class="panel-footer">

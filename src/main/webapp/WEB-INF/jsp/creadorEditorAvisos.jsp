@@ -16,19 +16,37 @@
 <!-- Datepicker -->
 <script>
 $(function() {
-	$( "#datepicker" ).datepicker({"dateFormat": "yy-mm-dd"});
+	$( "#datepickerInicio" ).datepicker({"dateFormat": "yy-mm-dd"});
 });
 </script>
 
 <!-- Timepicker -->
 <script>
   $(function() {
-    $('#seleccionHora').timepicker({ 'timeFormat': 'H:i:s','scrollDefault': 'now'  });
+    $('#seleccionHoraInicio').timepicker({ 'timeFormat': 'H:i:s','scrollDefault': 'now'  });
   });
   </script>
 <script>
   $('#botonAhora').on('click', function (){
-      $('#seleccionHora').timepicker('setTime', new Date());
+      $('#seleccionHoraInicio').timepicker('setTime', new Date());
+  });
+</script>
+<!-- Datepicker -->
+<script>
+$(function() {
+	$( "#datepickerFin" ).datepicker({"dateFormat": "yy-mm-dd"});
+});
+</script>
+
+<!-- Timepicker -->
+<script>
+  $(function() {
+    $('#seleccionHoraFin').timepicker({ 'timeFormat': 'H:i:s','scrollDefault': 'now'  });
+  });
+  </script>
+<script>
+  $('#botonAhora').on('click', function (){
+      $('#seleccionHoraFin').timepicker('setTime', new Date());
   });
 </script>
 
@@ -140,21 +158,36 @@ $(function() {
 				</div>
 			</div>
 
-			<!-- Hora publicación -->
+			<!-- Hora publicación inicio-->
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="hora">Hora de publicación</label>
+				<label class="control-label col-lg-2" for="hora">Hora de publicación (inicio)</label>
 				<div class="col-lg-10">
-					<form:input id="seleccionHora" path="hora" class="form:input-large" />
+					<form:input id="seleccionHoraInicio" path="horaPublicacionInicio" class="form:input-large" />
 				</div>
 			</div>
 
-
-
-			<!-- Fecha publicación -->
+			<!-- Fecha publicación inicio-->
 			<div id="datetimepicker" class="form-group">
-				<label class="control-label col-lg-2" for="dia">Fecha de publicación</label>
+				<label class="control-label col-lg-2" for="dia">Fecha de publicación (inicio)</label>
 				<div class="col-lg-10">
-					<form:input id="datepicker" path="dia" />
+					<form:input id="datepickerInicio" path="diaPublicacionInicio" />
+				</div>
+			</div>
+			
+			
+			<!-- Hora publicación fin-->
+			<div class="form-group">
+				<label class="control-label col-lg-2" for="hora">Hora de publicación (fin)</label>
+				<div class="col-lg-10">
+					<form:input id="seleccionHoraFin" path="horaPublicacionFin" class="form:input-large" />
+				</div>
+			</div>
+
+			<!-- Fecha publicación fin-->
+			<div id="datetimepicker" class="form-group">
+				<label class="control-label col-lg-2" for="dia">Fecha de publicación (fin)</label>
+				<div class="col-lg-10">
+					<form:input id="datepickerFin" path="diaPublicacionFin" />
 				</div>
 			</div>
 
@@ -164,6 +197,44 @@ $(function() {
 					archivo adjunto </label>
 				<div class="col-lg-10">
 					<form:input id="adjunto" path="adjunto" type="file"
+						class="form:input-large" />
+				</div>
+			</div>
+			
+			<!-- Lugar -->
+			<div class="form-group">
+				<label class="control-label col-lg-2 col-lg-2" for="etiqueta">Lugar</label>
+				<div class="col-lg-10">
+					<form:input id="lugar" path="lugar" type="text"
+						class="form:input-large" />
+				</div>
+			</div>
+			
+			<!-- Aforo -->
+			<div class="form-group">
+				<label class="control-label col-lg-2 col-lg-2" for="aforo">Aforo</label>
+				<div class="col-lg-10">
+					<%-- <form:input id="aforo" path="aforo" type="text"
+						class="form:input-large" /> --%>
+				</div>
+			</div>
+			
+			
+			<!-- Status -->
+			<div class="form-group">
+				<label class="control-label col-lg-2 col-lg-2" for="status">Status</label>
+				<div class="col-lg-10">
+					<form:input id="status" path="status" type="text"
+						class="form:input-large" />
+				</div>
+			</div>
+			
+			
+			<!-- Duración estimada -->
+			<div class="form-group">
+				<label class="control-label col-lg-2 col-lg-2" for="duracionEstimada">Duración estimada</label>
+				<div class="col-lg-10">
+					<form:input id="duracionEstimada" path="duracionEstimada" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
