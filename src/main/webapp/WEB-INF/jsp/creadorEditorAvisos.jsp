@@ -201,43 +201,6 @@ $(function() {
 				</div>
 			</div>
 			
-			<!-- Lugar -->
-			<div class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="etiqueta">Lugar</label>
-				<div class="col-lg-10">
-					<form:input id="lugar" path="lugar" type="text"
-						class="form:input-large" />
-				</div>
-			</div>
-			
-			<!-- Aforo -->
-			<div class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="aforo">Aforo</label>
-				<div class="col-lg-10">
-					<%-- <form:input id="aforo" path="aforo" type="text"
-						class="form:input-large" /> --%>
-				</div>
-			</div>
-			
-			
-			<!-- Status -->
-			<div class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="status">Status</label>
-				<div class="col-lg-10">
-					<form:input id="status" path="status" type="text"
-						class="form:input-large" />
-				</div>
-			</div>
-			
-			
-			<!-- Duración estimada -->
-			<div class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="duracionEstimada">Duración estimada</label>
-				<div class="col-lg-10">
-					<form:input id="duracionEstimada" path="duracionEstimada" type="text"
-						class="form:input-large" />
-				</div>
-			</div>
 
 			<!-- Botón crear aviso -->
 			<div class="form-group">

@@ -89,7 +89,7 @@ public class GestorAvisosController {
 
 		try {
 			date = sdf.parse(dateInString);
-			aviso.setfechaPublicacionInicio(date);	
+			aviso.setFechaPublicacionInicio(date);	
 		}
 		catch(ParseException e){
 			System.out.println("Algo fue mal");
@@ -158,7 +158,7 @@ public class GestorAvisosController {
 
 		try {
 			date = sdf.parse(dateInString);
-			aviso.setfechaPublicacionInicio(date);	
+			aviso.setFechaPublicacionInicio(date);	
 		}
 		catch(ParseException e){
 			System.out.println("Algo fue mal");

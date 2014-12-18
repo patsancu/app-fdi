@@ -16,10 +16,6 @@
 		<tr>			
 			<th>Importancia</th>
 			<th>Título</th>
-			<th>Lugar</th>
-			<th>Aforo</th>
-			<th>Duración estimada</th>
-			<th>Autor</th>
 			<th>Contenido del aviso</th>
 			<th>Etiqueta</th>
 			<th> Fecha creación </th>
@@ -35,12 +31,7 @@
 								<span class=" glyphicon glyphicon-exclamation-sign"></span>
 							</c:if></td>
 						<td>${item.titulo}</td>
-						<td>${item.lugar}</td>
-						<%-- <td>${item.aforo}</td> --%>
-						<td>${item.duracionEstimada }</td>
-						<td>${item.autor}</td>
 						<td>${fn:substring(item.contenidoAviso, 0, 25)}...</td>
-						<td>${item.tipoAviso}</td>
 						<td>${item.etiqueta}</p>
 						<td>Creado el ${fn:substring(item.fechaCreacion,0,19	)}
 							

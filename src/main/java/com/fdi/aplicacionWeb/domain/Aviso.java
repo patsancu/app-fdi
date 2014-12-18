@@ -22,17 +22,7 @@ public class Aviso {
 	@Size(min=4, max=50, message="{Size.Aviso.titulo.validation}")
 	private String titulo;
 	
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
-	private Date fechaPublicacionInicio;
 	
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
-	private Date fechaPublicacionFin;
-	
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
-	private Date fechaCreacion;
 	
 	private String contenidoAviso;
 	
@@ -44,18 +34,21 @@ public class Aviso {
 	
 	private String urlDestino;	
 	
-	private String autor;
 	
-	private String lugar;
 	
-//	private int aforo;
+	//Fechas
 	
-	private String status;
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
+	private Date fechaCreacion;
 	
-//	private int numeroVisitas;
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
+	private Date fechaPublicacionInicio;
 	
-	private String duracionEstimada;
-
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
+	private Date fechaPublicacionFin;
 	
 	@DateTimeFormat(pattern="yy-MM-dd")
 	private String diaPublicacionInicio;
@@ -68,9 +61,14 @@ public class Aviso {
 
 	@DateTimeFormat(pattern="hh:mm")
 	private String horaPublicacionFin;
+	
+	
 
 	@Transient
 	private MultipartFile adjunto;
+	
+	
+	
 
 	public long getPostInternalId() {
 		return postInternalId;
@@ -152,46 +150,6 @@ public class Aviso {
 		this.urlDestino = urlDestino;
 	}
 
-	public String getAutor() {
-		return autor;
-	}
-
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
-
-	public String getLugar() {
-		return lugar;
-	}
-
-	public void setLugar(String lugar) {
-		this.lugar = lugar;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-//	public int getNumeroVisitas() {
-//		return numeroVisitas;
-//	}
-//
-//	public void setNumeroVisitas(int numeroVisitas) {
-//		this.numeroVisitas = numeroVisitas;
-//	}
-
-	public String getDuracionEstimada() {
-		return duracionEstimada;
-	}
-
-	public void setDuracionEstimada(String duracionEstimada) {
-		this.duracionEstimada = duracionEstimada;
-	}
-
 	public String getDiaPublicacionInicio() {
 		return diaPublicacionInicio;
 	}
@@ -231,26 +189,5 @@ public class Aviso {
 	public void setAdjunto(MultipartFile adjunto) {
 		this.adjunto = adjunto;
 	}
-
-//	@Override
-//	public String toString() {
-//		return "Aviso [postInternalId=" + postInternalId + ", titulo=" + titulo
-//				+ ", fechaPublicacionInicio=" + fechaPublicacionInicio
-//				+ ", fechaPublicacionFin=" + fechaPublicacionFin
-//				+ ", fechaCreacion=" + fechaCreacion + ", contenidoAviso="
-//				+ contenidoAviso + ", tipoDestino=" + tipoDestino
-//				+ ", tipoAviso=" + tipoAviso + ", etiqueta=" + etiqueta
-//				+ ", urlDestino=" + urlDestino + ", autor=" + autor
-//				+ ", lugar=" + lugar + ", status=" + status
-//				+ ", numeroVisitas=" + numeroVisitas + ", duracionEstimada="
-//				+ duracionEstimada + ", diaPublicacionInicio="
-//				+ diaPublicacionInicio + ", horaPublicacionInicio="
-//				+ horaPublicacionInicio + ", diaPublicacionFin="
-//				+ diaPublicacionFin + ", horaPublicacionFin="
-//				+ horaPublicacionFin + ", adjunto=" + adjunto + "]";
-//	}
-
-
-	
 	
 }

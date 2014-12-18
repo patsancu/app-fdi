@@ -48,29 +48,23 @@
 		</div>
 
 
-				</div>
+	</div>
 
-			</div>
-			<div class="panel-body clearfix" style="padding-top: 7.5px;">
-				<p>${aviso.contenidoAviso}</p>
-				<p>
-					<strong>Etiqueta : </strong> <span class=" label label-warning">${aviso.etiqueta}</span>
-				</p>
-				<p>
-					<strong>Tipo aviso</strong> : ${aviso.tipoAviso}
-				</p>
-				<p>
-					<strong>Fecha creación:</strong> ${fn:substring(aviso.fechaCreacion,0,19	)}
-				</p>
-				<p>
-					<strong>Fecha publicación:</strong> ${fn:substring(aviso.fechaPublicacionInicio,0,19	)}
-				</p>
-			</div>
-			
-			
-
-
-		</div>
-	</section>
-</body>
-</html>
+	<div class="panel-body clearfix" style="padding-top: 7.5px;">
+		<p>${aviso.contenidoAviso}</p>
+		<p>
+			<strong>Etiqueta : </strong> <span class=" label label-warning">${aviso.etiqueta}</span>
+		</p>
+		<p>
+			<strong>Tipo aviso</strong> : ${aviso.tipoAviso}
+		</p>
+		<p>
+			<strong>Fecha creación:</strong>
+			${fn:substring(aviso.fechaCreacion,0,19	)}
+		</p>
+		<p>
+			<strong>Fecha publicación:</strong>
+			${fn:substring(aviso.fechaPublicacionInicio,0,19	)}
+		</p>
+	</div>
+</section>
