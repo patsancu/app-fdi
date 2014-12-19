@@ -31,8 +31,15 @@
 		</div>
 		<div class="panel-body clearfix" style="padding-top: 7.5px;">
 			<p>${aviso.contenidoAviso}</p>
+			<p><strong>Lugar : </strong> ${aviso.lugar}</p>
+			<p><strong>Duración estimada : </strong>${aviso.duracionEstimada}</p>
+			<p><strong>Aforo : </strong>${aviso.numeroPlazas}</p>
+			<p><strong>Creado por: </strong>${aviso.autor}</p>
 			<p>
 				<strong>Etiqueta : </strong> <span class=" label label-warning">${aviso.etiqueta}</span>
+			</p>
+			<p>
+				<strong>Fecha evento</strong> : ${aviso.fechaCompletaEvento}
 			</p>
 			<p>
 				<strong>Tipo aviso</strong> : ${aviso.tipoAviso}
@@ -42,8 +49,12 @@
 				${fn:substring(aviso.fechaCreacion,0,19	)}
 			</p>
 			<p>
-				<strong>Fecha publicación:</strong>
+				<strong>Fecha publicación (desde):</strong>
 				${fn:substring(aviso.fechaPublicacionInicio,0,19	)}
+			</p>
+			<p>
+				<strong>Fecha publicación (hasta):</strong>
+				${fn:substring(aviso.fechaPublicacionFin,0,19	)}
 			</p>
 			<p>
 				<strong>Número de visitas:</strong>

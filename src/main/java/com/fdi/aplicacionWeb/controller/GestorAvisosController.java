@@ -86,7 +86,7 @@ public class GestorAvisosController {
 		Date date = new Date();
 		System.out.println(date);
 		System.out.println(dateInString);
-		
+
 		aviso.setNumeroVisitas(0);
 
 		try {
@@ -110,6 +110,24 @@ public class GestorAvisosController {
 		try {
 			date = sdf.parse(dateInString);
 			aviso.setFechaPublicacionFin(date);	
+		}
+		catch(ParseException e){
+			System.out.println("Algo fue Lmal");
+		}
+
+		//		Fecha evento
+		// Se combinan los datos individuales 
+		// para crear el campo definitivo de tipo Date
+		sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
+		dateInString = aviso.getFechaEvento() + " ";
+		dateInString += aviso.getHoraEvento();
+		date = new Date();
+		System.out.println(date);
+		System.out.println(dateInString);
+
+		try {
+			date = sdf.parse(dateInString);
+			aviso.setFechaCompletaEvento(date);	
 		}
 		catch(ParseException e){
 			System.out.println("Algo fue mal");

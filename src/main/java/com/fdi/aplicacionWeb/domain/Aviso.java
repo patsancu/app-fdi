@@ -34,6 +34,18 @@ public class Aviso {
 	
 	private String urlDestino;	
 	
+	private Integer numeroVisitas;
+	
+	private String autor;
+	
+	private String duracionEstimada;
+	
+	private Integer numeroPlazas;
+	
+	private String lugar;
+	
+	private String Status;
+	
 	
 	
 	//Fechas
@@ -41,6 +53,18 @@ public class Aviso {
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date fechaCreacion;
+	
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
+	private Date fechaCompletaEvento;
+	
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="hh:mm")
+	private Date horaEvento;
+	
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private Date fechaEvento;
 	
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
@@ -68,10 +92,76 @@ public class Aviso {
 	private MultipartFile adjunto;
 	
 	
-	private Integer numeroVisitas;
 	
 	
-	
+
+	public Date getFechaCompletaEvento() {
+		return fechaCompletaEvento;
+	}
+
+	public void setFechaCompletaEvento(Date fechaCompletaEvento) {
+		this.fechaCompletaEvento = fechaCompletaEvento;
+	}
+
+	public Date getHoraEvento() {
+		return horaEvento;
+	}
+
+	public void setHoraEvento(Date horaEvento) {
+		this.horaEvento = horaEvento;
+	}
+
+	public Date getFechaEvento() {
+		return fechaEvento;
+	}
+
+	public void setFechaEvento(Date fechaEvento) {
+		this.fechaEvento = fechaEvento;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+	public String getDuracionEstimada() {
+		return duracionEstimada;
+	}
+
+	public void setDuracionEstimada(String duracionEstimada) {
+		this.duracionEstimada = duracionEstimada;
+	}
+
+	public Integer getNumeroPlazas() {
+		return numeroPlazas;
+	}
+
+	public void setNumeroPlazas(Integer numeroPlazas) {
+		this.numeroPlazas = numeroPlazas;
+	}
+
+	public String getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
+	}
+
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
+	}
+
+	public void setNumeroVisitas(Integer numeroVisitas) {
+		this.numeroVisitas = numeroVisitas;
+	}
 
 	public int getNumeroVisitas() {
 		return numeroVisitas;

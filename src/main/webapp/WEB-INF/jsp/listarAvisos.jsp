@@ -17,10 +17,16 @@
 			<th>Importancia</th>
 			<th>Título</th>
 			<th>Contenido del aviso</th>
+			<th>Duración estimada</th>
+			<th>Lugar</th>
+			<th>Fecha evento</th>
+			<th>Aforo</th>
 			<th>Etiqueta</th>
+			<th>Publicado por </th>
 			<th> Fecha creación </th>
 			<th> Fecha publicación inicio </th>
 			<th> Fecha publicación fin </th>
+			
 		</tr>
 		<!-- <tr ng-repeat="item in cart.cartItems"> -->
 		<c:forEach items="${avisos}" var="item">
@@ -32,7 +38,12 @@
 							</c:if></td>
 						<td>${item.titulo}</td>
 						<td>${fn:substring(item.contenidoAviso, 0, 25)}...</td>
-						<td>${item.etiqueta}</p>
+						<td>${item.duracionEstimada}</td>
+						<td>${item.lugar}</td>
+						<td>${item.fechaCompletaEvento}</td>
+						<td>${item.numeroPlazas}</td>						
+						<td>${item.etiqueta}</td>
+						<td>${item.autor }</td>						
 						<td>Creado el ${fn:substring(item.fechaCreacion,0,19	)}
 							
 						<td>${fn:substring(item.fechaPublicacionInicio,0,19	)}

@@ -13,41 +13,78 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
-<!-- Datepicker -->
+<!-- Datepicker Fecha publicación inicio -->
 <script>
-$(function() {
-	$( "#datepickerInicio" ).datepicker({"dateFormat": "yy-mm-dd"});
-});
+	$(function() {
+		$("#datepickerInicio").datepicker({
+			"dateFormat" : "yy-mm-dd"
+		});
+	});
 </script>
 
-<!-- Timepicker -->
+<!-- Timepicker hora publicación inicio -->
 <script>
-  $(function() {
-    $('#seleccionHoraInicio').timepicker({ 'timeFormat': 'H:i:s','scrollDefault': 'now'  });
-  });
-  </script>
-<script>
-  $('#botonAhora').on('click', function (){
-      $('#seleccionHoraInicio').timepicker('setTime', new Date());
-  });
+	$(function() {
+		$('#seleccionHoraInicio').timepicker({
+			'timeFormat' : 'H:i:s',
+			'scrollDefault' : 'now'
+		});
+	});
 </script>
-<!-- Datepicker -->
 <script>
-$(function() {
-	$( "#datepickerFin" ).datepicker({"dateFormat": "yy-mm-dd"});
-});
+	$('#botonAhora').on('click', function() {
+		$('#seleccionHoraInicio').timepicker('setTime', new Date());
+	});
 </script>
 
-<!-- Timepicker -->
+
+
+<!-- Datepicker Fecha publicación fin -->
 <script>
-  $(function() {
-    $('#seleccionHoraFin').timepicker({ 'timeFormat': 'H:i:s','scrollDefault': 'now'  });
-  });
-  </script>
+	$(function() {
+		$("#datepickerFin").datepicker({
+			"dateFormat" : "yy-mm-dd"
+		});
+	});
+</script>
+
+<!-- Timepicker hora publicación fin -->
 <script>
-  $('#botonAhora').on('click', function (){
-      $('#seleccionHoraFin').timepicker('setTime', new Date());
-  });
+	$(function() {
+		$('#seleccionHoraFin').timepicker({
+			'timeFormat' : 'H:i:s',
+			'scrollDefault' : 'now'
+		});
+	});
+</script>
+<script>
+	$('#botonAhora').on('click', function() {
+		$('#seleccionHoraFin').timepicker('setTime', new Date());
+	});
+</script>
+
+
+<!-- Datepicker fecha evento-->
+<script>
+	$(function() {
+		$("#datepickerEvento").datepicker({
+			"dateFormat" : "yy-mm-dd"
+		});
+	});
+</script>
+
+<script>
+	$(function() {
+		$('#seleccionHoraEvento').timepicker({
+			'timeFormat' : 'H:i:s',
+			'scrollDefault' : 'now'
+		});
+	});
+</script>
+<script>
+	$('#botonAhora').on('click', function() {
+		$('#seleccionHoraEvento').timepicker('setTime', new Date());
+	});
 </script>
 
 <c:url var="jq"
@@ -72,6 +109,8 @@ $(function() {
 </c:choose>
 
 <title><c:out value="${modo}"></c:out> aviso</title>
+
+
 
 
 <section class="container center">
@@ -151,43 +190,98 @@ $(function() {
 
 			<!-- Etiqueta -->
 			<div class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="etiqueta">Etiqueta</label>
+				<label class="control-label col-lg-2" for="etiqueta">Etiqueta</label>
 				<div class="col-lg-10">
 					<form:input id="etiqueta" path="etiqueta" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
 
-			<!-- Hora publicación inicio-->
+			<!-- Hora evento-->
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="hora">Hora de publicación (inicio)</label>
+				<label class="control-label col-lg-2" for="hora">Hora de
+					evento</label>
 				<div class="col-lg-10">
-					<form:input id="seleccionHoraInicio" path="horaPublicacionInicio" class="form:input-large" />
+					<form:input id="seleccionHoraEvento" path="horaEvento"
+						class="form:input-large" />
+				</div>
+			</div>
+
+			<!-- Fecha evento-->
+			<div class="form-group">
+				<label class="control-label col-lg-2" for="dia">Fecha de
+					evento</label>
+				<div class="col-lg-10">
+					<form:input id="datepickerEvento" path="fechaEvento" />
+				</div>
+			</div>
+
+			<!-- Hora publicación inicio-->
+			<!-- <div class="form-group"> -->
+			<div class="form-group">
+				<label class="control-label col-md-2" for="hora">Hora de
+					publicación (inicio)</label>
+				<div class="col-md-2">
+					<form:input id="seleccionHoraInicio" path="horaPublicacionInicio"
+						class="form:input-large" />
 				</div>
 			</div>
 
 			<!-- Fecha publicación inicio-->
 			<div id="datetimepicker" class="form-group">
-				<label class="control-label col-lg-2" for="dia">Fecha de publicación (inicio)</label>
-				<div class="col-lg-10">
+				<label class="control-label col-md-2" for="dia">Fecha de
+					publicación (inicio)</label>
+				<div class="col-md-2">
 					<form:input id="datepickerInicio" path="diaPublicacionInicio" />
 				</div>
 			</div>
-			
-			
+
+
 			<!-- Hora publicación fin-->
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="hora">Hora de publicación (fin)</label>
+				<label class="control-label col-lg-2" for="hora">Hora de
+					publicación (fin)</label>
 				<div class="col-lg-10">
-					<form:input id="seleccionHoraFin" path="horaPublicacionFin" class="form:input-large" />
+					<form:input id="seleccionHoraFin" path="horaPublicacionFin"
+						class="form:input-large" />
 				</div>
 			</div>
 
 			<!-- Fecha publicación fin-->
 			<div id="datetimepicker" class="form-group">
-				<label class="control-label col-lg-2" for="dia">Fecha de publicación (fin)</label>
+				<label class="control-label col-lg-2" for="dia">Fecha de
+					publicación (fin)</label>
 				<div class="col-lg-10">
 					<form:input id="datepickerFin" path="diaPublicacionFin" />
+				</div>
+			</div>
+
+			<!-- Lugar -->
+			<div class="form-group">
+				<label class="control-label col-lg-2 col-lg-2" for="etiqueta">Lugar</label>
+				<div class="col-lg-10">
+					<form:select path="lugar" id="lugar">Fdi
+						<form:option value="Fdi-Salón de actos">Fdi-Salón de actos</form:option>
+						<form:option value="Fdi-Aula 12">Fdi-Aula 12</form:option>
+						<form:option value="Fdi-Laboratorio 7">Fdi-Laboratorio 7</form:option>
+						<form:option value="Fdi-Despacho 321">Fdi-Despacho 321</form:option>
+					</form:select>
+				</div>
+			</div>
+
+			<!-- Duración estimada -->
+			<div class="form-group">
+				<label class="control-label col-lg-2 col-lg-2"
+					for="duracionEstimada">duracionEstimada</label>
+				<div class="col-lg-10">
+					<form:select path="duracionEstimada" id="duracionEstimada">
+						<form:option value="1h">1h</form:option>
+						<form:option value="1h30">1h30</form:option>
+						<form:option value="2h">2h</form:option>
+						<form:option value="2h30">2h30</form:option>
+						<form:option value="3h">3h</form:option>
+						<form:option value="Todo el día">Todo el día</form:option>
+					</form:select>
 				</div>
 			</div>
 
@@ -200,7 +294,7 @@ $(function() {
 						class="form:input-large" />
 				</div>
 			</div>
-			
+
 
 			<!-- Botón crear aviso -->
 			<div class="form-group">
@@ -211,9 +305,9 @@ $(function() {
 			</div>
 		</fieldset>
 	</form:form>
-	
-	
-	
+
+
+
 </section>
 
 
