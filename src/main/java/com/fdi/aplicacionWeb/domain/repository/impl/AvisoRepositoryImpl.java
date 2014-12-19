@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
@@ -15,14 +16,26 @@ import com.fdi.aplicacionWeb.util.SessionUtil;
 
 @Repository
 public class AvisoRepositoryImpl implements AvisoRepository {
+	
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 
 	public List<Aviso> getAllAvisos() {
-		Session session = SessionUtil.getSession();
-			Transaction tx = session.beginTransaction();
-			List<Aviso> products = (List<Aviso>)  session.createQuery("from Aviso a").list();
-		tx.commit();
-		session.close();
-		return products;
+//		Session session = SessionUtil.getSession();
+//			Transaction tx = session.beginTransaction();
+//			List<Aviso> products = (List<Aviso>)  session.createQuery("from Aviso a").list();
+//		tx.commit();
+//		session.close();
+//		return products;
+		Session session =sessionFactory.getCurrentSession(); 
+		List<Aviso> avisos =  session.createQuery("from Aviso a").list();
+		System.out.println(avisos);
+		System.out.println("--------------------------------------------");
+		return 	avisos;
 	}
 
 	public Aviso getAvisoById(String avisotID) {
@@ -60,13 +73,16 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 	}
 
 	public void addAviso(Aviso aviso) {
-//		System.out.println("AvisoRepositoryImpl");
-//		System.out.println(aviso);
-		Session session = SessionUtil.getSession();
-		Transaction tx = session.beginTransaction();
-		//session.save(aviso);
+////		System.out.println("AvisoRepositoryImpl");
+////		System.out.println(aviso);
+//		Session session = SessionUtil.getSession();
+//		Transaction tx = session.beginTransaction();
+//		//session.save(aviso);
+//		session.saveOrUpdate(aviso);
+//		tx.commit();
+//		session.close();
+		Session session = sessionFactory.openSession();
 		session.saveOrUpdate(aviso);
-		tx.commit();
 		session.close();
 	}
 

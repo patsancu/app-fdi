@@ -21,79 +21,78 @@ public class Aviso {
 
 	@Size(min=4, max=50, message="{Size.Aviso.titulo.validation}")
 	private String titulo;
-	
-	
-	
+
+
+
 	private String contenidoAviso;
-	
+
 	private String tipoDestino; //URL, archivo, contenidoPost
-	
+
 	private String tipoAviso; // Normal, importante
-	
+
 	private String etiqueta;
-	
+
 	private String urlDestino;	
-	
+
 	private Integer numeroVisitas;
-	
+
 	private String autor;
-	
+
 	private String duracionEstimada;
-	
+
 	private Integer numeroPlazas;
-	
+
 	private String lugar;
-	
+
 	private String Status;
-	
-	
-	
+
+
+
 	//Fechas
-	
+
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date fechaCreacion;
-	
+
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
-	private Date fechaCompletaEvento;
-	
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="hh:mm")
-	private Date horaEvento;
-	
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Date fechaEvento;
-	
+	private Date fechaCompletaEvento;	
+
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date fechaPublicacionInicio;
-	
+
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date fechaPublicacionFin;
+
+	@DateTimeFormat(pattern="yy-MM-dd")
+	private Date fechaEvento;
+
+	@DateTimeFormat(pattern="hh:mm")
+	private Date horaEvento;
+
 	
 	@DateTimeFormat(pattern="yy-MM-dd")
 	private String diaPublicacionInicio;
 
 	@DateTimeFormat(pattern="hh:mm")
 	private String horaPublicacionInicio;
-	
+
 	@DateTimeFormat(pattern="yy-MM-dd")
 	private String diaPublicacionFin;
 
 	@DateTimeFormat(pattern="hh:mm")
 	private String horaPublicacionFin;
-	
-	
+
+
 
 	@Transient
 	private MultipartFile adjunto;
-	
-	
-	
-	
+
+
+
+
 
 	public Date getFechaCompletaEvento() {
 		return fechaCompletaEvento;
@@ -290,5 +289,5 @@ public class Aviso {
 	public void setAdjunto(MultipartFile adjunto) {
 		this.adjunto = adjunto;
 	}
-	
+
 }

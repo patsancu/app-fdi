@@ -76,7 +76,7 @@
 <script>
 	$(function() {
 		$('#seleccionHoraEvento').timepicker({
-			'timeFormat' : 'H:i:s',
+			'timeFormat' : 'H:i',
 			'scrollDefault' : 'now'
 		});
 	});
