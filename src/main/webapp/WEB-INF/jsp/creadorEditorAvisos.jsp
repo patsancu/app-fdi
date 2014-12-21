@@ -26,7 +26,7 @@
 <script>
 	$(function() {
 		$('#seleccionHoraInicio').timepicker({
-			'timeFormat' : 'H:i:s',
+			'timeFormat' : 'H:i',
 			'scrollDefault' : 'now'
 		});
 	});
@@ -52,7 +52,7 @@
 <script>
 	$(function() {
 		$('#seleccionHoraFin').timepicker({
-			'timeFormat' : 'H:i:s',
+			'timeFormat' : 'H:i',
 			'scrollDefault' : 'now'
 		});
 	});
@@ -212,7 +212,7 @@
 				<label class="control-label col-lg-2" for="dia">Fecha de
 					evento</label>
 				<div class="col-lg-10">
-					<form:input id="datepickerEvento" path="fechaEvento" />
+					<form:input id="datepickerEvento" path="diaEvento" />
 				</div>
 			</div>
 

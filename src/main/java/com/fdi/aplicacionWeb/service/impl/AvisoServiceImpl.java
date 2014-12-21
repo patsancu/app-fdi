@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fdi.aplicacionWeb.domain.Aviso;
 import com.fdi.aplicacionWeb.domain.repository.AvisoRepository;
 import com.fdi.aplicacionWeb.service.AvisoService;
 
+@Transactional
 @Service	
 public class AvisoServiceImpl implements AvisoService{
 	@Autowired
@@ -25,28 +27,19 @@ public class AvisoServiceImpl implements AvisoService{
 	public List<Aviso> getAvisosByCategory(String category) {
 		return avisoRepository.getAvisosByCategory(category);
 	}
-	
+
 	public void eliminarAviso(String avisoID){
 		avisoRepository.eliminarAviso(avisoID);
 	}
 
-//	public List<Aviso> getAvisosByManufacturer(String manufacturer) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	public Set<Aviso> getAvisosByFilter(Map<String, List<String>> filterParams) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
+	@Transactional
 	public void addAviso(Aviso aviso) {
 		avisoRepository.addAviso(aviso);		
 	}
-	
+
 	public void incrementarVisitas(String avisoID){
 		avisoRepository.incrementarVisitas(avisoID);
 	}
-	
+
 
 }

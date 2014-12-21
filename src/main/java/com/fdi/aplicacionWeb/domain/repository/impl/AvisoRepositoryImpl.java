@@ -8,15 +8,19 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fdi.aplicacionWeb.domain.Aviso;
 import com.fdi.aplicacionWeb.domain.repository.AvisoRepository;
 import com.fdi.aplicacionWeb.util.SessionUtil;
 
+@Transactional
 @Repository
 public class AvisoRepositoryImpl implements AvisoRepository {
 	
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -31,18 +35,18 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 //		tx.commit();
 //		session.close();
 //		return products;
-		Session session =sessionFactory.getCurrentSession(); 
+		Session session = sessionFactory.getCurrentSession(); 
 		List<Aviso> avisos =  session.createQuery("from Aviso a").list();
 		System.out.println(avisos);
 		System.out.println("--------------------------------------------");
 		return 	avisos;
 	}
 
-	public Aviso getAvisoById(String avisotID) {
+	public Aviso getAvisoById(String avisoID) {
 		Session session = SessionUtil.getSession();
         Transaction tx = session.beginTransaction();
         Query query = session.createQuery("from Aviso a where a.postInternalId =:postInternalId");
-        query.setString("postInternalId", avisotID);
+        query.setString("postInternalId", avisoID);
         Aviso aviso = (Aviso)query.uniqueResult();
         tx.commit();
         session.close();
@@ -72,18 +76,14 @@ public class AvisoRepositoryImpl implements AvisoRepository {
         // hibernateUtil.checkData("select * from Aviso"); 
 	}
 
+	@Transactional
 	public void addAviso(Aviso aviso) {
-////		System.out.println("AvisoRepositoryImpl");
-////		System.out.println(aviso);
-//		Session session = SessionUtil.getSession();
-//		Transaction tx = session.beginTransaction();
-//		//session.save(aviso);
-//		session.saveOrUpdate(aviso);
-//		tx.commit();
-//		session.close();
-		Session session = sessionFactory.openSession();
+		System.out.println("-------------------");
+		System.out.println(aviso);
+		System.out.println("-------------------");
+		
+		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(aviso);
-		session.close();
 	}
 
 	public void incrementarVisitas(String avisoID) {
