@@ -1,21 +1,21 @@
 package com.fdi.aplicacionWeb.controller;
 
 import java.io.File;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.joda.time.DateTime;
+import org.joda.time.Instant;
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -74,64 +74,45 @@ public class GestorAvisosController {
 		MultipartFile archivoAdjunto = aviso.getAdjunto();
 
 		//Formateado de fecha
-		Date fechaCreacion = new Date(System.currentTimeMillis());
-		aviso.setFechaCreacion(fechaCreacion);
+		//		Date fechaCreacion = new Date(System.currentTimeMillis());
+		//		aviso.setFechaCreacion(fechaCreacion);
+		//DateTime fechaCreacion = new DateTime();
+		LocalDateTime today = LocalDateTime.now();
+		aviso.setFechaCreacion(today);
+		aviso.setNumeroVisitas(0);
 
 		//Fecha inicio
 		// Se combinan los datos individuales 
 		// para crear el campo definitivo de tipo Date
-		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
+		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd hh:mm");
 		String dateInString = aviso.getDiaPublicacionInicio() + " ";
 		dateInString += aviso.getHoraPublicacionInicio();
-		Date date = new Date();
-		System.out.println(date);
 		System.out.println(dateInString);
 
-		aviso.setNumeroVisitas(0);
-
-		try {
-			date = sdf.parse(dateInString);
-			aviso.setFechaPublicacionInicio(date);	
-		}
-		catch(ParseException e){
-			System.out.println("Algo fue mal");
-		}
+		LocalDateTime dt = LocalDateTime.parse(dateInString, dtForm);
+		System.out.println(dt);
+		aviso.setFechaPublicacionInicio(dt);
 
 		//	Fecha fin
 		// Se combinan los datos individuales 
 		// para crear el campo definitivo de tipo Date
-		sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
 		dateInString = aviso.getDiaPublicacionFin() + " ";
 		dateInString += aviso.getHoraPublicacionFin();
-		date = new Date();
-		System.out.println(date);
 		System.out.println(dateInString);
 
-		try {
-			date = sdf.parse(dateInString);
-			aviso.setFechaPublicacionFin(date);	
-		}
-		catch(ParseException e){
-			System.out.println("Algo fue Lmal");
-		}
+		dt = LocalDateTime.parse(dateInString, dtForm);
+		System.out.println(dt);
+		aviso.setFechaPublicacionFin(dt);
 
-		//		Fecha evento
-		// Se combinan los datos individuales 
-		// para crear el campo definitivo de tipo Date
-		sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
-		dateInString = aviso.getFechaEvento() + " ";
+		//Fecha evento
+		dateInString = aviso.getDiaEvento() + " ";
 		dateInString += aviso.getHoraEvento();
-		date = new Date();
-		System.out.println(date);
-		System.out.println(dateInString);
+		System.out.println(dateInString);//DEBUG
+		System.out.println("Hora evento" + aviso.getHoraEvento());//DEBUG
 
-		try {
-			date = sdf.parse(dateInString);
-			aviso.setFechaCompletaEvento(date);	
-		}
-		catch(ParseException e){
-			System.out.println("Algo fue mal");
-		}
+		dt = LocalDateTime.parse(dateInString, dtForm);
+		System.out.println(dt);//DEBUG
+		aviso.setFechaEvento(dt);	
 
 		avisoService.addAviso(aviso);
 
@@ -140,7 +121,7 @@ public class GestorAvisosController {
 		System.out.println(rootDirectory); //DEBUG
 		String nuevoNombre = "" + aviso.getPostInternalId();
 
-		//Si hay archivo, se guarda con su id interno, sin extensión
+		//Si hay archivo, se guarda con su id interno, sin extensiï¿½n
 		if (archivoAdjunto!=null && !archivoAdjunto.isEmpty()) {
 			try {		
 				String rutaArchivoNuevo = rootDirectory+"resources\\archivosAdjuntos\\"+ nuevoNombre;
@@ -163,8 +144,9 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/editar", method = RequestMethod.POST)
 	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){	
-		Date fechaCreacion = new Date(System.currentTimeMillis());
-		aviso.setFechaCreacion(fechaCreacion);
+		//		DateTime fechaCreacion = new Date(System.currentTimeMillis());
+		//		//aviso.setFechaCreacion(fechaCreacion);
+		//		aviso.setFechaCreacion(fechaCreacion);
 
 		//Fecha inicio
 		//Se combinan los datos individuales (no mapeados a la bd) 
@@ -175,14 +157,13 @@ public class GestorAvisosController {
 		Date date = new Date();
 		System.out.println(date);
 		System.out.println(dateInString);
+		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd hh:mm");
 
-		try {
-			date = sdf.parse(dateInString);
-			aviso.setFechaPublicacionInicio(date);	
-		}
-		catch(ParseException e){
-			System.out.println("Algo fue mal");
-		}	
+
+		//			date = sdf.parse(dateInString);
+		LocalDateTime dt = LocalDateTime.parse(dateInString, dtForm);
+		aviso.setFechaPublicacionInicio(dt);	
+
 
 		//Fecha fin
 		sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
@@ -192,13 +173,20 @@ public class GestorAvisosController {
 		System.out.println(date);
 		System.out.println(dateInString);
 
-		try {
-			date = sdf.parse(dateInString);
-			aviso.setFechaPublicacionFin(date);	
-		}
-		catch(ParseException e){
-			System.out.println("Algo fue mal");
-		}	
+		dt = LocalDateTime.parse(dateInString, dtForm);
+		aviso.setFechaPublicacionFin(dt);
+
+
+		//Fecha evento
+		sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
+		dateInString = aviso.getFechaEvento() + " ";
+		dateInString += aviso.getHoraEvento();
+		date = new Date();
+		System.out.println(date);
+		System.out.println(dateInString);
+
+		dt = LocalDateTime.parse(dateInString, dtForm);
+		aviso.setFechaEvento(dt);	
 
 		//Se guarda el aviso editado
 		avisoService.addAviso(aviso);

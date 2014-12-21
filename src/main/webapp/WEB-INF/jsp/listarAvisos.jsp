@@ -40,14 +40,14 @@
 						<td>${fn:substring(item.contenidoAviso, 0, 25)}...</td>
 						<td>${item.duracionEstimada}</td>
 						<td>${item.lugar}</td>
-						<td>${item.fechaCompletaEvento}</td>
+						<td>${item.fechaEvento}</td>
 						<td>${item.numeroPlazas}</td>						
 						<td>${item.etiqueta}</td>
 						<td>${item.autor }</td>						
 						<td>Creado el ${fn:substring(item.fechaCreacion,0,19	)}
 							
 						<td>${fn:substring(item.fechaPublicacionInicio,0,19	)}
-						<td>${fn:substring(item.fechaPublicacionFin,0,19	)}
+						<td>${fn:substring(item.fechaPublicacionFin,0,19)}
 						
 						<td><a class="btn btn-success"
 							href="<c:url value="/avisos/gestor/editar?id=${item.postInternalId}"></c:url>">

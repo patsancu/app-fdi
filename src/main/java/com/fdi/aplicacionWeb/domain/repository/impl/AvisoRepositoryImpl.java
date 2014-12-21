@@ -6,30 +6,47 @@ import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fdi.aplicacionWeb.domain.Aviso;
 import com.fdi.aplicacionWeb.domain.repository.AvisoRepository;
 import com.fdi.aplicacionWeb.util.SessionUtil;
 
+@Transactional
 @Repository
 public class AvisoRepositoryImpl implements AvisoRepository {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 
-	public List<Aviso> getAllAvisos() {
-		Session session = SessionUtil.getSession();
-			Transaction tx = session.beginTransaction();
-			List<Aviso> products = (List<Aviso>)  session.createQuery("from Aviso a").list();
-		tx.commit();
-		session.close();
-		return products;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
-	public Aviso getAvisoById(String avisotID) {
+
+	public List<Aviso> getAllAvisos() {
+//		Session session = SessionUtil.getSession();
+//			Transaction tx = session.beginTransaction();
+//			List<Aviso> products = (List<Aviso>)  session.createQuery("from Aviso a").list();
+//		tx.commit();
+//		session.close();
+//		return products;
+		Session session = sessionFactory.getCurrentSession(); 
+		List<Aviso> avisos =  session.createQuery("from Aviso a").list();
+		System.out.println(avisos);
+		System.out.println("--------------------------------------------");
+		return 	avisos;
+	}
+
+	public Aviso getAvisoById(String avisoID) {
 		Session session = SessionUtil.getSession();
         Transaction tx = session.beginTransaction();
         Query query = session.createQuery("from Aviso a where a.postInternalId =:postInternalId");
-        query.setString("postInternalId", avisotID);
+        query.setString("postInternalId", avisoID);
         Aviso aviso = (Aviso)query.uniqueResult();
         tx.commit();
         session.close();
@@ -59,15 +76,14 @@ public class AvisoRepositoryImpl implements AvisoRepository {
         // hibernateUtil.checkData("select * from Aviso"); 
 	}
 
+	@Transactional
 	public void addAviso(Aviso aviso) {
-//		System.out.println("AvisoRepositoryImpl");
-//		System.out.println(aviso);
-		Session session = SessionUtil.getSession();
-		Transaction tx = session.beginTransaction();
-		//session.save(aviso);
+		System.out.println("-------------------");
+		System.out.println(aviso);
+		System.out.println("-------------------");
+		
+		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(aviso);
-		tx.commit();
-		session.close();
 	}
 
 	public void incrementarVisitas(String avisoID) {
