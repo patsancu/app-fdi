@@ -74,22 +74,22 @@ public class Aviso {
 	
 
 	
-	@DateTimeFormat(pattern="yy-mm-dd")
+	@DateTimeFormat(pattern="yy-MM-dd")
 	private String diaEvento;
 	
-	@DateTimeFormat(pattern="hh:mm")
+	@DateTimeFormat(pattern="HH:mm")
 	private String horaEvento;
 	
-	@DateTimeFormat(pattern="yy-mm-dd")
+	@DateTimeFormat(pattern="yy-MM-dd")
 	private String diaPublicacionInicio;
 
-	@DateTimeFormat(pattern="hh:mm")
+	@DateTimeFormat(pattern="HH:mm")
 	private String horaPublicacionInicio;
 
-	@DateTimeFormat(pattern="yy-mm-dd")
+	@DateTimeFormat(pattern="yy-MM-dd")
 	private String diaPublicacionFin;
 
-	@DateTimeFormat(pattern="hh:mm")
+	@DateTimeFormat(pattern="HH:mm")
 	private String horaPublicacionFin;
 
 

@@ -84,7 +84,7 @@ public class GestorAvisosController {
 		//Fecha inicio
 		// Se combinan los datos individuales 
 		// para crear el campo definitivo de tipo Date
-		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd hh:mm");
+		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd HH:mm");
 		String dateInString = aviso.getDiaPublicacionInicio() + " ";
 		dateInString += aviso.getHoraPublicacionInicio();
 		System.out.println(dateInString);
@@ -151,22 +151,21 @@ public class GestorAvisosController {
 		//Fecha inicio
 		//Se combinan los datos individuales (no mapeados a la bd) 
 		// para crear el campo definitivo de tipo Date
-		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
+		//SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
 		String dateInString = aviso.getDiaPublicacionInicio() + " ";
 		dateInString += aviso.getHoraPublicacionInicio();
 		Date date = new Date();
 		System.out.println(date);
 		System.out.println(dateInString);
-		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd hh:mm");
+		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd HH:mm");
 
 
-		//			date = sdf.parse(dateInString);
 		LocalDateTime dt = LocalDateTime.parse(dateInString, dtForm);
 		aviso.setFechaPublicacionInicio(dt);	
 
 
 		//Fecha fin
-		sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
+		//sdf = new SimpleDateFormat("yy-MM-dd hh:mm a");
 		dateInString = aviso.getDiaPublicacionFin() + " ";
 		dateInString += aviso.getHoraPublicacionFin();
 		date = new Date();
@@ -178,7 +177,7 @@ public class GestorAvisosController {
 
 
 		//Fecha evento
-		sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
+		//sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
 		dateInString = aviso.getFechaEvento() + " ";
 		dateInString += aviso.getHoraEvento();
 		date = new Date();
