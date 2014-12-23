@@ -6,14 +6,12 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <script src="/webstore/resource/js/controllers.js"></script>
 
-<section>
 	<div class="jumbotron">
 		<div class="container">
 			<h1>"${aviso.titulo}"</h1>
 			<b>Publicación</b>${fn:substring(aviso.fechaPublicacionInicio,0,19	)}
 		</div>
 	</div>
-</section>
 
 <section class="container col-md-offset-2 col-md-6 center">
 	<div class="panel panel-info">

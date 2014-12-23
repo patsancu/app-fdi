@@ -77,7 +77,7 @@
 	value="/js/jquery-timepicker-master/jquery.timepicker.min.js" />
 <script type="text/javascript" src="${jq}"></script>
 <c:url var="css1"
-	value="/js/jquery-timepicker-master/jquery.timepicker.css" />
+	value="/css/jquery-timepicker-master/jquery.timepicker.css" />
 <link rel="stylesheet" href="${css1}">
 
 

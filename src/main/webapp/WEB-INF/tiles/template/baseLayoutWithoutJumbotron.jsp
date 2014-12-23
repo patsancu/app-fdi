@@ -13,6 +13,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+
+<c:url var="cssGlobal" value="/css/globalStyle.css" />
+<link rel="stylesheet" href="${cssGlobal}">
 </head>
 
 
