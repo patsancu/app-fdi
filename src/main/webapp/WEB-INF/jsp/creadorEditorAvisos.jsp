@@ -24,20 +24,14 @@
 
 <!-- Timepicker hora publicación inicio -->
 <script>
-	$(function() {
+	$(function horaInicio() {
 		$('#seleccionHoraInicio').timepicker({
 			'timeFormat' : 'H:i',
-			'scrollDefault' : 'now'
+			'scrollDefault' : 'now',
+			'useSelect' : true
 		});
 	});
 </script>
-<script>
-	$('#botonAhora').on('click', function() {
-		$('#seleccionHoraInicio').timepicker('setTime', new Date());
-	});
-</script>
-
-
 
 <!-- Datepicker Fecha publicación fin -->
 <script>
@@ -53,13 +47,9 @@
 	$(function() {
 		$('#seleccionHoraFin').timepicker({
 			'timeFormat' : 'H:i',
-			'scrollDefault' : 'now'
+			'scrollDefault' : 'now',
+			'useSelect' : true
 		});
-	});
-</script>
-<script>
-	$('#botonAhora').on('click', function() {
-		$('#seleccionHoraFin').timepicker('setTime', new Date());
 	});
 </script>
 
@@ -77,13 +67,9 @@
 	$(function() {
 		$('#seleccionHoraEvento').timepicker({
 			'timeFormat' : 'H:i',
-			'scrollDefault' : 'now'
+			'scrollDefault' : 'now',
+			'useSelect' : true
 		});
-	});
-</script>
-<script>
-	$('#botonAhora').on('click', function() {
-		$('#seleccionHoraEvento').timepicker('setTime', new Date());
 	});
 </script>
 
@@ -202,9 +188,15 @@
 				<label class="control-label col-lg-2" for="hora">Hora de
 					evento</label>
 				<div class="col-lg-10">
-					<form:input id="seleccionHoraEvento" path="horaEvento"
-						class="form:input-large" />
+					<%-- <form:input id="seleccionHoraEvento" path="horaEvento"
+						 /> --%>
+					<%-- class="form:input-large" --%>
+					<form:input id="seleccionHoraEvento" style="margin-left: 30px;"
+						path="horaEvento" />
 				</div>
+				<script>
+					
+				</script>
 			</div>
 
 			<!-- Fecha evento-->
@@ -212,12 +204,11 @@
 				<label class="control-label col-lg-2" for="dia">Fecha de
 					evento</label>
 				<div class="col-lg-10">
-					<form:input id="datepickerEvento" path="diaEvento" />
+					<form:input readonly="true" id="datepickerEvento" path="diaEvento" />
 				</div>
 			</div>
 
 			<!-- Hora publicación inicio-->
-			<!-- <div class="form-group"> -->
 			<div class="form-group">
 				<label class="control-label col-md-2" for="hora">Hora de
 					publicación (inicio)</label>
@@ -232,7 +223,8 @@
 				<label class="control-label col-md-2" for="dia">Fecha de
 					publicación (inicio)</label>
 				<div class="col-md-2">
-					<form:input id="datepickerInicio" path="diaPublicacionInicio" />
+					<form:input readonly="true" id="datepickerInicio"
+						path="diaPublicacionInicio" />
 				</div>
 			</div>
 
@@ -252,7 +244,8 @@
 				<label class="control-label col-lg-2" for="dia">Fecha de
 					publicación (fin)</label>
 				<div class="col-lg-10">
-					<form:input id="datepickerFin" path="diaPublicacionFin" />
+					<form:input readonly="true" id="datepickerFin"
+						path="diaPublicacionFin" />
 				</div>
 			</div>
 
