@@ -39,7 +39,7 @@
 				<strong>Etiqueta : </strong> <span class=" label label-warning">${aviso.etiqueta}</span>
 			</p>
 			<p>
-				<strong>Fecha evento</strong> : ${aviso.fechaCompletaEvento}
+				<strong>Fecha evento</strong> : ${aviso.fechaEvento}
 			</p>
 			<p>
 				<strong>Tipo aviso</strong> : ${aviso.tipoAviso}

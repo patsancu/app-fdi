@@ -33,7 +33,7 @@
 						</a></li>
 						<li><a
 							href="<spring:url value="/avisos/gestor/crear"></spring:url>">
-								Crear nuevo aviso</a></li>
+								<span class="glyphicon glyphicon-plus"></span> Crear nuevo aviso</a></li>
 					</ul></li>
 
 
