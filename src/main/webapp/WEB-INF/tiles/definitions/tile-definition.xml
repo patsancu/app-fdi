@@ -32,7 +32,7 @@
 	<definition name="welcome" extends="baseLayout">
 		<put-attribute name="title" value="Products" />
 		<put-attribute name="heading" value="Página principal" />
-		<put-attribute name="tagline" value="Seleccione una opción" />
+		<put-attribute name="tagline" value="Seleccione una opción en el menú superior" />
 		<!-- <put-attribute name="content" value="/WEB-INF/jsp/basico.jsp" /> -->		
 		<put-attribute name="content" value="" />
 	</definition>
@@ -74,7 +74,7 @@
 	<!-- Sección de avisos -->
 	<definition name="avisos" extends="baseLayout">
 		<put-attribute name="title" value="Avisos" />
-		<put-attribute name="heading" value="Seleccione una opción en el menú de arriba" />
+		<put-attribute name="heading" value="Seleccione una opción en el menú superior" />
 		<put-attribute name="tagline" value=" " />
 		<put-attribute name="content" value="/WEB-INF/jsp/avisos.jsp" />
 	</definition>
