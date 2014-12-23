@@ -1,13 +1,9 @@
 package com.fdi.aplicacionWeb.controller;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.joda.time.DateTime;
-import org.joda.time.Instant;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -37,12 +33,6 @@ public class GestorAvisosController {
 		model.addAttribute("avisos", avisoService.getAllAvisos());
 		return "gestorAvisos";		
 	}
-
-	//	@RequestMapping("/editar")
-	//	public String editarAvisos(Model model) {
-	//		model.addAttribute("avisos", avisoService.getAllAvisos());
-	//		return "editarAvisos";
-	//	}
 
 	@RequestMapping("/eliminar")
 	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {
@@ -76,7 +66,6 @@ public class GestorAvisosController {
 		//Formateado de fecha
 		//		Date fechaCreacion = new Date(System.currentTimeMillis());
 		//		aviso.setFechaCreacion(fechaCreacion);
-		//DateTime fechaCreacion = new DateTime();
 		LocalDateTime today = LocalDateTime.now();
 		aviso.setFechaCreacion(today);
 		aviso.setNumeroVisitas(0);
@@ -143,21 +132,15 @@ public class GestorAvisosController {
 
 
 	@RequestMapping(value="/editar", method = RequestMethod.POST)
-	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){	
-		//		DateTime fechaCreacion = new Date(System.currentTimeMillis());
-		//		//aviso.setFechaCreacion(fechaCreacion);
-		//		aviso.setFechaCreacion(fechaCreacion);
+	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){
 
 		//Fecha inicio
 		//Se combinan los datos individuales (no mapeados a la bd) 
 		// para crear el campo definitivo de tipo Date
-		//SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
 		String dateInString = aviso.getDiaPublicacionInicio() + " ";
 		dateInString += aviso.getHoraPublicacionInicio();
-		Date date = new Date();
-		System.out.println(date);
 		System.out.println(dateInString);
-		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd HH:mm");
+		DateTimeFormatter dtForm = DateTimeFormat.forPattern("yy-MM-dd HH:mm");
 
 
 		LocalDateTime dt = LocalDateTime.parse(dateInString, dtForm);
@@ -165,11 +148,8 @@ public class GestorAvisosController {
 
 
 		//Fecha fin
-		//sdf = new SimpleDateFormat("yy-MM-dd hh:mm a");
 		dateInString = aviso.getDiaPublicacionFin() + " ";
 		dateInString += aviso.getHoraPublicacionFin();
-		date = new Date();
-		System.out.println(date);
 		System.out.println(dateInString);
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
@@ -177,11 +157,8 @@ public class GestorAvisosController {
 
 
 		//Fecha evento
-		//sdf = new SimpleDateFormat("yy-MM-dd hh:mm");
 		dateInString = aviso.getFechaEvento() + " ";
 		dateInString += aviso.getHoraEvento();
-		date = new Date();
-		System.out.println(date);
 		System.out.println(dateInString);
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
