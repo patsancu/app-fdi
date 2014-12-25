@@ -4,21 +4,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fdi.aplicacionWeb.domain.Aviso;
 import com.fdi.aplicacionWeb.domain.repository.AvisoRepository;
-import com.fdi.aplicacionWeb.util.SessionUtil;
 
 @Transactional
 @Repository
 public class AvisoRepositoryImpl implements AvisoRepository {
+	
+	static final Logger logger = Logger.getLogger(AvisoRepositoryImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -37,6 +38,7 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 		//		return products;
 		Session session = sessionFactory.getCurrentSession(); 
 		List<Aviso> avisos =  session.createQuery("from Aviso a").list();
+		logger.info("Cogiendo avisos");
 		System.out.println(avisos);
 		System.out.println("--------------------------------------------");
 		return 	avisos;
