@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -24,6 +25,8 @@ import com.fdi.aplicacionWeb.service.AvisoService;
 @Controller
 @RequestMapping("/avisos/gestor")
 public class GestorAvisosController {
+	
+	static final Logger logger = Logger.getLogger(GestorAvisosController.class);
 
 	@Autowired
 	AvisoService avisoService;
@@ -35,7 +38,7 @@ public class GestorAvisosController {
 	}
 
 	@RequestMapping("/eliminar")
-	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {
+	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {		
 		avisoService.eliminarAviso(avisoID);
 		return "redirect:/avisos/ver";	
 	}
@@ -48,15 +51,14 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/crear", method = RequestMethod.POST)	
 	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso, BindingResult result, HttpServletRequest request) {
-		System.out.println("DAFUQ!");
-		System.out.println("DAFUQ!");
-		System.out.println("DAFUQ!");
+		
 		if(result.hasErrors()) {
-			System.out.println(result.getAllErrors());
+			logger.warn(result.getAllErrors());
 			return "gestorAvisos";
 		}
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
+			logger.error("Attempting to bind disallowed fields: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 			throw new RuntimeException("Attempting to bind disallowed fields: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 
@@ -64,8 +66,6 @@ public class GestorAvisosController {
 		MultipartFile archivoAdjunto = aviso.getAdjunto();
 
 		//Formateado de fecha
-		//		Date fechaCreacion = new Date(System.currentTimeMillis());
-		//		aviso.setFechaCreacion(fechaCreacion);
 		LocalDateTime today = LocalDateTime.now();
 		aviso.setFechaCreacion(today);
 		aviso.setNumeroVisitas(0);
@@ -76,10 +76,8 @@ public class GestorAvisosController {
 		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd HH:mm");
 		String dateInString = aviso.getDiaPublicacionInicio() + " ";
 		dateInString += aviso.getHoraPublicacionInicio();
-		System.out.println(dateInString);
 
 		LocalDateTime dt = LocalDateTime.parse(dateInString, dtForm);
-		System.out.println(dt);
 		aviso.setFechaPublicacionInicio(dt);
 
 		//	Fecha fin
@@ -87,27 +85,21 @@ public class GestorAvisosController {
 		// para crear el campo definitivo de tipo Date
 		dateInString = aviso.getDiaPublicacionFin() + " ";
 		dateInString += aviso.getHoraPublicacionFin();
-		System.out.println(dateInString);
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
-		System.out.println(dt);
 		aviso.setFechaPublicacionFin(dt);
 
 		//Fecha evento
 		dateInString = aviso.getDiaEvento() + " ";
 		dateInString += aviso.getHoraEvento();
-		System.out.println(dateInString);//DEBUG
-		System.out.println("Hora evento" + aviso.getHoraEvento());//DEBUG
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
-		System.out.println(dt);//DEBUG
 		aviso.setFechaEvento(dt);	
 
 		avisoService.addAviso(aviso);
 
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println(rootDirectory); //DEBUG
 		String nuevoNombre = "" + aviso.getPostInternalId();
 
 		//Si hay archivo, se guarda con su id interno, sin extensi�n
@@ -115,7 +107,7 @@ public class GestorAvisosController {
 			try {		
 				String rutaArchivoNuevo = rootDirectory+"resources\\archivosAdjuntos\\"+ nuevoNombre;
 				archivoAdjunto.transferTo(new File(rutaArchivoNuevo));
-				System.out.println("Se ha guardado el archivo en : " + rutaArchivoNuevo);
+				logger.info("Se ha guardado el archivo adjunto del aviso en : " + rutaArchivoNuevo);
 			} catch (Exception e) {
 				throw new RuntimeException("El archivo adjunto no ha podido guardarse",e);
 			}
@@ -127,19 +119,21 @@ public class GestorAvisosController {
 	@RequestMapping(value="/editar", method = RequestMethod.GET)
 	public String editarAviso(@ModelAttribute("aviso") Aviso aviso, @RequestParam("id") String avisoID,Model model){		
 		model.addAttribute("aviso",avisoService.getAvisoById(avisoID));
+		logger.info("Se quiere editar el aviso con id: " + aviso.getPostInternalId());
+		logger.debug("Aviso antes de editar: ");
+		logger.debug(aviso);
 		return "creadorEditorAvisos";
 	}
 
 
 	@RequestMapping(value="/editar", method = RequestMethod.POST)
-	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){
-
+	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){		
+				
 		//Fecha inicio
 		//Se combinan los datos individuales (no mapeados a la bd) 
 		// para crear el campo definitivo de tipo Date
 		String dateInString = aviso.getDiaPublicacionInicio() + " ";
 		dateInString += aviso.getHoraPublicacionInicio();
-		System.out.println(dateInString);
 		DateTimeFormatter dtForm = DateTimeFormat.forPattern("yy-MM-dd HH:mm");
 
 
@@ -150,7 +144,6 @@ public class GestorAvisosController {
 		//Fecha fin
 		dateInString = aviso.getDiaPublicacionFin() + " ";
 		dateInString += aviso.getHoraPublicacionFin();
-		System.out.println(dateInString);
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
 		aviso.setFechaPublicacionFin(dt);
@@ -159,10 +152,13 @@ public class GestorAvisosController {
 		//Fecha evento
 		dateInString = aviso.getFechaEvento() + " ";
 		dateInString += aviso.getHoraEvento();
-		System.out.println(dateInString);
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
 		aviso.setFechaEvento(dt);	
+		
+		logger.debug("Aviso después de editar: ");
+		logger.debug(aviso);
+
 
 		//Se guarda el aviso editado
 		avisoService.addAviso(aviso);

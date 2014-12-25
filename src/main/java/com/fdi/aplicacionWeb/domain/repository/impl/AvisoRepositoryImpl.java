@@ -30,32 +30,19 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 
 
 	public List<Aviso> getAllAvisos() {
-		//		Session session = SessionUtil.getSession();
-		//			Transaction tx = session.beginTransaction();
-		//			List<Aviso> products = (List<Aviso>)  session.createQuery("from Aviso a").list();
-		//		tx.commit();
-		//		session.close();
-		//		return products;
 		Session session = sessionFactory.getCurrentSession(); 
 		List<Aviso> avisos =  session.createQuery("from Aviso a").list();
-		logger.info("Cogiendo avisos");
-		System.out.println(avisos);
-		System.out.println("--------------------------------------------");
+		logger.info("Obteniendo avisos. Hay " + avisos.size() + " avisos");
 		return 	avisos;
 	}
 
 	public Aviso getAvisoById(String avisoID) {
-//		Session session = SessionUtil.getSession();
-//		Transaction tx = session.beginTransaction();
-//		Query query = session.createQuery("from Aviso a where a.postInternalId =:postInternalId");
-//		query.setString("postInternalId", avisoID);
-//		Aviso aviso = (Aviso)query.uniqueResult();
-//		tx.commit();
-//		session.close();
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Aviso a where a.postInternalId= :postInternalId");
 		query.setString("postInternalId", avisoID);
 		Aviso aviso = (Aviso)query.uniqueResult();
+		logger.info("Obteniendo siguiente aviso:");
+		logger.info(aviso);
 		return aviso;
 	}
 
@@ -74,32 +61,25 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 		Query query = session.createQuery("delete from Aviso a where a.postInternalId= :postInternalId");
 		query.setString("postInternalId", avisoID);
 		query.executeUpdate();
+		logger.info("Se quiere eliminar el aviso con ID: " + avisoID);
 		// hibernateUtil.checkData("select * from Aviso"); 
 	}
 
 	@Transactional
 	public void addAviso(Aviso aviso) {
-		System.out.println("-------------------");
-		System.out.println(aviso);
-		System.out.println("-------------------");
-
+		logger.info("Añadiendo aviso siguiente: ");
+		logger.info(aviso);
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(aviso);		
 	}
 
-	public void incrementarVisitas(String avisoID) {
-		//		Session session = SessionUtil.getSession();
-		//        Transaction tx = session.beginTransaction();
-		//        Query query = session.createQuery("UPDATE Aviso a SET a.numeroVisitas = a.numeroVisitas+1 where a.postInternalId= :postInternalId");
-		//        query.setString("postInternalId", avisoID);
-		//        int rowCount = query.executeUpdate();
-		//        System.out.println("Rows affected: " + rowCount);
-		//        tx.commit();
-		//        session.close();				
+	public void incrementarVisitas(String avisoID) {			
 		Session session = sessionFactory.getCurrentSession();
+		logger.info("Incrementando visitas del aviso con id:" + avisoID);
 		Query query = session.createQuery("UPDATE Aviso a SET a.numeroVisitas = a.numeroVisitas+1 where a.postInternalId= :postInternalId");
 		query.setString("postInternalId", avisoID);
 		query.executeUpdate();
+		
 	}
 
 }
