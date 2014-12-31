@@ -25,7 +25,7 @@ import com.fdi.aplicacionWeb.service.AvisoService;
 @Controller
 @RequestMapping("/avisos/gestor")
 public class GestorAvisosController {
-	
+
 	static final Logger logger = Logger.getLogger(GestorAvisosController.class);
 
 	@Autowired
@@ -51,7 +51,7 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/crear", method = RequestMethod.POST)	
 	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso, BindingResult result, HttpServletRequest request) {
-		
+
 		if(result.hasErrors()) {
 			logger.warn(result.getAllErrors());
 			return "gestorAvisos";
@@ -127,37 +127,66 @@ public class GestorAvisosController {
 
 
 	@RequestMapping(value="/editar", method = RequestMethod.POST)
-	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model){		
-				
+	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model, HttpServletRequest request){		
+
 		//Fecha inicio
 		//Se combinan los datos individuales (no mapeados a la bd) 
 		// para crear el campo definitivo de tipo Date
+		//Formateado de fecha
+		LocalDateTime today = LocalDateTime.now();
+		aviso.setFechaCreacion(today);
+		aviso.setNumeroVisitas(0);
+
+		//Fecha inicio
+		// Se combinan los datos individuales 
+		// para crear el campo definitivo de tipo Date
+		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd HH:mm");
 		String dateInString = aviso.getDiaPublicacionInicio() + " ";
 		dateInString += aviso.getHoraPublicacionInicio();
-		DateTimeFormatter dtForm = DateTimeFormat.forPattern("yy-MM-dd HH:mm");
-
 
 		LocalDateTime dt = LocalDateTime.parse(dateInString, dtForm);
-		aviso.setFechaPublicacionInicio(dt);	
+		aviso.setFechaPublicacionInicio(dt);
 
-
-		//Fecha fin
+		//	Fecha fin
+		// Se combinan los datos individuales 
+		// para crear el campo definitivo de tipo Date
 		dateInString = aviso.getDiaPublicacionFin() + " ";
 		dateInString += aviso.getHoraPublicacionFin();
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
 		aviso.setFechaPublicacionFin(dt);
 
-
 		//Fecha evento
-		dateInString = aviso.getFechaEvento() + " ";
+		dateInString = aviso.getDiaEvento() + " ";
 		dateInString += aviso.getHoraEvento();
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
-		aviso.setFechaEvento(dt);	
-		
+		aviso.setFechaEvento(dt);
+
+
+		MultipartFile archivoAdjunto = aviso.getAdjunto();
+
+
+
+
 		logger.debug("Aviso después de editar: ");
 		logger.debug(aviso);
+
+
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+
+		String nuevoNombre = "" + aviso.getPostInternalId();
+
+		//Si hay archivo, se guarda con su id interno, sin extensi�n
+		if (archivoAdjunto!=null && !archivoAdjunto.isEmpty()) {
+			try {		
+				String rutaArchivoNuevo = rootDirectory+"resources\\archivosAdjuntos\\"+ nuevoNombre;
+				archivoAdjunto.transferTo(new File(rutaArchivoNuevo));
+				logger.info("Se ha guardado el archivo adjunto del aviso en : " + rutaArchivoNuevo);
+			} catch (Exception e) {
+				throw new RuntimeException("El archivo adjunto no ha podido guardarse",e);
+			}
+		}
 
 
 		//Se guarda el aviso editado
