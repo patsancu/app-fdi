@@ -111,5 +111,29 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
 	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.heroku.sdk</groupId>
+					<artifactId>heroku-maven-plugin</artifactId>
+					<version>0.3.0</version>
+					<configuration>
+						<appName>prueba-sts-maven-heroku</appName>
+						<jdkVersion>1.7</jdkVersion>
+						<includes>
+							<include>src/main/webapp/js</include>
+							<include>src/main/webapp/css</include>
+						</includes>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
