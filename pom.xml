@@ -133,8 +133,8 @@
 						</includes>
 					</configuration>
 				</plugin>
-				
-				
+
+
 				<!-- Para desplegarlo con git -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -147,6 +147,7 @@
 								<goal>copy</goal>
 							</goals>
 							<configuration>
+								<jdkVersion>1.7</jdkVersion>
 								<artifactItems>
 									<artifactItem>
 										<groupId>com.github.jsimone</groupId>
