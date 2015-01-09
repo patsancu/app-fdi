@@ -17,8 +17,12 @@
 <c:url var="cssGlobal" value="/css/globalStyle.css" />
 <link rel="stylesheet" href="${cssGlobal}">
 
+<!-- JS -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
-
+<title><tiles:insertAttribute name="title" /></title>
 
 </head>
 <body>
@@ -28,7 +32,6 @@
 				<tiles:insertAttribute name="navigation" />
 			</ul>
 
-			<!-- <h3 class="text-muted">Aplicación FdI-UCM</h3> -->
 		</div>
 		<div class="jumbotron">
 			<h1>
@@ -45,13 +48,10 @@
 			<tiles:insertAttribute name="footer" />
 		</div>
 	</div>
-	
-	
+
+
 	<!-- JS -->
 
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="//maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
 </body>
 </html>
