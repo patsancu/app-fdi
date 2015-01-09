@@ -24,15 +24,15 @@
 		$('#table_id').DataTable({
 			"aoColumnDefs" : [ {
 				'bSortable' : false,
-				'aTargets' : [ 12 ]
+				'aTargets' : [ 9 ]
 			}, //info
 			{
 				'bSortable' : false,
-				'aTargets' : [ 13 ]
+				'aTargets' : [ 10 ]
 			}, //editar
 			{
 				'bSortable' : false,
-				'aTargets' : [ 14 ]
+				'aTargets' : [ 11 ]
 			}//eliminar
 			],
 			
@@ -69,9 +69,9 @@
 				<th>Aforo</th>
 				<th>Etiqueta</th>
 				<th>Publicado por</th>
-				<th>Fecha creación</th>
+				<!-- th>Fecha creación</th>
 				<th>Fecha publicación inicio</th>
-				<th>Fecha publicación fin</th>
+				<th>Fecha publicación fin</th> -->
 				<th>Info</th>
 				<th>Editar</th>
 				<th>Eliminar</th>
@@ -95,9 +95,9 @@
 							<td>${item.numeroPlazas}</td>
 							<td>${item.etiqueta}</td>
 							<td>${item.autor }</td>
-							<td>${fn:substring(item.fechaCreacion,0,19	)}
+							<%-- <td>${fn:substring(item.fechaCreacion,0,19	)}
 							<td>${fn:substring(item.fechaPublicacionInicio,0,19	)}
-							<td>${fn:substring(item.fechaPublicacionFin,0,19)}
+							<td>${fn:substring(item.fechaPublicacionFin,0,19)} --%>
 							<td><a class="btn btn-success"
 								href="<c:url value="/avisos/gestor/editar?id=${item.postInternalId}"></c:url>">
 									<span class="glyphicon glyphicon-edit"></span>
