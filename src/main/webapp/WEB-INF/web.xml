@@ -34,16 +34,18 @@
 	</filter-mapping>
 
 	<servlet>
-		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-name>anuncios</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>
-			/WEB-INF/spring/webcontext/DispatcherServlet-context.xml
-		</param-value>
+			<param-value>/WEB-INF/spring/webcontext/anuncios-context.xml</param-value>
 		</init-param>
-
 	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>anuncios</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>
 	    <servlet-name>statCont</servlet-name>
@@ -70,11 +72,6 @@
 	    <servlet-name>statContCss</servlet-name>
 	    <url-pattern>*.css</url-pattern>
 	  </servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>DispatcherServlet</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
 	
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
