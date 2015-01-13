@@ -151,6 +151,11 @@
 		<!-- JSTL 1.2 support (Tomcat does not bundle a JSTL implementation) -->
 		<dependency>
 			<groupId>org.apache.taglibs</groupId>
+			<artifactId>taglibs-standard-spec</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.taglibs</groupId>
 			<artifactId>taglibs-standard-impl</artifactId>
 			<version>1.2.1</version>
 		</dependency>
