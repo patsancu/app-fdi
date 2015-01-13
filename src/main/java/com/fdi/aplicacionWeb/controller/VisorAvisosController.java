@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fdi.aplicacionWeb.domain.Aviso;
 import com.fdi.aplicacionWeb.service.AvisoService;
+import com.fdi.aplicacionWeb.util.CustomRssViewer;
 
 @Controller
 @RequestMapping("/avisos/ver")
@@ -49,16 +52,18 @@ public class VisorAvisosController {
 	}
 	
 	
-	@RequestMapping(value="/rss", method = RequestMethod.GET)
-	public ModelAndView rssVisor(Model model){
+	@RequestMapping(value="/rssfeed", method = RequestMethod.GET)
+	public ModelAndView rssVisor(Model model, HttpServletRequest request){
 		List<Aviso> items = new ArrayList<Aviso>();
 		 
-		Aviso content  = new Aviso();
-		content.setTitulo("Spring MVC Tutorial 1");
-		content.setEtiqueta("item1");
-		content.setContenidoAviso("Tutorial 1 summary ...");
-		content.setDiaEvento(""+new Date(0));
-		items.add(content);
+//		Aviso content  = new Aviso();
+//		content.setTitulo("Spring MVC Tutorial 1");
+//		content.setEtiqueta("item1");
+//		content.setContenidoAviso("Tutorial 1 summary ...");
+//		content.setDiaEvento(""+new Date(0));
+//		items.add(content);
+		
+		items = avisoService.getAllAvisos();
  
 //		SampleContent content2  = new SampleContent();
 //		content2.setTitle("Spring MVC Tutorial 2");
@@ -73,8 +78,11 @@ public class VisorAvisosController {
 		
 		//model.addAttribute("rssItems", items);
 		ModelAndView modelAndView = new ModelAndView("rssItems");
-		modelAndView.addObject("items", items);
-		return modelAndView;
+		modelAndView.setViewName("rssViewer");
+		modelAndView.addObject("feedContent", items);
+		
+		return new ModelAndView(new CustomRssViewer(),"feedContent", items);
+//		return modelAndView;
  
 		//return "listarRss";
 	}

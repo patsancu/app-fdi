@@ -104,13 +104,6 @@
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="-2" />
-	</bean>
-
-
-	<!-- Map returned view name "rssViewer" to bean id "rssViewer" -->
-	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
- 
-	<bean id="rssViewer" class="com.fdi.aplicacionWeb.util.CustomRssViewer" />
-	
+	</bean>	
 
 </beans>
