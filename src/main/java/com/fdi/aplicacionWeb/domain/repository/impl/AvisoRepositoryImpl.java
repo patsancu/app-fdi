@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +20,7 @@ import com.fdi.aplicacionWeb.domain.repository.AvisoRepository;
 @Repository
 public class AvisoRepositoryImpl implements AvisoRepository {
 	
-	static final Logger logger = Logger.getLogger(AvisoRepositoryImpl.class);
+	static final Logger logger = LoggerFactory.getLogger(AvisoRepositoryImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -42,7 +43,7 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 		query.setString("postInternalId", avisoID);
 		Aviso aviso = (Aviso)query.uniqueResult();
 		logger.info("Obteniendo siguiente aviso:");
-		logger.info(aviso);
+		logger.info(aviso.toString());
 		return aviso;
 	}
 
@@ -68,7 +69,7 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 	@Transactional
 	public void addAviso(Aviso aviso) {
 		logger.info("Añadiendo aviso siguiente: ");
-		logger.info(aviso);
+		logger.info(aviso.toString());
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(aviso);		
 	}

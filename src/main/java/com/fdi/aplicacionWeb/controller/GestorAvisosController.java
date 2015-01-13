@@ -4,10 +4,11 @@ import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,7 @@ import com.fdi.aplicacionWeb.service.AvisoService;
 @RequestMapping("/avisos/gestor")
 public class GestorAvisosController {
 
-	static final Logger logger = Logger.getLogger(GestorAvisosController.class);
+	static final Logger logger = LoggerFactory.getLogger(GestorAvisosController.class);
 
 	@Autowired
 	AvisoService avisoService;
@@ -53,7 +54,7 @@ public class GestorAvisosController {
 	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso, BindingResult result, HttpServletRequest request) {
 
 		if(result.hasErrors()) {
-			logger.warn(result.getAllErrors());
+			logger.warn(result.getAllErrors().toString());
 			return "gestorAvisos";
 		}
 		String[] suppressedFields = result.getSuppressedFields();
@@ -121,7 +122,7 @@ public class GestorAvisosController {
 		model.addAttribute("aviso",avisoService.getAvisoById(avisoID));
 		logger.info("Se quiere editar el aviso con id: " + aviso.getPostInternalId());
 		logger.debug("Aviso antes de editar: ");
-		logger.debug(aviso);
+		logger.debug(aviso.toString());
 		return "creadorEditorAvisos";
 	}
 
@@ -170,7 +171,7 @@ public class GestorAvisosController {
 
 
 		logger.debug("Aviso después de editar: ");
-		logger.debug(aviso);
+		logger.debug(aviso.toString());
 
 
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
