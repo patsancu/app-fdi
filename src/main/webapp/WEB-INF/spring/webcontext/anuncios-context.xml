@@ -17,23 +17,12 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.fdi.aplicacionWeb" />
 
-	<!-- <mvc:resources location="/js/" mapping="/js/**" /> -->
-
-	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources mapping="/static/**"  location="/static/" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
-	</bean>
-
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="suffix" value=".js" />
-	</bean>
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="suffix" value=".css" />
 	</bean>
 
 	<bean id="messageSource"

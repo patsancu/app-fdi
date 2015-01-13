@@ -72,10 +72,10 @@
 </script>
 
 <c:url var="jq"
-	value="/js/jquery-timepicker-master/jquery.timepicker.min.js" />
+	value="/static/js/jquery-timepicker-master/jquery.timepicker.min.js" />
 <script type="text/javascript" src="${jq}"></script>
 <c:url var="css1"
-	value="/css/jquery-timepicker-master/jquery.timepicker.css" />
+	value="/static/css/jquery-timepicker-master/jquery.timepicker.css" />
 <link rel="stylesheet" href="${css1}">
 
 

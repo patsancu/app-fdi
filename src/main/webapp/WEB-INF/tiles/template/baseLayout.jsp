@@ -14,7 +14,7 @@
 
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<c:url var="cssGlobal" value="/css/globalStyle.css" />
+<c:url var="cssGlobal" value="/static/css/globalStyle.css" />
 <link rel="stylesheet" href="${cssGlobal}">
 
 <!-- JS -->

@@ -16,7 +16,7 @@
 
 
 
-<c:url var="cssGlobal" value="/css/globalStyle.css" />
+<c:url var="cssGlobal" value="/static/css/globalStyle.css" />
 <link rel="stylesheet" href="${cssGlobal}">
 </head>
 
