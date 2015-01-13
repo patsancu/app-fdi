@@ -55,35 +55,9 @@ public class VisorAvisosController {
 	@RequestMapping(value="/rssfeed", method = RequestMethod.GET)
 	public ModelAndView rssVisor(Model model, HttpServletRequest request){
 		List<Aviso> items = new ArrayList<Aviso>();
-		 
-//		Aviso content  = new Aviso();
-//		content.setTitulo("Spring MVC Tutorial 1");
-//		content.setEtiqueta("item1");
-//		content.setContenidoAviso("Tutorial 1 summary ...");
-//		content.setDiaEvento(""+new Date(0));
-//		items.add(content);
 		
 		items = avisoService.getAllAvisos();
- 
-//		SampleContent content2  = new SampleContent();
-//		content2.setTitle("Spring MVC Tutorial 2");
-//		content2.setUrl("http://www.mkyong.com/spring-mvc/tutorial-2");
-//		content2.setSummary("Tutorial 2 summary ...");
-//		content2.setCreatedDate(new Date());
-//		items.add(content2);
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("rssViewer");
-//		mav.addObject("feedContent", items);
-		
-		
-		//model.addAttribute("rssItems", items);
-		ModelAndView modelAndView = new ModelAndView("rssItems");
-		modelAndView.setViewName("rssViewer");
-		modelAndView.addObject("feedContent", items);
 		
 		return new ModelAndView(new CustomRssViewer(),"feedContent", items);
-//		return modelAndView;
- 
-		//return "listarRss";
 	}
 }
