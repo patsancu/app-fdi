@@ -58,7 +58,7 @@ public class CustomRssViewer extends AbstractRssFeedView {
 			//Enlace al propio aviso
 			item.setLink(dominio 
 					+ request.getSession().getServletContext().getContextPath() 
-					+ "/avisos/ver/individual?id=" 
+					+ "/ver/individual?id=" 
 					+ tempContent.getPostInternalId());
 			
 			//Autor

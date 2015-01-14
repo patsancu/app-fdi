@@ -24,7 +24,7 @@ import es.ucm.fdi.anuncios.business.Avisos;
 import es.ucm.fdi.anuncios.business.domain.Aviso;
 
 @Controller
-@RequestMapping("/avisos/gestor")
+@RequestMapping("/gestor")
 public class GestorAvisosController {
 
 	static final Logger logger = LoggerFactory.getLogger(GestorAvisosController.class);
@@ -41,7 +41,7 @@ public class GestorAvisosController {
 	@RequestMapping("/eliminar")
 	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {		
 		avisoService.eliminarAviso(avisoID);
-		return "redirect:/avisos/ver";	
+		return "redirect:/ver";	
 	}
 
 
@@ -52,7 +52,7 @@ public class GestorAvisosController {
 
 	@RequestMapping(value="/crear", method = RequestMethod.POST)	
 	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso, BindingResult result, HttpServletRequest request) {
-
+		logger.warn("Creando aviso: " + aviso);
 		if(result.hasErrors()) {
 			logger.warn(result.getAllErrors().toString());
 			return "gestorAvisos";
@@ -79,6 +79,7 @@ public class GestorAvisosController {
 		dateInString += aviso.getHoraPublicacionInicio();
 
 		LocalDateTime dt = LocalDateTime.parse(dateInString, dtForm);
+		logger.debug("FechaPublicacion:" + dt);
 		aviso.setFechaPublicacionInicio(dt);
 
 		//	Fecha fin
@@ -88,6 +89,7 @@ public class GestorAvisosController {
 		dateInString += aviso.getHoraPublicacionFin();
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
+		logger.debug("FechaPublicacion:" + dt.toString());
 		aviso.setFechaPublicacionFin(dt);
 
 		//Fecha evento
@@ -95,6 +97,7 @@ public class GestorAvisosController {
 		dateInString += aviso.getHoraEvento();
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
+		logger.debug("FechaEvento:" + dt.toString());
 		aviso.setFechaEvento(dt);	
 
 		avisoService.addAviso(aviso);
@@ -114,7 +117,7 @@ public class GestorAvisosController {
 			}
 		}
 
-		return "redirect:/avisos/ver";
+		return "redirect:/ver";
 	}
 
 	@RequestMapping(value="/editar", method = RequestMethod.GET)
@@ -193,7 +196,7 @@ public class GestorAvisosController {
 		//Se guarda el aviso editado
 		avisoService.addAviso(aviso);
 
-		return "redirect:/avisos/ver";
+		return "redirect:/ver";
 	}
 
 }

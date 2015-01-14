@@ -20,7 +20,7 @@ import es.ucm.fdi.anuncios.business.domain.Aviso;
 import es.ucm.fdi.anuncios.util.CustomRssViewer;
 
 @Controller
-@RequestMapping("/avisos/ver")
+@RequestMapping("/ver")
 public class VisorAvisosController {
 	@Autowired
 	Avisos avisoService;

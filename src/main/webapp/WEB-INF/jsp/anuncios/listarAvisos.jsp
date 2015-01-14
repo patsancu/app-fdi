@@ -153,7 +153,7 @@
 												eliminar el aviso "${item.titulo}"?</div>
 											<div class="modal-footer ">
 												<a class="btn btn-danger "
-													href="<c:url value="/avisos/gestor/eliminar?id=${item.postInternalId}"></c:url>">
+													href="<c:url value="/gestor/eliminar?id=${item.postInternalId}"></c:url>">
 													Eliminar </a>
 												<button type="button" class="btn btn-warning "
 													data-dismiss="modal">Cancelar</button>

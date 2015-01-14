@@ -12,7 +12,7 @@
 
 <section class="container">
 	<h3>
-		<a href="<spring:url value="/avisos/gestor/crear"></spring:url>">
+		<a href="<spring:url value="/gestor/crear"></spring:url>">
 			Crear nuevo aviso</a>
 	</h3>
 </section>

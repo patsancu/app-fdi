@@ -21,21 +21,21 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Avisos
+					data-toggle="dropdown" role="button" aria-expanded="false">Anuncios
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<spring:url value="/avisos/ver"/>" role="button">
-								<span class="glyphicon glyphicon-info-sign"></span> Visor avisos
+						<li><a href="<spring:url value="/ver"/>" role="button">
+								<span class="glyphicon glyphicon-info-sign"></span> Visor anuncios
 						</a></li>
-						<li><a href="<spring:url value="/avisos/gestor"/>"> <span
-								class="glyphicon glyphicon-user"></span> Gestor avisos
+						<li><a href="<spring:url value="/gestor"/>"> <span
+								class="glyphicon glyphicon-user"></span> Gestor anuncios
 						</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Accesos directos</li>
 						<li><a
-							href="<spring:url value="/avisos/gestor/crear"></spring:url>">
-								<span class="glyphicon glyphicon-plus"></span> Crear nuevo aviso
+							href="<spring:url value="/gestor/crear"></spring:url>">
+								<span class="glyphicon glyphicon-plus"></span> Crear nuevo anuncio
 						</a></li>
 					</ul></li>
 				<li><a href="#">Sección1</a></li>
@@ -48,35 +48,6 @@
 				<li class="active"><a href="#">Logout <span class="sr-only">(current)</span></a></li>
 			</ul>
 		</div>
-		<!--/.nav-collapse -->
-
-
-
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<%-- <div class="collapse navbar-collapse" id="navbarCollapse">
-			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> Avisos <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<!-- <li> <a href="./about_me.html"> <span class="glyphicon glyphicon-user"></span>  Me</a> </li> -->
-						<li><a href="<spring:url value="/avisos/gestor"/>"> <span
-								class="glyphicon glyphicon-user"></span> Gestor avisos
-						</a></li>
-						<li><a href="<spring:url value="/avisos/ver"/>" role="button">
-								<span class="glyphicon glyphicon-info-sign"></span> Visor avisos
-						</a></li>
-						<li><a
-							href="<spring:url value="/avisos/gestor/crear"></spring:url>">
-								<span class="glyphicon glyphicon-plus"></span> Crear nuevo aviso
-						</a></li>
-					</ul></li>
-
-
-
-
-			</ul>
-		</div> --%>
 		<!--navbarCollapse -->
 	</div>
 	<!-- container -->
