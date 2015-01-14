@@ -1,4 +1,4 @@
-package com.fdi.aplicacionWeb.util;
+package es.ucm.fdi.anuncios.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.joda.time.LocalDateTime;
 import org.springframework.web.servlet.view.feed.AbstractRssFeedView;
 
-import com.fdi.aplicacionWeb.domain.Aviso;
 import com.rometools.rome.feed.rss.Channel;
 import com.rometools.rome.feed.rss.Content;
 import com.rometools.rome.feed.rss.Item;
+
+import es.ucm.fdi.anuncios.domain.Aviso;
 
 public class CustomRssViewer extends AbstractRssFeedView {
 	

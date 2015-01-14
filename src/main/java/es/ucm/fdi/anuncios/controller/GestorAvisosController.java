@@ -1,4 +1,4 @@
-package com.fdi.aplicacionWeb.controller;
+package es.ucm.fdi.anuncios.controller;
 
 import java.io.File;
 
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fdi.aplicacionWeb.domain.Aviso;
-import com.fdi.aplicacionWeb.service.AvisoService;
+import es.ucm.fdi.anuncios.domain.Aviso;
+import es.ucm.fdi.anuncios.service.AvisoService;
 
 @Controller
 @RequestMapping("/avisos/gestor")

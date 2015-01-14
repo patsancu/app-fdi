@@ -1,4 +1,4 @@
-package com.fdi.aplicacionWeb.domain;
+package es.ucm.fdi.anuncios.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

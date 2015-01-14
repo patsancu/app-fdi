@@ -1,4 +1,4 @@
-package com.fdi.aplicacionWeb.service.impl;
+package es.ucm.fdi.anuncios.service.impl;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fdi.aplicacionWeb.domain.Aviso;
-import com.fdi.aplicacionWeb.domain.repository.AvisoRepository;
-import com.fdi.aplicacionWeb.service.AvisoService;
+import es.ucm.fdi.anuncios.domain.Aviso;
+import es.ucm.fdi.anuncios.domain.repository.AvisoRepository;
+import es.ucm.fdi.anuncios.service.AvisoService;
 
 @Transactional
 @Service	

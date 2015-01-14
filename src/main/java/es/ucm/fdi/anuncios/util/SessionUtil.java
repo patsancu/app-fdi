@@ -1,4 +1,4 @@
-package com.fdi.aplicacionWeb.util;
+package es.ucm.fdi.anuncios.util;
 
 
 import org.hibernate.Session;

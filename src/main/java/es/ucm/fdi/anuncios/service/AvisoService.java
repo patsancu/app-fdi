@@ -1,8 +1,8 @@
-package com.fdi.aplicacionWeb.service;
+package es.ucm.fdi.anuncios.service;
 
 import java.util.List;
 
-import com.fdi.aplicacionWeb.domain.Aviso;
+import es.ucm.fdi.anuncios.domain.Aviso;
 
 public interface AvisoService {
 	List <Aviso> getAllAvisos();

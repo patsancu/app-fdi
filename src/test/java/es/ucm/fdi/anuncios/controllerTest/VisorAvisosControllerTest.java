@@ -1,4 +1,5 @@
-//package com.fdi.aplicacionWeb.controllerTest;
+package es.ucm.fdi.anuncios.controllerTest;
+//package es.ucm.fdi.anuncios.controllerTest;
 //import static org.mockito.Matchers.anyString;
 //import static org.mockito.Mockito.mock;
 //import static org.mockito.Mockito.when;
@@ -25,11 +26,11 @@
 //import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 //import org.springframework.web.context.WebApplicationContext;
 //
-//import com.fdi.aplicacionWeb.controller.GestorAvisosController;
-//import com.fdi.aplicacionWeb.controller.VisorAvisosController;
-//import com.fdi.aplicacionWeb.domain.Aviso;
-//import com.fdi.aplicacionWeb.domain.repository.AvisoRepository;
-//import com.fdi.aplicacionWeb.service.AvisoService;
+//import es.ucm.fdi.anuncios.controller.GestorAvisosController;
+//import es.ucm.fdi.anuncios.controller.VisorAvisosController;
+//import es.ucm.fdi.anuncios.domain.Aviso;
+//import es.ucm.fdi.anuncios.domain.repository.AvisoRepository;
+//import es.ucm.fdi.anuncios.service.AvisoService;
 //
 //
 //@RunWith(SpringJUnit4ClassRunner.class)
