@@ -26,7 +26,7 @@
 						colocarExtremo="derecha"
 						>
 						<jsp:attribute name="texto">
-								¿Realmente desea borrar el aviso ${aviso.titulo}?</jsp:attribute>
+								Â¿Realmente desea borrar el aviso ${aviso.titulo}?</jsp:attribute>
 						<jsp:attribute name="urlSiAcepta">
 									<c:url
 								value="/avisos/gestor/eliminar?id=${aviso.postInternalId}"></c:url>

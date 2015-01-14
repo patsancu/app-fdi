@@ -50,7 +50,7 @@
 					aviso
 				</legend>
 
-				<!-- MUY IMPORTANTE PARA LA EDICI覰
+				<!-- MUY IMPORTANTE PARA LA EDICI脫N
 				Si no se pone, crea un dato nuevo en la db -->
 				<form:input type="hidden" id="postInternalId" path="postInternalId" />
 
@@ -79,7 +79,7 @@
 				aviso
 			</legend>
 
-			<!-- MUY IMPORTANTE PARA LA EDICI覰
+			<!-- MUY IMPORTANTE PARA LA EDICI脫N
 					Si no se pone, crea un dato nuevo en la db -->
 			<form:input type="hidden" id="postInternalId" path="postInternalId" />
 
@@ -206,7 +206,7 @@
 <<<<<<< HEAD
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="adjunto"> A馻dir
+					<label class="control-label col-lg-2" for="adjunto"> A帽adir
 						archivo adjunto </label>
 					<div class="col-lg-10">
 						<form:input id="adjunto" path="adjunto" type="file"
@@ -225,7 +225,7 @@
 			</div>
 
 <<<<<<< HEAD
-				<!-- Bot髇 crear aviso -->
+				<!-- Bot贸n crear aviso -->
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<p>
@@ -238,7 +238,7 @@
 						
 						</div>
 =======
-			<!-- Hora publicaci髇 -->
+			<!-- Hora publicaci贸n -->
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="hora">Hora</label>
 				<div class="col-lg-10">
@@ -259,7 +259,7 @@
 
 
 
-			<!-- Fecha publicaci髇 -->
+			<!-- Fecha publicaci贸n -->
 			<div id="datetimepicker" class="form-group">
 				<label class="control-label col-lg-2s" for="fechaPublicacion">Fecha</label>
 				<div class="col-lg-10">
@@ -293,7 +293,7 @@
 
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="adjunto"> A馻dir
+				<label class="control-label col-lg-2" for="adjunto"> A帽adir
 					archivo adjunto </label>
 				<div class="col-lg-10">
 					<form:input id="adjunto" path="adjunto" type="file"
@@ -301,7 +301,7 @@
 				</div>
 			</div>
 
-			<!-- Bot髇 crear aviso -->
+			<!-- Bot贸n crear aviso -->
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<p>
@@ -320,7 +320,7 @@
 
 
 
-<!-- jQuery y librer韆 JS para fecha -->
+<!-- jQuery y librer铆a JS para fecha -->
 <script type="text/javascript"
 	src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
 	

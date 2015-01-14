@@ -20,7 +20,7 @@
 </script>
 
 <script type="text/javascript">	
-	$(document).ready(function() { /* Se deshabilita la ordenaci�n por estos campos */
+	$(document).ready(function() { /* Se deshabilita la ordenaciÃ³n por estos campos */
 		$('#table_id').DataTable({
 			"aoColumnDefs" : [ {
 				'bSortable' : false,
@@ -40,8 +40,8 @@
 			"language": {
 	            "lengthMenu": "Mostrar _MENU_ resultados por pagina",
 	            "zeroRecords": "No se ha encontrado ningun resultado",
-	            "info": "P�gina _PAGE_ de _PAGES_",
-	            "infoEmpty": "No hay informaci�n",
+	            "info": "PÃ¡gina _PAGE_ de _PAGES_",
+	            "infoEmpty": "No hay informaciÃ³n",
 	            "infoFiltered": "(filtado de _MAX_ resultados totales)",
 	            "search":         "Buscar:",
 		        "paginate": {
@@ -61,17 +61,17 @@
 		<thead>
 			<tr>
 				<th>Importancia</th>
-				<th>T�tulo</th>
+				<th>TÃ­tulo</th>
 				<th>Contenido del aviso</th>
-				<th>Duraci�n estimada</th>
+				<th>DuraciÃ³n estimada</th>
 				<th>Lugar</th>
 				<th>Fecha evento</th>
 				<th>Aforo</th>
 				<th>Etiqueta</th>
 				<th>Publicado por</th>
-				<!-- th>Fecha creaci�n</th>
-				<th>Fecha publicaci�n inicio</th>
-				<th>Fecha publicaci�n fin</th> -->
+				<!-- th>Fecha creaciÃ³n</th>
+				<th>Fecha publicaciÃ³n inicio</th>
+				<th>Fecha publicaciÃ³n fin</th> -->
 				<th>Info</th>
 				<th>Editar</th>
 				<th>Eliminar</th>
@@ -133,11 +133,11 @@
 								</c:choose>
 							</td>
 							<td>
-								<!-- Bot�n eliminar -->
+								<!-- BotÃ³n eliminar -->
 								<button type="button" class="btn btn-danger" data-toggle="modal"
 									data-target=".bs-delete-modal-sm${item.postInternalId}">
 									<span class="glyphicon glyphicon-remove"></span>
-								</button> <!-- Popup de confirmaci�n de eliminaci�n -->
+								</button> <!-- Popup de confirmaciÃ³n de eliminaciÃ³n -->
 								<div class="modal fade bs-delete-modal-sm${item.postInternalId}"
 									tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 									aria-hidden="true">
@@ -149,7 +149,7 @@
 												<h4 class="modal-title" id="myModalLabel">Eliminar
 													aviso</h4>
 											</div>
-											<div class="modal-body">�Est� seguro de que desea
+											<div class="modal-body">Â¿EstÃ¡ seguro de que desea
 												eliminar el aviso "${item.titulo}"?</div>
 											<div class="modal-footer ">
 												<a class="btn btn-danger "
@@ -160,7 +160,7 @@
 											</div>
 										</div>
 									</div>
-								</div> <!-- Fin de  Popup de confirmaci�n de eliminaci�n -->
+								</div> <!-- Fin de  Popup de confirmaciÃ³n de eliminaciÃ³n -->
 							</td>
 						</tr>
 					</div>

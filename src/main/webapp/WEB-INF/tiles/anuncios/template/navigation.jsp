@@ -38,8 +38,8 @@
 								<span class="glyphicon glyphicon-plus"></span> Crear nuevo anuncio
 						</a></li>
 					</ul></li>
-				<li><a href="#">Secci�n1</a></li>
-				<li><a href="#">Secci�n2</a></li>
+				<li><a href="#">SecciÃ³n1</a></li>
+				<li><a href="#">SecciÃ³n2</a></li>
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

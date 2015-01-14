@@ -22,7 +22,7 @@
 		<section class="container">
 			<table class="table table-hover">
 				<tr>
-					<th>T�tulo</th>
+					<th>Tï¿½tulo</th>
 					<th>Contenido del aviso</th>
 					<th>Tipo de aviso</th>
 					<th>Etiqueta</th>
@@ -53,7 +53,7 @@
 <section class="container">
 	<table class="table table-hover">
 		<!-- <tr>	
-				<th>T�tulo</th>
+				<th>Tï¿½tulo</th>
 				<th>Contenido del aviso</th>
 				<th>Tipo de aviso</th>
 				<th>Etiqueta</th>
@@ -109,11 +109,11 @@
 							</c:choose>
 						</td>
 						<td>
-							<!-- Bot�n eliminar -->
+							<!-- Botï¿½n eliminar -->
 							<button type="button" class="btn btn-danger" data-toggle="modal"
 								data-target=".bs-delete-modal-sm${item.postInternalId}">
 								<span class="glyphicon glyphicon-remove"></span>
-							</button> <!-- Popup de confirmaci�n de eliminaci�n -->
+							</button> <!-- Popup de confirmaciï¿½n de eliminaciï¿½n -->
 							<div class="modal fade bs-delete-modal-sm${item.postInternalId}"
 								tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 								aria-hidden="true">
@@ -124,7 +124,7 @@
 												aria-hidden="true">&times;</button>
 											<h4 class="modal-title" id="myModalLabel">Eliminar aviso</h4>
 										</div>
-										<div class="modal-body">�Est� seguro de que desea
+										<div class="modal-body">ï¿½Estï¿½ seguro de que desea
 											eliminar el aviso "${item.titulo}"?</div>
 										<div class="modal-footer ">
 											<a class="btn btn-danger "
@@ -135,7 +135,7 @@
 										</div>
 									</div>
 								</div>
-							</div> <!-- Fin de  Popup de confirmaci�n de eliminaci�n -->
+							</div> <!-- Fin de  Popup de confirmaciï¿½n de eliminaciï¿½n -->
 						</td>
 					</tr>
 				</div>

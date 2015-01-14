@@ -106,7 +106,7 @@ public class GestorAvisosController {
 
 		String nuevoNombre = "" + aviso.getPostInternalId();
 
-		//Si hay archivo, se guarda con su id interno, sin extensi�n
+		//Si hay archivo, se guarda con su id interno, sin extensiÃ¯Â¿Â½n
 		if (archivoAdjunto!=null && !archivoAdjunto.isEmpty()) {
 			try {		
 				String rutaArchivoNuevo = rootDirectory+"resources\\archivosAdjuntos\\"+ nuevoNombre;
@@ -173,7 +173,7 @@ public class GestorAvisosController {
 
 
 
-		logger.debug("Aviso después de editar: ");
+		logger.debug("Aviso despuÃÂ©s de editar: ");
 		logger.debug(aviso.toString());
 
 
@@ -181,7 +181,7 @@ public class GestorAvisosController {
 
 		String nuevoNombre = "" + aviso.getPostInternalId();
 
-		//Si hay archivo, se guarda con su id interno, sin extensi�n
+		//Si hay archivo, se guarda con su id interno, sin extensiÃ¯Â¿Â½n
 		if (archivoAdjunto!=null && !archivoAdjunto.isEmpty()) {
 			try {		
 				String rutaArchivoNuevo = rootDirectory+"resources\\archivosAdjuntos\\"+ nuevoNombre;

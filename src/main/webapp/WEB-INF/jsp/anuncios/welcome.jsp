@@ -40,7 +40,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Aplicaci�n de noticias de la FdI-UCM</title>
+<title>AplicaciÃ³n de noticias de la FdI-UCM</title>
 </head>
 <body>
 	<section>
