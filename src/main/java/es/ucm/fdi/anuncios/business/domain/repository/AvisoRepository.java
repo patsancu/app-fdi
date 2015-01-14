@@ -1,10 +1,10 @@
-package es.ucm.fdi.anuncios.domain.repository;
+package es.ucm.fdi.anuncios.business.domain.repository;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import es.ucm.fdi.anuncios.domain.Aviso;
+import es.ucm.fdi.anuncios.business.domain.Aviso;
 
 public interface AvisoRepository {
 	List <Aviso> getAllAvisos();

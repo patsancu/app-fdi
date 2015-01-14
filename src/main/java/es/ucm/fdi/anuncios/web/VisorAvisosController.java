@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.controller;
+package es.ucm.fdi.anuncios.web;
 
 
 import java.sql.Date;
@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.ucm.fdi.anuncios.domain.Aviso;
-import es.ucm.fdi.anuncios.service.AvisoService;
+import es.ucm.fdi.anuncios.business.Avisos;
+import es.ucm.fdi.anuncios.business.domain.Aviso;
 import es.ucm.fdi.anuncios.util.CustomRssViewer;
 
 @Controller
 @RequestMapping("/avisos/ver")
 public class VisorAvisosController {
 	@Autowired
-	AvisoService avisoService;
+	Avisos avisoService;
 
 	@RequestMapping
 	public String welcome(Model model) {

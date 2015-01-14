@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.repository.impl;
+package es.ucm.fdi.anuncios.business.domain.repository.hibernate;
 
 import java.util.List;
 import java.util.Map;
@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.ucm.fdi.anuncios.domain.Aviso;
-import es.ucm.fdi.anuncios.domain.repository.AvisoRepository;
+import es.ucm.fdi.anuncios.business.domain.Aviso;
+import es.ucm.fdi.anuncios.business.domain.repository.AvisoRepository;
 
 @Transactional
 @Repository

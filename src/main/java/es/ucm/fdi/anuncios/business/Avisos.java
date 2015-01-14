@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.service.impl;
+package es.ucm.fdi.anuncios.business;
 
 import java.util.List;
 
@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.ucm.fdi.anuncios.domain.Aviso;
-import es.ucm.fdi.anuncios.domain.repository.AvisoRepository;
-import es.ucm.fdi.anuncios.service.AvisoService;
+import es.ucm.fdi.anuncios.business.domain.Aviso;
+import es.ucm.fdi.anuncios.business.domain.repository.AvisoRepository;
 
 @Transactional
-@Service	
-public class AvisoServiceImpl implements AvisoService{
+@Service
+public class Avisos {
 	@Autowired
 	AvisoRepository avisoRepository;
 
@@ -40,6 +39,4 @@ public class AvisoServiceImpl implements AvisoService{
 	public void incrementarVisitas(String avisoID){
 		avisoRepository.incrementarVisitas(avisoID);
 	}
-
-
 }

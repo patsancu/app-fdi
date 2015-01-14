@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.controller;
+package es.ucm.fdi.anuncios.web;
 
 import java.io.File;
 
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import es.ucm.fdi.anuncios.domain.Aviso;
-import es.ucm.fdi.anuncios.service.AvisoService;
+import es.ucm.fdi.anuncios.business.Avisos;
+import es.ucm.fdi.anuncios.business.domain.Aviso;
 
 @Controller
 @RequestMapping("/avisos/gestor")
@@ -30,7 +30,7 @@ public class GestorAvisosController {
 	static final Logger logger = LoggerFactory.getLogger(GestorAvisosController.class);
 
 	@Autowired
-	AvisoService avisoService;
+	Avisos avisoService;
 
 	@RequestMapping
 	public String gestor(Model model) {
