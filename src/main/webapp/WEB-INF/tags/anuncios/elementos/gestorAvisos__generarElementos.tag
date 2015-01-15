@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@taglib prefix="elemento" tagdir="/WEB-INF/tags/elementos"%>
+<%@taglib prefix="elemento" tagdir="/WEB-INF/tags/anuncios/elementos"%>
 
 <c:forEach items="${avisos}" var="aviso">
 	<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">

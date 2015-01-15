@@ -1,11 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="incluir" tagdir="/WEB-INF/tags/elementos/incluir"%>
-<%@ taglib prefix="elemento" tagdir="/WEB-INF/tags/elementos"%>
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
-
-<<<<<<< HEAD
-
+<%@ taglib prefix="incluir" tagdir="/WEB-INF/tags/anuncios/elementos/incluir"%>
+<%@ taglib prefix="elemento" tagdir="/WEB-INF/tags/anuncios/elementos"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags/anuncios"%>
 
 <t:genericPage>
 
