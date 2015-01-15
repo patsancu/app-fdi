@@ -27,7 +27,8 @@ import es.ucm.fdi.anuncios.business.domain.Aviso;
 @RequestMapping("/gestor")
 public class GestorAvisosController {
 
-	static final Logger logger = LoggerFactory.getLogger(GestorAvisosController.class);
+	static final Logger logger = LoggerFactory
+			.getLogger(GestorAvisosController.class);
 
 	@Autowired
 	Avisos avisoService;
@@ -35,46 +36,48 @@ public class GestorAvisosController {
 	@RequestMapping
 	public String gestor(Model model) {
 		model.addAttribute("avisos", avisoService.getAllAvisos());
-		return "gestorAvisos";		
+		return "gestorAvisos";
 	}
 
 	@RequestMapping("/eliminar")
-	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {		
+	public String eliminarAviso(@RequestParam("id") String avisoID, Model model) {
 		avisoService.eliminarAviso(avisoID);
-		return "redirect:/ver";	
+		return "redirect:/ver";
 	}
 
-
-	@RequestMapping(value="/crear", method = RequestMethod.GET)	
-	public String formularioCreadorAvisos(@ModelAttribute("aviso") Aviso aviso, Model model) {
+	@RequestMapping(value = "/crear", method = RequestMethod.GET)
+	public String formularioCreadorAvisos(@ModelAttribute("aviso") Aviso aviso,
+			Model model) {
 		return "creadorEditorAvisos";
 	}
 
-	@RequestMapping(value="/crear", method = RequestMethod.POST)	
-	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso, BindingResult result, HttpServletRequest request) {
+	@RequestMapping(value = "/crear", method = RequestMethod.POST)
+	public String procesarNuevoAviso(@ModelAttribute("aviso") Aviso aviso,
+			BindingResult result, HttpServletRequest request) {
 		logger.warn("Creando aviso: " + aviso);
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			logger.warn(result.getAllErrors().toString());
 			return "gestorAvisos";
 		}
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
-			logger.error("Attempting to bind disallowed fields: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
-			throw new RuntimeException("Attempting to bind disallowed fields: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+			logger.error("Attempting to bind disallowed fields: "
+					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
+			throw new RuntimeException("Attempting to bind disallowed fields: "
+					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-
 
 		MultipartFile archivoAdjunto = aviso.getAdjunto();
 
-		//Formateado de fecha
+		// Formateado de fecha
 		LocalDateTime today = LocalDateTime.now();
 		aviso.setFechaCreacion(today);
 		aviso.setNumeroVisitas(0);
 
-		//Fecha inicio
-		// Se combinan los datos individuales 
+		// Fecha inicio
+		// Se combinan los datos individuales
 		// para crear el campo definitivo de tipo Date
-		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd HH:mm");
+		DateTimeFormatter dtForm = DateTimeFormat.forPattern("yy-MM-dd HH:mm");
 		String dateInString = aviso.getDiaPublicacionInicio() + " ";
 		dateInString += aviso.getHoraPublicacionInicio();
 
@@ -82,8 +85,8 @@ public class GestorAvisosController {
 		logger.debug("FechaPublicacion:" + dt);
 		aviso.setFechaPublicacionInicio(dt);
 
-		//	Fecha fin
-		// Se combinan los datos individuales 
+		// Fecha fin
+		// Se combinan los datos individuales
 		// para crear el campo definitivo de tipo Date
 		dateInString = aviso.getDiaPublicacionFin() + " ";
 		dateInString += aviso.getHoraPublicacionFin();
@@ -92,67 +95,73 @@ public class GestorAvisosController {
 		logger.debug("FechaPublicacion:" + dt.toString());
 		aviso.setFechaPublicacionFin(dt);
 
-		//Fecha evento
+		// Fecha evento
 		dateInString = aviso.getDiaEvento() + " ";
 		dateInString += aviso.getHoraEvento();
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
 		logger.debug("FechaEvento:" + dt.toString());
-		aviso.setFechaEvento(dt);	
+		aviso.setFechaEvento(dt);
 
 		avisoService.addAviso(aviso);
 
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		String rootDirectory = request.getSession().getServletContext()
+				.getRealPath("/");
 
 		String nuevoNombre = "" + aviso.getPostInternalId();
 
-		//Si hay archivo, se guarda con su id interno, sin extensiÃ¯Â¿Â½n
-		if (archivoAdjunto!=null && !archivoAdjunto.isEmpty()) {
-			try {		
-				String rutaArchivoNuevo = rootDirectory+"resources\\archivosAdjuntos\\"+ nuevoNombre;
+		// Si hay archivo, se guarda con su id interno, sin extensión
+		if (archivoAdjunto != null && !archivoAdjunto.isEmpty()) {
+			try {
+				String rutaArchivoNuevo = rootDirectory
+						+ "resources\\archivosAdjuntos\\" + nuevoNombre;
 				archivoAdjunto.transferTo(new File(rutaArchivoNuevo));
-				logger.info("Se ha guardado el archivo adjunto del aviso en : " + rutaArchivoNuevo);
+				logger.info("Se ha guardado el archivo adjunto del aviso en : "
+						+ rutaArchivoNuevo);
 			} catch (Exception e) {
-				throw new RuntimeException("El archivo adjunto no ha podido guardarse",e);
+				throw new RuntimeException(
+						"El archivo adjunto no ha podido guardarse", e);
 			}
 		}
 
 		return "redirect:/ver";
 	}
 
-	@RequestMapping(value="/editar", method = RequestMethod.GET)
-	public String editarAviso(@ModelAttribute("aviso") Aviso aviso, @RequestParam("id") String avisoID,Model model){		
-		model.addAttribute("aviso",avisoService.getAvisoById(avisoID));
-		logger.info("Se quiere editar el aviso con id: " + aviso.getPostInternalId());
+	@RequestMapping(value = "/editar", method = RequestMethod.GET)
+	public String editarAviso(@ModelAttribute("aviso") Aviso aviso,
+			@RequestParam("id") String avisoID, Model model) {
+		model.addAttribute("aviso", avisoService.getAvisoById(avisoID));
+		logger.info("Se quiere editar el aviso con id: "
+				+ aviso.getPostInternalId());
 		logger.debug("Aviso antes de editar: ");
 		logger.debug(aviso.toString());
 		return "creadorEditorAvisos";
 	}
 
+	@RequestMapping(value = "/editar", method = RequestMethod.POST)
+	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso,
+			Model model, HttpServletRequest request) {
 
-	@RequestMapping(value="/editar", method = RequestMethod.POST)
-	public String guardarEdicionAviso(@ModelAttribute("aviso") Aviso aviso, Model model, HttpServletRequest request){		
-
-		//Fecha inicio
-		//Se combinan los datos individuales (no mapeados a la bd) 
+		// Fecha inicio
+		// Se combinan los datos individuales (no mapeados a la bd)
 		// para crear el campo definitivo de tipo Date
-		//Formateado de fecha
+		// Formateado de fecha
 		LocalDateTime today = LocalDateTime.now();
 		aviso.setFechaCreacion(today);
 		aviso.setNumeroVisitas(0);
 
-		//Fecha inicio
-		// Se combinan los datos individuales 
+		// Fecha inicio
+		// Se combinan los datos individuales
 		// para crear el campo definitivo de tipo Date
-		DateTimeFormatter dtForm=DateTimeFormat.forPattern("yy-MM-dd HH:mm");
+		DateTimeFormatter dtForm = DateTimeFormat.forPattern("yy-MM-dd HH:mm");
 		String dateInString = aviso.getDiaPublicacionInicio() + " ";
 		dateInString += aviso.getHoraPublicacionInicio();
 
 		LocalDateTime dt = LocalDateTime.parse(dateInString, dtForm);
 		aviso.setFechaPublicacionInicio(dt);
 
-		//	Fecha fin
-		// Se combinan los datos individuales 
+		// Fecha fin
+		// Se combinan los datos individuales
 		// para crear el campo definitivo de tipo Date
 		dateInString = aviso.getDiaPublicacionFin() + " ";
 		dateInString += aviso.getHoraPublicacionFin();
@@ -160,40 +169,38 @@ public class GestorAvisosController {
 		dt = LocalDateTime.parse(dateInString, dtForm);
 		aviso.setFechaPublicacionFin(dt);
 
-		//Fecha evento
+		// Fecha evento
 		dateInString = aviso.getDiaEvento() + " ";
 		dateInString += aviso.getHoraEvento();
 
 		dt = LocalDateTime.parse(dateInString, dtForm);
 		aviso.setFechaEvento(dt);
 
-
 		MultipartFile archivoAdjunto = aviso.getAdjunto();
 
-
-
-
-		logger.debug("Aviso despuÃÂ©s de editar: ");
+		logger.debug("Aviso después de editar: ");
 		logger.debug(aviso.toString());
 
-
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		String rootDirectory = request.getSession().getServletContext()
+				.getRealPath("/");
 
 		String nuevoNombre = "" + aviso.getPostInternalId();
 
-		//Si hay archivo, se guarda con su id interno, sin extensiÃ¯Â¿Â½n
-		if (archivoAdjunto!=null && !archivoAdjunto.isEmpty()) {
-			try {		
-				String rutaArchivoNuevo = rootDirectory+"resources\\archivosAdjuntos\\"+ nuevoNombre;
+		// Si hay archivo, se guarda con su id interno, sin extensión
+		if (archivoAdjunto != null && !archivoAdjunto.isEmpty()) {
+			try {
+				String rutaArchivoNuevo = rootDirectory
+						+ "resources\\archivosAdjuntos\\" + nuevoNombre;
 				archivoAdjunto.transferTo(new File(rutaArchivoNuevo));
-				logger.info("Se ha guardado el archivo adjunto del aviso en : " + rutaArchivoNuevo);
+				logger.info("Se ha guardado el archivo adjunto del aviso en : "
+						+ rutaArchivoNuevo);
 			} catch (Exception e) {
-				throw new RuntimeException("El archivo adjunto no ha podido guardarse",e);
+				throw new RuntimeException(
+						"El archivo adjunto no ha podido guardarse", e);
 			}
 		}
 
-
-		//Se guarda el aviso editado
+		// Se guarda el aviso editado
 		avisoService.addAviso(aviso);
 
 		return "redirect:/ver";
