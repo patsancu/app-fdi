@@ -31,7 +31,6 @@ public class Avisos {
 		avisoRepository.eliminarAviso(avisoID);
 	}
 
-	@Transactional
 	public void addAviso(Aviso aviso) {
 		avisoRepository.addAviso(aviso);		
 	}
