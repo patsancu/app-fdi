@@ -26,9 +26,9 @@ public class Aviso {
 
 	private String contenidoAviso;
 
-	private String tipoDestino; //URL, archivo, contenidoPost
+	private TipoInformacionEnum tipoDestino;
 
-	private String tipoAviso; // Normal, importante
+	private TipoAvisoEnum tipoAviso;
 
 	private String etiqueta;
 
@@ -135,25 +135,25 @@ public class Aviso {
 
 
 
-	public String getTipoDestino() {
+	public TipoInformacionEnum getTipoDestino() {
 		return tipoDestino;
 	}
 
 
 
-	public void setTipoDestino(String tipoDestino) {
+	public void setTipoDestino(TipoInformacionEnum tipoDestino) {
 		this.tipoDestino = tipoDestino;
 	}
 
 
 
-	public String getTipoAviso() {
+	public TipoAvisoEnum getTipoAviso() {
 		return tipoAviso;
 	}
 
 
 
-	public void setTipoAviso(String tipoAviso) {
+	public void setTipoAviso(TipoAvisoEnum tipoAviso) {
 		this.tipoAviso = tipoAviso;
 	}
 
