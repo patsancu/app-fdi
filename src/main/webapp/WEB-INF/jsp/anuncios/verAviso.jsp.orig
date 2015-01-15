@@ -26,7 +26,7 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h1>"${aviso.titulo}"</h1>
-			<b>Publicaci�n</b>${fn:substring(aviso.fechaPublicacion,0,19	)}
+			<b>Publicaciï¿½n</b>${fn:substring(aviso.fechaPublicacion,0,19	)}
 		</div>
 	</div>
 </section>
@@ -76,10 +76,10 @@
 						<strong>Tipo aviso</strong> : ${aviso.tipoAviso}
 					</p>
 					<p>
-						<strong>Fecha creación:</strong> ${fn:substring(aviso.fechaCreacion,0,19	)}
+						<strong>Fecha creaciÃ³n:</strong> ${fn:substring(aviso.fechaCreacion,0,19	)}
 					</p>
 					<p>
-						<strong>Fecha publicación:</strong> ${fn:substring(aviso.fechaPublicacion,0,19	)}
+						<strong>Fecha publicaciÃ³n:</strong> ${fn:substring(aviso.fechaPublicacion,0,19	)}
 					</p>
 				</div>	
 	
@@ -101,11 +101,11 @@
 				<strong>Tipo aviso</strong> : ${aviso.tipoAviso}
 			</p>
 			<p>
-				<strong>Fecha creaci�n:</strong>
+				<strong>Fecha creaciï¿½n:</strong>
 				${fn:substring(aviso.fechaCreacion,0,19	)}
 			</p>
 			<p>
-				<strong>Fecha publicaci�n:</strong>
+				<strong>Fecha publicaciï¿½n:</strong>
 				${fn:substring(aviso.fechaPublicacion,0,19	)}
 			</p>
 		</div>

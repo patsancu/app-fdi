@@ -27,8 +27,8 @@ public class VisorAvisosController {
 
 	@RequestMapping
 	public String welcome(Model model) {
-		model.addAttribute("greeting", "Bienvenido a la aplicaci�n de noticias de Fdi-UCM");
-		model.addAttribute("tagline", "Seleccione la opci�n deseada");
+		model.addAttribute("greeting", "Bienvenido a la aplicación de noticias de Fdi-UCM");
+		model.addAttribute("tagline", "Seleccione la opción deseada");
 		model.addAttribute("avisos", avisoService.getAllAvisos());
 		return "listarAvisos";
 	}

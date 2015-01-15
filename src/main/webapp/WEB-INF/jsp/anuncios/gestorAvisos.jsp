@@ -45,13 +45,13 @@
 								<span class="glyphicon glyphicon-remove-sign"></span>
 							</a> --%>
 
-						<!-- Bot�n eliminar -->
+						<!-- BotÃ³n eliminar -->
 						<a data-toggle="modal" class="pull-right btn"
 							data-target=".bs-delete-modal-sm${aviso.postInternalId}"> <span
 							class="glyphicon glyphicon-remove"></span>
 						</a>
 
-						<!-- Popup de confirmaci�n de eliminaci�n -->
+						<!-- Popup de confirmaciÃ³n de eliminaciÃ³n -->
 						<div class="modal fade bs-delete-modal-sm${aviso.postInternalId}"
 							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 							aria-hidden="true">
@@ -62,7 +62,7 @@
 											aria-hidden="true">&times;</button>
 										<h4 class="modal-title" id="myModalLabel">Eliminar aviso</h4>
 									</div>
-									<div class="modal-body">�Est� seguro de que desea
+									<div class="modal-body">Â¿EstÃ¡ seguro de que desea
 										eliminar el aviso "${aviso.titulo}"?</div>
 									<div class="modal-footer ">
 										<a class="btn btn-danger "
@@ -74,7 +74,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Fin de  Popup de confirmaci�n de eliminaci�n -->
+						<!-- Fin de  Popup de confirmaciÃ³n de eliminaciÃ³n -->
 
 
 					</div>

@@ -15,7 +15,7 @@
 				aviso
 			</legend>
 
-			<!-- MUY IMPORTANTE PARA LA EDICIÓN
+			<!-- MUY IMPORTANTE PARA LA EDICIÃ“N
 				Si no se pone, crea un dato nuevo en la db -->
 			<form:input type="hidden" id="postInternalId" path="postInternalId" />
 
@@ -88,7 +88,7 @@
 				</div>
 			</div>
 
-			<!-- Hora publicación -->
+			<!-- Hora publicaciÃ³n -->
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="hora">Hora</label>
 				<div class="col-lg-10">
@@ -108,7 +108,7 @@
 
 
 
-			<!-- Fecha publicación -->
+			<!-- Fecha publicaciÃ³n -->
 			<div id="datetimepicker" class="form-group">
 				<label class="control-label col-lg-2s" for="fechaPublicacion">Fecha</label>
 				<div class="col-lg-10">
@@ -135,7 +135,7 @@
 
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="adjunto"> Añadir
+				<label class="control-label col-lg-2" for="adjunto"> AÃ±adir
 					archivo adjunto </label>
 				<div class="col-lg-10">
 					<form:input id="adjunto" path="adjunto" type="file"
@@ -143,7 +143,7 @@
 				</div>
 			</div>
 
-			<!-- Botón crear aviso -->
+			<!-- BotÃ³n crear aviso -->
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<p>

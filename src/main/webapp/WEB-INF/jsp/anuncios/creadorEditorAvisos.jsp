@@ -11,7 +11,7 @@
 <script type="text/javascript"	src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
-<!-- Datepicker Fecha publicaci�n inicio -->
+<!-- Datepicker Fecha publicaciÃ³n inicio -->
 <script>
 	$(function() {
 		$("#datepickerInicio").datepicker({
@@ -20,7 +20,7 @@
 	});
 </script>
 
-<!-- Timepicker hora publicaci�n inicio -->
+<!-- Timepicker hora publicaciÃ³n inicio -->
 <script>
 	$(function horaInicio() {
 		$('#seleccionHoraInicio').timepicker({
@@ -31,7 +31,7 @@
 	});
 </script>
 
-<!-- Datepicker Fecha publicaci�n fin -->
+<!-- Datepicker Fecha publicaciÃ³n fin -->
 <script>
 	$(function() {
 		$("#datepickerFin").datepicker({
@@ -40,7 +40,7 @@
 	});
 </script>
 
-<!-- Timepicker hora publicaci�n fin -->
+<!-- Timepicker hora publicaciÃ³n fin -->
 <script>
 	$(function() {
 		$('#seleccionHoraFin').timepicker({
@@ -110,7 +110,7 @@
 				aviso
 			</legend>
 
-			<!-- MUY IMPORTANTE PARA LA EDICI�N
+			<!-- MUY IMPORTANTE PARA LA EDICIÃN
 				Si no se pone, crea un dato nuevo en la db -->
 			<form:input type="hidden" id="postInternalId" path="postInternalId" />
 
@@ -206,20 +206,20 @@
 				</div>
 			</div>
 
-			<!-- Hora publicaci�n inicio-->
+			<!-- Hora publicaciÃ³n inicio-->
 			<div class="form-group">
 				<label class="control-label col-md-2" for="hora">Hora de
-					publicaci�n (inicio)</label>
+					publicaciÃ³n (inicio)</label>
 				<div class="col-md-2">
 					<form:input id="seleccionHoraInicio" path="horaPublicacionInicio"
 						class="form:input-large" />
 				</div>
 			</div>
 
-			<!-- Fecha publicaci�n inicio-->
+			<!-- Fecha publicaciÃ³n inicio-->
 			<div id="datetimepicker" class="form-group">
 				<label class="control-label col-md-2" for="dia">Fecha de
-					publicaci�n (inicio)</label>
+					publicaciÃ³n (inicio)</label>
 				<div class="col-md-2">
 					<form:input readonly="true" id="datepickerInicio"
 						path="diaPublicacionInicio" />
@@ -227,20 +227,20 @@
 			</div>
 
 
-			<!-- Hora publicaci�n fin-->
+			<!-- Hora publicaciÃ³n fin-->
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="hora">Hora de
-					publicaci�n (fin)</label>
+					publicaciÃ³n (fin)</label>
 				<div class="col-lg-10">
 					<form:input id="seleccionHoraFin" path="horaPublicacionFin"
 						class="form:input-large" />
 				</div>
 			</div>
 
-			<!-- Fecha publicaci�n fin-->
+			<!-- Fecha publicaciÃ³n fin-->
 			<div id="datetimepicker" class="form-group">
 				<label class="control-label col-lg-2" for="dia">Fecha de
-					publicaci�n (fin)</label>
+					publicaciÃ³n (fin)</label>
 				<div class="col-lg-10">
 					<form:input readonly="true" id="datepickerFin"
 						path="diaPublicacionFin" />
@@ -252,7 +252,7 @@
 				<label class="control-label col-lg-2 col-lg-2" for="etiqueta">Lugar</label>
 				<div class="col-lg-10">
 					<form:select path="lugar" id="lugar">Fdi
-						<form:option value="Fdi-Sal�n de actos">Fdi-Sal�n de actos</form:option>
+						<form:option value="Fdi-SalÃ³n de actos">Fdi-SalÃ³n de actos</form:option>
 						<form:option value="Fdi-Aula 12">Fdi-Aula 12</form:option>
 						<form:option value="Fdi-Laboratorio 7">Fdi-Laboratorio 7</form:option>
 						<form:option value="Fdi-Despacho 321">Fdi-Despacho 321</form:option>
@@ -260,7 +260,7 @@
 				</div>
 			</div>
 
-			<!-- Duraci�n estimada -->
+			<!-- DuraciÃ³n estimada -->
 			<div class="form-group">
 				<label class="control-label col-lg-2 col-lg-2"
 					for="duracionEstimada">duracionEstimada</label>
@@ -271,14 +271,14 @@
 						<form:option value="2h">2h</form:option>
 						<form:option value="2h30">2h30</form:option>
 						<form:option value="3h">3h</form:option>
-						<form:option value="Todo el d�a">Todo el d�a</form:option>
+						<form:option value="Todo el dÃ­a">Todo el dÃ­a</form:option>
 					</form:select>
 				</div>
 			</div>
 
 			<!-- Archivo adjunto -->
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="adjunto"> A�adir
+				<label class="control-label col-lg-2" for="adjunto"> AÃ±adir
 					archivo adjunto </label>
 				<div class="col-lg-10">
 					<form:input id="adjunto" path="adjunto" type="file"
@@ -287,7 +287,7 @@
 			</div>
 
 
-			<!-- Bot�n crear aviso -->
+			<!-- BotÃ³n crear aviso -->
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnAdd" class="btn btn-primary"

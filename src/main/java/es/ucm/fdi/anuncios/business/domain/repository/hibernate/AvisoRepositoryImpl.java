@@ -68,7 +68,7 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 
 	@Transactional
 	public void addAviso(Aviso aviso) {
-		logger.info("Añadiendo aviso siguiente: ");
+		logger.info("AÃÂ±adiendo aviso siguiente: ");
 		logger.info(aviso.toString());
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(aviso);		
