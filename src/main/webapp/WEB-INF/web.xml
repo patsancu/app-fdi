@@ -2,6 +2,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
                   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<display-name>Portal FDI</display-name>
+	
 	<!-- =========================== -->
 	<!-- Log4J 2 configuration       -->
 	<!-- =========================== -->
@@ -11,10 +14,6 @@
         <param-name>isLog4jAutoInitializationDisabled</param-name>
         <param-value>true</param-value>
     </context-param>
-	<context-param>
-		<param-name>log4jConfigLocation</param-name>
-		<param-value>classpath:log4j.properties</param-value>
-	</context-param>
 	
 	<!-- Log4j 2 Servlet 2.5 (manual) initialization -->
 	<listener>
