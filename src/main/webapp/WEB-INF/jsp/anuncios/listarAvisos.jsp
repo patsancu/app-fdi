@@ -20,7 +20,7 @@
 </script>
 
 <script type="text/javascript">	
-	$(document).ready(function() { /* Se deshabilita la ordenaciÃ³n por estos campos */
+	$(document).ready(function() { /* Se deshabilita el orden por estos campos */
 		$('#table_id').DataTable({
 			"aoColumnDefs" : [ {
 				'bSortable' : false,
@@ -40,8 +40,8 @@
 			"language": {
 	            "lengthMenu": "Mostrar _MENU_ resultados por pagina",
 	            "zeroRecords": "No se ha encontrado ningun resultado",
-	            "info": "PÃ¡gina _PAGE_ de _PAGES_",
-	            "infoEmpty": "No hay informaciÃ³n",
+	            "info": "P�gina _PAGE_ de _PAGES_",
+	            "infoEmpty": "No hay informaci�n",
 	            "infoFiltered": "(filtado de _MAX_ resultados totales)",
 	            "search":         "Buscar:",
 		        "paginate": {
