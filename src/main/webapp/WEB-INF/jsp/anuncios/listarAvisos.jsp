@@ -61,9 +61,9 @@
 		<thead>
 			<tr>
 				<th>Importancia</th>
-				<th>TÃ­tulo</th>
+				<th>T�tulo</th>
 				<th>Contenido del aviso</th>
-				<th>DuraciÃ³n estimada</th>
+				<th>Duraci�n estimada</th>
 				<th>Lugar</th>
 				<th>Fecha evento</th>
 				<th>Aforo</th>
@@ -99,14 +99,14 @@
 							<td>${fn:substring(item.fechaPublicacionInicio,0,19	)}
 							<td>${fn:substring(item.fechaPublicacionFin,0,19)} --%>
 							<td><a class="btn btn-success"
-								href="<c:url value="/avisos/gestor/editar?id=${item.postInternalId}"></c:url>">
+								href="<c:url value="/gestor/editar?id=${item.postInternalId}"></c:url>">
 									<span class="glyphicon glyphicon-edit"></span>
 							</a></td>
 							<td>
 								<!-- Tipo de destino: Post, URL o archivo adjunto --> <c:choose>
 									<c:when test="${item.tipoDestino eq 'Post'}">
 										<a
-											href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
+											href="<c:url value="/ver/individual?id=${item.postInternalId}"></c:url>"
 											class="btn btn-primary"> <span
 											class="glyphicon glyphicon-info-sign"></span>
 										</a>
@@ -125,7 +125,7 @@
 									</c:when>
 									<c:otherwise>
 										<a
-											href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
+											href="<c:url value="/ver/individual?id=${item.postInternalId}"></c:url>"
 											class="btn btn-primary"> <span
 											class="glyphicon glyphicon-info-sign"></span>
 										</a>
@@ -137,7 +137,7 @@
 								<button type="button" class="btn btn-danger" data-toggle="modal"
 									data-target=".bs-delete-modal-sm${item.postInternalId}">
 									<span class="glyphicon glyphicon-remove"></span>
-								</button> <!-- Popup de confirmaciÃ³n de eliminaciÃ³n -->
+								</button> <!-- Popup de confirmaci�n de eliminaci�n -->
 								<div class="modal fade bs-delete-modal-sm${item.postInternalId}"
 									tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 									aria-hidden="true">
@@ -149,7 +149,7 @@
 												<h4 class="modal-title" id="myModalLabel">Eliminar
 													aviso</h4>
 											</div>
-											<div class="modal-body">Â¿EstÃ¡ seguro de que desea
+											<div class="modal-body"> �Est� seguro de que desea
 												eliminar el aviso "${item.titulo}"?</div>
 											<div class="modal-footer ">
 												<a class="btn btn-danger "
@@ -160,7 +160,7 @@
 											</div>
 										</div>
 									</div>
-								</div> <!-- Fin de  Popup de confirmaciÃ³n de eliminaciÃ³n -->
+								</div> <!-- Fin de  Popup de confirmaci�n de eliminaci�n -->
 							</td>
 						</tr>
 					</div>
