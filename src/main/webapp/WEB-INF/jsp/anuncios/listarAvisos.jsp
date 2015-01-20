@@ -71,9 +71,9 @@
 				<th>Publicado por</th>
 				<!-- th>Fecha creaciÃ³n</th>
 				<th>Fecha publicaciÃ³n inicio</th>
-				<th>Fecha publicaciÃ³n fin</th> -->
-				<th>Info</th>
+				<th>Fecha publicaciÃ³n fin</th> -->				
 				<th>Editar</th>
+				<th>Info</th>
 				<th>Eliminar</th>
 
 			</tr>

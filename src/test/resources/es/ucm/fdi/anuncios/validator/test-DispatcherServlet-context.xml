@@ -13,7 +13,7 @@
 
 	<mvc:annotation-driven validator="validator"/>
 	
-	<context:component-scan base-package="es.ucm.fdi.anunciosb" />
+	<context:component-scan base-package="es.ucm.fdi.anuncios" />
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
                   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-	<display-name>Portal FDI</display-name>
+	<display-name>Portal FdI</display-name>
 	
 	<!-- =========================== -->
 	<!-- Log4J 2 configuration       -->
@@ -64,8 +64,8 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<context-param>
+	<!-- <context-param>
 		<param-name>log4jConfigLocation</param-name>
 	    <param-value>/WEB-INF/classes/log4j.properties</param-value>
-	</context-param> 
+	</context-param>  -->
 </web-app>
