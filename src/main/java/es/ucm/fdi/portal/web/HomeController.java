@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.web;
+package es.ucm.fdi.portal.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

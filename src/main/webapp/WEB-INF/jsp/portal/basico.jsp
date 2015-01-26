@@ -2,8 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="elemento" tagdir="/WEB-INF/tags/anuncios/elementos"%>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags/anuncios"%>
+<%@taglib prefix="elemento" tagdir="/WEB-INF/tags/portal/elementos"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags/portal"%>
 
 <t:genericPage titulo="">
 	<jsp:body>

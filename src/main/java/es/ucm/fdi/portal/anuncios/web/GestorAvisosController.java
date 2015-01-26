@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.web;
+package es.ucm.fdi.portal.anuncios.web;
 
 import java.io.File;
 

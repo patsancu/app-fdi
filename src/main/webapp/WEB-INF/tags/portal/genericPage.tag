@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<%@ taglib prefix="elemento" tagdir="/WEB-INF/tags/anuncios/elementos"%>
+<%@ taglib prefix="elemento" tagdir="/WEB-INF/tags/portal/elementos"%>
 
 <%@attribute name="cabecera" fragment="true" %>
 <%@attribute name="titulo" required="true" %>

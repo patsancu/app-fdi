@@ -2,25 +2,25 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="baseLayout" template="/WEB-INF/tiles/anuncios/template/baseLayout.jsp">
+	<definition name="baseLayout" template="/WEB-INF/tiles/portal/template/baseLayout.jsp">
 		<put-attribute name="title" value="Sample Title" />
 		<put-attribute name="heading" value="" />
 		<put-attribute name="tagline" value="" />
 		<put-attribute name="navigation"
-			value="/WEB-INF/tiles/anuncios/template/navigation.jsp" />
+			value="/WEB-INF/tiles/portal/template/navigation.jsp" />
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer"
-			value="/WEB-INF/tiles/anuncios/template/footer.jsp" />
+			value="/WEB-INF/tiles/portal/template/footer.jsp" />
 	</definition>
 	
-	<definition name="baseLayoutWithoutJumbotron" template="/WEB-INF/tiles/anuncios/template/baseLayoutWithoutJumbotron.jsp">
+	<definition name="baseLayoutWithoutJumbotron" template="/WEB-INF/tiles/portal/template/baseLayoutWithoutJumbotron.jsp">
 		<put-attribute name="title" value="Sample Title" />
 		
 		<put-attribute name="navigation"
-			value="/WEB-INF/tiles/anuncios/template/navigation.jsp" />
+			value="/WEB-INF/tiles/portal/template/navigation.jsp" />
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer"
-			value="/WEB-INF/tiles/anuncios/template/footer.jsp" />
+			value="/WEB-INF/tiles/portal/template/footer.jsp" />
 	</definition>
 	
 	<definition name="prueba" extends="baseLayout">
@@ -33,7 +33,7 @@
 		<put-attribute name="title" value="Web FDI" />
 		<put-attribute name="heading" value="PÃ¡gina principal" />
 		<put-attribute name="tagline" value="Seleccione una opciÃ³n en el menÃº superior" />
-		<!-- <put-attribute name="content" value="/WEB-INF/jsp/anuncios/basico.jsp" /> -->		
+		<!-- <put-attribute name="content" value="/WEB-INF/jsp/portal/basico.jsp" /> -->		
 		<put-attribute name="content" value="" />
 	</definition>
 	
@@ -42,7 +42,7 @@
 		<put-attribute name="title" value="Gestionar avisos" />
 		<put-attribute name="heading" value="Gestionar avisos" />
 		<put-attribute name="tagline" value=""/>
-		<put-attribute name="content" value="/WEB-INF/jsp/anuncios/gestorAvisos.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/gestorAvisos.jsp" />
 	</definition>
 	
 	<!-- Listado de avisos -->
@@ -50,7 +50,7 @@
 		<put-attribute name="title" value="Listado de avisos" />
 		<put-attribute name="heading" value="Listado de avisos" />
 		<put-attribute name="tagline" value="" />
-		<put-attribute name="content" value="/WEB-INF/jsp/anuncios/listarAvisos.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarAvisos.jsp" />
 	</definition>
 	
 	
@@ -59,7 +59,7 @@
 		<put-attribute name="title" value="Crear aviso" />
 		<put-attribute name="heading" value="Crear aviso" />
 		<put-attribute name="tagline" value="" />
-		<put-attribute name="content" value="/WEB-INF/jsp/anuncios/creadorEditorAvisos.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/creadorEditorAvisos.jsp" />
 	</definition>
 	
 	
@@ -68,7 +68,7 @@
 		<put-attribute name="title" value="Ver aviso" />
 		<put-attribute name="heading" value="Ver aviso" />
 		<put-attribute name="tagline" value=" " />
-		<put-attribute name="content" value="/WEB-INF/jsp/anuncios/verAviso.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/verAviso.jsp" />
 	</definition>
 	
 	<!-- SecciÃ³n de avisos -->
@@ -76,7 +76,7 @@
 		<put-attribute name="title" value="Avisos" />
 		<put-attribute name="heading" value="Seleccione una opciÃ³n en el menÃº superior" />
 		<put-attribute name="tagline" value=" " />
-		<put-attribute name="content" value="/WEB-INF/jsp/anuncios/avisos.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/avisos.jsp" />
 	</definition>
 	
 	

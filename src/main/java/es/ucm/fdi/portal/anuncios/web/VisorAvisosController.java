@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.web;
+package es.ucm.fdi.portal.anuncios.web;
 
 import java.sql.Date;
 import java.util.ArrayList;
