@@ -14,17 +14,21 @@
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
     ">
 
-	<mvc:annotation-driven />
+	<!-- Packages to search for bean definitions -->	
 	<context:component-scan base-package="es.ucm.fdi.anuncios" />
 	<context:component-scan base-package="es.ucm.fdi.portal" />
 
-	<mvc:resources mapping="/static/**"  location="/static/" />
+	<!-- -->
+	<!-- Spring MVC configuration -->
+	<!-- -->
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/portal/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+	<!-- Define Spring MVC configuration using java annotations -->
+	<mvc:annotation-driven />
+
+	<!--  -->
+	<!-- Spring's DispatcherServlet serves static resources -->
+	<!--  -->
+	<mvc:resources mapping="/static/**"  location="/static/" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -77,9 +81,11 @@
 
 
 
-	<!--******* -->
-	<!-- Tiles -->
-	<!--******* -->
+	<!--  -->
+	<!-- Declaring Spring-MVC's views resolvers -->
+	<!--  -->
+	
+	<!-- Tiles' views -->
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
@@ -93,7 +99,17 @@
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
-		<property name="order" value="-2" />
+		<property name="order" value="0" />
 	</bean>	
+
+	<!-- JSP+JSTL's views -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsp/portal/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
+	</bean>
+
 
 </beans>

@@ -4,17 +4,18 @@
                   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
 	<display-name>Portal FdI</display-name>
-	
-	<!-- =========================== -->
-	<!-- Log4J 2 configuration       -->
-	<!-- =========================== -->
 
-	<!-- Disable automatic Servlet 3.0 initializacion (ServletContainerInitializer) to avoid bugs in Tomcat behavior -->
+	<!--  -->
+	<!-- Log4J 2 configuration -->
+	<!--  -->
+
+	<!-- Disable automatic Servlet 3.0 initializacion (ServletContainerInitializer) 
+		to avoid bugs in Tomcat behavior -->
 	<context-param>
-        <param-name>isLog4jAutoInitializationDisabled</param-name>
-        <param-value>true</param-value>
-    </context-param>
-	
+		<param-name>isLog4jAutoInitializationDisabled</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
 	<!-- Log4j 2 Servlet 2.5 (manual) initialization -->
 	<listener>
 		<listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
@@ -32,10 +33,10 @@
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 
-	<!-- ============================ -->
+	<!--  -->
 	<!-- UTF-8 encoding configuration -->
-	<!-- ============================ -->
-	
+	<!--  -->
+
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -61,6 +62,11 @@
 			<default-content-type>text/html; charset=UTF-8</default-content-type>
 		</jsp-property-group>
 	</jsp-config>
+
+	<!--  -->
+	<!-- Spring-MVC's DispatcherServlet configuration -->
+	<!--  -->
+
 	<servlet>
 		<servlet-name>portal</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -74,9 +80,5 @@
 		<servlet-name>portal</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	<!-- <context-param>
-		<param-name>log4jConfigLocation</param-name>
-	    <param-value>/WEB-INF/classes/log4j.properties</param-value>
-	</context-param>  -->
+
 </web-app>
