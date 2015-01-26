@@ -29,6 +29,8 @@
 	<!-- Spring's DispatcherServlet serves static resources -->
 	<!--  -->
 	<mvc:resources mapping="/static/**"  location="/static/" />
+	<!-- WebJars mapping mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/ -->
+	<mvc:resources mapping="/webjars/**" location="/webjars/"/>
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
