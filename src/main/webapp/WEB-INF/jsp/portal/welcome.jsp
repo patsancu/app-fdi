@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="incluir" tagdir="/WEB-INF/tags/portal/elementos/incluir"%>
@@ -34,10 +35,10 @@
 =======
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>AplicaciÃ³n de noticias de la FdI-UCM</title>
+<title>Aplicación de noticias de la FdI-UCM</title>
 </head>
 <body>
 	<section>

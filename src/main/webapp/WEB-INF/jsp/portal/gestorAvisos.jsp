@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
@@ -45,13 +46,13 @@
 								<span class="glyphicon glyphicon-remove-sign"></span>
 							</a> --%>
 
-						<!-- BotÃ³n eliminar -->
+						<!-- Botón eliminar -->
 						<a data-toggle="modal" class="pull-right btn"
 							data-target=".bs-delete-modal-sm${aviso.postInternalId}"> <span
 							class="glyphicon glyphicon-remove"></span>
 						</a>
 
-						<!-- Popup de confirmaciÃ³n de eliminaciÃ³n -->
+						<!-- Popup de confirmación de eliminación -->
 						<div class="modal fade bs-delete-modal-sm${aviso.postInternalId}"
 							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 							aria-hidden="true">
@@ -62,8 +63,7 @@
 											aria-hidden="true">&times;</button>
 										<h4 class="modal-title" id="myModalLabel">Eliminar aviso</h4>
 									</div>
-									<div class="modal-body">Â¿EstÃ¡ seguro de que desea
-										eliminar el aviso "${aviso.titulo}"?</div>
+									<div class="modal-body">¿Está seguro de que desea eliminar el aviso "${aviso.titulo}"?</div>
 									<div class="modal-footer ">
 										<a class="btn btn-danger "
 											href="<c:url value="/avisos/gestor/eliminar?id=${aviso.postInternalId}"></c:url>">
@@ -74,9 +74,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Fin de  Popup de confirmaciÃ³n de eliminaciÃ³n -->
-
-
+						<!-- Fin de Popup de confirmación de eliminación -->
 					</div>
 				</div>
 				<h3></h3>

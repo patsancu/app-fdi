@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -40,8 +41,8 @@
 			"language": {
 	            "lengthMenu": "Mostrar _MENU_ resultados por pagina",
 	            "zeroRecords": "No se ha encontrado ningun resultado",
-	            "info": "P�gina _PAGE_ de _PAGES_",
-	            "infoEmpty": "No hay informaci�n",
+	            "info": "Página _PAGE_ de _PAGES_",
+	            "infoEmpty": "No hay información",
 	            "infoFiltered": "(filtado de _MAX_ resultados totales)",
 	            "search":         "Buscar:",
 		        "paginate": {
@@ -61,17 +62,17 @@
 		<thead>
 			<tr>
 				<th>Importancia</th>
-				<th>T�tulo</th>
+				<th>Título</th>
 				<th>Contenido del aviso</th>
-				<th>Duraci�n estimada</th>
+				<th>Duración estimada</th>
 				<th>Lugar</th>
 				<th>Fecha evento</th>
 				<th>Aforo</th>
 				<th>Etiqueta</th>
 				<th>Publicado por</th>
-				<!-- th>Fecha creaciÃ³n</th>
-				<th>Fecha publicaciÃ³n inicio</th>
-				<th>Fecha publicaciÃ³n fin</th> -->				
+				<!-- th>Fecha creación</th>
+				<th>Fecha publicación inicio</th>
+				<th>Fecha publicación fin</th> -->				
 				<th>Editar</th>
 				<th>Info</th>
 				<th>Eliminar</th>
@@ -133,11 +134,11 @@
 								</c:choose>
 							</td>
 							<td>
-								<!-- BotÃ³n eliminar -->
+								<!-- Botón eliminar -->
 								<button type="button" class="btn btn-danger" data-toggle="modal"
 									data-target=".bs-delete-modal-sm${item.postInternalId}">
 									<span class="glyphicon glyphicon-remove"></span>
-								</button> <!-- Popup de confirmaci�n de eliminaci�n -->
+								</button> <!-- Popup de confirmación de eliminación -->
 								<div class="modal fade bs-delete-modal-sm${item.postInternalId}"
 									tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 									aria-hidden="true">
@@ -149,7 +150,7 @@
 												<h4 class="modal-title" id="myModalLabel">Eliminar
 													aviso</h4>
 											</div>
-											<div class="modal-body"> �Est� seguro de que desea
+											<div class="modal-body"> ¿Está seguro de que desea
 												eliminar el aviso "${item.titulo}"?</div>
 											<div class="modal-footer ">
 												<a class="btn btn-danger "
@@ -160,7 +161,7 @@
 											</div>
 										</div>
 									</div>
-								</div> <!-- Fin de  Popup de confirmaci�n de eliminaci�n -->
+								</div> <!-- Fin de  Popup de confirmación de eliminación -->
 							</td>
 						</tr>
 					</div>

@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
@@ -28,7 +29,7 @@
 			<ul class="nav nav-pills pull-right">
 				<tiles:insertAttribute name="navigation" />
 			</ul>
-			<!-- <h3 class="text-muted">AplicaciÃ³n FdI-UCM</h3> -->
+			<!-- <h3 class="text-muted">Aplicación FdI-UCM</h3> -->
 		</div>
 
 		<div class="row">

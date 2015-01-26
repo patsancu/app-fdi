@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -11,7 +12,7 @@
 <script type="text/javascript"	src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
-<!-- Datepicker Fecha publicaci髇 inicio -->
+<!-- Datepicker Fecha publicaci贸n inicio -->
 <script>
 	$(function() {
 		$("#datepickerInicio").datepicker({
@@ -20,7 +21,7 @@
 	});
 </script>
 
-<!-- Timepicker hora publicaci髇 inicio -->
+<!-- Timepicker hora publicaci贸n inicio -->
 <script>
 	$(function horaInicio() {
 		$('#seleccionHoraInicio').timepicker({
@@ -31,7 +32,7 @@
 	});
 </script>
 
-<!-- Datepicker Fecha publicaci髇 fin -->
+<!-- Datepicker Fecha publicaci贸n fin -->
 <script>
 	$(function() {
 		$("#datepickerFin").datepicker({
@@ -40,7 +41,7 @@
 	});
 </script>
 
-<!-- Timepicker hora publicaci髇 fin -->
+<!-- Timepicker hora publicaci贸n fin -->
 <script>
 	$(function() {
 		$('#seleccionHoraFin').timepicker({
@@ -110,7 +111,7 @@
 				aviso
 			</legend>
 
-			<!-- MUY IMPORTANTE PARA LA EDICI覰
+			<!-- MUY IMPORTANTE PARA LA EDICI脫N
 				Si no se pone, crea un dato nuevo en la db -->
 			<form:input type="hidden" id="postInternalId" path="postInternalId" />
 
@@ -206,20 +207,20 @@
 				</div>
 			</div>
 
-			<!-- Hora publicaci髇 inicio-->
+			<!-- Hora publicaci贸n inicio-->
 			<div class="form-group">
 				<label class="control-label col-md-2" for="hora">Hora de
-					publicaci髇 (inicio)</label>
+					publicaci贸n (inicio)</label>
 				<div class="col-md-2">
 					<form:input id="seleccionHoraInicio" path="horaPublicacionInicio"
 						class="form:input-large" />
 				</div>
 			</div>
 
-			<!-- Fecha publicaci髇 inicio-->
+			<!-- Fecha publicaci贸n inicio-->
 			<div id="datetimepicker" class="form-group">
 				<label class="control-label col-md-2" for="dia">Fecha de
-					publicaci髇 (inicio)</label>
+					publicaci贸n (inicio)</label>
 				<div class="col-md-2">
 					<form:input readonly="true" id="datepickerInicio"
 						path="diaPublicacionInicio" />
@@ -227,20 +228,20 @@
 			</div>
 
 
-			<!-- Hora publicaci髇 fin-->
+			<!-- Hora publicaci贸n fin-->
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="hora">Hora de
-					publicaci髇 (fin)</label>
+					publicaci贸n (fin)</label>
 				<div class="col-lg-10">
 					<form:input id="seleccionHoraFin" path="horaPublicacionFin"
 						class="form:input-large" />
 				</div>
 			</div>
 
-			<!-- Fecha publicaci髇 fin-->
+			<!-- Fecha publicaci贸n fin-->
 			<div id="datetimepicker" class="form-group">
 				<label class="control-label col-lg-2" for="dia">Fecha de
-					publicaci髇 (fin)</label>
+					publicaci贸n (fin)</label>
 				<div class="col-lg-10">
 					<form:input readonly="true" id="datepickerFin"
 						path="diaPublicacionFin" />
@@ -252,7 +253,7 @@
 				<label class="control-label col-lg-2 col-lg-2" for="etiqueta">Lugar</label>
 				<div class="col-lg-10">
 					<form:select path="lugar" id="lugar">Fdi
-						<form:option value="Fdi-Sal髇 de actos">Fdi-Sal髇 de actos</form:option>
+						<form:option value="Fdi-Sal贸n de actos">Fdi-Sal贸n de actos</form:option>
 						<form:option value="Fdi-Aula 12">Fdi-Aula 12</form:option>
 						<form:option value="Fdi-Laboratorio 7">Fdi-Laboratorio 7</form:option>
 						<form:option value="Fdi-Despacho 321">Fdi-Despacho 321</form:option>
@@ -260,7 +261,7 @@
 				</div>
 			</div>
 
-			<!-- Duraci髇 estimada -->
+			<!-- Duraci贸n estimada -->
 			<div class="form-group">
 				<label class="control-label col-lg-2 col-lg-2"
 					for="duracionEstimada">duracionEstimada</label>
@@ -271,14 +272,14 @@
 						<form:option value="2h">2h</form:option>
 						<form:option value="2h30">2h30</form:option>
 						<form:option value="3h">3h</form:option>
-						<form:option value="Todo el d韆">Todo el d韆</form:option>
+						<form:option value="Todo el d铆a">Todo el d铆a</form:option>
 					</form:select>
 				</div>
 			</div>
 
 			<!-- Archivo adjunto -->
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="adjunto"> A馻dir
+				<label class="control-label col-lg-2" for="adjunto"> A帽adir
 					archivo adjunto </label>
 				<div class="col-lg-10">
 					<form:input id="adjunto" path="adjunto" type="file"
@@ -287,7 +288,7 @@
 			</div>
 
 
-			<!-- Bot髇 crear aviso -->
+			<!-- Bot贸n crear aviso -->
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnAdd" class="btn btn-primary"

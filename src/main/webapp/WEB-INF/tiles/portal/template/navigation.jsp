@@ -1,6 +1,5 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" session="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
-
 <div class="navbar navbar-default navbar-fixed-top "
 	style="z-index: 1000;" role="navigation">
 
@@ -38,8 +37,8 @@
 								<span class="glyphicon glyphicon-plus"></span> Crear nuevo anuncio
 						</a></li>
 					</ul></li>
-				<li><a href="#">Sección1</a></li>
-				<li><a href="#">Sección2</a></li>
+				<li><a href="#">SecciÃ³n1</a></li>
+				<li><a href="#">SecciÃ³n2</a></li>
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -52,4 +51,3 @@
 	</div>
 	<!-- container -->
 </div>
-

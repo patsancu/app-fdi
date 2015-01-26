@@ -1,5 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags/portal"%>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" session="false"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags/portal"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="incluir" tagdir="/WEB-INF/tags/portal/elementos/incluir"%>
 <%@ taglib prefix="elemento" tagdir="/WEB-INF/tags/portal/elementos"%>
