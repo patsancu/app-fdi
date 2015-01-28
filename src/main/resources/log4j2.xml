@@ -9,7 +9,7 @@
 		<Logger name="org.springframework.beans.factory" level="warn" />
 		<Logger name="org.hibernate" level="warn" />
 		<Logger name="org.hibernate.tool" level="debug" />
-		<Root level="debug">
+		<Root level="info">
 			<AppenderRef ref="STDOUT" />
 		</Root>
 	</Loggers>

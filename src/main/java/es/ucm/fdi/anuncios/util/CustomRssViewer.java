@@ -17,9 +17,9 @@ import com.rometools.rome.feed.rss.Item;
 import es.ucm.fdi.anuncios.business.domain.Aviso;
 
 public class CustomRssViewer extends AbstractRssFeedView {
-	
+
 	private static String dominio = "http://localhost:8080";
-	
+
 	@Override
 	protected void buildFeedMetadata(Map<String, Object> model, Channel feed,
 			HttpServletRequest request) {
@@ -27,56 +27,54 @@ public class CustomRssViewer extends AbstractRssFeedView {
 		feed.setTitle("Feed de la Facultad de Informatica, Universidad Complutense de Madrid");
 		feed.setDescription("Noticias acerca de la Fdi-UCM");
 		feed.setLink("http://informatica.ucm.es");
-		
+
 		LocalDateTime today = new LocalDateTime();
 		feed.setLastBuildDate(today.toDate());
 
 		super.buildFeedMetadata(model, feed, request);
 	}
 
-
 	@Override
 	protected List<Item> buildFeedItems(Map<String, Object> model,
 			HttpServletRequest request, HttpServletResponse response)
-					throws Exception {
+			throws Exception {
 
 		@SuppressWarnings("unchecked")
 		List<Aviso> listContent = (List<Aviso>) model.get("feedContent");
 		List<Item> items = new ArrayList<Item>(listContent.size());
 
-		for(Aviso tempContent : listContent ){
+		for (Aviso tempContent : listContent) {
 
 			Item item = new Item();
 
-			//Contenido del aviso
+			// Contenido del aviso
 			Content content = new Content();
 			content.setValue(tempContent.getContenidoAviso());
 			item.setContent(content);
 
 			item.setTitle(tempContent.getTitulo());
-			
-			//Enlace al propio aviso
-			item.setLink(dominio 
-					+ request.getSession().getServletContext().getContextPath() 
-					+ "/ver/individual?id=" 
-					+ tempContent.getPostInternalId());
-			
-			//Autor
-			if (tempContent.getAutor() != null){
+
+			// Enlace al propio aviso
+			item.setLink(dominio
+					+ request.getSession().getServletContext().getContextPath()
+					+ "/ver/individual?id=" + tempContent.getPostInternalId());
+
+			// Autor
+			if (tempContent.getAutor() != null) {
 				item.setAuthor(tempContent.getAutor());
 			}
-			
-			//Fecha caducidad
-			if (tempContent.getFechaPublicacionFin() != null){
-				item.setExpirationDate(tempContent.getFechaPublicacionFin().toDate());
+
+			// Fecha caducidad
+			if (tempContent.getFechaPublicacionFin() != null) {
+				item.setExpirationDate(tempContent.getFechaPublicacionFin()
+						.toDate());
 			}
-			
-			
-			//Status/Estado del aviso
-			if (tempContent.getStatus() != null){
+
+			// Status/Estado del aviso
+			if (tempContent.getStatus() != null) {
 				item.setComments(tempContent.getStatus());
-			}			
-			
+			}
+
 			// Fecha publicacion aviso
 			item.setPubDate(tempContent.getFechaCreacion().toDate());
 

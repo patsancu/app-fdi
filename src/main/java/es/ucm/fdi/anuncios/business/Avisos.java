@@ -12,6 +12,7 @@ import es.ucm.fdi.anuncios.business.domain.repository.AvisoRepository;
 @Transactional
 @Service
 public class Avisos {
+	
 	@Autowired
 	AvisoRepository avisoRepository;
 
@@ -27,16 +28,15 @@ public class Avisos {
 		return avisoRepository.getAvisosByCategory(category);
 	}
 
-	public void eliminarAviso(String avisoID){
+	public void eliminarAviso(String avisoID) {
 		avisoRepository.eliminarAviso(avisoID);
 	}
 
-	@Transactional
 	public void addAviso(Aviso aviso) {
-		avisoRepository.addAviso(aviso);		
+		avisoRepository.addAviso(aviso);
 	}
 
-	public void incrementarVisitas(String avisoID){
+	public void incrementarVisitas(String avisoID) {
 		avisoRepository.incrementarVisitas(avisoID);
 	}
 }
