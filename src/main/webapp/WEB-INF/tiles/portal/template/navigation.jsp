@@ -24,16 +24,13 @@
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<spring:url value="/ver"/>" role="button">
+						<li><a href="<spring:url value="/avisos"/>" role="button">
 								<span class="glyphicon glyphicon-info-sign"></span> Visor anuncios
-						</a></li>
-						<li><a href="<spring:url value="/gestor"/>"> <span
-								class="glyphicon glyphicon-user"></span> Gestor anuncios
 						</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Accesos directos</li>
 						<li><a
-							href="<spring:url value="/gestor/crear"></spring:url>">
+							href="<spring:url value="/avisos/nuevo"></spring:url>">
 								<span class="glyphicon glyphicon-plus"></span> Crear nuevo anuncio
 						</a></li>
 					</ul></li>

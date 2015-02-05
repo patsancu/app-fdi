@@ -16,27 +16,23 @@ public class Avisos {
 	@Autowired
 	AvisoRepository avisoRepository;
 
-	public List<Aviso> getAllAvisos() {
+	public List<Aviso> getAvisos() {
 		return avisoRepository.getAllAvisos();
 	}
 
-	public Aviso getAvisoById(String avisoID) {
-		return avisoRepository.getAvisoById(avisoID);
+	public Aviso getAviso(Long avisoID) {
+		return avisoRepository.getAviso(avisoID);
 	}
 
 	public List<Aviso> getAvisosByCategory(String category) {
 		return avisoRepository.getAvisosByCategory(category);
 	}
 
-	public void eliminarAviso(String avisoID) {
+	public void eliminarAviso(Long avisoID) {
 		avisoRepository.eliminarAviso(avisoID);
 	}
 
 	public void addAviso(Aviso aviso) {
 		avisoRepository.addAviso(aviso);
-	}
-
-	public void incrementarVisitas(String avisoID) {
-		avisoRepository.incrementarVisitas(avisoID);
 	}
 }

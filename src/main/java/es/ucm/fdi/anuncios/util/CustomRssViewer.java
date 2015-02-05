@@ -57,7 +57,7 @@ public class CustomRssViewer extends AbstractRssFeedView {
 			// Enlace al propio aviso
 			item.setLink(dominio
 					+ request.getSession().getServletContext().getContextPath()
-					+ "/ver/individual?id=" + tempContent.getPostInternalId());
+					+ "/aviso/" + tempContent.getId());
 
 			// Autor
 			if (tempContent.getAutor() != null) {
@@ -65,14 +65,9 @@ public class CustomRssViewer extends AbstractRssFeedView {
 			}
 
 			// Fecha caducidad
-			if (tempContent.getFechaPublicacionFin() != null) {
-				item.setExpirationDate(tempContent.getFechaPublicacionFin()
+			if (tempContent.getFinPublicacion() != null) {
+				item.setExpirationDate(tempContent.getFinPublicacion()
 						.toDate());
-			}
-
-			// Status/Estado del aviso
-			if (tempContent.getStatus() != null) {
-				item.setComments(tempContent.getStatus());
 			}
 
 			// Fecha publicacion aviso

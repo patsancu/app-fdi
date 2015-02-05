@@ -1,23 +1,21 @@
-package es.ucm.fdi.anuncios.business.domain;
+package es.ucm.fdi.portal.anuncios.web;
 
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-@Entity
-public class Aviso {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+import es.ucm.fdi.anuncios.business.domain.Aviso;
+import es.ucm.fdi.anuncios.business.domain.PrioridadesAvisoEnum;
+import es.ucm.fdi.anuncios.business.domain.TipoAvisoEnum;
+
+public class AvisoFormBean {
+
 	private Long id;
 
 	@Size(min = 4, max = 50, message = "{Size.Aviso.titulo.validation}")
@@ -37,18 +35,12 @@ public class Aviso {
 
 	private String autor;
 
-	// Fechas
-
-	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
 	private DateTime fechaCreacion;
 	
-	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private DateTime comienzoPublicacion;
 
-	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private DateTime finPublicacion;
 
 	@Transient
@@ -58,7 +50,7 @@ public class Aviso {
 		return id;
 	}
 
-	private void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -76,6 +68,30 @@ public class Aviso {
 
 	public void setContenidoAviso(String contenidoAviso) {
 		this.contenidoAviso = contenidoAviso;
+	}
+
+	public TipoAvisoEnum getTipoAviso() {
+		return tipoAviso;
+	}
+
+	public void setTipoAviso(TipoAvisoEnum tipoAviso) {
+		this.tipoAviso = tipoAviso;
+	}
+	
+	public TipoAvisoEnum[] getTiposAviso() {
+		return TipoAvisoEnum.values();
+	}
+	
+	public PrioridadesAvisoEnum getPrioridadAviso() {
+		return prioridadAviso;
+	}
+
+	public void setPrioridadAviso(PrioridadesAvisoEnum prioridadAviso) {
+		this.prioridadAviso = prioridadAviso;
+	}
+	
+	public PrioridadesAvisoEnum[] getPrioridadesAviso() {
+		return PrioridadesAvisoEnum.values();
 	}
 
 	public String getEtiqueta() {
@@ -101,16 +117,7 @@ public class Aviso {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-
-	public MultipartFile getAdjunto() {
-		return adjunto;
-	}
-
-	public void setAdjunto(MultipartFile adjunto) {
-		this.adjunto = adjunto;
-	}
 	
-
 	public DateTime getFechaCreacion() {
 		return fechaCreacion;
 	}
@@ -135,21 +142,17 @@ public class Aviso {
 		this.finPublicacion = finPublicacion;
 	}
 
-	public TipoAvisoEnum getTipoAviso() {
-		return tipoAviso;
+	public MultipartFile getAdjunto() {
+		return adjunto;
 	}
 
-	public void setTipoAviso(TipoAvisoEnum tipoAviso) {
-		this.tipoAviso = tipoAviso;
+	public void setAdjunto(MultipartFile adjunto) {
+		this.adjunto = adjunto;
 	}
-
-	public PrioridadesAvisoEnum getPrioridadAviso() {
-		return prioridadAviso;
-	}
-
-	public void setPrioridadAviso(PrioridadesAvisoEnum prioridadAviso) {
-		this.prioridadAviso = prioridadAviso;
-	}
-
 	
+	public Aviso build() {
+		Aviso result = new Aviso();
+		BeanUtils.copyProperties(this, result);
+		return result;
+	}
 }

@@ -9,16 +9,13 @@ import es.ucm.fdi.anuncios.business.domain.Aviso;
 public interface AvisoRepository {
 	List<Aviso> getAllAvisos();
 
-	Aviso getAvisoById(String avisotID);
+	Aviso getAviso(Long avisotID);
 
 	List<Aviso> getAvisosByCategory(String category);
 
 	Set<Aviso> getAvisosByFilter(Map<String, List<String>> filterParams);
 
-	// List <Aviso> getAvisosByManufacturer(String manufacturer);
-	void eliminarAviso(String avisoID);
+	void eliminarAviso(Long avisoID);
 
 	void addAviso(Aviso product);
-
-	void incrementarVisitas(String avisoID);
 }

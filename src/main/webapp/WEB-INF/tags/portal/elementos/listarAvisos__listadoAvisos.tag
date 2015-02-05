@@ -25,7 +25,7 @@
 					<!-- Tipo de destino: Post, URL o archivo adjunto --> <c:choose>
 						<c:when test="${item.tipoDestino eq 'Post'}">
 							<a
-								href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
+								href="<spring:url value="/aviso/{id}"><spring:param name="id" value="${item.id}" /></spring:url>"
 								class="btn btn-primary"> <span
 								class="glyphicon glyphicon-info-sign"></span>
 							</a>
@@ -37,14 +37,14 @@
 						</c:when>
 						<c:when test="${item.tipoDestino eq 'Archivo'}">
 							<a
-								href="<c:url value="/resources/archivosAdjuntos/${item.postInternalId}"></c:url>"
+								href="<spring:url value="/aviso/{id}"><spring:param name="id" value="${item.id}" /></spring:url>"
 								class="btn btn-primary"> <span
 								class="glyphicon glyphicon-info-sign"></span>
 							</a>
 						</c:when>
 						<c:otherwise>
 							<a
-								href="<c:url value="/avisos/ver/individual?id=${item.postInternalId}"></c:url>"
+								href="<spring:url value="/aviso/{id}"><spring:param name="id" value="${item.id}" /></spring:url>"
 								class="btn btn-primary"> <span
 								class="glyphicon glyphicon-info-sign"></span>
 							</a>

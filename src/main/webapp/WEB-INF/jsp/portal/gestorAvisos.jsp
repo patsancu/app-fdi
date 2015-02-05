@@ -1,9 +1,6 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
-
-
 <script type="text/javascript">
 	$('#myModal').modal({
 		show : false,
@@ -13,11 +10,10 @@
 
 <section class="container">
 	<h3>
-		<a href="<spring:url value="/gestor/crear"></spring:url>">
+		<a href="<spring:url value="/avisos/nuevo"></spring:url>">
 			Crear nuevo aviso</a>
 	</h3>
 </section>
-
 
 <section class="container">
 	<!-- <div class="row"> -->
@@ -32,7 +28,7 @@
 					<div class="panel-title">
 						<!-- Ver aviso -->
 						<a
-							href="<c:url value="/avisos/ver/individual?id=${aviso.postInternalId}"></c:url>">${aviso.titulo}</a>
+							href="<spring:url value="/aviso/{id}"><spring:param name="id">${aviso.id}</spring:param></spring:url>">${aviso.titulo}</a>
 						<!-- Editar aviso -->
 						<a class="pull-right"
 							href="<c:url value="/avisos/gestor/editar?id=${aviso.postInternalId}"></c:url>">

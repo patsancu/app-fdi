@@ -50,6 +50,31 @@
 			<artifactId>bootstrap</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-ui</artifactId>
+			<version>1.11.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-ui-themes</artifactId>
+			<version>1.11.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>datetimepicker</artifactId>
+			<version>2.3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>datatables</artifactId>
+			<version>1.10.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>datatables-plugins</artifactId>
+			<version>ca6ec50</version>
+		</dependency>
 
 		<!-- Spring Dependencies -->
 		<dependency>
@@ -118,6 +143,11 @@
 			<groupId>org.jadira.usertype</groupId>
 			<artifactId>usertype.core</artifactId>
 			<version>3.2.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time-jsptags</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 
 		<!-- Logging support -->
@@ -193,7 +223,7 @@
 			<artifactId>rome</artifactId>
 			<version>1.5.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.rometools</groupId>
 			<artifactId>rome-fetcher</artifactId>
