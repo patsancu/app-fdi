@@ -13,7 +13,7 @@
 
 			<a class="navbar-brand " href="<spring:url value="/"/>"> <img
 				alt="Universidad Complutense de Madrid"
-				src="https://www.ucm.es/data/cont/docs/340-2013-07-02-ucm.gif"
+				src="<spring:url value="/static/img/logoUcm.gif" />"
 				width="30">
 			</a>
 		</div>
