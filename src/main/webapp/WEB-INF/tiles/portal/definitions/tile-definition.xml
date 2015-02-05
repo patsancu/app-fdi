@@ -33,7 +33,6 @@
 		<put-attribute name="title" value="Web FDI" />
 		<put-attribute name="heading" value="Página principal" />
 		<put-attribute name="tagline" value="Seleccione una opción en el menú superior" />
-		<!-- <put-attribute name="content" value="/WEB-INF/jsp/portal/basico.jsp" /> -->		
 		<put-attribute name="content" value="" />
 	</definition>
 	
