@@ -71,17 +71,15 @@
 		<property name="validationMessageSource" ref="messageSource" /> </bean> -->
 
 
-	<!--***************** -->
+	<!--  -->
 	<!-- Subida archivos -->
-	<!--***************** -->
+	<!-- http://blog.leituo.org/spring-mvc-the-put-method-nightmare-and-the-solution/ -->
+	<!-- 	
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10240000" />
-	</bean>
-
-
-
-
+	</bean>-->
+	
 	<!--  -->
 	<!-- Declaring Spring-MVC's views resolvers -->
 	<!--  -->
