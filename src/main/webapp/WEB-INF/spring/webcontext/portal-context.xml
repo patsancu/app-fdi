@@ -33,9 +33,8 @@
 	<mvc:resources mapping="/webjars/**" location="/webjars/"/>
 
 	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="messages" />
-	</bean>
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+		p:basename="classpath:messages" />
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">

@@ -39,9 +39,9 @@
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Login</a></li>
-				<li><a href="#">Registrarse</a></li>
-				<li class="active"><a href="#">Logout <span class="sr-only">(current)</span></a></li>
+				<li><a href="#"><spring:message code="nav.signin"/></a></li>
+				<li><a href="#"><spring:message code="nav.signup"/></a></li>
+				<li class="active"><a href="#"><spring:message code="nav.logout"/></a><span class="sr-only">(current)</span></a></li>
 			</ul>
 		</div>
 		<!--navbarCollapse -->

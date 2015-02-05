@@ -87,11 +87,8 @@
 											</div>
 											<div class="modal-body">¿Está seguro de que desea eliminar el aviso "${item.titulo}"?</div>
 											<div class="modal-footer ">
-												<a class="btn btn-danger "
-													href="<c:url value="/gestor/eliminar?id=${item.postInternalId}"></c:url>">
-													Eliminar </a>
-												<button type="button" class="btn btn-warning "
-													data-dismiss="modal">Cancelar</button>
+												<button type="submit" class="btn btn-danger">Eliminar </button>
+												<button type="button" class="btn btn-warning " data-dismiss="modal">Cancelar</button>
 											</div>
 										</div>
 									</div>
