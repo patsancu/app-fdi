@@ -3,19 +3,18 @@
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 	<definition name="baseLayout" template="/WEB-INF/tiles/portal/template/baseLayout.jsp">
-		<put-attribute name="title" value="Sample Title" />
-		<put-attribute name="heading" value="" />
-		<put-attribute name="tagline" value="" />
-		<put-attribute name="navigation"
-			value="/WEB-INF/tiles/portal/template/navigation.jsp" />
-		<put-attribute name="content" value="" />
-		<put-attribute name="footer"
-			value="/WEB-INF/tiles/portal/template/footer.jsp" />
+		<put-attribute name="title"      value="Web FDI" />
+		<put-attribute name="resources"  value="" />
+		<put-attribute name="heading"    value="" />
+		<put-attribute name="tagline"    value="" />
+		<put-attribute name="navigation" value="/WEB-INF/tiles/portal/template/navigation.jsp" />
+		<put-attribute name="content"    value="" />
+		<put-attribute name="footer"     value="/WEB-INF/tiles/portal/template/footer.jsp" />
 	</definition>
 	
 	<definition name="baseLayoutWithoutJumbotron" template="/WEB-INF/tiles/portal/template/baseLayoutWithoutJumbotron.jsp">
-		<put-attribute name="title" value="Sample Title" />
-		
+		<put-attribute name="title" value="Web FDI" />
+		<put-attribute name="resources"  value="" />
 		<put-attribute name="navigation"
 			value="/WEB-INF/tiles/portal/template/navigation.jsp" />
 		<put-attribute name="content" value="" />
@@ -23,18 +22,20 @@
 			value="/WEB-INF/tiles/portal/template/footer.jsp" />
 	</definition>
 	
-	<definition name="prueba" extends="baseLayout">
-		<put-attribute name="title" value="Prueba de Tiles"/>
-		<put-attribute name="heading" value="Prueba de Tiles" />
-		<put-attribute name="tagline" value="Prueba de Tiles2" />
-	</definition>
-	
-	<definition name="welcome" extends="baseLayout">
+	<definition name="home" extends="baseLayout">
 		<put-attribute name="title" value="Web FDI" />
 		<put-attribute name="heading" value="Página principal" />
 		<put-attribute name="tagline" value="Seleccione una opción en el menú superior" />
-		<!-- <put-attribute name="content" value="/WEB-INF/jsp/portal/basico.jsp" /> -->		
 		<put-attribute name="content" value="" />
+	</definition>
+	
+	<!-- Listado de avisos -->
+	<definition name="listarAvisos" extends="baseLayout">
+		<put-attribute name="title" value="Listado de avisos" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/listarAvisos_resources.jsp" />
+		<put-attribute name="heading" value="Listado de avisos" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarAvisos.jsp" />
 	</definition>
 	
 	<!-- Gestor de avisos -->
@@ -45,21 +46,14 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/gestorAvisos.jsp" />
 	</definition>
 	
-	<!-- Listado de avisos -->
-	<definition name="listarAvisos" extends="baseLayout">
-		<put-attribute name="title" value="Listado de avisos" />
-		<put-attribute name="heading" value="Listado de avisos" />
-		<put-attribute name="tagline" value="" />
-		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarAvisos.jsp" />
-	</definition>
-	
 	
 	<!-- Creador de avisos -->
-	<definition name="creadorEditorAvisos" extends="baseLayoutWithoutJumbotron">
+	<definition name="editorAvisos" extends="baseLayoutWithoutJumbotron">
 		<put-attribute name="title" value="Crear aviso" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/editorAvisos_resources.jsp" />
 		<put-attribute name="heading" value="Crear aviso" />
 		<put-attribute name="tagline" value="" />
-		<put-attribute name="content" value="/WEB-INF/jsp/portal/creadorEditorAvisos.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorAvisos.jsp" />
 	</definition>
 	
 	

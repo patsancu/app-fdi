@@ -16,17 +16,15 @@
 	src="<c:url value="/webjars/bootstrap/3.0.0/js/bootstrap.min.js" />"></script>
 
 <link rel="stylesheet" href="<c:url value="/static/css/globalStyle.css" />">
+
+<tiles:insertAttribute name="resources" />
 </head>
-
-
-
 <body>
 	<div class="container">
 		<div class="header">
 			<ul class="nav nav-pills pull-right">
 				<tiles:insertAttribute name="navigation" />
 			</ul>
-			<!-- <h3 class="text-muted">Aplicación FdI-UCM</h3> -->
 		</div>
 
 		<div class="row">

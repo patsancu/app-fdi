@@ -13,7 +13,7 @@
 
 			<a class="navbar-brand " href="<spring:url value="/"/>"> <img
 				alt="Universidad Complutense de Madrid"
-				src="https://www.ucm.es/data/cont/docs/340-2013-07-02-ucm.gif"
+				src="<spring:url value="/static/img/logoUcm.gif" />"
 				width="30">
 			</a>
 		</div>
@@ -24,16 +24,13 @@
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<spring:url value="/ver"/>" role="button">
+						<li><a href="<spring:url value="/avisos"/>" role="button">
 								<span class="glyphicon glyphicon-info-sign"></span> Visor anuncios
-						</a></li>
-						<li><a href="<spring:url value="/gestor"/>"> <span
-								class="glyphicon glyphicon-user"></span> Gestor anuncios
 						</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Accesos directos</li>
 						<li><a
-							href="<spring:url value="/gestor/crear"></spring:url>">
+							href="<spring:url value="/avisos/nuevo"></spring:url>">
 								<span class="glyphicon glyphicon-plus"></span> Crear nuevo anuncio
 						</a></li>
 					</ul></li>
@@ -42,9 +39,9 @@
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Login</a></li>
-				<li><a href="#">Registrarse</a></li>
-				<li class="active"><a href="#">Logout <span class="sr-only">(current)</span></a></li>
+				<li><a href="#"><spring:message code="nav.signin"/></a></li>
+				<li><a href="#"><spring:message code="nav.signup"/></a></li>
+				<li class="active"><a href="#"><spring:message code="nav.logout"/></a><span class="sr-only">(current)</span></a></li>
 			</ul>
 		</div>
 		<!--navbarCollapse -->
