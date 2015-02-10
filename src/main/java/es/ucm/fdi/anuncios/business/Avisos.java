@@ -17,7 +17,7 @@ import es.ucm.fdi.anuncios.business.domain.repository.AvisoRepository;
 import es.ucm.fdi.storage.business.boundary.StorageManager;
 import es.ucm.fdi.storage.business.entity.StorageObjectId;
 
-@Transactional
+@Transactional("avisosTransactionManager")
 @Service
 public class Avisos {
 	
