@@ -39,13 +39,7 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 	@Override
 	public Aviso getAviso(Long avisoID) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session
-				.createQuery("from Aviso a where a.id= :id");
-		query.setLong("id", avisoID);
-		Aviso aviso = (Aviso) query.uniqueResult();
-		logger.info("Obteniendo siguiente aviso:");
-		logger.info(aviso.toString());
-		return aviso;
+		return (Aviso) session.get(Aviso.class, avisoID);
 	}
 
 	@Override
@@ -69,8 +63,15 @@ public class AvisoRepositoryImpl implements AvisoRepository {
 		query.executeUpdate();
 	}
 
+	@Override
+	public void eliminarAviso(Aviso aviso) {
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(aviso);
+	}
+
+	@Override
 	public void addAviso(Aviso aviso) {
-		logger.info("AÃÂ±adiendo aviso siguiente: ");
+		logger.info("Añadiendo aviso siguiente: ");
 		logger.info(aviso.toString());
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(aviso);

@@ -1,8 +1,5 @@
-package es.ucm.fdi.portal.anuncios.web;
+package es.ucm.fdi.anuncios.business.domain;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.joda.time.DateTime;
@@ -10,11 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import es.ucm.fdi.anuncios.business.domain.Aviso;
-import es.ucm.fdi.anuncios.business.domain.PrioridadesAvisoEnum;
-import es.ucm.fdi.anuncios.business.domain.TipoAvisoEnum;
-
-public class AvisoFormBean {
+public class AvisoBuilder {
 
 	private Long id;
 
@@ -23,10 +16,8 @@ public class AvisoFormBean {
 
 	private String contenidoAviso;
 
-	@Enumerated(EnumType.ORDINAL)
 	private TipoAvisoEnum tipoAviso;
 
-	@Enumerated(EnumType.ORDINAL)
 	private PrioridadesAvisoEnum prioridadAviso;
 
 	private String etiqueta;
@@ -43,8 +34,15 @@ public class AvisoFormBean {
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private DateTime finPublicacion;
 
-	@Transient
 	private MultipartFile adjunto;
+	
+	public AvisoBuilder() {
+		
+	}
+	
+	public AvisoBuilder(Aviso aviso) {
+		BeanUtils.copyProperties(aviso, this);
+	}
 
 	public Long getId() {
 		return id;
@@ -151,7 +149,7 @@ public class AvisoFormBean {
 	}
 	
 	public Aviso build() {
-		Aviso result = new Aviso();
+		Aviso result = new Aviso(this.id);
 		BeanUtils.copyProperties(this, result);
 		return result;
 	}

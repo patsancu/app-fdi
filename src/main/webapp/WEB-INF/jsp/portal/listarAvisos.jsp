@@ -21,88 +21,87 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${avisos}" var="item">
-				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-					<div class="caption">
-						<tr>
-							<td><c:if test="${item.prioridadAviso.description eq 'IMPORTANTE'}">
-									<span class=" glyphicon glyphicon-exclamation-sign"></span>
-								</c:if></td>
-							<td>
-								<!-- Tipo de destino: Post, URL o archivo adjunto --> <c:choose>
-									<c:when test="${item.tipoAviso.description eq 'POST'}">
-										<a
-											href="<spring:url value="/aviso/{id}"><spring:param name="id" value="${item.id}" /></spring:url>" class="btn btn-primary"> <span
-											class="glyphicon glyphicon-info-sign"></span>
-										</a>
-									</c:when>
-									<c:when test="${item.tipoAviso.description eq 'URL'}">
-										<a href="${item.urlDestino}" class="btn btn-primary" target="_blank"> <span
-											class="glyphicon glyphicon-info-sign"></span>
-										</a>
-									</c:when>
-									<c:when test="${item.tipoAviso.description eq 'ARCHIVO'}">
-										<a
-											href="<spring:url value="/box/{id}"><spring:param name="id" value="${item.id}" /></spring:url>"
-											class="btn btn-primary"> <span
-											class="glyphicon glyphicon-info-sign"></span>
-										</a>
-									</c:when>
-									<c:otherwise>
-										<a
-											href="<spring:url value="/aviso/{id}"><spring:param name="id" value="${item.id}" /></spring:url>"
-											class="btn btn-primary"> <span
-											class="glyphicon glyphicon-info-sign"></span>
-										</a>
-									</c:otherwise>
-								</c:choose>
-							</td>
-							<td>${item.titulo}</td>
-							<td>${fn:substring(item.contenidoAviso, 0, 25)}...</td>
-							<td>${item.etiqueta}</td>
-							<td>${item.autor }</td>
-							<td><joda:format value="${item.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" /></td>
-							<td><joda:format value="${item.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
-							<td><joda:format value="${item.finPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
-							<td><a class="btn btn-success"
-								href="<spring:url value="/avisos/{id}"><spring:param name="id" value="${item.id}" /></spring:url>">
-									<span class="glyphicon glyphicon-edit"></span>
-							</a>
-							<form:form action="${deleteAction}/${item.id}" method="DELETE">
-								<!-- Botón eliminar -->
-								<button type="button" class="btn btn-danger" data-toggle="modal"
-									data-target=".bs-delete-modal-sm${item.id}">
-									<span class="glyphicon glyphicon-remove"></span>
-								</button> <!-- Popup de confirmación de eliminación -->
-								<div class="modal fade bs-delete-modal-sm${item.id}"
-									tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-									aria-hidden="true">
-									<div class="modal-dialog modal-sm">
-										<div class="modal-content">
-											<div class="modal-header bg-primary">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-hidden="true">&times;</button>
-												<h4 class="modal-title" id="myModalLabel">Eliminar
-													aviso</h4>
-											</div>
-											<div class="modal-body">¿Está seguro de que desea eliminar el aviso "${item.titulo}"?</div>
-											<div class="modal-footer ">
-												<button type="submit" class="btn btn-danger">Eliminar </button>
-												<button type="button" class="btn btn-warning " data-dismiss="modal">Cancelar</button>
-											</div>
+		<c:forEach items="${avisos}" var="item">
+			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+				<div class="caption">
+					<tr>
+						<td><c:if test="${item.prioridadAviso.description eq 'IMPORTANTE'}">
+								<span class=" glyphicon glyphicon-exclamation-sign"></span>
+							</c:if></td>
+						<td>
+							<!-- Tipo de destino: Post, URL o archivo adjunto --> <c:choose>
+								<c:when test="${item.tipoAviso.name() eq 'POST'}">
+									<a
+										href="<spring:url value="/avisos/{id}/ver"><spring:param name="id" value="${item.id}" /></spring:url>" class="btn btn-primary"> <span
+										class="glyphicon glyphicon-info-sign"></span>
+									</a>
+								</c:when>
+								<c:when test="${item.tipoAviso.name() eq 'URL'}">
+									<a href="${item.urlDestino}" class="btn btn-primary" target="_blank"> <span
+										class="glyphicon glyphicon-info-sign"></span>
+									</a>
+								</c:when>
+								<c:when test="${item.tipoAviso.name() eq 'ADJUNTO'}">
+									<a
+										href="${item.adjunto}"
+										class="btn btn-primary"> <span
+										class="glyphicon glyphicon-info-sign"></span>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a
+										href="<spring:url value="/avisos/{id}/ver"><spring:param name="id" value="${item.id}" /></spring:url>"
+										class="btn btn-primary"> <span
+										class="glyphicon glyphicon-info-sign"></span>
+									</a>
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>${item.titulo}</td>
+						<td>${fn:substring(item.contenidoAviso, 0, 25)}...</td>
+						<td>${item.etiqueta}</td>
+						<td>${item.autor }</td>
+						<td><joda:format value="${item.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" /></td>
+						<td><joda:format value="${item.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
+						<td><joda:format value="${item.finPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
+						<td><a class="btn btn-success"
+							href="<spring:url value="/avisos/{id}"><spring:param name="id" value="${item.id}" /></spring:url>">
+								<span class="glyphicon glyphicon-edit"></span>
+						</a>
+						<form:form action="${deleteAction}/${item.id}" method="DELETE">
+							<!-- Botón eliminar -->
+							<button type="button" class="btn btn-danger" data-toggle="modal"
+								data-target=".bs-delete-modal-sm${item.id}">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button> <!-- Popup de confirmación de eliminación -->
+							<div class="modal fade bs-delete-modal-sm${item.id}"
+								tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog modal-sm">
+									<div class="modal-content">
+										<div class="modal-header bg-primary">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">&times;</button>
+											<h4 class="modal-title" id="myModalLabel">Eliminar
+												aviso</h4>
+										</div>
+										<div class="modal-body">¿Está seguro de que desea eliminar el aviso "${item.titulo}"?</div>
+										<div class="modal-footer ">
+											<button type="submit" class="btn btn-danger">Eliminar </button>
+											<button type="button" class="btn btn-warning " data-dismiss="modal">Cancelar</button>
 										</div>
 									</div>
-								</div> <!-- Fin de  Popup de confirmación de eliminación -->
-							</form:form>
-							</td>
-						</tr>
-					</div>
+								</div>
+							</div> <!-- Fin de  Popup de confirmación de eliminación -->
+						</form:form>
+						</td>
+					</tr>
 				</div>
-			</c:forEach>
+			</div>
+		</c:forEach>
 		</tbody>
 	</table>
 </section>
-
 <script type="text/javascript">
 	$(document).ready(function() { /* Se deshabilita el orden por estos campos */
 		$('#myModal').modal({

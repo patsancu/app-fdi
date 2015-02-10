@@ -29,6 +29,11 @@
 		<location>/static/500.html</location>
 	</error-page>
 
+	<!-- General error page -->
+	<error-page>
+		<location>/static/500.html</location>
+	</error-page>
+
 	<!-- -->
 	<!-- Default JSPs' configuration -->
 	<!-- -->
@@ -145,7 +150,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/webcontext/portal-context.xml</param-value>
+			<param-value>/WEB-INF/spring/webcontext/portal-context.xml, /WEB-INF/spring/webcontext/storage-context.xml</param-value>
 		</init-param>
 	</servlet>
 

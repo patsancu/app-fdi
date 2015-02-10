@@ -6,13 +6,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Aviso {
@@ -51,9 +49,16 @@ public class Aviso {
 	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
 	private DateTime finPublicacion;
 
-	@Transient
-	private MultipartFile adjunto;
+	private String adjunto;
 
+	Aviso() {
+		
+	}
+	
+	Aviso(Long id) {
+		this.id = id;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -102,14 +107,13 @@ public class Aviso {
 		this.autor = autor;
 	}
 
-	public MultipartFile getAdjunto() {
+	public String getAdjunto() {
 		return adjunto;
 	}
 
-	public void setAdjunto(MultipartFile adjunto) {
+	public void setAdjunto(String adjunto) {
 		this.adjunto = adjunto;
 	}
-	
 
 	public DateTime getFechaCreacion() {
 		return fechaCreacion;

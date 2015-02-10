@@ -45,7 +45,10 @@
 		<property name="password" value="" />
 	</bean>
 
-
+	<util:properties id="avisosPrefs">
+		<prop key="bucket">avisos</prop>
+	</util:properties>
+	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
 		p:sessionFactory-ref="sessionFactory" />

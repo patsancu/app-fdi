@@ -18,4 +18,6 @@ public interface AvisoRepository {
 	void eliminarAviso(Long avisoID);
 
 	void addAviso(Aviso product);
+
+	void eliminarAviso(Aviso aviso);
 }
