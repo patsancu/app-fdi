@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" session="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="navbar navbar-default navbar-fixed-top "
 	style="z-index: 1000;" role="navigation">
 
@@ -41,7 +42,11 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><spring:message code="nav.signin"/></a></li>
 				<li><a href="#"><spring:message code="nav.signup"/></a></li>
-				<li class="active"><a href="#"><spring:message code="nav.logout"/></a><span class="sr-only">(current)</span></a></li>
+				<li class="active">
+				<form action="<spring:url value="/logout" />" method="POST">
+					<sec:csrfInput />
+					<input type="submit" value="<spring:message code="nav.logout"/>" />
+				</form><span class="sr-only">(current)</span></li>
 			</ul>
 		</div>
 		<!--navbarCollapse -->

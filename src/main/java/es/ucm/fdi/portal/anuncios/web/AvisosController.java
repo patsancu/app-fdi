@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -58,6 +59,7 @@ public class AvisosController {
 		return new ModelAndView(new CustomRssViewer(), "feedContent", items);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(method = RequestMethod.GET, value = "/avisos/nuevo")
 	public ModelAndView nuevoAviso() {
 		Map<String, Object> model = new HashMap<>();

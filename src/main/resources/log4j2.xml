@@ -6,9 +6,11 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.springframework" level="debug" />
-		<Logger name="org.hibernate" level="warn" />
-		<Logger name="org.hibernate.tool" level="debug" />
+		<Logger name="org.springframework" level="info" />
+		<Logger name="org.hibernate" level="info" />
+		<Logger name="org.hibernate.SQL" level="debug" />
+		<Logger name="org.hibernate.type" level="trace" />
+		<Logger name="org.hibernate.tool.hbm2ddl" level="trace" />
 		<Root level="info">
 			<AppenderRef ref="STDOUT" />
 		</Root>
