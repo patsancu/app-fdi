@@ -14,7 +14,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<org.hibernate.version>4.3.6.Final</org.hibernate.version>
-		<postgresql.version>9.1-901.jdbc4</postgresql.version> 
+		<postgresql.version>9.1-901.jdbc4</postgresql.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -82,6 +82,13 @@
 			<artifactId>datatables-plugins</artifactId>
 			<version>ca6ec50</version>
 		</dependency>
+		<!-- HTML javascript embedded editor --> 
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>tinymce-jquery</artifactId>
+			<version>4.1.7-1</version>
+		</dependency>
+		<!-- webjars dependencies END -->
 
 		<!-- Spring Dependencies -->
 		<dependency>
@@ -132,7 +139,7 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
-	
+
 		<!-- Hibernate dependencies -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -259,16 +266,16 @@
 			<version>1.5.0</version>
 		</dependency>
 		<!-- FIN RSS -->
-		
-		
+
+
 		<!-- Postgresql -->
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>${postgresql.version}</version>
 		</dependency>
-		
-		
+
+
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>

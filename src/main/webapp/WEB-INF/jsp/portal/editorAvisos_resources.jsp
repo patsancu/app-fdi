@@ -11,4 +11,7 @@
 <script
 	src="<spring:url value="/webjars/jquery-ui/1.11.2/jquery-ui.min.js"/>"></script>
 <script type="text/javascript"
-	src="<spring:url value="/webjars/datetimepicker/2.3.4/jquery.datetimepicker.js" />"></script>	
+	src="<spring:url value="/webjars/datetimepicker/2.3.4/jquery.datetimepicker.js" />"></script>
+<script type="text/javascript" src="<spring:url 
+					value="/webjars/tinymce-jquery/4.1.7/jquery.tinymce.min.js" />"></script>
+<script type="text/javascript" src="<spring:url value="/webjars/tinymce-jquery/4.1.7/tinymce.min.js" />"></script>

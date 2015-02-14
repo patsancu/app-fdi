@@ -4,20 +4,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-<script>
-	tinymce.init({
-		selector : 'textarea'
-	});
-</script>
-
-<style>	
-	#tabbedContent {
-	margin-top: 20px;
-}
-</style>
-
-
 <title><c:out value="${modo}"></c:out> aviso</title>
 <section class="container center">
 	<form:form modelAttribute="aviso" class="form-horizontal"
@@ -204,3 +190,14 @@
 	 $('div').hide();
 	 }); */
 </script>
+<script>
+	tinymce.init({
+		selector : 'textarea'
+	});
+</script>
+
+<style>	
+	#tabbedContent {
+	margin-top: 20px;
+}
+</style>
