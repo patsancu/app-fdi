@@ -105,7 +105,7 @@
 				<div id="fechas" class="tab-pane fade">
 
 					<!-- Comienzo Publicación-->
-					<div id="comienzoPublicacion" class="form-group">
+					<div  class="form-group fecha">
 						<label class="control-label col-md-2" for="comienzoPublicacion">Comienzo
 							Publicación</label>
 						<div class="col-md-2">
@@ -114,7 +114,7 @@
 					</div>
 
 					<!-- Fin Publicación -->
-					<div id="finPublicacion" class="form-group">
+					<div  class="form-group fecha">
 						<label class="control-label col-md-2" for="finPublicacion">Fin
 							de Publicación</label>
 						<div class="col-md-2">
@@ -150,11 +150,8 @@
 	});
 </script>
 <script type="text/javascript">
-	//p = $(function() {
-
 	$("select").change(function() {
 		var str = "";
-		//$("select option:selected").each(function() {
 		$("#tipoAviso option:selected").each(function() {
 
 			str += $(this).text() + " ";
@@ -165,6 +162,8 @@
 			$("#etiqueta").show();
 			$("#comienzoPublicacion").show();
 			$("#finPublicacion").show();
+			$(".fecha").show();
+			$(".add").show();
 
 			var tipoAvisoSeleccionado = $(this).text();
 
@@ -181,14 +180,7 @@
 			}
 
 		});
-
-		//$( "div" ).text( str );
-		//alert(str);
 	}).change();
-	//});
-	/* $(document).ready(function(){
-	 $('div').hide();
-	 }); */
 </script>
 <script>
 	tinymce.init({
