@@ -70,19 +70,26 @@ public class AvisosController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/avisos/nuevo")
-	public String creaNuevoAviso(@ModelAttribute("aviso") AvisoBuilder aviso,
+	public ModelAndView creaNuevoAviso(@ModelAttribute("aviso") AvisoBuilder aviso,
 			BindingResult result) throws IOException {
-		
-		if (aviso.getComienzoPublicacion().isAfter(aviso.getFinPublicacion())){
-			logger.debug("Fecha comienzo " + aviso.getComienzoPublicacion() + " > " + aviso.getFinPublicacion() + "Fecha fin");
-			return "nuevo";
-		}
-
 		logger.debug("Creando aviso: " + aviso);
-		if (result.hasErrors()) {
-			logger.debug(result.getAllErrors().toString());
-			return "nuevo";
+		Map<String, Object> model = new HashMap<>();
+		
+		if (aviso.getComienzoPublicacion().isAfter(aviso.getFinPublicacion()) || result.hasErrors()){			
+			if ( result.hasErrors()){
+				logger.debug("Ha habido errores ");
+				logger.debug(result.getAllErrors().toString());
+			}
+			else{
+				logger.debug("Fecha comienzo " + aviso.getComienzoPublicacion() + " > " + aviso.getFinPublicacion() + "Fecha fin");
+				
+			}
+			model.put("modo", "Crear");
+			model.put("method", "POST");
+			model.put("aviso", aviso);
+			return new ModelAndView("editorAvisos", model);
 		}
+		
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			logger.error("Attempting to bind disallowed fields: "
@@ -93,7 +100,7 @@ public class AvisosController {
 
 		avisoService.addAviso(aviso);
 
-		return "redirect:/avisos";
+		return new ModelAndView("redirect:/avisos", model);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/avisos/{id}")
