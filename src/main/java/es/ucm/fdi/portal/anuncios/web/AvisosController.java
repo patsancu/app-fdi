@@ -72,6 +72,11 @@ public class AvisosController {
 	@RequestMapping(method = RequestMethod.POST, value = "/avisos/nuevo")
 	public String creaNuevoAviso(@ModelAttribute("aviso") AvisoBuilder aviso,
 			BindingResult result) throws IOException {
+		
+		if (aviso.getComienzoPublicacion().isAfter(aviso.getFinPublicacion())){
+			logger.debug("Fecha comienzo " + aviso.getComienzoPublicacion() + " > " + aviso.getFinPublicacion() + "Fecha fin");
+			return "nuevo";
+		}
 
 		logger.debug("Creando aviso: " + aviso);
 		if (result.hasErrors()) {
