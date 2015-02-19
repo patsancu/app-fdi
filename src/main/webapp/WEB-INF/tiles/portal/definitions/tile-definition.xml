@@ -72,4 +72,22 @@
 		<put-attribute name="tagline" value=" " />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/avisos.jsp" />
 	</definition>
+	
+	<!-- Creador de espacios -->
+	<definition name="editorEspacios" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="Crear espacio" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/editorEspacios_resources.jsp" />
+		<put-attribute name="heading" value="Crear espacio" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorEspacios.jsp" />
+	</definition>
+	
+	<!-- Listado de espacios -->
+	<definition name="listarEspacios" extends="baseLayout">
+		<put-attribute name="title" value="Listado de avisos" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/listarEspacios_resources.jsp" />
+		<put-attribute name="heading" value="Listado de espacios" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarEspacios.jsp" />
+	</definition>
 </tiles-definitions>

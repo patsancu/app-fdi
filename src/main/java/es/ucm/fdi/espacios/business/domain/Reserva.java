@@ -1,5 +1,6 @@
 package es.ucm.fdi.espacios.business.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
 public class Reserva {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

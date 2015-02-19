@@ -2,18 +2,20 @@ package es.ucm.fdi.espacios.business.domain;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Espacio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@OneToMany(mappedBy="reservas")
-	private List<Reserva> espacios;
+	@OneToMany(mappedBy="espacio")
+	private List<Reserva> reservas;
 	
 	private String nombreEspacio;
 	
@@ -31,12 +33,13 @@ public class Espacio {
 		this.id = id;
 	}
 
-	public List<Reserva> getEspacios() {
-		return espacios;
+	
+	public List<Reserva> getReservas() {
+		return reservas;
 	}
 
-	public void setEspacios(List<Reserva> espacios) {
-		this.espacios = espacios;
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
 	}
 
 	public String getNombreEspacio() {
