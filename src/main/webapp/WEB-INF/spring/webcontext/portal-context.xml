@@ -52,13 +52,13 @@
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
 		p:basename="classpath:messages" />
 		
-	<bean id="avisosSessionFactory"
+	<bean id="portalSessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-		p:dataSource-ref="avisosDataSource" p:packagesToScan="es.ucm.fdi.anuncios"
+		p:dataSource-ref="portalDataSource" p:packagesToScan="es.ucm.fdi.anuncios, es.ucm.fdi.espacios"
 		p:hibernateProperties-ref="hibernateProperties" />
 
 	<!-- HSQL -->
-	<bean id="avisosDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="portalDataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
 		 <property name="url" value="jdbc:hsqldb:db2;shutdown=true" /> 
@@ -107,11 +107,11 @@
 		<prop key="bucket">avisos</prop>
 	</util:properties>
 	
-	<bean id="avisosTransactionManager"
+	<bean id="portalTransactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-		p:sessionFactory-ref="avisosSessionFactory" />
+		p:sessionFactory-ref="portalSessionFactory" primary="true" />
 
-	<tx:annotation-driven transaction-manager="avisosTransactionManager" />
+	<tx:annotation-driven transaction-manager="portalTransactionManager" />
 
 	
 

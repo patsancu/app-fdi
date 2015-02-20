@@ -10,6 +10,13 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Espacio {
+	@Override
+	public String toString() {
+		return "Espacio [id=" + id + ", reservas=" + reservas
+				+ ", nombre=" + nombre + ", aforo=" + aforo
+				+ ", notas=" + notas + ", tipoEspacio=" + tipoEspacio + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -17,7 +24,7 @@ public class Espacio {
 	@OneToMany(mappedBy="espacio")
 	private List<Reserva> reservas;
 	
-	private String nombreEspacio;
+	private String nombre;
 	
 	private Integer aforo;
 	
@@ -42,12 +49,12 @@ public class Espacio {
 		this.reservas = reservas;
 	}
 
-	public String getNombreEspacio() {
-		return nombreEspacio;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setNombreEspacio(String nombreEspacio) {
-		this.nombreEspacio = nombreEspacio;
+	public void setNombre(String nombreEspacio) {
+		this.nombre = nombreEspacio;
 	}
 
 	public Integer getAforo() {

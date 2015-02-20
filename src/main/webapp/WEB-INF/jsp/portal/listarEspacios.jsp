@@ -6,7 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 <section class="container">
-	<table id="avisos" class="table table-hover">
+	<table id="espacios" class="table table-hover">
 		<thead>
 			<tr>
 				<th>Nombre</th>
@@ -29,42 +29,3 @@
 		</tbody>
 	</table>
 </section>
-<script type="text/javascript">
-	$(document).ready(function() { /* Se deshabilita el orden por estos campos */
-		$('#myModal').modal({
-			show : false,
-			keyboard : false
-		});
-		$('#avisos').DataTable({
-			"aoColumnDefs" : [ {
-				'bSortable' : false,
-				'aTargets' : [ 7 ]
-			}, //info
-			{
-				'bSortable' : false,
-				'aTargets' : [ 8 ]
-			}, //editar
-			{
-				'bSortable' : false,
-				'aTargets' : [ 9 ]
-			} //eliminar
-			],
-
-			//Cambio de texto de menus
-			"language" : {
-				"lengthMenu" : "Mostrar _MENU_ resultados por pagina",
-				"zeroRecords" : "No se ha encontrado ningun resultado",
-				"info" : "Página _PAGE_ de _PAGES_",
-				"infoEmpty" : "No hay información",
-				"infoFiltered" : "(filtado de _MAX_ resultados totales)",
-				"search" : "Buscar:",
-				"paginate" : {
-					"first" : "Primera",
-					"last" : "Ultima",
-					"next" : "Siguiente",
-					"previous" : "Anterior"
-				},
-			}
-		});
-	});
-</script>

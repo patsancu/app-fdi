@@ -98,6 +98,16 @@ public class Reserva {
 		this.tipoEspacioEnum = tipoEspacioEnum;
 	}
 
+	public Espacio getEspacio() {
+		return espacio;
+	}
+
+	public void setEspacio(Espacio espacio) {
+		this.espacio = espacio;
+	}
+	
+	
+
 	
 	
 }

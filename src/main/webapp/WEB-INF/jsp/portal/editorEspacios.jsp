@@ -17,11 +17,11 @@
 
 
 			<!-- Nombre de espacio -->
-			<div id="nombreEspacio" class="form-group">
-				<label class="control-label col-lg-2" for="nombreEspacio">Nombre
+			<div id="nombre" class="form-group">
+				<label class="control-label col-lg-2" for="nombre">Nombre
 					Espacio</label>
 				<div class="col-lg-10">
-					<form:input path="nombreEspacio" type="text"
+					<form:input path="nombre" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
@@ -34,15 +34,7 @@
 				</div>
 			</div>
 
-			<!-- Contenido -->
-			<div id="notas" class="form-group">
-				<label class="control-label col-lg-2" for="notas">Notas</label>
-				<div class="col-lg-10">
-					<form:textarea path="notas" type="text" class="form:input-large" />
-				</div>
-			</div>
-
-
+			<!-- Notas -->
 			<div id="notas" class="form-group">
 				<label class="control-label col-lg-2" for="notas">Notas</label>
 				<div class="col-lg-10">

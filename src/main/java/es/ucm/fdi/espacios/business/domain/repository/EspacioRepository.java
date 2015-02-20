@@ -1,9 +1,18 @@
 package es.ucm.fdi.espacios.business.domain.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
 import es.ucm.fdi.espacios.business.domain.Espacio;
 
-public interface EspacioRepository extends CrudRepository<Espacio, Integer>{
 
+//public interface EspacioRepository extends CrudRepository<Espacio, Integer>{
+//	
+//}
+
+public interface EspacioRepository {
+
+	List<Espacio> findAll();
+
+	void save(Espacio espacio);
+	
 }

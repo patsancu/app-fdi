@@ -2,6 +2,7 @@ package es.ucm.fdi.espacios.web;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -41,7 +42,7 @@ public class EspaciosController {
 	@RequestMapping(method = RequestMethod.POST, value = "/espacios/nuevo")
 	public ModelAndView creaNuevaEspacio(@ModelAttribute("espacio") Espacio espacio,
 			BindingResult result) throws IOException {
-		logger.debug("Creando espacio: " + espacio);
+		logger.warn("Creando espacio: " + espacio);
 		Map<String, Object> model = new HashMap<>();
 		
 		if (result.hasErrors()){		
@@ -62,18 +63,20 @@ public class EspaciosController {
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 		
-
+		
 		espacios.addEspacio(espacio);
 
-		return new ModelAndView("redirect:/", model);
+		return new ModelAndView("redirect:/espacios/", model);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/espacios/")
 	public ModelAndView listarEspacios(){
-		logger.debug("Listando espacios:");
+		List<Espacio> listaEspacios = espacios.listarEspacios();
+		logger.warn("Listando " + listaEspacios.size() + " espacios:");
 		Map<String, Object> model = new HashMap<>();
 		
-		model.put("espacios", espacios.listarEspacios());
+		model.put("espacios", listaEspacios);
+		
 		
 		return new ModelAndView("listarEspacios", model);
 	}

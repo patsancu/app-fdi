@@ -2,6 +2,7 @@ package es.ucm.fdi.espacios.web;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.ucm.fdi.espacios.business.Espacios;
 import es.ucm.fdi.espacios.business.Reservas;
 import es.ucm.fdi.espacios.business.domain.Reserva;
 
@@ -26,6 +28,9 @@ public class ReservasController {
 	@Autowired
 	private Reservas reservas; 
 	
+	@Autowired
+	private Espacios espacios;
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(method = RequestMethod.GET, value = "/reservas/nuevo")
 	public ModelAndView nuevaReserva() {
@@ -33,6 +38,8 @@ public class ReservasController {
 		model.put("modo", "Crear");
 		model.put("method", "POST");
 		model.put("reserva", new Reserva() );
+		model.put("espacios", espacios.listarEspacios());
+		
 		return new ModelAndView("editorReservas", model);
 	}
 	
@@ -62,7 +69,16 @@ public class ReservasController {
 
 		reservas.addReserva(reserva);
 
+		//return new ModelAndView("redirect:/reservas/", model);
 		return new ModelAndView("redirect:/", model);
+	}
+	
+	public ModelAndView listarReservas(){
+		Map<String, Object> model = new HashMap<>();
+		List<Reserva> listaReservas = reservas.listReservas();
+		model.put("method", "GET");
+		model.put("reservas", listaReservas);
+		return new ModelAndView("listarReservas", model);
 	}
 	
 }

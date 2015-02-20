@@ -90,4 +90,24 @@
 		<put-attribute name="tagline" value="" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarEspacios.jsp" />
 	</definition>
+	
+	
+	<!-- Creador de espacios -->
+	<definition name="editorReservas" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="Crear Reserva" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/editorReservas_resources.jsp" />
+		<put-attribute name="heading" value="Crear espacio" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorReservas.jsp" />
+	</definition>
+	
+	
+	<!-- Listado de espacios -->
+	<definition name="listarReservas" extends="baseLayout">
+		<put-attribute name="title" value="Listado de Reservas" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/listarReservas_resources.jsp" />
+		<put-attribute name="heading" value="Listado de Reservas" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarReservass.jsp" />
+	</definition>
 </tiles-definitions>

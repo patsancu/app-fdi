@@ -1,9 +1,11 @@
 package es.ucm.fdi.espacios.business.domain.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
 import es.ucm.fdi.espacios.business.domain.Reserva;
 
-public interface ReservaRepository extends CrudRepository<Reserva, Integer> {
+public interface ReservaRepository {
+	List<Reserva> findAll();
 
+	void save(Reserva reserva);
 }
