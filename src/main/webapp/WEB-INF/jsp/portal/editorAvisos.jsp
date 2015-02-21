@@ -51,8 +51,8 @@
 
 					<!-- Contenido -->
 					<div id="contenidoAviso" class="form-group">
-						<label class="control-label col-lg-2" for="contenidoAviso"
-							onclick="k">Contenido de aviso</label>
+						<label class="control-label col-lg-2" for="contenidoAviso">
+						Contenido de aviso</label>
 						<div class="col-lg-10">
 							<form:textarea path="contenidoAviso" type="text"
 								class="form:input-large" />
@@ -139,6 +139,9 @@
 		</fieldset>
 	</form:form>
 </section>
+
+
+<!-- Date & Time picker -->
 <script>
 	$(function() {
 		$("#comienzoPublicacion").datetimepicker({
@@ -149,6 +152,9 @@
 		});
 	});
 </script>
+
+
+<!-- Toggle field visibility depending on the type -->
 <script type="text/javascript">
 	$("select").change(function() {
 		var str = "";
@@ -182,12 +188,15 @@
 		});
 	}).change();
 </script>
+
+<!-- HTML Editor -->
 <script>
 	tinymce.init({
 		selector : 'textarea'
 	});
 </script>
 
+<!-- Prevent overlapping -->
 <style>	
 	#tabbedContent {
 	margin-top: 20px;

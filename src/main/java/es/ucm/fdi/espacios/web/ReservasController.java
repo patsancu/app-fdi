@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.ucm.fdi.espacios.business.Espacios;
 import es.ucm.fdi.espacios.business.Reservas;
 import es.ucm.fdi.espacios.business.domain.Reserva;
+import es.ucm.fdi.espacios.business.domain.ReservaBuilder;
 
 @Controller
 public class ReservasController {
@@ -37,14 +40,14 @@ public class ReservasController {
 		Map<String, Object> model = new HashMap<>();
 		model.put("modo", "Crear");
 		model.put("method", "POST");
-		model.put("reserva", new Reserva() );
+		model.put("reserva", new ReservaBuilder() );
 		model.put("espacios", espacios.listarEspacios());
 		
 		return new ModelAndView("editorReservas", model);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/reservas/nuevo")
-	public ModelAndView creaNuevaReserva(@ModelAttribute("reserva") Reserva reserva,
+	public ModelAndView creaNuevaReserva(@ModelAttribute("reserva") ReservaBuilder reserva,
 			BindingResult result) throws IOException {
 		logger.debug("Creando reserva: " + reserva);
 		Map<String, Object> model = new HashMap<>();
@@ -69,15 +72,16 @@ public class ReservasController {
 
 		reservas.addReserva(reserva);
 
-		//return new ModelAndView("redirect:/reservas/", model);
-		return new ModelAndView("redirect:/", model);
+		return new ModelAndView("redirect:/reservas", model);
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/reservas")
 	public ModelAndView listarReservas(){
-		Map<String, Object> model = new HashMap<>();
+		Map<String, Object> model = new HashMap<>();		
+		
 		List<Reserva> listaReservas = reservas.listReservas();
-		model.put("method", "GET");
 		model.put("reservas", listaReservas);
+		
 		return new ModelAndView("listarReservas", model);
 	}
 	
