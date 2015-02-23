@@ -9,10 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import es.ucm.fdi.anuncios.business.domain.Aviso;
-import es.ucm.fdi.anuncios.business.domain.repository.hibernate.AvisoRepositoryImpl;
+import es.ucm.fdi.espacios.business.control.ReservaRepository;
 import es.ucm.fdi.espacios.business.domain.Reserva;
-import es.ucm.fdi.espacios.business.domain.repository.ReservaRepository;
 
 
 @Repository

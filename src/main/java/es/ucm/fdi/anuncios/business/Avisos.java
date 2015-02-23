@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.ucm.fdi.anuncios.business.control.AvisoRepository;
 import es.ucm.fdi.anuncios.business.domain.Aviso;
 import es.ucm.fdi.anuncios.business.domain.AvisoBuilder;
-import es.ucm.fdi.anuncios.business.domain.repository.AvisoRepository;
 import es.ucm.fdi.storage.business.boundary.StorageManager;
 import es.ucm.fdi.storage.business.entity.StorageObjectId;
 

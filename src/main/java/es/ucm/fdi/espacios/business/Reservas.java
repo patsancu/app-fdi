@@ -12,11 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.ucm.fdi.espacios.business.control.EspacioRepository;
+import es.ucm.fdi.espacios.business.control.ReservaRepository;
 import es.ucm.fdi.espacios.business.domain.Espacio;
 import es.ucm.fdi.espacios.business.domain.Reserva;
 import es.ucm.fdi.espacios.business.domain.ReservaBuilder;
-import es.ucm.fdi.espacios.business.domain.repository.EspacioRepository;
-import es.ucm.fdi.espacios.business.domain.repository.ReservaRepository;
 
 @Service
 @Transactional

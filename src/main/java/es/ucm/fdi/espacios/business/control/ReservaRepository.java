@@ -1,4 +1,4 @@
-package es.ucm.fdi.espacios.business.domain.repository;
+package es.ucm.fdi.espacios.business.control;
 
 import java.util.List;
 

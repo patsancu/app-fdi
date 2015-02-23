@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import es.ucm.fdi.espacios.business.control.EspacioRepository;
 import es.ucm.fdi.espacios.business.domain.Espacio;
-import es.ucm.fdi.espacios.business.domain.repository.EspacioRepository;
 
 @Repository
 public class EspacioRepositoryImpl implements EspacioRepository{

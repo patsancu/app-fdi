@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import es.ucm.fdi.anuncios.business.control.AvisoRepository;
 import es.ucm.fdi.anuncios.business.domain.Aviso;
-import es.ucm.fdi.anuncios.business.domain.repository.AvisoRepository;
 
 @Repository
 public class AvisoRepositoryImpl implements AvisoRepository {
