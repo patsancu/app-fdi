@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.util;
+package es.ucm.fdi.avisos.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import com.rometools.rome.feed.rss.Channel;
 import com.rometools.rome.feed.rss.Content;
 import com.rometools.rome.feed.rss.Item;
 
-import es.ucm.fdi.anuncios.business.entity.Aviso;
+import es.ucm.fdi.avisos.business.entity.Aviso;
 
 public class CustomRssViewer extends AbstractRssFeedView {
 

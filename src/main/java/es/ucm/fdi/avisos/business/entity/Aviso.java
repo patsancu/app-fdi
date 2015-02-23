@@ -1,14 +1,21 @@
-package es.ucm.fdi.anuncios.business.entity;
+package es.ucm.fdi.avisos.business.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
-import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
-public class AvisoBuilder {
-
+@Entity
+public class Aviso {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Size(min = 4, max = 50, message = "{Size.Aviso.titulo.validation}")
@@ -16,39 +23,45 @@ public class AvisoBuilder {
 
 	private String contenidoAviso;
 
+	@Enumerated(EnumType.ORDINAL)
 	private TipoAvisoEnum tipoAviso;
 
+	@Enumerated(EnumType.ORDINAL)
 	private PrioridadesAvisoEnum prioridadAviso;
 
 	private String etiqueta;
 
-	private String urlDestino;
-
 	private String autor;
 
+	// Fechas
+
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
 	private DateTime fechaCreacion;
 	
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
 	private DateTime comienzoPublicacion;
 
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
 	private DateTime finPublicacion;
 
-	private MultipartFile adjunto;
-	
-	public AvisoBuilder() {
+	private String adjunto;
+
+	Aviso() {
 		
 	}
 	
-	public AvisoBuilder(Aviso aviso) {
-		BeanUtils.copyProperties(aviso, this);
+	Aviso(Long id) {
+		this.id = id;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	private void setId(Long id) {
 		this.id = id;
 	}
 
@@ -68,44 +81,12 @@ public class AvisoBuilder {
 		this.contenidoAviso = contenidoAviso;
 	}
 
-	public TipoAvisoEnum getTipoAviso() {
-		return tipoAviso;
-	}
-
-	public void setTipoAviso(TipoAvisoEnum tipoAviso) {
-		this.tipoAviso = tipoAviso;
-	}
-	
-	public TipoAvisoEnum[] getTiposAviso() {
-		return TipoAvisoEnum.values();
-	}
-	
-	public PrioridadesAvisoEnum getPrioridadAviso() {
-		return prioridadAviso;
-	}
-
-	public void setPrioridadAviso(PrioridadesAvisoEnum prioridadAviso) {
-		this.prioridadAviso = prioridadAviso;
-	}
-	
-	public PrioridadesAvisoEnum[] getPrioridadesAviso() {
-		return PrioridadesAvisoEnum.values();
-	}
-
 	public String getEtiqueta() {
 		return etiqueta;
 	}
 
 	public void setEtiqueta(String etiqueta) {
 		this.etiqueta = etiqueta;
-	}
-
-	public String getUrlDestino() {
-		return urlDestino;
-	}
-
-	public void setUrlDestino(String urlDestino) {
-		this.urlDestino = urlDestino;
 	}
 
 	public String getAutor() {
@@ -115,7 +96,15 @@ public class AvisoBuilder {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	
+
+	public String getAdjunto() {
+		return adjunto;
+	}
+
+	public void setAdjunto(String adjunto) {
+		this.adjunto = adjunto;
+	}
+
 	public DateTime getFechaCreacion() {
 		return fechaCreacion;
 	}
@@ -140,17 +129,21 @@ public class AvisoBuilder {
 		this.finPublicacion = finPublicacion;
 	}
 
-	public MultipartFile getAdjunto() {
-		return adjunto;
+	public TipoAvisoEnum getTipoAviso() {
+		return tipoAviso;
 	}
 
-	public void setAdjunto(MultipartFile adjunto) {
-		this.adjunto = adjunto;
+	public void setTipoAviso(TipoAvisoEnum tipoAviso) {
+		this.tipoAviso = tipoAviso;
 	}
+
+	public PrioridadesAvisoEnum getPrioridadAviso() {
+		return prioridadAviso;
+	}
+
+	public void setPrioridadAviso(PrioridadesAvisoEnum prioridadAviso) {
+		this.prioridadAviso = prioridadAviso;
+	}
+
 	
-	public Aviso build() {
-		Aviso result = new Aviso(this.id);
-		BeanUtils.copyProperties(this, result);
-		return result;
-	}
 }

@@ -1,11 +1,11 @@
-package es.ucm.fdi.anuncios.validation;
+package es.ucm.fdi.avisos.validation;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import es.ucm.fdi.anuncios.business.entity.AvisoBuilder;
+import es.ucm.fdi.avisos.business.entity.AvisoBuilder;
 
 @Component
 public class AvisoValidator implements Validator {

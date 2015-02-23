@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.business.boundary;
+package es.ucm.fdi.avisos.boundary;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import es.ucm.fdi.anuncios.business.control.AvisoRepository;
-import es.ucm.fdi.anuncios.business.entity.Aviso;
-import es.ucm.fdi.anuncios.business.entity.AvisoBuilder;
+import es.ucm.fdi.avisos.business.control.AvisoRepository;
+import es.ucm.fdi.avisos.business.entity.Aviso;
+import es.ucm.fdi.avisos.business.entity.AvisoBuilder;
 import es.ucm.fdi.storage.business.boundary.StorageManager;
 import es.ucm.fdi.storage.business.entity.StorageObjectId;
 

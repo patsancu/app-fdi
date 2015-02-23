@@ -1,4 +1,4 @@
-package es.ucm.fdi.portal.anuncios.web;
+package es.ucm.fdi.avisos.web;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,11 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.ucm.fdi.anuncios.business.boundary.Avisos;
-import es.ucm.fdi.anuncios.business.entity.Aviso;
-import es.ucm.fdi.anuncios.business.entity.AvisoBuilder;
-import es.ucm.fdi.anuncios.util.CustomRssViewer;
-import es.ucm.fdi.anuncios.validation.AvisoValidator;
+import es.ucm.fdi.avisos.boundary.Avisos;
+import es.ucm.fdi.avisos.business.entity.Aviso;
+import es.ucm.fdi.avisos.business.entity.AvisoBuilder;
+import es.ucm.fdi.avisos.util.CustomRssViewer;
+import es.ucm.fdi.avisos.validation.AvisoValidator;
 
 @Controller
 public class AvisosController {

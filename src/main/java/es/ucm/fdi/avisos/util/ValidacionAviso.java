@@ -1,10 +1,10 @@
-package es.ucm.fdi.anuncios.util;
+package es.ucm.fdi.avisos.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.anuncios.business.entity.AvisoBuilder;
-import es.ucm.fdi.anuncios.business.entity.TipoAvisoEnum;
+import es.ucm.fdi.avisos.business.entity.AvisoBuilder;
+import es.ucm.fdi.avisos.business.entity.TipoAvisoEnum;
 
 public class ValidacionAviso {
 
