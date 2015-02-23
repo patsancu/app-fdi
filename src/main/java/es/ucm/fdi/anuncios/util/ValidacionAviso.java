@@ -1,0 +1,36 @@
+package es.ucm.fdi.anuncios.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import es.ucm.fdi.anuncios.business.domain.AvisoBuilder;
+import es.ucm.fdi.anuncios.business.domain.TipoAvisoEnum;
+
+public class ValidacionAviso {
+
+	static public List<String> ValidarAviso(AvisoBuilder aviso){
+		List<String> errores = new ArrayList<String>();
+
+		//Generales
+		if (aviso.getComienzoPublicacion().isAfter(aviso.getFinPublicacion()) ){
+			errores.add("Fecha inicio más tarde que fecha fin de publicación");
+		}
+
+		//URLs
+		if (aviso.getTipoAviso().equals(TipoAvisoEnum.URL)){
+
+		}
+		//Adjunto
+		else if (aviso.getTipoAviso().equals(TipoAvisoEnum.ADJUNTO)){
+			if (aviso.getUrlDestino().length() == 0){
+				errores.add("Anuncios tipo URL deben contener URL");
+			}
+		}
+		//HTML
+		else if (aviso.getTipoAviso().equals(TipoAvisoEnum.HTML)){
+
+		}
+
+		return errores;
+	}
+}
