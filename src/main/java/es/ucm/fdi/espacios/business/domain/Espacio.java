@@ -2,11 +2,14 @@ package es.ucm.fdi.espacios.business.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 @Entity
 public class Espacio {
@@ -19,9 +22,11 @@ public class Espacio {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="ESPACIO_ID")
 	private Long id;
 	
-	@OneToMany(mappedBy="espacio")
+	//@OneToMany(mappedBy="espacio", orphanRemoval=true, cascade={CascadeType.ALL})
+	@OneToMany
 	private List<Reserva> reservas;
 	
 	private String nombre;
@@ -80,8 +85,5 @@ public class Espacio {
 	public void setTipoEspacio(TipoEspacioEnum tipoEspacio) {
 		this.tipoEspacio = tipoEspacio;
 	}
-	
-	
-	
 	
 }

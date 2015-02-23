@@ -1,4 +1,4 @@
-package es.ucm.fdi.espacios.business.domain.repository.impl;
+package es.ucm.fdi.espacios.business.domain.repository.hibernate;
 
 import java.util.List;
 
@@ -44,6 +44,20 @@ public class ReservaRepositoryImpl implements ReservaRepository{
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(reserva);
 		
+	}
+
+
+	@Override
+	public Reserva getReserva(Long reservaID) {
+		Session session = sessionFactory.getCurrentSession();
+		return (Reserva) session.get(Reserva.class, reservaID);
+	}
+
+
+	@Override
+	public void eliminar(Reserva reserva) {
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(reserva);		
 	}
 
 }

@@ -1,7 +1,8 @@
-package es.ucm.fdi.espacios.business.domain.repository.impl;
+package es.ucm.fdi.espacios.business.domain.repository.hibernate;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -44,6 +45,15 @@ public class EspacioRepositoryImpl implements EspacioRepository{
 	public Espacio getEspacio(Long espacioID) {
 		Session session = sessionFactory.getCurrentSession();
 		return (Espacio) session.get(Espacio.class, espacioID);
+	}
+
+	@Override
+	public void eliminar(Long espacioID) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session
+				.createQuery("delete from Espacio e where e.id= :id");
+		query.setLong("id", espacioID);
+		query.executeUpdate();		
 	}
 
 }

@@ -56,7 +56,7 @@
 						<li><a href="<spring:url value="/reservas"/>" role="button">
 								<span class="glyphicon glyphicon-info-sign"></span> Visor
 								reservas
-						<li><a href="<spring:url value="/reservas/nuevo"></spring:url>">
+						<li><a href="<spring:url value="/reservas/nuevo"/>" role="button">
 								<span class="glyphicon glyphicon-plus"></span> Crear reserva
 						</a></li>
 					</ul></li>

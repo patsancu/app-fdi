@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,17 @@ public class Espacios {
 		return (List<Espacio>) espacioRepository.findAll();
 	}
 
-	public static Logger getLogger() {
-		return logger;
+	public void actualizaEspacio(Espacio espacio){
+		Espacio espacioExistente = espacioRepository.getEspacio(espacio.getId());
+		BeanUtils.copyProperties(espacio, espacioExistente);
+		espacioRepository.save(espacioExistente);		
+	}
+	
+	public Espacio getEspacio(Long idEspacio){
+		return espacioRepository.getEspacio(idEspacio);
+	}
+
+	public void eliminar(Long espacioID) {
+		espacioRepository.eliminar(espacioID);		
 	}
 }

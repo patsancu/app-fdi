@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -66,18 +69,48 @@ public class EspaciosController {
 		
 		espacios.addEspacio(espacio);
 
-		return new ModelAndView("redirect:/espacios/", model);
+		return new ModelAndView("redirect:/espacios", model);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/espacios/")
-	public ModelAndView listarEspacios(){
+	@RequestMapping(method = RequestMethod.GET, value = "/espacios")
+	public ModelAndView listarEspacios(HttpServletRequest request){
 		List<Espacio> listaEspacios = espacios.listarEspacios();
 		logger.warn("Listando " + listaEspacios.size() + " espacios:");
 		Map<String, Object> model = new HashMap<>();
 		
 		model.put("espacios", listaEspacios);
+		model.put("deleteAction", request.getContextPath()+"/espacios");
 		
 		
 		return new ModelAndView("listarEspacios", model);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/espacios/{id}")
+	public ModelAndView editarEspacio(@PathVariable("id") Long espacioId){
+		Map<String, Object> model = new HashMap<>();
+		model.put("modo", "Editar");
+		model.put("method", "PUT");
+		model.put("espacio", espacios.getEspacio(espacioId));		
+		
+		return new ModelAndView("editorEspacios", model);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/espacios/{id}")
+	public String actualizaEspacios(@PathVariable("id") Long espacioId, @ModelAttribute("espacio") Espacio espacio,
+			BindingResult result, HttpServletRequest request){
+		logger.debug("Actualizando espacio:" + espacio);
+		
+		espacio.setId(espacioId);
+		espacios.actualizaEspacio(espacio);
+		
+		return "redirect:/espacios";
+	}
+	
+	
+	@RequestMapping(method=RequestMethod.DELETE , value="/espacios/{id}")
+	public String eliminarEspacio(@PathVariable("id") Long espacioID) throws IOException {
+		espacios.eliminar(espacioID);
+		return "redirect:/espacios";
+	}
+	
 }

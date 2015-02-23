@@ -1,11 +1,13 @@
 package es.ucm.fdi.espacios.business.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
@@ -18,7 +20,8 @@ public class Reserva {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(optional=true,cascade={CascadeType.ALL})
+	@JoinColumn(name="ESPACIO_ID")
 	private Espacio espacio;
 	
 	private String titular;

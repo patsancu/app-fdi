@@ -8,4 +8,8 @@ public interface ReservaRepository {
 	List<Reserva> findAll();
 
 	void save(Reserva reserva);
+
+	Reserva getReserva(Long reservaID);
+
+	void eliminar(Reserva reserva);
 }
