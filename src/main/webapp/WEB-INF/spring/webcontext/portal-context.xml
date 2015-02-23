@@ -27,6 +27,7 @@
 	<!-- Packages to search for bean definitions -->	
 	<context:component-scan base-package="es.ucm.fdi.anuncios" />
 	<context:component-scan base-package="es.ucm.fdi.portal" />
+	<context:component-scan base-package="es.ucm.fdi.espacios" />
 
 	<!-- This element is used to enable annotation-based security in your application 
 		(by setting the appropriate attributes on the element) -->
@@ -39,7 +40,8 @@
 	<!-- -->
 
 	<!-- Define Spring MVC configuration using java annotations -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven  />
+	<!-- <mvc:annotation-driven validator="validator" /> -->
 
 	<!--  -->
 	<!-- Spring's DispatcherServlet serves static resources -->
@@ -58,47 +60,47 @@
 		p:hibernateProperties-ref="hibernateProperties" />
 
 	<!-- HSQL -->
-<!-- 	<bean id="portalDataSource" class="org.apache.commons.dbcp.BasicDataSource" -->
-<!-- 		destroy-method="close"> -->
-<!-- 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" /> -->
-<!-- 		 <property name="url" value="jdbc:hsqldb:./db2;shutdown=true" />  -->
-<!-- 		<property name="username" value="sa" /> -->
-<!-- 		<property name="password" value="" /> -->
-<!-- 	</bean> -->
-	
-<!-- 	<util:properties id="hibernateProperties"> -->
-<!-- 		<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop> -->
-<!-- 		<prop key="hibernate.max_fetch_depth">3</prop> -->
-<!-- 		<prop key="hibernate.jdbc.fetch_size">50</prop> -->
-<!-- 		<prop key="hibernate.jdbc.batch_size">10</prop> -->
-<!-- 		<prop key="hibernate.show_sql">false</prop> -->
-		<!-- <prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
-<!-- 		<prop key="hibernate.hbm2ddl.auto">update</prop> -->
-<!-- 	</util:properties> -->
-	<!-- FIN HSQL -->
-	
-	
-	<!-- PostgreSQL -->
-	<bean class="java.net.URI" id="dbUrl">
-		<constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
- 	</bean>
- 	
-	<bean id="portalDataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="url"
-			value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }" />
-		<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }" />
-		<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }" />
-		<property name="driverClassName" value="org.postgresql.Driver" />
+	<bean id="portalDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		 <property name="url" value="jdbc:hsqldb:./db2;shutdown=true" /> 
+		<property name="username" value="sa" />
+		<property name="password" value="" />
 	</bean>
 	
 	<util:properties id="hibernateProperties">
-		<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+		<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
 		<prop key="hibernate.max_fetch_depth">3</prop>
 		<prop key="hibernate.jdbc.fetch_size">50</prop>
 		<prop key="hibernate.jdbc.batch_size">10</prop>
 		<prop key="hibernate.show_sql">false</prop>
 		<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+		<prop key="hibernate.hbm2ddl.auto">update</prop>
 	</util:properties>
+	<!-- FIN HSQL -->
+	
+	
+	<!-- PostgreSQL -->
+<!-- 	<bean class="java.net.URI" id="dbUrl"> -->
+<!-- 		<constructor-arg value="#{systemEnvironment['DATABASE_URL']}" /> -->
+<!--  	</bean> -->
+ 	
+<!-- 	<bean id="portalDataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+<!-- 		<property name="url" -->
+<!-- 			value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }" /> -->
+<!-- 		<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }" /> -->
+<!-- 		<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }" /> -->
+<!-- 		<property name="driverClassName" value="org.postgresql.Driver" /> -->
+<!-- 	</bean> -->
+	
+<!-- 	<util:properties id="hibernateProperties"> -->
+<!-- 		<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop> -->
+<!-- 		<prop key="hibernate.max_fetch_depth">3</prop> -->
+<!-- 		<prop key="hibernate.jdbc.fetch_size">50</prop> -->
+<!-- 		<prop key="hibernate.jdbc.batch_size">10</prop> -->
+<!-- 		<prop key="hibernate.show_sql">false</prop> -->
+<!-- 		<prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
+<!-- 	</util:properties> -->
 	<!-- FIN PostgreSQL -->
 	
 	
@@ -118,8 +120,10 @@
 	
 	
 
-	<!-- Validator ***************** <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"> 
-		<property name="validationMessageSource" ref="messageSource" /> </bean> -->
+	<!-- Validator --> 
+	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"> 
+		<property name="validationMessageSource" ref="messageSource" /> 
+	</bean> -->
 
 
 	<!--  -->

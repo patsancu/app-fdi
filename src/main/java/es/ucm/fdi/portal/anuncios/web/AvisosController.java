@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,7 @@ import es.ucm.fdi.anuncios.business.Avisos;
 import es.ucm.fdi.anuncios.business.domain.Aviso;
 import es.ucm.fdi.anuncios.business.domain.AvisoBuilder;
 import es.ucm.fdi.anuncios.util.CustomRssViewer;
+import es.ucm.fdi.anuncios.validation.AvisoValidator;
 
 @Controller
 public class AvisosController {
@@ -36,6 +39,9 @@ public class AvisosController {
 	
 	@Autowired
 	private Avisos avisoService;
+	
+	@Autowired 
+	private AvisoValidator avisoValidator;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/avisos")
 	public ModelAndView listarAvisos(HttpServletRequest request) {
@@ -74,7 +80,7 @@ public class AvisosController {
 			BindingResult result) throws IOException {
 		logger.debug("Creando aviso: " + aviso);
 		Map<String, Object> model = new HashMap<>();
-		
+
 		if (aviso.getComienzoPublicacion().isAfter(aviso.getFinPublicacion()) || result.hasErrors()){			
 			if ( result.hasErrors()){
 				logger.debug("Ha habido errores ");
@@ -141,5 +147,12 @@ public class AvisosController {
 		avisoService.actualizaAviso(aviso);
 	
 		return "redirect:/avisos";
+	}
+	
+	
+	@InitBinder
+	public void initialiseBinder(WebDataBinder binder) {
+		binder.setValidator(avisoValidator);
+		binder.setDisallowedFields("id");
 	}
 }

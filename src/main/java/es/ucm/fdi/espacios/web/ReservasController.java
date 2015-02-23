@@ -15,6 +15,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,7 @@ import es.ucm.fdi.espacios.business.Espacios;
 import es.ucm.fdi.espacios.business.Reservas;
 import es.ucm.fdi.espacios.business.domain.Reserva;
 import es.ucm.fdi.espacios.business.domain.ReservaBuilder;
+import es.ucm.fdi.espacios.validation.ReservaValidator;
 
 @Controller
 public class ReservasController {
@@ -32,6 +36,9 @@ public class ReservasController {
 	
 	@Autowired
 	private Reservas reservas; 
+	
+	@Autowired
+	private ReservaValidator reservaValidator;
 	
 	@Autowired
 	private Espacios espacios;
@@ -49,7 +56,7 @@ public class ReservasController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/reservas/nuevo")
-	public ModelAndView creaNuevaReserva(@ModelAttribute("reserva") ReservaBuilder reserva,
+	public ModelAndView creaNuevaReserva(@ModelAttribute("reserva") @Validated ReservaBuilder reserva,
 			BindingResult result) throws IOException {
 		logger.debug("Creando reserva: " + reserva);
 		Map<String, Object> model = new HashMap<>();
@@ -123,4 +130,9 @@ public class ReservasController {
 		return "redirect:/reservas";
 	}
 	
+	@InitBinder
+	public void initialiseBinder(WebDataBinder binder) {
+		binder.setValidator(reservaValidator);
+		binder.setDisallowedFields("id");
+	}
 }

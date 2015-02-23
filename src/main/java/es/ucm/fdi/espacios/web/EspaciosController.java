@@ -14,6 +14,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.ucm.fdi.espacios.business.Espacios;
 import es.ucm.fdi.espacios.business.domain.Espacio;
 import es.ucm.fdi.espacios.business.domain.TipoEspacioEnum;
+import es.ucm.fdi.espacios.validation.EspacioValidator;
 
 @Controller
 public class EspaciosController {
@@ -30,6 +34,9 @@ public class EspaciosController {
 	
 	@Autowired
 	private Espacios espacios;
+	
+	@Autowired
+	private EspacioValidator espacioValidator;
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(method = RequestMethod.GET, value = "/espacios/nuevo")
@@ -43,7 +50,7 @@ public class EspaciosController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/espacios/nuevo")
-	public ModelAndView creaNuevaEspacio(@ModelAttribute("espacio") Espacio espacio,
+	public ModelAndView creaNuevaEspacio(@ModelAttribute("espacio") @Validated  Espacio espacio,
 			BindingResult result) throws IOException {
 		logger.warn("Creando espacio: " + espacio);
 		Map<String, Object> model = new HashMap<>();
@@ -111,6 +118,12 @@ public class EspaciosController {
 	public String eliminarEspacio(@PathVariable("id") Long espacioID) throws IOException {
 		espacios.eliminar(espacioID);
 		return "redirect:/espacios";
+	}
+	
+	@InitBinder
+	public void initialiseBinder(WebDataBinder binder) {
+		binder.setValidator(espacioValidator);
+		binder.setDisallowedFields("id");
 	}
 	
 }

@@ -8,7 +8,7 @@
 <section class="container center">
 	<form:form modelAttribute="aviso" class="form-horizontal"
 		enctype="multipart/form-data" method="${method}">
-		<form:errors path="*" cssClass="alert alert-danger" element="div" />
+
 		<fieldset>
 			<legend>
 				<c:out value="${modo}"></c:out>
@@ -17,6 +17,7 @@
 
 			<!-- Menú pestañas -->
 			<ul class="nav nav-tabs">
+
 				<li class="active"><a href="#basic-details" data-toggle="tab">Datos
 						básicos</a></li>
 				<li><a href="#fechas" data-toggle="tab">Fechas</a></li>
@@ -27,6 +28,7 @@
 			<div id="tabbedContent" class="tab-content">
 				<!-- Datos básicos -->
 				<div id="basic-details" class="tab-pane fade active in">
+
 
 					<!-- Tipo de Aviso -->
 					<div id="tipoAviso" class="form-group">
@@ -52,7 +54,7 @@
 					<!-- Contenido -->
 					<div id="contenidoAviso" class="form-group">
 						<label class="control-label col-lg-2" for="contenidoAviso">
-						Contenido de aviso</label>
+							Contenido de aviso</label>
 						<div class="col-lg-10">
 							<form:textarea path="contenidoAviso" type="text"
 								class="form:input-large" />
@@ -105,7 +107,7 @@
 				<div id="fechas" class="tab-pane fade">
 
 					<!-- Comienzo Publicación-->
-					<div  class="form-group fecha">
+					<div class="form-group fecha">
 						<label class="control-label col-md-2" for="comienzoPublicacion">Comienzo
 							Publicación</label>
 						<div class="col-md-2">
@@ -114,7 +116,7 @@
 					</div>
 
 					<!-- Fin Publicación -->
-					<div  class="form-group fecha">
+					<div class="form-group fecha">
 						<label class="control-label col-md-2" for="finPublicacion">Fin
 							de Publicación</label>
 						<div class="col-md-2">
@@ -137,6 +139,7 @@
 				</div>
 			</div>
 		</fieldset>
+		<form:errors  path="*" cssClass="alert alert-danger" element="div" />
 	</form:form>
 </section>
 
@@ -197,8 +200,8 @@
 </script>
 
 <!-- Prevent overlapping -->
-<style>	
-	#tabbedContent {
+<style>
+#tabbedContent {
 	margin-top: 20px;
 }
 </style>
