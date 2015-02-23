@@ -1,33 +1,21 @@
-package es.ucm.fdi.espacios.business.domain;
+package es.ucm.fdi.espacios.business.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
-public class Reserva {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+public class ReservaBuilder {
+
 	private Long id;
-	
-	@ManyToOne(optional=true,cascade={CascadeType.ALL})
-	@JoinColumn(name="ESPACIO_ID")
-	private Espacio espacio;
-	
+
 	private String titular;
-	
+
 	//Fechas
-	
+
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
 	private DateTime fechaCreacion;
@@ -39,18 +27,22 @@ public class Reserva {
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
 	private DateTime fechaFin;
-	
+
 	private String aclaraciones;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	private TipoEspacioEnum tipoEspacioEnum;
-
-	public Reserva() {
+	
+	private Long id_espacio;
+	
+	public ReservaBuilder(){
 		
 	}
 	
-	public Reserva(Long id) {
-		this.id = id;
+	public Reserva build(){
+		Reserva nuevo = new Reserva(this.id);
+		BeanUtils.copyProperties(this, nuevo);
+		return nuevo;
 	}
 
 	public Long getId() {
@@ -109,16 +101,20 @@ public class Reserva {
 		this.tipoEspacioEnum = tipoEspacioEnum;
 	}
 
-	public Espacio getEspacio() {
-		return espacio;
+	/**
+	 * @return the id_espacio
+	 */
+	public Long getId_espacio() {
+		return id_espacio;
 	}
 
-	public void setEspacio(Espacio espacio) {
-		this.espacio = espacio;
+	/**
+	 * @param id_espacio the id_espacio to set
+	 */
+	public void setId_espacio(Long id_espacio) {
+		this.id_espacio = id_espacio;
 	}
 	
 	
 
-	
-	
 }

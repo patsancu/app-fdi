@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.ucm.fdi.anuncios.business.Avisos;
-import es.ucm.fdi.anuncios.business.domain.Aviso;
-import es.ucm.fdi.anuncios.business.domain.AvisoBuilder;
+import es.ucm.fdi.anuncios.business.boundary.Avisos;
+import es.ucm.fdi.anuncios.business.entity.Aviso;
+import es.ucm.fdi.anuncios.business.entity.AvisoBuilder;
 import es.ucm.fdi.anuncios.util.CustomRssViewer;
 import es.ucm.fdi.anuncios.validation.AvisoValidator;
 

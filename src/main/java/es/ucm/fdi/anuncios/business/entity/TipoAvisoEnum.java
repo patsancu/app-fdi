@@ -1,11 +1,11 @@
-package es.ucm.fdi.anuncios.business.domain;
+package es.ucm.fdi.anuncios.business.entity;
 
-public enum PrioridadesAvisoEnum {
-	NORMAL("Normal"), IMPORTANTE("Importante");
+public enum TipoAvisoEnum {
+	URL("Enlace"), ADJUNTO("Adjunto"), HTML("Contenido HTML");
 	
 	private String description;
 	
-	private PrioridadesAvisoEnum(String description) {
+	private TipoAvisoEnum(String description) {
 		this.description = description;
 	}
 	

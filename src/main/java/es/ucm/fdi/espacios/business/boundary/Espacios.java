@@ -1,4 +1,4 @@
-package es.ucm.fdi.espacios.business;
+package es.ucm.fdi.espacios.business.boundary;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.ucm.fdi.espacios.business.control.EspacioRepository;
-import es.ucm.fdi.espacios.business.domain.Espacio;
+import es.ucm.fdi.espacios.business.entity.Espacio;
 
 @Service
 @Transactional

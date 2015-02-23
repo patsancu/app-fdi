@@ -14,7 +14,7 @@ import com.rometools.rome.feed.rss.Channel;
 import com.rometools.rome.feed.rss.Content;
 import com.rometools.rome.feed.rss.Item;
 
-import es.ucm.fdi.anuncios.business.domain.Aviso;
+import es.ucm.fdi.anuncios.business.entity.Aviso;
 
 public class CustomRssViewer extends AbstractRssFeedView {
 

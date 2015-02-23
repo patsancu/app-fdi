@@ -3,8 +3,8 @@ package es.ucm.fdi.anuncios.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.anuncios.business.domain.AvisoBuilder;
-import es.ucm.fdi.anuncios.business.domain.TipoAvisoEnum;
+import es.ucm.fdi.anuncios.business.entity.AvisoBuilder;
+import es.ucm.fdi.anuncios.business.entity.TipoAvisoEnum;
 
 public class ValidacionAviso {
 

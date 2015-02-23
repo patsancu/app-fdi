@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import es.ucm.fdi.espacios.business.domain.Espacio;
+import es.ucm.fdi.espacios.business.entity.Espacio;
 
 @Component
 public class EspacioValidator implements Validator {

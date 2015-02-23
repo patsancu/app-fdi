@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
 
-	xsi:schemaLocation="
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/tx
-      http://www.springframework.org/schema/tx/spring-tx.xsd
-      http://www.springframework.org/schema/util
-      http://www.springframework.org/schema/util/spring-util.xsd
-      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-    ">
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 	<!--  -->
 	<!-- MultipartResolver utilizado en MultipartFilter -->
@@ -21,4 +23,55 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10240000" />
 	</bean>
+	
+	<!--  -->
+	<!-- Database -->
+	<!--  -->
+		
+	<!-- Database and JPA properties -->
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<bean id="rootEntityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="rootDataSource" />
+		<property name="loadTimeWeaver">
+			<bean
+				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+		</property>
+		<property name="packagesToScan">
+			<array>
+				<value>es.ucm.fdi.users.business.entity</value>
+				<value>es.ucm.fdi.anuncios.business.entity</value>
+				<value>es.ucm.fdi.storage.business.entity</value>
+				<value>es.ucm.fdi.espacios.business.entity</value>
+			</array>
+		</property>
+		<property name="jpaVendorAdapter" ref="rootVendorAdapter" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${users.hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${users.hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${users.hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.max_fetch_depth">3</prop>
+				<prop key="hibernate.jdbc.fetch_size">50</prop>
+				<prop key="hibernate.jdbc.batch_size">10</prop>
+				<prop key="hibernate.hbm2ddl.import_files">${users.hibernate.hbm2ddl.import_files}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="rootVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+
+	<bean id="rootDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${users.jdbc.driverClassName}" />
+		<property name="url" value="${users.jdbc.url}" />
+		<property name="username" value="${users.jdbc.username}" />
+		<property name="password" value="${users.jdbc.password}" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="rootTransactionManager" />
+	
+	<bean id="rootTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="rootEntityManagerFactory" />
 </beans>

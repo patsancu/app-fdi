@@ -1,4 +1,4 @@
-package es.ucm.fdi.espacios.business.domain;
+package es.ucm.fdi.espacios.business.entity;
 
 public enum TipoEspacioEnum {
 	AULA("aula"), SALA("sala"), AUDITORIO("auditorio");

@@ -1,4 +1,4 @@
-package es.ucm.fdi.anuncios.business;
+package es.ucm.fdi.anuncios.business.boundary;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.ucm.fdi.anuncios.business.control.AvisoRepository;
-import es.ucm.fdi.anuncios.business.domain.Aviso;
-import es.ucm.fdi.anuncios.business.domain.AvisoBuilder;
+import es.ucm.fdi.anuncios.business.entity.Aviso;
+import es.ucm.fdi.anuncios.business.entity.AvisoBuilder;
 import es.ucm.fdi.storage.business.boundary.StorageManager;
 import es.ucm.fdi.storage.business.entity.StorageObjectId;
 
@@ -76,26 +76,28 @@ public class Avisos {
 		avisoRepository.delete(aviso);
 	}
 
-	public void addAviso(AvisoBuilder builder) throws IOException {
+	public Aviso addAviso(AvisoBuilder builder) throws IOException {
 		if (builder.getFechaCreacion() ==  null) {
 			builder.setFechaCreacion(DateTime.now());
 		}
 		Aviso aviso = builder.build();
-		avisoRepository.save(aviso);
+		aviso = avisoRepository.save(aviso);
 		MultipartFile file = builder.getAdjunto();
 		if (file != null && !file.isEmpty()) {
 			String key = getStorageKey(aviso.getId());
 			String mimeType = file.getContentType();
 			storageManager.putObject(bucket, key, mimeType, file.getInputStream());
 			aviso.setAdjunto(storageManager.getUrl(bucket, key).toExternalForm());
+			avisoRepository.save(aviso);
 		}
+		return aviso;
 	}
 	
 	private String getStorageKey(Long id) {
 		return "attachment/"+Long.toString(id);
 	}
 
-	public void actualizaAviso(AvisoBuilder builder) throws IOException {
+	public Aviso actualizaAviso(AvisoBuilder builder) throws IOException {
 		Aviso newAviso = builder.build();
 		Aviso aviso = avisoRepository.findOne(newAviso.getId());
 		String adjunto = aviso.getAdjunto();
@@ -112,6 +114,6 @@ public class Avisos {
 			newAviso.setAdjunto(storageManager.getUrl(bucket, key).toExternalForm());
 		}
 		BeanUtils.copyProperties(newAviso, aviso);
-		avisoRepository.save(aviso);
+		return avisoRepository.save(aviso);
 	}
 }
