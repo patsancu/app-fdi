@@ -54,26 +54,26 @@ public class Avisos {
 		this.bucket = bucket;
 	}
 
-	public List<Aviso> getAvisos() {
-		return avisoRepository.getAllAvisos();
+	public Iterable<Aviso> getAvisos() {
+		return avisoRepository.findAll();
 	}
 
 	public Aviso getAviso(Long avisoID) {
-		return avisoRepository.getAviso(avisoID);
+		return avisoRepository.findOne(avisoID);
 	}
 
-	public List<Aviso> getAvisosByCategory(String category) {
-		return avisoRepository.getAvisosByCategory(category);
+	public List<Aviso> findByEtiqueta(String etiqueta) {
+		return avisoRepository.findByEtiqueta(etiqueta);
 	}
 
 	public void eliminarAviso(Long avisoID) throws IOException {
-		Aviso aviso = avisoRepository.getAviso(avisoID);
+		Aviso aviso = avisoRepository.findOne(avisoID);
 		String adjunto = aviso.getAdjunto();
 		if (adjunto != null) {
 			StorageObjectId id = storageManager.getObjectId(adjunto);
 			storageManager.removeObject(id);
 		}
-		avisoRepository.eliminarAviso(aviso);
+		avisoRepository.delete(aviso);
 	}
 
 	public void addAviso(AvisoBuilder builder) throws IOException {
@@ -81,7 +81,7 @@ public class Avisos {
 			builder.setFechaCreacion(DateTime.now());
 		}
 		Aviso aviso = builder.build();
-		avisoRepository.addAviso(aviso);
+		avisoRepository.save(aviso);
 		MultipartFile file = builder.getAdjunto();
 		if (file != null && !file.isEmpty()) {
 			String key = getStorageKey(aviso.getId());
@@ -97,7 +97,7 @@ public class Avisos {
 
 	public void actualizaAviso(AvisoBuilder builder) throws IOException {
 		Aviso newAviso = builder.build();
-		Aviso aviso = avisoRepository.getAviso(newAviso.getId());
+		Aviso aviso = avisoRepository.findOne(newAviso.getId());
 		String adjunto = aviso.getAdjunto();
 		if (adjunto != null) {
 			StorageObjectId id = storageManager.getObjectId(adjunto);
@@ -112,6 +112,6 @@ public class Avisos {
 			newAviso.setAdjunto(storageManager.getUrl(bucket, key).toExternalForm());
 		}
 		BeanUtils.copyProperties(newAviso, aviso);
-		avisoRepository.addAviso(aviso);
+		avisoRepository.save(aviso);
 	}
 }

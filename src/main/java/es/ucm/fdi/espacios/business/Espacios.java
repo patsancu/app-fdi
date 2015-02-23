@@ -13,7 +13,7 @@ import es.ucm.fdi.espacios.business.control.EspacioRepository;
 import es.ucm.fdi.espacios.business.domain.Espacio;
 
 @Service
-@Transactional//(value="espaciosTransactionManager")
+@Transactional
 public class Espacios {
 	@Autowired
 	EspacioRepository espacioRepository;
@@ -29,16 +29,16 @@ public class Espacios {
 	}
 
 	public void actualizaEspacio(Espacio espacio){
-		Espacio espacioExistente = espacioRepository.getEspacio(espacio.getId());
+		Espacio espacioExistente = espacioRepository.findOne(espacio.getId());
 		BeanUtils.copyProperties(espacio, espacioExistente);
 		espacioRepository.save(espacioExistente);		
 	}
 	
 	public Espacio getEspacio(Long idEspacio){
-		return espacioRepository.getEspacio(idEspacio);
+		return espacioRepository.findOne(idEspacio);
 	}
 
 	public void eliminar(Long espacioID) {
-		espacioRepository.eliminar(espacioID);		
+		espacioRepository.delete(espacioID);		
 	}
 }

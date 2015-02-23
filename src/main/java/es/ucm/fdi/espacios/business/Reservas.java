@@ -12,7 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.ucm.fdi.espacios.business.control.EspacioRepository;
 import es.ucm.fdi.espacios.business.control.ReservaRepository;
 import es.ucm.fdi.espacios.business.domain.Espacio;
 import es.ucm.fdi.espacios.business.domain.Reserva;
@@ -25,7 +24,7 @@ public class Reservas {
 	ReservaRepository reservaRepository;
 	
 	@Autowired
-	EspacioRepository espacioRepository;
+	Espacios espacios;
 
 	private static final Logger logger = LoggerFactory.getLogger("es.ucm.fdi.espacios");
 
@@ -41,7 +40,7 @@ public class Reservas {
 		Reserva reserva = builder.build();
 		reserva.setTitular(titularReserva);
 		
-		Espacio espacio = espacioRepository.getEspacio(builder.getId_espacio());
+		Espacio espacio = espacios.getEspacio(builder.getId_espacio());
 	
 		reserva.setEspacio(espacio);
 		
@@ -53,23 +52,20 @@ public class Reservas {
 	}
 
 	public void eliminar(Long espacioID) {
-		Reserva reserva = reservaRepository.getReserva(espacioID);
-		
-		reservaRepository.eliminar(reserva);
-		
+		reservaRepository.delete(espacioID);
 	}
 
 	public Reserva getReserva(Long reservaId) {
-		return reservaRepository.getReserva(reservaId);
+		return reservaRepository.findOne(reservaId);
 	}
 
 	public void actualiza(ReservaBuilder reserva) {
 		Reserva nuevaReserva = reserva.build();		
-		Reserva reservaExistente = reservaRepository.getReserva(reserva.getId());
+		Reserva reservaExistente = reservaRepository.findOne(reserva.getId());
 		//ignores the "titular" field, since it's not defined in ReservaBuilder
 		BeanUtils.copyProperties(nuevaReserva, reservaExistente, "titular"); 	
 		
-		Espacio espacio = espacioRepository.getEspacio(reserva.getId_espacio());
+		Espacio espacio = espacios.getEspacio(reserva.getId_espacio());
 		
 		reservaExistente.setEspacio(espacio);
 		

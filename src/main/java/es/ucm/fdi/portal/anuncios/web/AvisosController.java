@@ -1,9 +1,7 @@
 package es.ucm.fdi.portal.anuncios.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,8 +58,7 @@ public class AvisosController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/avisos/feed", produces = "application/xml")
 	public ModelAndView rssVisor() {
-		List<Aviso> items = new ArrayList<Aviso>();
-		items = avisoService.getAvisos();
+		Iterable<Aviso> items = avisoService.getAvisos();
 		return new ModelAndView(new CustomRssViewer(), "feedContent", items);
 	}
 
