@@ -15,7 +15,7 @@
 
 	<!-- -->
 	<!-- JavaEE error pages -->
-	<!-- 
+	
 	<error-page>
 		<error-code>404</error-code>
 		<location>/static/404.html</location>
@@ -28,7 +28,6 @@
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/static/500.html</location>
 	</error-page>
--->
 	<!-- General error page 
 	<error-page>
 		<location>/static/500.html</location>

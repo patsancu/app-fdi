@@ -55,7 +55,7 @@
 						<li class="dropdown-header">Reservas</li>
 						<li><a href="<spring:url value="/reservas"/>" role="button">
 								<span class="glyphicon glyphicon-info-sign"></span> Visor
-								reservas
+								reservas</a>
 						<li><a href="<spring:url value="/reservas/nuevo"/>" role="button">
 								<span class="glyphicon glyphicon-plus"></span> Crear reserva
 						</a></li>
