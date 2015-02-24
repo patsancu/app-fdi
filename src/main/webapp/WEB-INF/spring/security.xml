@@ -25,64 +25,10 @@
 	http://www.springframework.org/schema/security/spring-security.xsd">
 	
 	<context:component-scan base-package="es.ucm.fdi.users.business.boundary" />
-	
-	<!-- Database and JPA properties -->
-	<context:property-placeholder location="classpath:users-db.properties" />
 
 	<data:repositories base-package="es.ucm.fdi.users.business.control"
-		entity-manager-factory-ref="usersEntityManagerFactory"
-		transaction-manager-ref="usersTransactionManager" />
-
-	<beans:bean id="usersEntityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<beans:property name="dataSource" ref="usersDataSource" />
-		<beans:property name="loadTimeWeaver">
-			<beans:bean
-				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
-		</beans:property>
-		<beans:property name="packagesToScan">
-			<beans:array>
-				<beans:value>es.ucm.fdi.users.business.entity</beans:value>
-			</beans:array>
-		</beans:property>
-		<beans:property name="jpaVendorAdapter" ref="usersJpaVendorAdapter" />
-		<beans:property name="jpaProperties">
-			<beans:props>
-				<beans:prop key="hibernate.dialect">${users.hibernate.dialect}</beans:prop>
-				<beans:prop key="hibernate.show_sql">${users.hibernate.show_sql}</beans:prop>
-				<beans:prop key="hibernate.hbm2ddl.auto">${users.hibernate.hbm2ddl.auto}</beans:prop>
-				<beans:prop key="hibernate.max_fetch_depth">3</beans:prop>
-				<beans:prop key="hibernate.jdbc.fetch_size">50</beans:prop>
-				<beans:prop key="hibernate.jdbc.batch_size">10</beans:prop>
-				<beans:prop key="hibernate.hbm2ddl.import_files">${users.hibernate.hbm2ddl.import_files}</beans:prop>
-			</beans:props>
-		</beans:property>
-	</beans:bean>
-
-	<beans:bean id="usersJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-
-	<beans:bean id="usersDataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<beans:property name="driverClassName" value="${users.jdbc.driverClassName}" />
-		<beans:property name="url" value="${users.jdbc.url}" />
-		<beans:property name="username" value="${users.jdbc.username}" />
-		<beans:property name="password" value="${users.jdbc.password}" />
-	</beans:bean>
-
-	<tx:annotation-driven />
-	
-	<beans:bean id="usersTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-		p:entityManagerFactory-ref="usersEntityManagerFactory" />
-
-
-	<!-- -->
-	<!-- Spring MVC configuration -->
-	<!-- -->
-
-	<!-- Define Spring MVC configuration using java annotations -->
-	<mvc:annotation-driven />
-
-	<context:component-scan base-package="es.ucm.fdi.users.web" />
+		entity-manager-factory-ref="rootEntityManagerFactory"
+		transaction-manager-ref="rootTransactionManager" />
 
 	<!-- See https://github.com/spring-projects/spring-security/tree/master/samples/tutorial-xml sample -->
 
@@ -90,12 +36,12 @@
 		human-readable (multi-line) debugging information to monitor requests coming 
 		into the security filters. -->
 	<!-- See: http://docs.spring.io/spring-security/site/docs/4.0.0.RC1/reference/htmlsingle/#nsa-debug -->
-	<debug />
+<!-- 	<debug /> -->
 
 	<!-- This element is used to enable annotation-based security in your application 
 		(by setting the appropriate attributes on the element) -->
 	<!-- See: http://docs.spring.io/spring-security/site/docs/4.0.0.RC1/reference/htmlsingle/#ns-global-method --> 
-	<global-method-security secured-annotations="enabled" />
+	<global-method-security pre-post-annotations="enabled" />
 
 	<http pattern="/static/**" security="none" />
 

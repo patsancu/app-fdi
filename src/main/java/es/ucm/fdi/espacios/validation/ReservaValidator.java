@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import es.ucm.fdi.espacios.business.domain.ReservaBuilder;
+import es.ucm.fdi.espacios.business.entity.ReservaBuilder;
 
 @Component
 public class ReservaValidator implements Validator {

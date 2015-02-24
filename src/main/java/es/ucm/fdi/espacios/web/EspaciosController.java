@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.ucm.fdi.espacios.business.Espacios;
-import es.ucm.fdi.espacios.business.domain.Espacio;
-import es.ucm.fdi.espacios.business.domain.TipoEspacioEnum;
+import es.ucm.fdi.espacios.business.boundary.Espacios;
+import es.ucm.fdi.espacios.business.entity.Espacio;
+import es.ucm.fdi.espacios.business.entity.TipoEspacioEnum;
 import es.ucm.fdi.espacios.validation.EspacioValidator;
 
 @Controller

@@ -2,12 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:context="http://www.springframework.org/schema/context"	
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:data="http://www.springframework.org/schema/data/jpa"
-	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -19,20 +19,43 @@
 	http://www.springframework.org/schema/context/spring-context-4.0.xsd
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-	http://www.springframework.org/schema/data/jpa
-	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security.xsd">
+	http://www.springframework.org/schema/data/jpa 
+	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-	<!-- Packages to search for bean definitions -->	
-	<context:component-scan base-package="es.ucm.fdi.anuncios" />
-	<context:component-scan base-package="es.ucm.fdi.portal" />
-	<context:component-scan base-package="es.ucm.fdi.espacios" />
 
-	<!-- This element is used to enable annotation-based security in your application 
-		(by setting the appropriate attributes on the element) -->
-	<!-- See: http://docs.spring.io/spring-security/site/docs/4.0.0.RC1/reference/htmlsingle/#ns-global-method --> 
-	<security:global-method-security pre-post-annotations="enabled" />
+	<!-- Packages to search for @Service beans definitions -->
+	<context:component-scan base-package="es.ucm.fdi.avisos.boundary" />
+	<context:component-scan base-package="es.ucm.fdi.storage.business.boundary" />
+	<context:component-scan base-package="es.ucm.fdi.espacios.business.boundary" />
+
+
+	<!-- Packages to search for @Controller beans definitions -->
+	<context:component-scan base-package="es.ucm.fdi.portal.web" />
+	<context:component-scan base-package="es.ucm.fdi.avisos.web" />
+	<context:component-scan base-package="es.ucm.fdi.espacios.web" />
+	<context:component-scan base-package="es.ucm.fdi.storage.web" />
+	
+	<context:component-scan base-package="es.ucm.fdi.avisos.validation" />
+	<context:component-scan base-package="es.ucm.fdi.espacios.validation" />
+	
+	<!-- Packages to search for @Repository beans definitions -->
+	<data:repositories base-package="es.ucm.fdi.storage.business.control"
+		entity-manager-factory-ref="rootEntityManagerFactory"
+		transaction-manager-ref="rootTransactionManager" />
+		
+	<data:repositories base-package="es.ucm.fdi.avisos.business.control" 
+		entity-manager-factory-ref="rootEntityManagerFactory"
+		transaction-manager-ref="rootTransactionManager" />
+		
+	<data:repositories base-package="es.ucm.fdi.espacios.business.control" 
+		entity-manager-factory-ref="rootEntityManagerFactory"
+		transaction-manager-ref="rootTransactionManager" />
+
+	<util:properties id="storagePrefs">
+		<prop key="rootPath">WEB-INF/storage</prop>
+		<prop key="serviceURL">http://localhost:8080/portal/storage/</prop>
+	</util:properties>
+
 
 
 	<!-- -->
@@ -54,32 +77,6 @@
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
 		p:basename="classpath:messages" />
 		
-	<bean id="portalSessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-		p:dataSource-ref="portalDataSource" p:packagesToScan="es.ucm.fdi.anuncios, es.ucm.fdi.espacios"
-		p:hibernateProperties-ref="hibernateProperties" />
-
-	<!-- HSQL -->
-	<bean id="portalDataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-		 <property name="url" value="jdbc:hsqldb:./db2;shutdown=true" /> 
-		<property name="username" value="sa" />
-		<property name="password" value="" />
-	</bean>
-	
-	<util:properties id="hibernateProperties">
-		<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
-		<prop key="hibernate.max_fetch_depth">3</prop>
-		<prop key="hibernate.jdbc.fetch_size">50</prop>
-		<prop key="hibernate.jdbc.batch_size">10</prop>
-		<prop key="hibernate.show_sql">false</prop>
-		<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-		<prop key="hibernate.hbm2ddl.auto">update</prop>
-	</util:properties>
-	<!-- FIN HSQL -->
-	
-	
 	<!-- PostgreSQL -->
 <!-- 	<bean class="java.net.URI" id="dbUrl"> -->
 <!-- 		<constructor-arg value="#{systemEnvironment['DATABASE_URL']}" /> -->
@@ -109,31 +106,11 @@
 		<prop key="bucket">avisos</prop>
 	</util:properties>
 	
-	<bean id="portalTransactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-		p:sessionFactory-ref="portalSessionFactory" primary="true" />
-
-	<tx:annotation-driven transaction-manager="portalTransactionManager" />
-
-	
-
-	
-	
-
 	<!-- Validator --> 
 	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"> 
 		<property name="validationMessageSource" ref="messageSource" /> 
 	</bean> -->
 
-
-	<!--  -->
-	<!-- Subida archivos -->
-	<!-- http://blog.leituo.org/spring-mvc-the-put-method-nightmare-and-the-solution/ -->
-	<!-- 	
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="10240000" />
-	</bean>-->
 	
 	<!--  -->
 	<!-- Declaring Spring-MVC's views resolvers -->

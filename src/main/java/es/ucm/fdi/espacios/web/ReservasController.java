@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.ucm.fdi.espacios.business.Espacios;
-import es.ucm.fdi.espacios.business.Reservas;
-import es.ucm.fdi.espacios.business.domain.Reserva;
-import es.ucm.fdi.espacios.business.domain.ReservaBuilder;
+import es.ucm.fdi.espacios.business.boundary.Espacios;
+import es.ucm.fdi.espacios.business.boundary.Reservas;
+import es.ucm.fdi.espacios.business.entity.Reserva;
+import es.ucm.fdi.espacios.business.entity.ReservaBuilder;
 import es.ucm.fdi.espacios.validation.ReservaValidator;
 
 @Controller
