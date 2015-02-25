@@ -111,4 +111,23 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarReservas.jsp" />
 	</definition>
 	
+	<!-- Creador de reservas -->
+	<definition name="editorUsuarios" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="Crear Usuario" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/editorUsuarios_resources.jsp" />
+		<put-attribute name="heading" value="Crear usuario" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorUsuarios.jsp" />
+	</definition>
+	
+	
+	<!-- Listado de usuarios -->
+	<definition name="listarUsuarios" extends="baseLayout">
+		<put-attribute name="title" value="Listado de Usuarios" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/listarUsuarios_resources.jsp" />
+		<put-attribute name="heading" value="Listado de Usuarios" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarUsuarios.jsp" />
+	</definition>
+	
 </tiles-definitions>

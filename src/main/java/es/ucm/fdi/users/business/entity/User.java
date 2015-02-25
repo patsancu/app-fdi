@@ -54,7 +54,7 @@ public class User implements UserDetails, CredentialsContainer {
 	@CollectionTable(name="USER_ROLES", joinColumns=@JoinColumn(name="user"),  uniqueConstraints=@UniqueConstraint(columnNames={"user", "role"}))
 	private Collection<UserRole> roles;
 	
-	User() {
+	public User() {
 		this.accountNonExpired = true;
 		this.credentialsNonExpired = true;
 		this.enabled = false;
@@ -62,6 +62,10 @@ public class User implements UserDetails, CredentialsContainer {
 	
 	public User(String email) {
 		this.email = email;
+	}
+
+	public User(Long id) {
+		this.id = id;
 	}
 
 	public Long getId() {
@@ -78,6 +82,14 @@ public class User implements UserDetails, CredentialsContainer {
 
 	void setEmail(String email) {
 		this.email = email;
+	}
+	
+	void setUserName(String username){
+		this.username = username;
+	}
+	
+	void setPassword(String password){
+		this.password = password;
 	}
 
 	@Override
