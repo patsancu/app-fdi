@@ -29,21 +29,21 @@ public class Reserva {
 	//Fechas
 	
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private DateTime fechaCreacion;
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private DateTime fechaInicio;
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private DateTime fechaFin;
 	
 	private String aclaraciones;
 	
-	@Enumerated(EnumType.ORDINAL)
-	private TipoEspacioEnum tipoEspacioEnum;
+//	@Enumerated(EnumType.ORDINAL)
+//	private TipoEspacioEnum tipoEspacioEnum;
 
 	public Reserva() {
 		
@@ -101,13 +101,13 @@ public class Reserva {
 		this.aclaraciones = aclaraciones;
 	}
 
-	public TipoEspacioEnum getTipoEspacioEnum() {
-		return tipoEspacioEnum;
-	}
-
-	public void setTipoEspacioEnum(TipoEspacioEnum tipoEspacioEnum) {
-		this.tipoEspacioEnum = tipoEspacioEnum;
-	}
+//	public TipoEspacioEnum getTipoEspacioEnum() {
+//		return tipoEspacioEnum;
+//	}
+//
+//	public void setTipoEspacioEnum(TipoEspacioEnum tipoEspacioEnum) {
+//		this.tipoEspacioEnum = tipoEspacioEnum;
+//	}
 
 	public Espacio getEspacio() {
 		return espacio;
@@ -116,9 +116,15 @@ public class Reserva {
 	public void setEspacio(Espacio espacio) {
 		this.espacio = espacio;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "Reserva [id=" + id + ", espacio=" + espacio + ", titular="
+				+ titular + ", fechaCreacion=" + fechaCreacion
+				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
+				+ ", aclaraciones=" + aclaraciones + ", tipoEspacioEnum="
+				+ "]";
+	}
 	
 	
 }

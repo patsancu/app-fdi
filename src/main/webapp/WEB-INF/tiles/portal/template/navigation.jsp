@@ -53,6 +53,9 @@
 						</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Reservas</li>
+						<li><a href="<spring:url value="/reservas/calendario"/>" role="button">
+								<span class="glyphicon glyphicon-calendar"></span> Visor
+								reservas</a>
 						<li><a href="<spring:url value="/reservas"/>" role="button">
 								<span class="glyphicon glyphicon-info-sign"></span> Visor
 								reservas</a>

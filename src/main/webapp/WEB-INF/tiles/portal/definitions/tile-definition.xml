@@ -130,4 +130,14 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarUsuarios.jsp" />
 	</definition>
 	
+	
+	<!-- Listado de reservas -->
+	<definition name="calendarioReservas" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="Listado de Reservas" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/calendarioReservas_resources.jsp" />
+		<put-attribute name="heading" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/calendarioReservas.jsp" />
+	</definition>
+	
 </tiles-definitions>
