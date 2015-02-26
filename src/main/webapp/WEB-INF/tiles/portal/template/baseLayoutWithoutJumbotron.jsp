@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="<c:url value="/static/css/globalStyle.css" />">
 
 <tiles:insertAttribute name="resources" />
+<title><tiles:insertAttribute name="title" /></title>
 </head>
 <body>
 	<div class="container">
