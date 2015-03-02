@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.URL;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,6 +33,9 @@ public class Aviso {
 	private String etiqueta;
 
 	private String autor;
+	
+	@URL
+	private String urlDestino;
 
 	// Fechas
 
@@ -143,6 +147,20 @@ public class Aviso {
 
 	public void setPrioridadAviso(PrioridadesAvisoEnum prioridadAviso) {
 		this.prioridadAviso = prioridadAviso;
+	}
+
+	/**
+	 * @return the urlDestino
+	 */
+	public String getUrlDestino() {
+		return urlDestino;
+	}
+
+	/**
+	 * @param urlDestino the urlDestino to set
+	 */
+	public void setUrlDestino(String urlDestino) {
+		this.urlDestino = urlDestino;
 	}
 
 	
