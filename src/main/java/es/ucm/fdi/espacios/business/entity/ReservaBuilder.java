@@ -17,15 +17,15 @@ public class ReservaBuilder {
 	//Fechas
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private DateTime fechaCreacion;
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private DateTime fechaInicio;
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private DateTime fechaFin;
 
 	private String aclaraciones;
@@ -114,6 +114,17 @@ public class ReservaBuilder {
 	public void setId_espacio(Long id_espacio) {
 		this.id_espacio = id_espacio;
 	}
+
+	@Override
+	public String toString() {
+		return "ReservaBuilder [id=" + id + ", titular=" + titular
+				+ ", fechaCreacion=" + fechaCreacion + ", fechaInicio="
+				+ fechaInicio + ", fechaFin=" + fechaFin + ", aclaraciones="
+				+ aclaraciones + ", tipoEspacioEnum=" + tipoEspacioEnum
+				+ ", id_espacio=" + id_espacio + "]";
+	}
+	
+	
 	
 	
 
