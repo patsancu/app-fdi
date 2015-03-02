@@ -2,6 +2,7 @@ package es.ucm.fdi.espacios.business.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -25,7 +26,7 @@ public class Espacio {
 	@Column(name="ESPACIO_ID")
 	private Long id;
 	
-	@OneToMany(mappedBy="espacio")
+	@OneToMany(mappedBy="espacio", cascade={CascadeType.ALL})
 	private List<Reserva> reservas;
 	
 	private String nombre;
