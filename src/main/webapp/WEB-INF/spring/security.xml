@@ -23,7 +23,7 @@
 	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
-	
+
 	<context:component-scan base-package="es.ucm.fdi.users.business.boundary" />
 
 	<data:repositories base-package="es.ucm.fdi.users.business.control"
@@ -44,13 +44,14 @@
 	<global-method-security pre-post-annotations="enabled" />
 
 	<http pattern="/static/**" security="none" />
-	
-	<http pattern="/login.jsp" security="none" />
 
 	<http auto-config="true" create-session="always">
-
+		<intercept-url pattern="/login*" access="isAnonymous()" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
-		<form-login login-page="/login.jsp" default-target-url="/avisos/"/>
+		<form-login login-processing-url="/login" login-page="/loginPage"
+            username-parameter="username" password-parameter="password"
+            default-target-url="/avisos/" authentication-failure-url="/loginPage?auth=error" />
+            
 		<!-- http://www.waitingforcode.com/spring-security/csrf-protection-in-spring-security/read -->
 		<logout />
 	</http>
