@@ -77,9 +77,33 @@ public class Avisos {
 	}
 
 	public Aviso addAviso(AvisoBuilder builder) throws IOException {
+		
+		//Parámetros por defecto
 		if (builder.getFechaCreacion() ==  null) {
 			builder.setFechaCreacion(DateTime.now());
 		}
+		
+		// * Si las dos fechas son nulas, se establece que el aviso empezará una hora después del momento actual
+		//    y durará dos horas
+		// * Si solo es una fecha nula, el evento durará dos horas
+		if (builder.getComienzoPublicacion() == null){
+			if (builder.getFinPublicacion() == null){
+				builder.setComienzoPublicacion(DateTime.now().plusHours(1));
+				builder.setFinPublicacion(builder.getComienzoPublicacion().plusHours(2));
+			}
+			else{
+				builder.setComienzoPublicacion(builder.getFinPublicacion().minusHours(2));
+			}
+		}
+		else{
+			if (builder.getFinPublicacion() == null){
+				builder.setFinPublicacion(builder.getComienzoPublicacion().plusHours(2));
+			}
+		}
+		
+		
+		
+		
 		Aviso aviso = builder.build();
 		aviso = avisoRepository.save(aviso);
 		MultipartFile file = builder.getAdjunto();
