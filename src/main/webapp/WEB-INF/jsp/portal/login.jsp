@@ -16,23 +16,23 @@
 <head>
 <title>Login</title>
 </head>
-
-
 <body>
-<%-- 	<c:url value="/login" var="loginUrl" /> --%>
-	<%-- <c:url value="/j_spring_security_check" var="loginUrl" /> --%>
-	<spring:url value="/j_spring_security_check" var="loginUrl" />
-
-	${loginUrl}
 	<div class="container">
-		<form:form  name="f" action="${loginUrl}" method="post">
+		<c:url value="/login" var="loginUrl" />
+		<form:form  action="${loginUrl}" method="POST">
+			<c:if test="${param.error != null}">
+				<p><spring:message code="login.invalid" /></p>
+			</c:if>
+			<c:if test="${param.logout != null}">
+				<p><spring:message code="login.logout" /></p>
+			</c:if>
 			<fieldset>
 				<legend>Please Login</legend>
 				
 				<label for="username">Username</label> <input type="text"
-					id="username" name="j_username" value="${username}" /> <label
+					id="username" name="username" value="${username}" /> <label
 					for="password">Password</label> <input type="password"
-					id="password" type="password" name="j_password" />
+					id="password" type="password" name="password" />
 				<div class="form-actions">
 					<button type="submit" class="btn">Log in</button>
 				</div>
