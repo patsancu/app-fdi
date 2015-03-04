@@ -32,6 +32,8 @@ public class Aviso {
 	private String etiqueta;
 
 	private String autor;
+	
+	private String urlDestino;
 
 	// Fechas
 
@@ -143,6 +145,20 @@ public class Aviso {
 
 	public void setPrioridadAviso(PrioridadesAvisoEnum prioridadAviso) {
 		this.prioridadAviso = prioridadAviso;
+	}
+
+	/**
+	 * @return the urlDestino
+	 */
+	public String getUrlDestino() {
+		return urlDestino;
+	}
+
+	/**
+	 * @param urlDestino the urlDestino to set
+	 */
+	public void setUrlDestino(String urlDestino) {
+		this.urlDestino = urlDestino;
 	}
 
 	
