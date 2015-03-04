@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.ucm.fdi.users.business.control.UserRepository;
+import es.ucm.fdi.users.business.entity.User;
+import es.ucm.fdi.users.business.entity.UserBuilder;
 
 @Service(value="usersManager")
-@Transactional
+@Transactional("rootTransactionManager")
 public class UsersManager implements UserDetailsService {
 
 	@Autowired
@@ -31,5 +33,16 @@ public class UsersManager implements UserDetailsService {
 		
 		return user;
 	}
+	
+	public User saveUser(UserBuilder builder){
+		User user = builder.build();
+		user = repository.save(user);
+		return user;
+	}
 
+	public Iterable<User> listUsers() {
+		return repository.findAll();
+	}
+
+	
 }

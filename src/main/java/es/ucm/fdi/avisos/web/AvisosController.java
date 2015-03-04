@@ -34,10 +34,10 @@ public class AvisosController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger("es.ucm.fdi.avisos");
-	
+
 	@Autowired
 	private Avisos avisoService;
-	
+
 	@Autowired 
 	private AvisoValidator avisoValidator;
 
@@ -78,21 +78,19 @@ public class AvisosController {
 		logger.debug("Creando aviso: " + aviso);
 		Map<String, Object> model = new HashMap<>();
 
-		if (aviso.getComienzoPublicacion().isAfter(aviso.getFinPublicacion()) || result.hasErrors()){			
-			if ( result.hasErrors()){
-				logger.debug("Ha habido errores ");
-				logger.debug(result.getAllErrors().toString());
-			}
-			else{
-				logger.debug("Fecha comienzo " + aviso.getComienzoPublicacion() + " > " + aviso.getFinPublicacion() + "Fecha fin");
-				
-			}
+
+		if ( result.hasErrors()){
+			logger.debug("Ha habido errores ");
+			logger.debug(result.getAllErrors().toString());
 			model.put("modo", "Crear");
 			model.put("method", "POST");
 			model.put("aviso", aviso);
 			return new ModelAndView("editorAvisos", model);
 		}
-		
+
+
+
+
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			logger.error("Attempting to bind disallowed fields: "
@@ -105,7 +103,7 @@ public class AvisosController {
 
 		return new ModelAndView("redirect:/avisos", model);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/avisos/{id}")
 	public ModelAndView editarAviso(@PathVariable("id") Long avisoID) {
 		Map<String, Object> model = new HashMap<>();
@@ -117,7 +115,7 @@ public class AvisosController {
 		model.put("aviso", avisoForm);
 		return new ModelAndView("editorAvisos", model);
 	}
-	
+
 	@RequestMapping(method=RequestMethod.DELETE , value="/avisos/{id}")
 	public String eliminarAviso(@PathVariable("id") Long avisoID) throws IOException {
 		avisoService.eliminarAviso(avisoID);
@@ -142,11 +140,11 @@ public class AvisosController {
 		}
 		aviso.setId(avisoID);
 		avisoService.actualizaAviso(aviso);
-	
+
 		return "redirect:/avisos";
 	}
-	
-	
+
+
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 		binder.setValidator(avisoValidator);

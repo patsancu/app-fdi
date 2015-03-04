@@ -24,8 +24,10 @@ public class AvisoValidator implements Validator {
         	e.rejectValue("titulo", "Size.Aviso.titulo.validation");
         }
         
-        if (a.getComienzoPublicacion().isAfter(a.getFinPublicacion())){
-        	e.rejectValue("comienzoPublicacion", "Size.Aviso.fecha.validaton");
+        if (a.getComienzoPublicacion() != null && a.getFinPublicacion() != null){
+        	if (a.getComienzoPublicacion().isAfter(a.getFinPublicacion())){
+            	e.rejectValue("comienzoPublicacion", "Size.Aviso.fecha.validaton");
+            }
         }
         
 	}

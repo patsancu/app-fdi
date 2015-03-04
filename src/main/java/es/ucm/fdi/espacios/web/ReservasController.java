@@ -130,6 +130,17 @@ public class ReservasController {
 		return "redirect:/reservas";
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/reservas/calendario")
+	public ModelAndView calendarioReservas(HttpServletRequest request){
+		Map<String, Object> model = new HashMap<>();		
+		
+		List<Reserva> listaReservas = reservas.listReservas();
+		model.put("reservas", listaReservas);
+		model.put("deleteAction", request.getContextPath()+"/reservas");
+		
+		return new ModelAndView("calendarioReservas", model);
+	}
+	
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 		binder.setValidator(reservaValidator);

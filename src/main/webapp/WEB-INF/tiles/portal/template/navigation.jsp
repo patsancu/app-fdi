@@ -38,29 +38,47 @@
 						</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Espacios
+					data-toggle="dropdown" role="button" aria-expanded="false">Reservas
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li class="dropdown-header">Espacios</li>
-						<li><a href="<spring:url value="/espacios/"/>" role="button">
-								<span class="glyphicon glyphicon-info-sign"></span> Visor
-								espacios
-						</a></li>
-						<li><a href="<spring:url value="/espacios/nuevo"/>" role="button">
-								<span class="glyphicon glyphicon-plus"></span> Crear
-								espacio
-						</a></li>
-						<li class="divider"></li>
 						<li class="dropdown-header">Reservas</li>
+						<li><a href="<spring:url value="/reservas/calendario"/>"
+							role="button"> <span class="glyphicon glyphicon-calendar"></span>
+								Calendario
+						</a>
 						<li><a href="<spring:url value="/reservas"/>" role="button">
 								<span class="glyphicon glyphicon-info-sign"></span> Visor
-								reservas</a>
-						<li><a href="<spring:url value="/reservas/nuevo"/>" role="button">
-								<span class="glyphicon glyphicon-plus"></span> Crear reserva
+						</a>
+						<li><a href="<spring:url value="/reservas/nuevo"/>"
+							role="button"> <span class="glyphicon glyphicon-plus"></span>
+								Crear reserva
+						</a></li>
+						<li class="divider"></li>
+						<li class="dropdown-header">Espacios</li>
+						<li><a href="<spring:url value="/espacios/"/>" role="button">
+								<span class="glyphicon glyphicon-info-sign"></span> Ver espacios
+						</a></li>
+						<li><a href="<spring:url value="/espacios/nuevo"/>"
+							role="button"> <span class="glyphicon glyphicon-plus"></span>
+								Crear espacio
+						</a></li>
+
+
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">Usuarios
+						<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="<spring:url value="/users"/>" role="button">
+								<span class="glyphicon glyphicon-info-sign"></span> Ver
+						</a></li>
+						<li><a href="<spring:url value="/users/nuevo"/>"
+							role="button"> <span class="glyphicon glyphicon-plus"></span>
+								Crear usuario
 						</a></li>
 					</ul></li>
-				<li><a href="#">Sección2</a></li>
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
