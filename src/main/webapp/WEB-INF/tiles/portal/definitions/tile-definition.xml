@@ -29,6 +29,14 @@
 		<put-attribute name="content" value="" />
 	</definition>
 	
+	<!-- Login -->
+	<definition name="login" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/login_resources.jsp" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/login.jsp" />
+	</definition>
+	
 	<!-- Listado de avisos -->
 	<definition name="listarAvisos" extends="baseLayout">
 		<put-attribute name="title" value="Listado de avisos" />

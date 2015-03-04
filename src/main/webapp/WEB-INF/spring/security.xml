@@ -43,10 +43,13 @@
 	<!-- See: http://docs.spring.io/spring-security/site/docs/4.0.0.RC1/reference/htmlsingle/#ns-global-method --> 
 	<global-method-security pre-post-annotations="enabled" />
 
-	<http pattern="/static/**" security="none" />
+	<http pattern="/static/**" security="none" /> 
+	<http pattern="/webjars/**" security="none" />
 
 	<http auto-config="true" create-session="always">
 		<intercept-url pattern="/login*" access="isAnonymous()" />
+		 <!-- <intercept-url pattern="/static/**" access="isAnonymous()"/> -->
+		 <!-- <intercept-url pattern="/webjars/**" access="isAnonymous()"/> -->
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		<form-login login-processing-url="/login" login-page="/loginPage"
             username-parameter="username" password-parameter="password"
