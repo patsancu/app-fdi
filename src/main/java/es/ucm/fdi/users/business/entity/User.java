@@ -67,12 +67,13 @@ public class User implements UserDetails, CredentialsContainer {
 	public User(Long id) {
 		this.id = id;
 	}
+	
 
 	public Long getId() {
 		return id;
 	}
 
-	void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -80,16 +81,48 @@ public class User implements UserDetails, CredentialsContainer {
 		return email;
 	}
 
-	void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	void setUserName(String username){
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public Collection<UserRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<UserRole> roles) {
+		this.roles = roles;
+	}
+
+	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	void setPassword(String password){
+
+	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
 	}
 
 	@Override

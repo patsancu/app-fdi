@@ -23,18 +23,9 @@ public class UserBuilder {
 
 	public User build() {
 		User result = new User(this.id);
-		
-//		String [] notCopyFields = {
-//			"salt","enabled","accountNonExpired",
-//			"accountNonLocked","credentialsNonExpired"
-//		};
-//		
-//		
-//		BeanUtils.copyProperties(this, result, notCopyFields); //add fields not to copy!!!!!
-		result.setPassword(this.password);
-		result.setEmail(this.email);
-		result.setUserName(this.username);
-		
+			
+		BeanUtils.copyProperties(this, result, "accountNonExpired, enabled, credentialsNonExpired");
+	
 		return result;
 	}
 
