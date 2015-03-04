@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<title><c:out value="${modo}"></c:out> espacio</title>
+<title><c:out value="${modo}"></c:out> <spring:message code="user"/> </title>
 <section class="container center">
 	<form:form modelAttribute="user" class="form-horizontal"
 		method="${method}">
@@ -12,14 +12,13 @@
 		<fieldset>
 			<legend>
 				<c:out value="${modo}"></c:out>
-				usuario
+				<spring:message code="user"/>
 			</legend>
 
 
 			<!-- Nombre de usuario -->
 			<div id="username" class="form-group">
-				<label class="control-label col-lg-2" for="username">Nombre
-					de usuario</label>
+				<label class="control-label col-lg-2" for="username"><spring:message code="username"/></label>
 				<div class="col-lg-10">
 					<form:input path="username" type="text" class="form:input-large" />
 				</div>
@@ -27,15 +26,15 @@
 
 			<!-- Email -->
 			<div id="email" class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="email">Email</label>
+				<label class="control-label col-lg-2 col-lg-2" for="email"><spring:message code="user.email"/></label>
 				<div class="col-lg-10">
 					<form:input path="email" type="text" class="form:input-large" />
 				</div>
 			</div>
 
 			<!-- Password -->
-			<div id="notas" class="form-group">
-				<label class="control-label col-lg-2" for="password">Notas</label>
+			<div id="password" class="form-group">
+				<label class="control-label col-lg-2" for="password"><spring:message code="user.password"/></label>
 				<div class="col-lg-10">
 					<form:input path="password" type="password" class="form:input-large" />
 				</div>
@@ -54,14 +53,3 @@
 		</fieldset>
 	</form:form>
 </section>
-<script>
-	tinymce.init({
-		selector : '.notas'
-	});
-</script>
-
-<style>
-#tabbedContent {
-	margin-top: 20px;
-}
-</style>

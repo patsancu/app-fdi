@@ -15,3 +15,9 @@
 <script type="text/javascript" src="<spring:url 
 					value="/webjars/tinymce-jquery/4.1.7/jquery.tinymce.min.js" />"></script>
 <script type="text/javascript" src="<spring:url value="/webjars/tinymce-jquery/4.1.7/tinymce.min.js" />"></script>
+
+<style>
+#tabbedContent {
+	margin-top: 20px;
+}
+</style>
