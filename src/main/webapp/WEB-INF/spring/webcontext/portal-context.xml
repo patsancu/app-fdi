@@ -34,6 +34,8 @@
 	<context:component-scan base-package="es.ucm.fdi.avisos.web" />
 	<context:component-scan base-package="es.ucm.fdi.espacios.web" />
 	<context:component-scan base-package="es.ucm.fdi.storage.web" />
+
+	<context:component-scan base-package="es.ucm.fdi.users.web" />
 	
 	<context:component-scan base-package="es.ucm.fdi.avisos.validation" />
 	<context:component-scan base-package="es.ucm.fdi.espacios.validation" />
