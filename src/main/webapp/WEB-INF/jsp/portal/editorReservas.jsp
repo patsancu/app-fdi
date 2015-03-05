@@ -74,10 +74,14 @@
 <script>
 	$(function() {
 		$("#fechaInicio").datetimepicker({
-			format : 'Y/m/d H:i'
+			format : 'Y/m/d H:i',
+			step:15,
+			minDate:'0'
 		});
 		$('#fechaFin').datetimepicker({
-			format : 'Y/m/d H:i'
+			format : 'Y/m/d H:i',
+			step:15,
+			minDate:'0'
 		});
 	});
 </script>
