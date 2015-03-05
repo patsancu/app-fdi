@@ -72,16 +72,42 @@
 
 <!-- Date & Time picker -->
 <script>
+	var logic = function(currentDateTime) {
+		this.setOptions({
+			minTime : '09:00',
+			maxTime : '21:00',
+			todayButton: true
+		});
+	};
+	
+	var logicWeekends = function(currentDateTime){
+		if (currentDateTime.getDay() == 6 || currentDateTime.getDay() == 0) {
+			alert("Ha escogido día festivo.")
+		}
+	}
+	
+	
 	$(function() {
 		$("#fechaInicio").datetimepicker({
 			format : 'Y/m/d H:i',
-			step:15,
-			minDate:'0'
+			step : 15,
+			minDate : '0',
+			onChangeDateTime : logic,
+			onShow : logic,
+			onSelectDate: logicWeekends
 		});
 		$('#fechaFin').datetimepicker({
 			format : 'Y/m/d H:i',
-			step:15,
-			minDate:'0'
+			step : 15,
+			minDate : '0',
+			onChangeDateTime : logic,
+			onShow : logic,
+			onSelectDate: logicWeekends
 		});
 	});
+
+	/* jQuery('#datetimepicker_rantime').datetimepicker({
+		onChangeDateTime : logic,
+		onShow : logic
+	}); */
 </script>
