@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -73,7 +74,7 @@ public class AvisosController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/avisos/nuevo")
-	public ModelAndView creaNuevoAviso(@ModelAttribute("aviso") AvisoBuilder aviso,
+	public ModelAndView creaNuevoAviso(@ModelAttribute("aviso") @Validated AvisoBuilder aviso,
 			BindingResult result) throws IOException {
 		logger.debug("Creando aviso: " + aviso);
 		Map<String, Object> model = new HashMap<>();
@@ -123,7 +124,7 @@ public class AvisosController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/avisos/{id}")
-	public String actualizarAviso(@PathVariable("id") Long avisoID, @ModelAttribute("aviso") AvisoBuilder aviso,
+	public String actualizarAviso(@PathVariable("id") Long avisoID, @ModelAttribute("aviso") @Validated AvisoBuilder aviso,
 			BindingResult result, HttpServletRequest request) throws IOException {
 
 		logger.debug("Actualizando aviso: " + aviso);
