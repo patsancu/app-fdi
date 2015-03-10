@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.httpclient.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -61,13 +63,21 @@ public class ReservasController {
 		logger.debug("Creando reserva: " + reserva);
 		Map<String, Object> model = new HashMap<>();
 		
-		if (result.hasErrors()){		
-				logger.debug("Ha habido errores ");
+		if (result.hasErrors() || ! reservas.addReserva(reserva)){
+			logger.debug("Ha habido errores ");
+			if (result.hasErrors()){
 				logger.debug(result.getAllErrors().toString());
+			}
+			else{
+				model.put("error", "La reserva coincide con alguna existente");
+			}
 			
 			model.put("modo", "Crear");
 			model.put("method", "POST");
 			model.put("reserva", reserva);
+			model.put("espacios", espacios.listarEspacios());
+			
+			
 			return new ModelAndView("editorReservas", model);
 		}
 		
@@ -79,9 +89,12 @@ public class ReservasController {
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 
-		reservas.addReserva(reserva);
-
 		return new ModelAndView("redirect:/reservas", model);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value="/reservas/ajax/nueva")
+	public void ajaxCrearReserva(@ModelAttribute("reserva") @Validated ReservaBuilder reserva, BindingResult result, HttpServletResponse response){
+		response.setStatus(org.springframework.http.HttpStatus.OK.value());
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/reservas")
@@ -135,11 +148,17 @@ public class ReservasController {
 		Map<String, Object> model = new HashMap<>();		
 		
 		List<Reserva> listaReservas = reservas.listReservas();
+		model.put("modo", "Crear");
+		model.put("method", "POST");
+		model.put("reserva", new ReservaBuilder() );
 		model.put("reservas", listaReservas);
+		model.put("espacios", espacios.listarEspacios());
 		model.put("deleteAction", request.getContextPath()+"/reservas");
 		
 		return new ModelAndView("calendarioReservas", model);
 	}
+	
+	
 	
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
