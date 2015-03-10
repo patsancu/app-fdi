@@ -80,5 +80,9 @@ public class Reservas {
 		reservaRepository.save(reservaExistente);
 		
 	}
+	
+	public List<Espacio> espaciosUsados(){
+		return reservaRepository.espaciosUsados();
+	}
 
 }
