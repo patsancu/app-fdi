@@ -35,9 +35,10 @@
 						<label class="control-label col-lg-2" for="tipoAviso">Tipo</label>
 						<div class="col-lg-10">
 							<form:select path="tipoAviso">
-								<form:option value="-" label="Selecciona Uno" />
+								<form:option value="" label="Selecciona Uno" />
 								<form:options items="${aviso.tiposAviso}" />
 							</form:select>
+							<form:errors path="tipoAviso" cssClass="text-danger alert" />
 						</div>
 					</div>
 
@@ -58,6 +59,7 @@
 						<div class="col-lg-10">
 							<form:textarea path="contenidoAviso" type="text"
 								class="form:input-large" />
+							<form:errors path="contenidoAviso" cssClass="text-danger" />
 						</div>
 					</div>
 
@@ -70,6 +72,7 @@
 						<div class="col-lg-10">
 							<form:input id="urlDestino" path="urlDestino" type="text"
 								class="form:input-large" />
+							<form:errors path="urlDestino" cssClass="text-danger" />
 						</div>
 					</div>
 
@@ -78,7 +81,6 @@
 						<label class="control-label col-lg-2" for="prioridadAviso">Prioridad</label>
 						<div class="col-lg-10">
 							<form:select path="prioridadAviso">
-								<form:option value="-" label="Selecciona Una" />
 								<form:options items="${aviso.prioridadesAviso}" />
 							</form:select>
 						</div>
@@ -91,6 +93,7 @@
 							<form:input path="etiqueta" type="text" class="form:input-large" />
 						</div>
 					</div>
+					
 					<!-- Archivo adjunto -->
 					<div id="adjunto" class="form-group">
 						<label class="control-label col-lg-2" for="adjunto">
@@ -100,12 +103,11 @@
 								class="form:input-large" />
 						</div>
 					</div>
-
-				</div>
-				<!-- Detalles básicos -->
-
-				<div id="fechas" class="tab-pane fade">
-
+					
+					<!-- 
+							Fechas
+					 -->
+					
 					<!-- Comienzo Publicación-->
 					<div class="form-group fecha">
 						<label class="control-label col-md-2" for="comienzoPublicacion">Comienzo
@@ -125,7 +127,7 @@
 					</div>
 
 				</div>
-				<!-- FIN Pestaña fechas -->
+				<!-- Detalles básicos -->
 
 
 			</div>
@@ -139,7 +141,7 @@
 				</div>
 			</div>
 		</fieldset>
-		<form:errors  path="*" cssClass="alert alert-danger" element="div" />
+		<%-- <form:errors  path="*" cssClass="alert alert-danger" element="div" /> --%>
 	</form:form>
 </section>
 
