@@ -16,18 +16,18 @@
 			</legend>
 
 			<!-- Menú pestañas -->
-			<ul class="nav nav-tabs">
+<!-- 			<ul class="nav nav-tabs"> -->
 
-				<li class="active"><a href="#basic-details" data-toggle="tab">Datos
-						básicos</a></li>
-				<li><a href="#fechas" data-toggle="tab">Fechas</a></li>
-			</ul>
+<!-- 				<li class="active"><a href="#basic-details" data-toggle="tab">Datos -->
+<!-- 						básicos</a></li> -->
+<!-- 				<li><a href="#fechas" data-toggle="tab">Fechas</a></li> -->
+<!-- 			</ul> -->
 			<!-- FIN Menú pestañas -->
 
 			<!-- contenido en pestañas -->
-			<div id="tabbedContent" class="tab-content">
+<!-- 			<div id="tabbedContent" class="tab-content"> -->
 				<!-- Datos básicos -->
-				<div id="basic-details" class="tab-pane fade active in">
+<!-- 				<div id="basic-details" class="tab-pane fade active in"> -->
 
 
 					<!-- Tipo de Aviso -->
@@ -126,7 +126,7 @@
 						</div>
 					</div>
 
-				</div>
+<!-- 				</div> -->
 				<!-- Detalles básicos -->
 
 
