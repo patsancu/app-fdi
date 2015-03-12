@@ -14,7 +14,6 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<org.hibernate.version>4.3.6.Final</org.hibernate.version>
-		<postgresql.version>9.1-901.jdbc4</postgresql.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -169,11 +168,6 @@
 
 		<!-- DB support -->
 		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.2.2</version>
@@ -276,19 +270,25 @@
 			<version>1.5.0</version>
 		</dependency>
 		<!-- FIN RSS -->
-
-
-		<!-- Postgresql -->
-		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>${postgresql.version}</version>
-		</dependency>
-
-
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<excludes>
+					<exclude>db.properties</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>db.properties</include>
+				</includes>
+			</resource>
+		</resources>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -342,4 +342,50 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<id>dev</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.hsqldb</groupId>
+					<artifactId>hsqldb</artifactId>
+					<version>2.3.1</version>
+				</dependency>
+			</dependencies>
+			<properties>
+				<db.jdbc.driverClassName>org.hsqldb.jdbcDriver</db.jdbc.driverClassName>
+				<db.jdbc.url>jdbc:hsqldb:mem:app;shutdown=true</db.jdbc.url>
+				<db.jdbc.username>sa</db.jdbc.username>
+				<db.jdbc.password></db.jdbc.password>
+				<db.hibernate.dialect>org.hibernate.dialect.HSQLDialect</db.hibernate.dialect>
+				<db.hibernate.hbm2ddl.auto>create-drop</db.hibernate.hbm2ddl.auto>
+				<db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</db.hibernate.hbm2ddl.import_files>
+				<db.hibernate.show_sql>true</db.hibernate.show_sql>
+			</properties>
+		</profile>
+		<profile>
+			<id>postgresql</id>
+			<dependencies>
+				<!-- Postgresql -->
+				<dependency>
+					<groupId>postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+					<version>9.1-901.jdbc4</version>
+				</dependency>
+			</dependencies>
+			<properties>
+				<db.jdbc.driverClassName>org.postgresql.Driver</db.jdbc.driverClassName>
+				<db.jdbc.url></db.jdbc.url>
+				<db.jdbc.username>postgres</db.jdbc.username>
+				<db.jdbc.password>notSecure</db.jdbc.password>
+				<db.hibernate.dialect>jdbc:postgresql://localhost:5432/portal</db.hibernate.dialect>
+				<db.hibernate.hbm2ddl.auto>create-drop</db.hibernate.hbm2ddl.auto>
+				<db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</db.hibernate.hbm2ddl.import_files>
+				<db.hibernate.show_sql>true</db.hibernate.show_sql>
+			</properties>
+		</profile>
+	</profiles>
 </project>
