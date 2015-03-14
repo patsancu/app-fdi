@@ -9,8 +9,7 @@
 <section class="container center">
 	<legend>Editor de reservas</legend>
 	<div class="panel-body">
-		Selección de espacio
-		<select class="lg-4" id="selectorEspaciosGlobal">
+		Selección de espacio <select class="lg-4" id="selectorEspaciosGlobal">
 			<option value="todos" label="TODOS" />
 			<c:forEach items="${espaciosUsados}" var="espacio">
 				<option value="${espacio.id}">${espacio.nombre}</option>
@@ -305,36 +304,54 @@
 
 		return eventos;
 	}
+	
+	var colores = ["red", "blue", "green","green", "pink", "yellow", "brown", "black", "white", "purple"];
 
 	var reservasJSON = [];
 
 	<c:forEach items="${reservas}" var="reserva">
-	if (!reservasJSON['${reserva.espacio.id}']) {
-		reservasJSON['${reserva.espacio.id}'] = [];
-	}
-
-	var datosReserva = new Object();
-
-	datosReserva.title = "<joda:format value="${reserva.fechaFin}" pattern="HH:mm" />"
-			+ "\n" + "${reserva.espacio.nombre}" + "\n" + "${reserva.titular}";
-	datosReserva.start = "${reserva.fechaInicio}";
-	datosReserva.end = "${reserva.fechaFin}";
-	datosReserva.aclaraciones = "${reserva.aclaraciones}";
-	datosReserva.idReserva = "${reserva.id}";
-	datosReserva.espacio = "${reserva.espacio.id}";
-	datosReserva.allday = false;
-	reservasJSON['${reserva.espacio.id}'].push(datosReserva);
+		if (!reservasJSON['${reserva.espacio.id}']) {
+			reservasJSON['${reserva.espacio.id}'] = [];
+		}
+	
+		var datosReserva = new Object();
+	
+		datosReserva.title = "<joda:format value="${reserva.fechaFin}" pattern="HH:mm" />"
+				+ "\n" + "${reserva.espacio.nombre}" + "\n" + "${reserva.titular}";
+		datosReserva.start = "${reserva.fechaInicio}";
+		datosReserva.end = "${reserva.fechaFin}";
+		datosReserva.aclaraciones = "${reserva.aclaraciones}";
+		datosReserva.idReserva = "${reserva.id}";
+		datosReserva.espacio = "${reserva.espacio.id}";
+		datosReserva.allday = false;
+		
+		reservasJSON['${reserva.espacio.id}'].push(datosReserva);
 
 	</c:forEach>
+	
+	// Se colorean reservas según el espacio al que estén asignadas
+	var color = 0;
+	for (var tipoReserva in reservasJSON) {
+		console.log("Se ha entrado en var tipoReserva in reservasJSON)");
+		for (var reserva in reservasJSON[tipoReserva]) {
+			console.log("Se ha entrado en var reserva in tipoReserva)");
+			reservasJSON[tipoReserva][reserva].color = colores[color];
+		}
+		color++;
+		console.log(colores[color]);
+	}
+	
+	
 
 	/* Debug */
 	console.log("reservasJSON: " + reservasJSON);
 
 	var idSeleccionado = "todos";
 	var eventos = seleccionarEventos(reservasJSON, idSeleccionado);
+	
 
 	/* Debug */
-	console.log("Eventos primerors:" + eventos);
+	console.log("Eventos primeros:" + eventos);
 
 	$(document)
 			.ready(
@@ -466,15 +483,9 @@
 
 	//Configura la acción cuando se cambia la selección de espacio
 	$("#selectorEspaciosGlobal").change(
-			function() {
-				console
-						.log($("#selectorEspaciosGlobal option:selected")
-								.text());
-				console.log(reservasJSON[$("#selectorEspaciosGlobal").val()]);
+			function() {				
 				$("#calendar").fullCalendar('removeEventSource', eventos);
 				idSeleccionado = $("#selectorEspaciosGlobal").val();
-				console.log("Nuevos eventos:"
-						+ reservasJSON[$("#selectorEspaciosGlobal").val()]);
 				$("#calendar").fullCalendar('refetchEvents');
 			});
 </script>
