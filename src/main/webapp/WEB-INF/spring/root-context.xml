@@ -44,6 +44,7 @@
 				<value>es.ucm.fdi.avisos.business.entity</value>
 				<value>es.ucm.fdi.storage.business.entity</value>
 				<value>es.ucm.fdi.espacios.business.entity</value>
+				<value>es.ucm.fdi.acortador.business.entity</value>
 			</array>
 		</property>
 		<property name="jpaVendorAdapter" ref="rootVendorAdapter" />
