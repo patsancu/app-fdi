@@ -381,7 +381,7 @@
 														'#modalEditarReserva #inputFechaInicioEditar')
 														.attr(
 																"value",
-																calEvent.end
+																calEvent.start
 																		.format("YYYY/MM/DD HH:mm"));
 												$(
 														'#modalEditarReserva #inputFechaFinEditar')
