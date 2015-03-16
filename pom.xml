@@ -378,10 +378,10 @@
 			</dependencies>
 			<properties>
 				<db.jdbc.driverClassName>org.postgresql.Driver</db.jdbc.driverClassName>
-				<db.jdbc.url></db.jdbc.url>
+				<db.jdbc.url>jdbc:postgresql://localhost:5432/portal</db.jdbc.url>
 				<db.jdbc.username>postgres</db.jdbc.username>
 				<db.jdbc.password>notSecure</db.jdbc.password>
-				<db.hibernate.dialect>jdbc:postgresql://localhost:5432/portal</db.hibernate.dialect>
+				<db.hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</db.hibernate.dialect>
 				<db.hibernate.hbm2ddl.auto>create-drop</db.hibernate.hbm2ddl.auto>
 				<db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</db.hibernate.hbm2ddl.import_files>
 				<db.hibernate.show_sql>true</db.hibernate.show_sql>
