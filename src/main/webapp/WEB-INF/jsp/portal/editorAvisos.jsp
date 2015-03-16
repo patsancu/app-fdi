@@ -16,18 +16,18 @@
 			</legend>
 
 			<!-- Menú pestañas -->
-			<ul class="nav nav-tabs">
+<!-- 			<ul class="nav nav-tabs"> -->
 
-				<li class="active"><a href="#basic-details" data-toggle="tab">Datos
-						básicos</a></li>
-				<li><a href="#fechas" data-toggle="tab">Fechas</a></li>
-			</ul>
+<!-- 				<li class="active"><a href="#basic-details" data-toggle="tab">Datos -->
+<!-- 						básicos</a></li> -->
+<!-- 				<li><a href="#fechas" data-toggle="tab">Fechas</a></li> -->
+<!-- 			</ul> -->
 			<!-- FIN Menú pestañas -->
 
 			<!-- contenido en pestañas -->
-			<div id="tabbedContent" class="tab-content">
+<!-- 			<div id="tabbedContent" class="tab-content"> -->
 				<!-- Datos básicos -->
-				<div id="basic-details" class="tab-pane fade active in">
+<!-- 				<div id="basic-details" class="tab-pane fade active in"> -->
 
 
 					<!-- Tipo de Aviso -->
@@ -35,16 +35,17 @@
 						<label class="control-label col-lg-2" for="tipoAviso">Tipo</label>
 						<div class="col-lg-10">
 							<form:select path="tipoAviso">
-								<form:option value="-" label="Selecciona Uno" />
+								<form:option value="" label="Selecciona Uno" />
 								<form:options items="${aviso.tiposAviso}" />
 							</form:select>
+							<form:errors path="tipoAviso" cssClass="text-danger alert" />
 						</div>
 					</div>
 
 					<!-- Titulo -->
 					<div id="titulo" class="form-group">
 						<label class="control-label col-lg-2 col-lg-2" for="titulo"><spring:message
-								code="addAviso.form.titulo.label" /></label>
+								code="creacion.avisos.form.titulo" /></label>
 						<div class="col-lg-10">
 							<form:input path="titulo" type="text" class="form:input-large" />
 							<form:errors path="titulo" cssClass="text-danger" />
@@ -58,6 +59,7 @@
 						<div class="col-lg-10">
 							<form:textarea path="contenidoAviso" type="text"
 								class="form:input-large" />
+							<form:errors path="contenidoAviso" cssClass="text-danger" />
 						</div>
 					</div>
 
@@ -70,6 +72,7 @@
 						<div class="col-lg-10">
 							<form:input id="urlDestino" path="urlDestino" type="text"
 								class="form:input-large" />
+							<form:errors path="urlDestino" cssClass="text-danger" />
 						</div>
 					</div>
 
@@ -78,7 +81,6 @@
 						<label class="control-label col-lg-2" for="prioridadAviso">Prioridad</label>
 						<div class="col-lg-10">
 							<form:select path="prioridadAviso">
-								<form:option value="-" label="Selecciona Una" />
 								<form:options items="${aviso.prioridadesAviso}" />
 							</form:select>
 						</div>
@@ -91,6 +93,7 @@
 							<form:input path="etiqueta" type="text" class="form:input-large" />
 						</div>
 					</div>
+					
 					<!-- Archivo adjunto -->
 					<div id="adjunto" class="form-group">
 						<label class="control-label col-lg-2" for="adjunto">
@@ -100,12 +103,11 @@
 								class="form:input-large" />
 						</div>
 					</div>
-
-				</div>
-				<!-- Detalles básicos -->
-
-				<div id="fechas" class="tab-pane fade">
-
+					
+					<!-- 
+							Fechas
+					 -->
+					
 					<!-- Comienzo Publicación-->
 					<div class="form-group fecha">
 						<label class="control-label col-md-2" for="comienzoPublicacion">Comienzo
@@ -124,8 +126,8 @@
 						</div>
 					</div>
 
-				</div>
-				<!-- FIN Pestaña fechas -->
+<!-- 				</div> -->
+				<!-- Detalles básicos -->
 
 
 			</div>
@@ -139,7 +141,7 @@
 				</div>
 			</div>
 		</fieldset>
-		<form:errors  path="*" cssClass="alert alert-danger" element="div" />
+		<%-- <form:errors  path="*" cssClass="alert alert-danger" element="div" /> --%>
 	</form:form>
 </section>
 

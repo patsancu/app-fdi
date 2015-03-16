@@ -8,16 +8,16 @@
 	<table id="avisos" class="table table-hover">
 		<thead>
 			<tr>
-				<th>Prioridad</th>
-				<th>Tipo</th>
-				<th>Título</th>
-				<th>Contenido del aviso</th>
-				<th>Etiqueta</th>
-				<th>Publicado por</th>
-				<th>Fecha creación</th>
-				<th>Comienzo Publicación</th>
-				<th>Fin Publicación</th>
-				<th>Acciones</th>
+				<th><spring:message code="listado.prioridad"></spring:message></th>
+				<th><spring:message code="listado.tipo"></spring:message></th>
+				<th><spring:message code="listado.titulo"></spring:message></th>
+				<th><spring:message code="listado.contenido.aviso"></spring:message></th>
+				<th><spring:message code="listado.etiqueta"></spring:message></th>
+				<th><spring:message code="listado.autor"></spring:message></th>
+				<th><spring:message code="listado.fecha.creacion"></spring:message></th>
+				<th><spring:message code="listado.fecha.publicacion.comienzo"></spring:message></th>
+				<th><spring:message code="listado.fecha.publicacion.fin"></spring:message></th>
+				<th><spring:message code="listado.acciones"></spring:message></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -82,13 +82,12 @@
 										<div class="modal-header bg-primary">
 											<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
-											<h4 class="modal-title" id="myModalLabel">Eliminar
-												aviso</h4>
-										</div>
-										<div class="modal-body">¿Está seguro de que desea eliminar el aviso "${item.titulo}"?</div>
+											<h4 class="modal-title" id="myModalLabel"><spring:message code="listado.acciones.eliminar.anuncio"></spring:message></h4>
+										</div>										
+										<div class="modal-body"><spring:message code="listado.acciones.eliminar.warning"></spring:message></div>
 										<div class="modal-footer ">
-											<button type="submit" class="btn btn-danger">Eliminar </button>
-											<button type="button" class="btn btn-warning " data-dismiss="modal">Cancelar</button>
+											<button type="submit" class="btn btn-danger"><spring:message code="listado.acciones.eliminar"></spring:message></button>											
+											<button type="button" class="btn btn-warning " data-dismiss="modal"><spring:message code="listado.acciones.cancelar"></spring:message></button>
 										</div>
 									</div>
 								</div>
@@ -125,17 +124,17 @@
 
 			//Cambio de texto de menus
 			"language" : {
-				"lengthMenu" : "Mostrar _MENU_ resultados por pagina",
-				"zeroRecords" : "No se ha encontrado ningun resultado",
-				"info" : "Página _PAGE_ de _PAGES_",
-				"infoEmpty" : "No hay información",
-				"infoFiltered" : "(filtado de _MAX_ resultados totales)",
-				"search" : "Buscar:",
-				"paginate" : {
-					"first" : "Primera",
-					"last" : "Ultima",
-					"next" : "Siguiente",
-					"previous" : "Anterior"
+				"lengthMenu" : <spring:message code="listado.datatables.lengthmenu"></spring:message>,
+				"zeroRecords" : <spring:message code="listado.datatables.zerorecords"></spring:message>,
+				"info" : <spring:message code="listado.datatables.info"></spring:message>,
+				"infoEmpty" : <spring:message code="listado.datatables.infoempty"></spring:message>,
+				"infoFiltered" : <spring:message code="listado.datatables.infofiltered"></spring:message>,
+				"search" : <spring:message code="listado.datatables.search"></spring:message>,
+				"paginate" : { 
+					"first" : <spring:message code="listado.datatables.first"></spring:message>,
+					"last" : <spring:message code="listado.datatables.last"></spring:message>,
+					"next" : <spring:message code="listado.datatables.next"></spring:message>,
+					"previous" : <spring:message code="listado.datatables.previous"></spring:message>
 				},
 			}
 		});

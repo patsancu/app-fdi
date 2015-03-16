@@ -4,16 +4,34 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<title><c:out value="${modo}"></c:out></title>
+<title><c:out value="${modo}
+"></c:out></title>
+
+
+
 <section class="container center">
 	<form:form modelAttribute="reserva" class="form-horizontal"
 		method="${method}">
 		<form:errors path="*" cssClass="alert alert-danger" element="div" />
+
+		<c:if test="${! empty error}">
+			<div class="alert alert-danger">
+				¡Error!
+				<c:out value="${error}" />
+			</div>
+		</c:if>
+
+
 		<fieldset>
 			<legend>
 				<c:out value="${modo}"></c:out>
-				reserva
+				<spring:message
+						code="editor.reservas.reserva" />
 			</legend>
+
+			<div class="alert alert-warning">
+				<spring:message code="editor.reservas.nota.fechas" />
+			</div>
 
 
 			<!-- Espacio -->
@@ -30,8 +48,8 @@
 
 			<!-- aclaraciones -->
 			<div id="aclaraciones" class="form-group">
-				<label class="control-label col-lg-2" for="aclaraciones">Contenido
-					de aviso</label>
+				<label class="control-label col-lg-2" for="aclaraciones"><spring:message
+						code="editor.reservas.aclaraciones" /></label>
 				<div class="col-lg-10">
 					<form:textarea path="aclaraciones" type="text"
 						class="form:input-large" />
@@ -40,8 +58,8 @@
 
 			<!-- Comienzo Reserva-->
 			<div class="form-group fecha">
-				<label class="control-label col-md-2" for="fechaInicio">Comienzo
-					Reserva</label>
+				<label class="control-label col-md-2" for="fechaInicio"><spring:message
+						code="editor.reservas.comienzo" /> </label>
 				<div class="col-md-2">
 					<form:input path="fechaInicio" />
 				</div>
@@ -49,8 +67,8 @@
 
 			<!-- Fin Reserva -->
 			<div class="form-group fecha">
-				<label class="control-label col-md-2" for="fechaFin">Fin de
-					Reserva</label>
+				<label class="control-label col-md-2" for="fechaFin"><spring:message
+						code="editor.reservas.fin" /></label>
 				<div class="col-md-2">
 					<form:input path="fechaFin" />
 				</div>
@@ -72,12 +90,41 @@
 
 <!-- Date & Time picker -->
 <script>
+	var logic = function(currentDateTime) {
+		this.setOptions({
+			minTime : '09:00',
+			maxTime : '21:00',
+			todayButton : true
+		});
+	};
+
+	var logicWeekends = function(currentDateTime) {
+		if (currentDateTime.getDay() == 6 || currentDateTime.getDay() == 0) {
+			alert("Ha escogido día festivo.")
+		}
+	}
+
 	$(function() {
 		$("#fechaInicio").datetimepicker({
-			format : 'Y/m/d H:i'
+			format : 'Y/m/d H:i',
+			step : 15,
+			minDate : '0',
+			onChangeDateTime : logic,
+			onShow : logic,
+			onSelectDate : logicWeekends
 		});
 		$('#fechaFin').datetimepicker({
-			format : 'Y/m/d H:i'
+			format : 'Y/m/d H:i',
+			step : 15,
+			minDate : '0',
+			onChangeDateTime : logic,
+			onShow : logic,
+			onSelectDate : logicWeekends
 		});
 	});
+
+	/* jQuery('#datetimepicker_rantime').datetimepicker({
+		onChangeDateTime : logic,
+		onShow : logic
+	}); */
 </script>

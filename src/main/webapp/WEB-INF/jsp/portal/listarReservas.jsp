@@ -22,8 +22,9 @@
 					<div class="caption">
 						<tr>
 							<td>${item.titular}</td>
-							<td>${item.fechaInicio}</td>
-							<td>${item.fechaFin}</td>
+							<td><joda:format value="${item.fechaInicio}" pattern="yyyy/MM/dd HH:mm" /></td>
+							
+							<td><joda:format value="${item.fechaFin}" pattern="yyyy/MM/dd HH:mm" /></td>
 							<td><a href="<spring:url value="/espacios/{id}"><spring:param name="id" value="${item.espacio.id}" /></spring:url>">${item.espacio.nombre}</a> </td>
 							<td><a class="btn btn-success"
 								href="<spring:url value="/reservas/{id}"><spring:param name="id" value="${item.id}" /></spring:url>">
@@ -58,8 +59,9 @@
 											</div>
 										</div>
 									</div>
-									<!-- Fin de  Popup de confirmación de eliminación -->
-								</form:form></td>
+									<!-- Fin de  Popup de confirmación de eliminación -->								
+								</form:form>
+								</td>
 						</tr>
 					</div>
 				</div>

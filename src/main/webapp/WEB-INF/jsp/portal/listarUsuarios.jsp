@@ -9,9 +9,9 @@
 	<table id="espacios" class="table table-hover">
 		<thead>
 			<tr>
-				<th>Nombre de usuario</th>
-				<th>Password</th>
-				<th>Email</th>
+				<th><spring:message code="crear.usuario.username"></spring:message></th>
+				<th><spring:message code="crear.usuario.user.password"></spring:message></th>
+				<th><spring:message code="crear.usuario.user.email"></spring:message></th>				
 			</tr>
 		</thead>
 		<tbody>

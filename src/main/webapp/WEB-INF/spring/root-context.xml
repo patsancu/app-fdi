@@ -44,18 +44,19 @@
 				<value>es.ucm.fdi.avisos.business.entity</value>
 				<value>es.ucm.fdi.storage.business.entity</value>
 				<value>es.ucm.fdi.espacios.business.entity</value>
+				<value>es.ucm.fdi.acortador.business.entity</value>
 			</array>
 		</property>
 		<property name="jpaVendorAdapter" ref="rootVendorAdapter" />
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.dialect">${users.hibernate.dialect}</prop>
-				<prop key="hibernate.show_sql">${users.hibernate.show_sql}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${users.hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.dialect">${cfg.hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${cfg.hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${cfg.hibernate.hbm2ddl.auto}</prop>
 				<prop key="hibernate.max_fetch_depth">3</prop>
 				<prop key="hibernate.jdbc.fetch_size">50</prop>
 				<prop key="hibernate.jdbc.batch_size">10</prop>
-				<prop key="hibernate.hbm2ddl.import_files">${users.hibernate.hbm2ddl.import_files}</prop>
+				<prop key="hibernate.hbm2ddl.import_files">${cfg.hibernate.hbm2ddl.import_files}</prop>
 			</props>
 		</property>
 	</bean>
@@ -64,10 +65,10 @@
 
 	<bean id="rootDataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="${users.jdbc.driverClassName}" />
-		<property name="url" value="${users.jdbc.url}" />
-		<property name="username" value="${users.jdbc.username}" />
-		<property name="password" value="${users.jdbc.password}" />
+		<property name="driverClassName" value="${cfg.jdbc.driverClassName}" />
+		<property name="url" value="${cfg.jdbc.url}" />
+		<property name="username" value="${cfg.jdbc.username}" />
+		<property name="password" value="${cfg.jdbc.password}" />
 	</bean>
 
 	<tx:annotation-driven transaction-manager="rootTransactionManager" />

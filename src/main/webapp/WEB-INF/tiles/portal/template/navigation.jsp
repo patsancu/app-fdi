@@ -3,6 +3,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+
+
+<spring:url value="/users/nuevo" var="urlNuevoUsuario" />
+
 <div class="navbar navbar-default navbar-fixed-top "
 	style="z-index: 1000;" role="navigation">
 
@@ -59,26 +63,32 @@
 						<li><a href="<spring:url value="/espacios/"/>" role="button">
 								<span class="glyphicon glyphicon-info-sign"></span> Ver espacios
 						</a></li>
-						<li><a href="<spring:url value="/espacios/nuevo"/>"
-							role="button"> <span class="glyphicon glyphicon-plus"></span>
-								Crear espacio
-						</a></li>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li><a href="<spring:url value="/espacios/nuevo"/>"
+								role="button"> <span class="glyphicon glyphicon-plus"></span>
+									Crear espacio
+							</a></li>
+						</sec:authorize>
 
 
 					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Usuarios
-						<span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="<spring:url value="/users"/>" role="button">
-								<span class="glyphicon glyphicon-info-sign"></span> Ver
-						</a></li>
-						<li><a href="<spring:url value="/users/nuevo"/>"
-							role="button"> <span class="glyphicon glyphicon-plus"></span>
-								Crear usuario
-						</a></li>
-					</ul></li>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">Usuarios
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="<spring:url value="/users"/>" role="button">
+									<span class="glyphicon glyphicon-info-sign"></span> Ver
+							</a></li>
+
+
+							<li><a href="${urlNuevoUsuario}" role="button"> <span
+									class="glyphicon glyphicon-plus"></span> Crear usuario
+							</a></li>
+
+						</ul></li>
+				</sec:authorize>
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

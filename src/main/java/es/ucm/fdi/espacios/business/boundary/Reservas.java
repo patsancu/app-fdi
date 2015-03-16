@@ -29,7 +29,14 @@ public class Reservas {
 	private static final Logger logger = LoggerFactory.getLogger("es.ucm.fdi.espacios");
 
 
-	public void addReserva(ReservaBuilder builder){
+	public boolean addReserva(ReservaBuilder builder){
+		boolean coincidente = ! reservaRepository.existeReservaCoincicente(builder.getFechaInicio(), builder.getFechaFin(), builder.getId_espacio()).isEmpty();
+		String existeReserva = ( coincidente  ? "Si" : "No");			
+		logger.warn("Existe reserva coincidente? " + existeReserva );
+		if (coincidente){			
+			return false;
+		}
+		
 		if (builder.getFechaCreacion() ==  null) {
 			builder.setFechaCreacion(DateTime.now());
 		}
@@ -42,9 +49,10 @@ public class Reservas {
 		
 		Espacio espacio = espacios.getEspacio(builder.getId_espacio());
 	
-		reserva.setEspacio(espacio);
+		reserva.setEspacio(espacio);		
 		
 		reservaRepository.save(reserva);
+		return true;
 	}
 
 	public List<Reserva> listReservas(){
@@ -71,6 +79,10 @@ public class Reservas {
 		
 		reservaRepository.save(reservaExistente);
 		
+	}
+	
+	public List<Espacio> espaciosUsados(){
+		return reservaRepository.espaciosUsados();
 	}
 
 }
