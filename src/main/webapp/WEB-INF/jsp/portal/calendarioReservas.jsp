@@ -7,10 +7,11 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
 <section class="container center">
-	<legend>Editor de reservas</legend>
+	<legend><spring:message code="calendario.subtitulo"></spring:message> </legend>
 	<div class="panel-body">
-		Selección de espacio <select class="lg-4" id="selectorEspaciosGlobal">
-			<option value="todos" label="TODOS" />
+		<spring:message code="calendario.seleccion.espacios"></spring:message>
+		 <select class="lg-4" id="selectorEspaciosGlobal">
+			<option value="todos" label="<spring:message code="calendario.seleccion.todos"></spring:message>" />
 			<c:forEach items="${espaciosUsados}" var="espacio">
 				<option value="${espacio.id}">${espacio.nombre}</option>
 			</c:forEach>

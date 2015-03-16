@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<title><c:out value="${modo}"></c:out> <spring:message code="user"/> </title>
+<title><c:out value="${modo}"></c:out> <spring:message code="crear.usuario.user"/> </title>
 <section class="container center">
 	<form:form modelAttribute="user" class="form-horizontal"
 		method="${method}">
@@ -12,13 +12,13 @@
 		<fieldset>
 			<legend>
 				<c:out value="${modo}"></c:out>
-				<spring:message code="user"/>
+				<spring:message code="crear.usuario.user"/>
 			</legend>
 
 
 			<!-- Nombre de usuario -->
 			<div id="username" class="form-group">
-				<label class="control-label col-lg-2" for="username"><spring:message code="username"/></label>
+				<label class="control-label col-lg-2" for="username"><spring:message code="crear.usuario.username"/></label>
 				<div class="col-lg-10">
 					<form:input path="username" type="text" class="form:input-large" />
 				</div>
@@ -26,7 +26,7 @@
 
 			<!-- Email -->
 			<div id="email" class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="email"><spring:message code="user.email"/></label>
+				<label class="control-label col-lg-2 col-lg-2" for="email"><spring:message code="crear.usuario.user.email"/></label>
 				<div class="col-lg-10">
 					<form:input path="email" type="text" class="form:input-large" />
 				</div>
@@ -34,7 +34,7 @@
 
 			<!-- Password -->
 			<div id="password" class="form-group">
-				<label class="control-label col-lg-2" for="password"><spring:message code="user.password"/></label>
+				<label class="control-label col-lg-2" for="password"><spring:message code="crear.usuario.user.password"/></label>
 				<div class="col-lg-10">
 					<form:input path="password" type="password" class="form:input-large" />
 				</div>
@@ -47,7 +47,7 @@
 			<div class="form-group add">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnAdd" class="btn btn-primary"
-						value="<c:out value="${modo}"></c:out>	usuario" />
+						value="<c:out value="${modo}"></c:out>	<spring:message code="crear.usuario.user"/>" />
 				</div>
 			</div>
 		</fieldset>

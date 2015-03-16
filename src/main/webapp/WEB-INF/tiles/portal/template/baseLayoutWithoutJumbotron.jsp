@@ -18,7 +18,16 @@
 <link rel="stylesheet" href="<c:url value="/static/css/globalStyle.css" />">
 
 <tiles:insertAttribute name="resources" />
-<title><tiles:insertAttribute name="title" /></title>
+
+
+
+<c:set var="titleKey">
+	<tiles:insertAttribute name="title" />
+</c:set>
+<c:if test="${! empty titleKey}">
+	<title><spring:message code="${titleKey}"></spring:message></title>
+</c:if>
+
 </head>
 <body>
 	<div class="container">

@@ -45,7 +45,7 @@
 					<!-- Titulo -->
 					<div id="titulo" class="form-group">
 						<label class="control-label col-lg-2 col-lg-2" for="titulo"><spring:message
-								code="addAviso.form.titulo.label" /></label>
+								code="creacion.avisos.form.titulo" /></label>
 						<div class="col-lg-10">
 							<form:input path="titulo" type="text" class="form:input-large" />
 							<form:errors path="titulo" cssClass="text-danger" />
