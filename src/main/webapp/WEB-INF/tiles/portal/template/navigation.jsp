@@ -89,6 +89,16 @@
 
 						</ul></li>
 				</sec:authorize>
+				
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">URLs
+						<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="<spring:url value="/urls/nueva"></spring:url>">
+								<span class="glyphicon glyphicon-plus"></span> Acortar URL
+						</a></li>
+					</ul></li>
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
