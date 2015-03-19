@@ -19,7 +19,18 @@ public class URLredirecciones {
 	public URLredireccion addURLredireccion(URLredireccionBuilder builder){
 		URLredireccion redireccion = builder.build();
 		redireccion.setInterna(AcortadorURL.esUrlInterna(builder.getUrl()));
-		redireccion.setUrlOriginal(builder.getUrl());
+		
+		/*
+		 * Si la URL no empieza por http (o https),
+		 * spring la toma como interna y no funciona como debiera. 
+		 */ 
+		if (! builder.getUrl().startsWith("http")){
+			redireccion.setUrlOriginal("http://"+ builder.getUrl());
+		}
+		else{
+			redireccion.setUrlOriginal(builder.getUrl());
+		}
+		
 		redireccion = repository.save(redireccion);
 		
 		Long id = redireccion.getId();

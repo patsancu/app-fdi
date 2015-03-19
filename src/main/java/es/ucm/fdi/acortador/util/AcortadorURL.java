@@ -9,14 +9,21 @@ public class AcortadorURL {
 	static boolean local = true;
 	
 	public static boolean esUrlInterna(String url){
-		Pattern patternDev = Pattern.compile("http://localhost:[\\d]{4}/anuncios.*");
-		Pattern patternRemoto = Pattern.compile("http://fdi.e-ucm.es/portal.*");
+		
+		//Fuerza la url sin protocolo
+		String urlSinProtocolo = url;
+		if (url.startsWith("http")){
+			urlSinProtocolo = url.split("//")[1];
+		}
+		
+		Pattern patternDev = Pattern.compile("localhost:[\\d]{4}/anuncios.*");
+		Pattern patternRemoto = Pattern.compile("fdi.e-ucm.es/portal.*");
 		Pattern pattern = patternDev;
 		if (!local){
 			pattern = patternRemoto; 
 		}
 		
-		Matcher matcher = pattern.matcher(url);
+		Matcher matcher = pattern.matcher(urlSinProtocolo);
         return matcher.matches();
 	}
 

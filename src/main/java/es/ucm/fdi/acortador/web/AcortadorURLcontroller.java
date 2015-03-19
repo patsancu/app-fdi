@@ -54,12 +54,14 @@ public class AcortadorURLcontroller {
 	}
 	
 	@RequestMapping(value="/urls/nueva",method=RequestMethod.POST)
-	public ModelAndView nuevoAcortador(URLredireccionBuilder URLredireccionBuilder){
+	public ModelAndView nuevoAcortador(URLredireccionBuilder URLredireccionBuilder, HttpServletRequest request){
 		Map<String, Object> model = new HashMap<>();
 		URLredireccion redireccion = urlRedirecciones.addURLredireccion(URLredireccionBuilder);
 		logger.warn("Sufijo:" + redireccion.getSufijo());
+		model.put("urlOriginal", redireccion.getUrlOriginal());
+		model.put("urlCorta",  "/u/" + redireccion.getSufijo());
 		
-		return new ModelAndView("redirect:/",model);
+		return new ModelAndView("mostrarAbreviatura",model);
 	}
 	
 
