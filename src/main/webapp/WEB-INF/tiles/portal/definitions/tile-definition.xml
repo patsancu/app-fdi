@@ -37,6 +37,10 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/login.jsp" />
 	</definition>
 	
+	<!--***********************************************************************
+ 		AVISOS
+ 	***********************************************************************-->
+	
 	<!-- Listado de avisos -->
 	<definition name="listarAvisos" extends="baseLayout">
 		<put-attribute name="title" value="listado.avisos.titulo" />
@@ -45,15 +49,7 @@
 		<put-attribute name="tagline" value="" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarAvisos.jsp" />
 	</definition>
-	
-	<!-- Gestor de avisos -->
-<!-- 	<definition name="gestorAvisos" extends="baseLayout"> -->
-<!-- 		<put-attribute name="title" value="Gestionar avisos" /> -->
-<!-- 		<put-attribute name="heading" value="Gestionar avisos" /> -->
-<!-- 		<put-attribute name="tagline" value=""/> -->
-<!-- 		<put-attribute name="content" value="/WEB-INF/jsp/portal/gestorAvisos.jsp" /> -->
-<!-- 	</definition> -->
-	
+
 	
 	<!-- Creador/editor de avisos -->
 	<definition name="editorAvisos" extends="baseLayoutWithoutJumbotron">
@@ -71,6 +67,10 @@
 		<put-attribute name="tagline" value=" " />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/verAviso.jsp" />
 	</definition>
+	
+	<!--***********************************************************************
+ 		ESPACIOS
+ 	***********************************************************************-->
 	
 	<!-- Creador de espacios -->
 	<definition name="editorEspacios" extends="baseLayoutWithoutJumbotron">
@@ -91,24 +91,10 @@
 	</definition>
 	
 	
-	<!-- Creador de reservas -->
-	<definition name="editorReservas" extends="baseLayoutWithoutJumbotron">
-		<put-attribute name="title" value="" />
-		<put-attribute name="resources" value="/WEB-INF/jsp/portal/editorReservas_resources.jsp" />
-		<put-attribute name="heading" value="" />
-		<put-attribute name="tagline" value="" />
-		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorReservas.jsp" />
-	</definition>
+	<!--***********************************************************************
+ 		USUARIOS
+ 	***********************************************************************-->
 	
-	
-	<!-- Listado de reservas -->
-	<definition name="listarReservas" extends="baseLayout">
-		<put-attribute name="title" value="listado.reservas.titulo" />
-		<put-attribute name="resources" value="/WEB-INF/jsp/portal/listarReservas_resources.jsp" />
-		<put-attribute name="heading" value="listado.reservas.titulo" />
-		<put-attribute name="tagline" value="" />
-		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarReservas.jsp" />
-	</definition>
 	
 	<!-- Creador de usuarios -->
 	<definition name="editorUsuarios" extends="baseLayoutWithoutJumbotron">
@@ -129,6 +115,28 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarUsuarios.jsp" />
 	</definition>
 	
+	<!--***********************************************************************
+ 		RESERVAS
+ 	***********************************************************************-->
+	
+	<!-- Listado de reservas -->
+	<definition name="listarReservas" extends="baseLayout">
+		<put-attribute name="title" value="listado.reservas.titulo" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/listarReservas_resources.jsp" />
+		<put-attribute name="heading" value="listado.reservas.titulo" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarReservas.jsp" />
+	</definition>
+	
+	
+	<!-- Creador de reservas -->
+	<definition name="editorReservas" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/editorReservas_resources.jsp" />
+		<put-attribute name="heading" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorReservas.jsp" />
+	</definition>
 	
 	<!-- Calendario de reservas -->
 	<definition name="calendarioReservas" extends="baseLayoutWithoutJumbotron">
@@ -139,6 +147,12 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/calendarioReservas.jsp" />
 	</definition>
 	
+	
+	<!--***********************************************************************
+ 	REDIRECCIONES 
+ 	***********************************************************************-->
+
+	
 	<!-- Creador de redirecciones -->
 	<definition name="editorRedireccion" extends="baseLayoutWithoutJumbotron">
 		<put-attribute name="title" value="redireccion.crear.titulo" />
@@ -148,13 +162,19 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorRedireccion.jsp" />
 	</definition>
 	
-	<!-- Página temporal -->
+	<!-- Página temporal redirección -->
 	<definition name="temporal" extends="baseLayout">
-<!-- 		<put-attribute name="resources" value="/WEB-INF/jsp/portal/editorRedireccion_resources.jsp" /> -->
 		<put-attribute name="title" value="redireccion.titulo" />
 		<put-attribute name="heading" value="redireccion.aviso	" />
 		<put-attribute name="tagline" expression="${urlRedireccion}" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/temporal.jsp" />
 	</definition>
 	
+	
+	<!-- Se muestra la URL corta -->
+	<definition name="mostrarAbreviatura" extends="baseLayout">
+		<put-attribute name="title" value="redireccion.mostrar.titulo" />
+		<put-attribute name="heading" value="redireccion.mostrar.titulo" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/mostrarAbreviatura.jsp" />
+	</definition>
 </tiles-definitions>
