@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.validator.constraints.Email;
@@ -20,6 +21,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
+@Table(name="USER")
 public class User implements UserDetails, CredentialsContainer {
 	
 	/**
@@ -56,8 +58,9 @@ public class User implements UserDetails, CredentialsContainer {
 	
 	public User() {
 		this.accountNonExpired = true;
-		this.credentialsNonExpired = true;
-		this.enabled = false;
+		this.accountNonLocked = true;
+		this.credentialsNonExpired = true;		
+		this.enabled = true;
 	}
 	
 	public User(String email) {
@@ -65,7 +68,8 @@ public class User implements UserDetails, CredentialsContainer {
 	}
 
 	public User(Long id) {
-		this.id = id;
+		this();
+		this.id = id;		
 	}
 	
 
@@ -150,9 +154,11 @@ public class User implements UserDetails, CredentialsContainer {
 		return true;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + "]";
+		return "User [username=" + username + ", email=" + email
+				+ ", password=" + password + ", roles=" + roles + "]";
 	}
 
 	@Override

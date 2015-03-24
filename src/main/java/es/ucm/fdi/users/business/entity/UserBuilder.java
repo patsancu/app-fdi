@@ -24,7 +24,7 @@ public class UserBuilder {
 	public User build() {
 		User result = new User(this.id);
 			
-		BeanUtils.copyProperties(this, result, "accountNonExpired, enabled, credentialsNonExpired");
+		BeanUtils.copyProperties(this, result);
 	
 		return result;
 	}

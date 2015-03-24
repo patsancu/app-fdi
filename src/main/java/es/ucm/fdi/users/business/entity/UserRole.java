@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -12,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
  * XXX - Expandir con http://springinpractice.com/2010/10/27/quick-tip-spring-security-role-based-authorization-and-permissions
  */
 @Embeddable
+@Table(name="USER_ROLES")
 public class UserRole implements GrantedAuthority, Serializable {
 
 	/**
