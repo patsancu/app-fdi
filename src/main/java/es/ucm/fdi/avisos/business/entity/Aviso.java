@@ -51,7 +51,7 @@ public class Aviso {
 
 	private String adjunto;
 
-	Aviso() {
+	public Aviso() {
 		
 	}
 	

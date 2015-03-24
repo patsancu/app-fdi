@@ -31,15 +31,16 @@
 			</p>
 			<p>
 				<strong>Fecha creación:</strong>
-				<joda:format value="${item.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
+				<joda:format value="${aviso.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
+				
 			</p>
 			<p>
 				<strong>Comienzo Publicación (desde, inclusive):</strong>
-				<joda:format value="${item.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" />
+				<joda:format value="${aviso.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" />
 			</p>
 			<p>
 				<strong>Fin Publicación (hasta, inclusive):</strong>
-				<joda:format value="${item.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
+				<joda:format value="${aviso.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
 			</p>
 		</div>
 	</div>
