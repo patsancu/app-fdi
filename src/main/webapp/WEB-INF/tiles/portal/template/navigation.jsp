@@ -12,6 +12,7 @@
 
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="container">
+	
 		<div class="navbar-header">
 			<button class="navbar-toggle" data-toggle="collapse"
 				data-target=".navbar-collapse">
@@ -101,18 +102,47 @@
 					</ul></li>
 
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><spring:message code="nav.signin" /></a></li>
-				<li><a href="#"><spring:message code="nav.signup" /></a></li>
-				<li class="active">
-					<form action="<spring:url value="/logout" />" method="POST">
-						<sec:csrfInput />
-						<input type="submit" value="<spring:message code="nav.logout"/>" />
-					</form> <span class="sr-only">(current)</span>
-				</li>
+<!-- 			<ul class="nav navbar-nav navbar-right"> -->
+				<ul class="nav nav-pills navbar-right">
+
+				<sec:authorize access="hasRole('ROLE_USER')">
+					<li>
+					
+						<a href="#" class="btn btn-info btn-lg" role="button" fref="#">
+						<span class="glyphicon glyphicon-user"></span>
+							<sec:authentication property="principal.username" />
+						</a>
+					</li>
+				</sec:authorize>
+				
+				
+
+				<li role="presentation"><a href="#"><spring:message code="nav.signin" /></a></li>
+				<li role="presentation"><a href="#"><spring:message code="nav.signup" /></a></li>
+				<sec:authorize access="hasRole('ROLE_USER')">
+					<li >
+						<a class="btn btn-danger" href="#"> 
+							<span id="logoutClick" class="glyphicon glyphicon-log-out"></span>
+						</a>
+					</li>
+				</sec:authorize>				
 			</ul>
 		</div>
 		<!--navbarCollapse -->
 	</div>
 	<!-- container -->
 </div>
+
+<form id="logoutForm" action="<spring:url value="/logout" />" method="POST">
+	<sec:csrfInput />	
+</form>
+<span class="sr-only">(current)</span>
+
+
+<script>
+	$(document).ready(function() {
+		$("#logoutClick").click(function() {
+			$("#logoutForm").submit();
+		});
+	});
+</script>
