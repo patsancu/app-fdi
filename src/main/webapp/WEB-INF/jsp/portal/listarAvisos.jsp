@@ -58,7 +58,15 @@
 							</c:choose>
 						</td>
 						<td>${item.titulo}</td>
-						<td>${fn:substring(item.contenidoAviso, 0, 25)}...</td>
+						<td>
+						${fn:substring(item.contenidoAviso, 0, 23)}
+						<c:if test="${fn:length(item.contenidoAviso) gt 23 }">
+							...
+						</c:if>
+						
+						
+						</td>
+						
 						<td>${item.etiqueta}</td>
 						<td>${item.autor }</td>
 						<td><joda:format value="${item.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" /></td>
