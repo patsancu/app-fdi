@@ -20,16 +20,7 @@
 			</div>
 		</div>
 
-		<!-- Comienzo Publicación-->
-		<div class="form-group fecha">
-			<label class="control-label col-md-2" for="caducidad"><spring:message
-					code="redireccion.caducidad"></spring:message></label>
-			<div class="col-md-2">
-				<form:input path="caducidad" />
-			</div>
-		</div>
-
-		<!-- Botón crear aviso -->
+		<!-- Botón crear redirección -->
 		<div class="form-group add">
 			<div class="col-lg-offset-2 col-lg-10">
 				<input type="submit" id="btnAdd" class="btn btn-primary"
@@ -48,15 +39,6 @@
 <!-- 		</div> -->
 <!-- 	</div> -->
 
-<!-- Comienzo Publicación-->
-
-<!-- 	<div class="form-group fecha"> -->
-<!-- 		<label class="control-label col-md-2" for="fechaCaducidad">Caducidad</label> -->
-<!-- 		<div class="col-md-2"> -->
-<!-- 			<input id="fechaCaducidad" /> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-
 <!-- 	<button id="botonCrearRedireccion" type="submit">Crear</button> -->
 <%-- </form:form> --%>
 
@@ -65,15 +47,6 @@
 <div id="campoSufijo"></div>
 
 
-
-<!-- Date & Time picker -->
-<script>
-	$(function() {
-		$("#caducidad").datetimepicker({
-			format : 'Y/m/d H:i'
-		});
-	});
-</script>
 
 <script>
 // AJAX
