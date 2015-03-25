@@ -59,10 +59,31 @@
 						</td>
 						<td>${item.titulo}</td>
 						<td>
+						
+						
 						${fn:substring(item.contenidoAviso, 0, 23)}
-						<c:if test="${fn:length(item.contenidoAviso) gt 23 }">
-							...
-						</c:if>
+							<c:if test="${fn:length(item.contenidoAviso) gt 23 }">
+							
+							
+								<button id="popover${item.id}" type="button" class="btn btn-default"
+										data-container="body" data-toggle="popover" data-trigger="focus"
+										data-placement="top">
+										...
+								</button>
+								<script>
+									$('#popover${item.id}').popover({
+										html:'true',
+										title: "${item.titulo}",
+										content: "${item.contenidoAviso}",
+										template:
+											'<div class="popover" style=" overflow: auto;" role="tooltip">' +
+											'<div class="arrow"></div><h3 class="popover-title"></h3>' +
+											'<div class="popover-content"></div></div>'
+									});
+								</script>
+
+
+								</c:if>
 						
 						
 						</td>
