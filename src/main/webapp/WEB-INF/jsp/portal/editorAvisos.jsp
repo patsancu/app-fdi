@@ -126,11 +126,7 @@
 						</div>
 					</div>
 
-<!-- 				</div> -->
-				<!-- Detalles básicos -->
 
-
-			</div>
 			<!-- contenido en pestañas -->
 
 			<!-- Botón crear aviso -->
