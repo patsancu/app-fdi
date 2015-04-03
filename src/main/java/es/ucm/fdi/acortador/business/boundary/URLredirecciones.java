@@ -1,6 +1,8 @@
 package es.ucm.fdi.acortador.business.boundary;
 
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,8 @@ import es.ucm.fdi.acortador.util.AcortadorURL;
 public class URLredirecciones {
 	@Autowired
 	URLredireccionRepository repository;
+	
+	private static final Logger logger = LoggerFactory.getLogger("es.ucm.fdi.acortador");
 	
 	public URLredireccion addURLredireccion(URLredireccionBuilder builder){
 		URLredireccion redireccion = builder.build();
@@ -36,10 +40,8 @@ public class URLredirecciones {
 		Long id = redireccion.getId();
 		redireccion.setSufijo(AcortadorURL.generarHashId(id));
 		
-		// Por defecto, la redirección caduca en una semana desde que se creó la redirección
-		if ( builder.getCaducidad() == null){
-			builder.setCaducidad(DateTime.now().plusWeeks(1));
-		}
+		logger.debug(redireccion.getSufijo());
+
 		repository.save(redireccion);
 		
 		return redireccion;
