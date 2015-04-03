@@ -108,7 +108,7 @@
 				<sec:authorize access="hasRole('ROLE_USER')">
 					<li>
 					
-						<a href="#" class="btn btn-info btn-lg" role="button" fref="#">
+						<a href="#" class="btn btn-info btn-lg" role="button" href="#">
 						<span class="glyphicon glyphicon-user"></span>
 							<sec:authentication property="principal.username" />
 						</a>
