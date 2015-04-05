@@ -89,7 +89,7 @@
 						</td>
 						
 						<td>${item.etiqueta}</td>
-						<td>${item.autor }</td>
+						<td>${item.autor.username}</td>
 						<td><joda:format value="${item.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" /></td>
 						<td><joda:format value="${item.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
 						<td><joda:format value="${item.finPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>

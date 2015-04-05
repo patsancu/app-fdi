@@ -7,6 +7,8 @@ import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +18,8 @@ import es.ucm.fdi.avisos.business.entity.Aviso;
 import es.ucm.fdi.avisos.business.entity.AvisoBuilder;
 import es.ucm.fdi.storage.business.boundary.StorageManager;
 import es.ucm.fdi.storage.business.entity.StorageObjectId;
+import es.ucm.fdi.users.business.control.UserRepository;
+import es.ucm.fdi.users.business.entity.User;
 
 @Transactional("portalTransactionManager")
 @Service
@@ -23,6 +27,9 @@ public class Avisos {
 	
 	@Autowired
 	AvisoRepository avisoRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@Autowired
 	StorageManager storageManager;
@@ -81,6 +88,12 @@ public class Avisos {
 			builder.setFechaCreacion(DateTime.now());
 		}
 		Aviso aviso = builder.build();
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    User autor = (User)auth.getPrincipal();
+	    aviso.setAutor(autor);
+		
+		
 		aviso = avisoRepository.save(aviso);
 		MultipartFile file = builder.getAdjunto();
 		if (file != null && !file.isEmpty()) {

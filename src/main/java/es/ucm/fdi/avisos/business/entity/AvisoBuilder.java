@@ -24,7 +24,8 @@ public class AvisoBuilder {
 
 	private String urlDestino;
 
-	private String autor;
+	//private String autor;
+	private long id_usuario;
 
 	private DateTime fechaCreacion;
 	
@@ -108,14 +109,28 @@ public class AvisoBuilder {
 		this.urlDestino = urlDestino;
 	}
 
-	public String getAutor() {
-		return autor;
+//	public String getAutor() {
+//		return autor;
+//	}
+//
+//	public void setAutor(String autor) {
+//		this.autor = autor;
+//	}
+	
+	/**
+	 * @return the id_usuario
+	 */
+	public long getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
+	/**
+	 * @param id_usuario the id_usuario to set
+	 */
+	public void setId_usuario(long id_usuario) {
+		this.id_usuario = id_usuario;
 	}
-	
+
 	public DateTime getFechaCreacion() {
 		return fechaCreacion;
 	}

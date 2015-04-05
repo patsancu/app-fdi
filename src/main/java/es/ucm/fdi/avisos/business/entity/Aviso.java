@@ -6,11 +6,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import es.ucm.fdi.users.business.entity.User;
 
 @Entity
 public class Aviso {
@@ -31,7 +35,10 @@ public class Aviso {
 
 	private String etiqueta;
 
-	private String autor;
+//	private String autor;
+	@ManyToOne(optional=true)
+	@JoinColumn(name="USER_ID")
+	private User autor;
 	
 	private String urlDestino;
 
@@ -91,11 +98,21 @@ public class Aviso {
 		this.etiqueta = etiqueta;
 	}
 
-	public String getAutor() {
+//	public String getAutor() {
+//		return autor;
+//	}
+//
+//	public void setAutor(String autor) {
+//		this.autor = autor;
+//	}
+	
+	
+
+	public User getAutor() {
 		return autor;
 	}
 
-	public void setAutor(String autor) {
+	public void setAutor(User autor) {
 		this.autor = autor;
 	}
 

@@ -31,6 +31,7 @@ public class User implements UserDetails, CredentialsContainer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="USER_ID")
 	private Long id;
 
 	@Column(unique=true)
