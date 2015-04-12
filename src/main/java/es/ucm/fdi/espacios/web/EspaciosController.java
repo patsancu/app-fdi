@@ -27,6 +27,7 @@ import es.ucm.fdi.espacios.business.boundary.Espacios;
 import es.ucm.fdi.espacios.business.entity.Espacio;
 import es.ucm.fdi.espacios.business.entity.TipoEspacioEnum;
 import es.ucm.fdi.espacios.validation.EspacioValidator;
+import es.ucm.fdi.util.Constants;
 
 @Controller
 public class EspaciosController {
@@ -39,7 +40,7 @@ public class EspaciosController {
 	private EspacioValidator espacioValidator;
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@RequestMapping(method = RequestMethod.GET, value = "/espacios/nuevo")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_NUEVO_ESPACIO)
 	public ModelAndView nuevoEspacio() {
 		Map<String, Object> model = new HashMap<>();
 		model.put("modo", "Crear");
@@ -49,7 +50,7 @@ public class EspaciosController {
 		return new ModelAndView("editorEspacios", model);		
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/espacios/nuevo")
+	@RequestMapping(method = RequestMethod.POST, value = Constants.URL_NUEVO_ESPACIO)
 	public ModelAndView creaNuevaEspacio(@ModelAttribute("espacio") @Validated  Espacio espacio,
 			BindingResult result) throws IOException {
 		logger.warn("Creando espacio: " + espacio);
@@ -79,7 +80,7 @@ public class EspaciosController {
 		return new ModelAndView("redirect:/espacios", model);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/espacios")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_LISTAR_ESPACIOS)
 	public ModelAndView listarEspacios(HttpServletRequest request){
 		List<Espacio> listaEspacios = espacios.listarEspacios();
 		logger.warn("Listando " + listaEspacios.size() + " espacios:");
@@ -92,7 +93,7 @@ public class EspaciosController {
 		return new ModelAndView("listarEspacios", model);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/espacios/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_ESPACIO_INDIVIDUAL)
 	public ModelAndView editarEspacio(@PathVariable("id") Long espacioId){
 		Map<String, Object> model = new HashMap<>();
 		model.put("modo", "Editar");
@@ -102,7 +103,7 @@ public class EspaciosController {
 		return new ModelAndView("editorEspacios", model);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/espacios/{id}")
+	@RequestMapping(method = RequestMethod.PUT, value = Constants.URL_ESPACIO_INDIVIDUAL)
 	public String actualizaEspacios(@PathVariable("id") Long espacioId, @ModelAttribute("espacio") Espacio espacio,
 			BindingResult result, HttpServletRequest request){
 		logger.debug("Actualizando espacio:" + espacio);
@@ -114,7 +115,7 @@ public class EspaciosController {
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.DELETE , value="/espacios/{id}")
+	@RequestMapping(method=RequestMethod.DELETE , value = Constants.URL_ESPACIO_INDIVIDUAL)
 	public String eliminarEspacio(@PathVariable("id") Long espacioID) throws IOException {
 		espacios.eliminar(espacioID);
 		return "redirect:/espacios";

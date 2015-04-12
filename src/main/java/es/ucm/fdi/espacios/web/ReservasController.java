@@ -31,6 +31,7 @@ import es.ucm.fdi.espacios.business.entity.Espacio;
 import es.ucm.fdi.espacios.business.entity.Reserva;
 import es.ucm.fdi.espacios.business.entity.ReservaBuilder;
 import es.ucm.fdi.espacios.validation.ReservaValidator;
+import es.ucm.fdi.util.Constants;
 
 @Controller
 public class ReservasController {
@@ -46,7 +47,7 @@ public class ReservasController {
 	private Espacios espacios;
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@RequestMapping(method = RequestMethod.GET, value = "/reservas/nuevo")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_NUEVA_RESERVA)
 	public ModelAndView nuevaReserva() {
 		Map<String, Object> model = new HashMap<>();
 		model.put("modo", "Crear");
@@ -57,7 +58,7 @@ public class ReservasController {
 		return new ModelAndView("editorReservas", model);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/reservas/nuevo")
+	@RequestMapping(method = RequestMethod.POST, value = Constants.URL_NUEVA_RESERVA)
 	public ModelAndView creaNuevaReserva(@ModelAttribute("reserva") @Validated ReservaBuilder reserva,
 			BindingResult result) throws IOException {
 		logger.debug("Creando reserva: " + reserva);
@@ -92,12 +93,9 @@ public class ReservasController {
 		return new ModelAndView("redirect:/reservas/calendario", model);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value="/reservas/ajax/nueva")
-	public void ajaxCrearReserva(@ModelAttribute("reserva") @Validated ReservaBuilder reserva, BindingResult result, HttpServletResponse response){
-		response.setStatus(org.springframework.http.HttpStatus.OK.value());
-	}
+	
 
-	@RequestMapping(method = RequestMethod.GET, value = "/reservas")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_LISTAR_RESERVAS)
 	public ModelAndView listarReservas(HttpServletRequest request){
 		Map<String, Object> model = new HashMap<>();		
 
@@ -108,7 +106,7 @@ public class ReservasController {
 		return new ModelAndView("listarReservas", model);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/reservas/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_RESERVA_INDIVIDUAL)
 	public ModelAndView editarReserva(@PathVariable("id") Long reservaId){
 		Map<String, Object> model = new HashMap<>();
 
@@ -127,7 +125,7 @@ public class ReservasController {
 		return new ModelAndView("editorReservas", model);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/reservas/{id}")
+	@RequestMapping(method = RequestMethod.PUT, value = Constants.URL_RESERVA_INDIVIDUAL)
 	public String actualizaReserva(@PathVariable("id") Long reservaId, @ModelAttribute("reserva") ReservaBuilder reserva,
 			BindingResult result, HttpServletRequest request){
 		logger.debug("Actualizando reserva:" + reserva);
@@ -137,13 +135,13 @@ public class ReservasController {
 		return "redirect:/reservas/calendario";
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE , value="/reservas/{id}")
+	@RequestMapping(method=RequestMethod.DELETE , value = Constants.URL_RESERVA_INDIVIDUAL)
 	public String eliminarReserva(@PathVariable("id") Long reservaId) throws IOException {
 		reservas.eliminar(reservaId);
 		return "redirect:/reservas";
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/reservas/calendario")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_CALENDARIO_RESERVAS)
 	public ModelAndView calendarioReservas(HttpServletRequest request){
 		Map<String, Object> model = new HashMap<>();	
 
@@ -169,6 +167,10 @@ public class ReservasController {
 		return new ModelAndView("calendarioReservas", model);
 	}
 
+	@RequestMapping(method = RequestMethod.POST, value="/reservas/ajax/nueva")
+	public void ajaxCrearReserva(@ModelAttribute("reserva") @Validated ReservaBuilder reserva, BindingResult result, HttpServletResponse response){
+		response.setStatus(org.springframework.http.HttpStatus.OK.value());
+	}
 
 
 	@InitBinder

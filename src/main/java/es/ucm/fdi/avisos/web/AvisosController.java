@@ -29,6 +29,7 @@ import es.ucm.fdi.avisos.business.entity.Aviso;
 import es.ucm.fdi.avisos.business.entity.AvisoBuilder;
 import es.ucm.fdi.avisos.util.CustomRssViewer;
 import es.ucm.fdi.avisos.validation.AvisoValidator;
+import es.ucm.fdi.util.Constants;
 
 @Controller
 public class AvisosController {
@@ -42,7 +43,7 @@ public class AvisosController {
 	@Autowired 
 	private AvisoValidator avisoValidator;
 
-	@RequestMapping(method = RequestMethod.GET, value = "/avisos")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_LISTAR_AVISOS)
 	public ModelAndView listarAvisos(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<>();
 		model.put("avisos", avisoService.getAvisos());
@@ -50,7 +51,7 @@ public class AvisosController {
 		return new ModelAndView("listarAvisos", model);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/avisos/{id}/ver")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_AVISO_INDIVIDUAL + "/ver")
 	public String avisoIndividual(@PathVariable("id") Long avisoID,
 			Model model) {
 		model.addAttribute(avisoService.getAviso(avisoID));
@@ -64,7 +65,7 @@ public class AvisosController {
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@RequestMapping(method = RequestMethod.GET, value = "/avisos/nuevo")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_NUEVO_AVISO)
 	public ModelAndView nuevoAviso() {
 		Map<String, Object> model = new HashMap<>();
 		model.put("modo", "Crear");
@@ -73,7 +74,7 @@ public class AvisosController {
 		return new ModelAndView("editorAvisos", model);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/avisos/nuevo")
+	@RequestMapping(method = RequestMethod.POST, value = Constants.URL_NUEVO_AVISO)
 	public ModelAndView creaNuevoAviso(@ModelAttribute("aviso") @Validated AvisoBuilder aviso,
 			BindingResult result) throws IOException {
 		logger.debug("Creando aviso: " + aviso);
@@ -105,7 +106,7 @@ public class AvisosController {
 		return new ModelAndView("redirect:/avisos", model);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/avisos/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_AVISO_INDIVIDUAL)
 	public ModelAndView editarAviso(@PathVariable("id") Long avisoID) {
 		Map<String, Object> model = new HashMap<>();
 		model.put("modo", "Editar");
@@ -117,13 +118,13 @@ public class AvisosController {
 		return new ModelAndView("editorAvisos", model);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE , value="/avisos/{id}")
+	@RequestMapping(method=RequestMethod.DELETE , value = Constants.URL_AVISO_INDIVIDUAL)
 	public String eliminarAviso(@PathVariable("id") Long avisoID) throws IOException {
 		avisoService.eliminarAviso(avisoID);
 		return "redirect:/avisos";
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/avisos/{id}")
+	@RequestMapping(method = RequestMethod.PUT, value = Constants.URL_AVISO_INDIVIDUAL)
 	public String actualizarAviso(@PathVariable("id") Long avisoID, @ModelAttribute("aviso") @Validated AvisoBuilder aviso,
 			BindingResult result, HttpServletRequest request) throws IOException {
 

@@ -19,19 +19,16 @@ import org.springframework.web.servlet.ModelAndView;
 import es.ucm.fdi.acortador.business.boundary.URLredirecciones;
 import es.ucm.fdi.acortador.business.entity.URLredireccion;
 import es.ucm.fdi.acortador.business.entity.URLredireccionBuilder;
+import es.ucm.fdi.util.Constants;
 
 @Controller
 public class AcortadorURLcontroller {
 	private static final Logger logger = LoggerFactory.getLogger("es.ucm.fdi.acortador");
-
-	private static final String URL_REDIRECCIONES = "/u";
-	private static final String URL_NUEVA_REDIRECCION = "/urls/nueva";
-	private static final String URL_REST_NUEVA_REDIRECCION = "/urls/rest/nueva";
 	
 	@Autowired
 	URLredirecciones urlRedirecciones;
 
-	@RequestMapping(value = URL_REDIRECCIONES + "/{sufijo}", method = RequestMethod.GET)
+	@RequestMapping(value = Constants.URL_REDIRECCIONES + "/{sufijo}", method = RequestMethod.GET)
 	public ModelAndView redirigir(@PathVariable("sufijo") String sufijo){
 		Map<String, Object> model = new HashMap<>();
 		URLredireccion urlRedireccion = urlRedirecciones.obtenerRedireccion(sufijo);
@@ -45,28 +42,28 @@ public class AcortadorURLcontroller {
 	}
 	
 
-	@RequestMapping(value = URL_NUEVA_REDIRECCION, method = RequestMethod.GET)
+	@RequestMapping(value = Constants.URL_NUEVA_REDIRECCION, method = RequestMethod.GET)
 	public ModelAndView crearNuevoAcortador(HttpServletRequest request){
 		logger.warn("Se quiere crear una redirección");
 		Map<String, Object> model = new HashMap<>();
-		model.put("urlEnvio", URL_REST_NUEVA_REDIRECCION );
-		model.put("urlReenvios", URL_REDIRECCIONES);
+		model.put("urlEnvio", Constants.URL_REST_NUEVA_REDIRECCION );
+		model.put("urlReenvios", Constants.URL_REDIRECCIONES);
 
 		return new ModelAndView("editorRedireccion", model);
 	}
 	
-	@RequestMapping(value = URL_NUEVA_REDIRECCION, method = RequestMethod.POST)
+	@RequestMapping(value = Constants.URL_NUEVA_REDIRECCION, method = RequestMethod.POST)
 	public ModelAndView nuevoAcortador(URLredireccionBuilder URLredireccionBuilder, HttpServletRequest request){
 		Map<String, Object> model = new HashMap<>();
 		URLredireccion redireccion = urlRedirecciones.addURLredireccion(URLredireccionBuilder);
 		logger.warn("Sufijo:" + redireccion.getSufijo());
 		model.put("urlOriginal", redireccion.getUrlOriginal());
-		model.put("urlCorta",  URL_REDIRECCIONES + redireccion.getSufijo());
+		model.put("urlCorta",  Constants.URL_REDIRECCIONES + redireccion.getSufijo());
 		
 		return new ModelAndView("mostrarAbreviatura",model);
 	}
 	
-	@RequestMapping(value = URL_REST_NUEVA_REDIRECCION, method = RequestMethod.POST)
+	@RequestMapping(value = Constants.URL_REST_NUEVA_REDIRECCION, method = RequestMethod.POST)
 	public  @ResponseBody URLredireccion nuevoAcortadorREST(@RequestBody final URLredireccionBuilder urlRedireccion){
 		logger.warn("La url es:" + urlRedireccion.getUrl());
 		URLredireccion redireccion = urlRedirecciones.addURLredireccion(urlRedireccion);
