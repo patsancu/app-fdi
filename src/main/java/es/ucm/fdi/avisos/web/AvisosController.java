@@ -53,7 +53,7 @@ public class AvisosController {
 	@RequestMapping(method = RequestMethod.GET, value = "/avisos/{id}/ver")
 	public String avisoIndividual(@PathVariable("id") Long avisoID,
 			Model model) {
-		model.addAttribute(avisoService.getAviso(avisoID));
+		model.addAttribute("a", avisoService.getAviso(avisoID));
 		return "verAviso";
 	}
 
@@ -146,7 +146,7 @@ public class AvisosController {
 	}
 
 
-	@InitBinder
+	@InitBinder("aviso")
 	public void initialiseBinder(WebDataBinder binder) {
 		binder.setValidator(avisoValidator);
 		binder.setDisallowedFields("id");

@@ -5,42 +5,42 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <div class="jumbotron">
 	<div class="container">
-		<h1>"${aviso.titulo}"</h1>
+		<h1>"${a.titulo}"</h1>
 	</div>
 </div>
 <section class="container col-md-offset-2 col-md-6 center">
 	<div class="panel panel-info">
-		<%-- <h3>${aviso.titulo}</h3> --%>
+		<%-- <h3>${a.titulo}</h3> --%>
 		<div class="panel-heading">
 			<div class="panel-title">
-				${aviso.titulo} <a class="pull-right"
-					href="<spring:url value="/avisos/{id}"><spring:param name="id" value="${aviso.id}" /></spring:url>">
+				${a.titulo} <a class="pull-right"
+					href="<spring:url value="/avisos/{id}"><spring:param name="id" value="${a.id}" /></spring:url>">
 					<span hint="Editar aviso" class="glyphicon glyphicon-edit "></span>
 				</a>
 
 			</div>
 		</div>
 		<div class="panel-body clearfix" style="padding-top: 7.5px;">
-			<p>${aviso.contenidoAviso}</p>
-			<p><strong>Creado por: </strong>${aviso.autor}</p>
+			<p>${a.contenidoAviso}</p>
+			<p><strong>Creado por: </strong>${a.autor}</p>
 			<p>
-				<strong>Etiqueta : </strong> <span class=" label label-warning">${aviso.etiqueta}</span>
+				<strong>Etiqueta : </strong> <span class=" label label-warning">${a.etiqueta}</span>
 			</p>
 			<p>
-				<strong>Tipo aviso</strong> : ${aviso.tipoAviso.description}
+				<strong>Tipo aviso</strong> : ${a.tipoAviso.description}
 			</p>
 			<p>
 				<strong>Fecha creación:</strong>
-				<joda:format value="${aviso.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
+				<joda:format value="${a.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
 				
 			</p>
 			<p>
 				<strong>Comienzo Publicación (desde, inclusive):</strong>
-				<joda:format value="${aviso.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" />
+				<joda:format value="${a.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" />
 			</p>
 			<p>
 				<strong>Fin Publicación (hasta, inclusive):</strong>
-				<joda:format value="${aviso.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
+				<joda:format value="${a.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
 			</p>
 		</div>
 	</div>
