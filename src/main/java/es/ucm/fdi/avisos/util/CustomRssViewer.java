@@ -61,7 +61,7 @@ public class CustomRssViewer extends AbstractRssFeedView {
 
 			// Autor
 			if (tempContent.getAutor() != null) {
-				item.setAuthor(tempContent.getAutor());
+				item.setAuthor(tempContent.getAutor().getUsername());
 			}
 
 			// Fecha caducidad
