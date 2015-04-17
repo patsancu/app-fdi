@@ -1,30 +1,33 @@
 package es.ucm.fdi.acortador.util;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AcortadorURL {
 	
-
+	private static final Logger logger = LoggerFactory
+			.getLogger("AcortadorURL");
+	
+	private static final String nombresLocal [] = {"localhost", "fdi.e-ucm.es"};
+	
 	static boolean local = true;
 	
 	public static boolean esUrlInterna(String url){
-		
-		//Fuerza la url sin protocolo
-		String urlSinProtocolo = url;
-		if (url.startsWith("http")){
-			urlSinProtocolo = url.split("//")[1];
+		try {
+			URL urlParseada = new URL(url);		
+			boolean interna = false;
+			for (String host: nombresLocal){
+				interna = interna || host.equals(urlParseada.getHost());				
+			}
+			logger.warn("Es local? "+ interna);
+			return interna;
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return false;
 		}
-		
-		Pattern patternDev = Pattern.compile("localhost:[\\d]{4}/anuncios.*");
-		Pattern patternRemoto = Pattern.compile("fdi.e-ucm.es/portal.*");
-		Pattern pattern = patternDev;
-		if (!local){
-			pattern = patternRemoto; 
-		}
-		
-		Matcher matcher = pattern.matcher(urlSinProtocolo);
-        return matcher.matches();
 	}
 
 	/* Para que las URLs no sean tan fácilmente enumerables,
