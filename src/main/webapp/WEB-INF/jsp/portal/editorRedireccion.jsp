@@ -58,10 +58,11 @@ $(document).ready(
 				},
 				mimeType: 'application/json',
 			    success: function(data) {
+			    	var urlRedireccion = "${urlReenviosEfectiva}" + '/' + data.sufijo;
 			        $("#campoSufijo").html(
-			        		"<a href='${urlReenviosEfectiva}" 
-			        		+ data.sufijo + "'" + ">" + location.host + 
-			        		"${urlReenviosEfectiva}" + data.sufijo + " <a/>"
+			        		"<a " + "href='" + urlRedireccion + "'>" +
+			        		location.host + urlRedireccion + 
+			        		" </a>"
 			        );
 			    },
 			    error:function(data,status,er) {
