@@ -13,6 +13,7 @@ public class Constants {
 	public static final String URL_REDIRECCIONES = "/u";
 	public static final String URL_NUEVA_REDIRECCION = "/urls/nueva";
 	public static final String URL_REST_NUEVA_REDIRECCION = "/urls/rest/nueva";
+	public static final String URL_LISTAR_REDIRECCIONES = "/urls";
 	
 	// Avisos
 	public static final String URL_NUEVO_AVISO = "/avisos/nuevo";

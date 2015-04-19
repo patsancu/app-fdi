@@ -152,6 +152,15 @@
  	REDIRECCIONES 
  	***********************************************************************-->
 
+	<!-- Listado de urls acortadas -->
+	<definition name="listarRedirecciones" extends="baseLayout">
+		<put-attribute name="title" value="redireccion.listar.title" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/listarRedirecciones_resources.jsp" />
+		<put-attribute name="heading" value="redireccion.listar.title" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarRedirecciones.jsp" />
+	</definition>
+
 	
 	<!-- Creador de redirecciones -->
 	<definition name="editorRedireccion" extends="baseLayoutWithoutJumbotron">

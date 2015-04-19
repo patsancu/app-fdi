@@ -33,6 +33,9 @@ public class AcortadorURLcontroller {
 		Map<String, Object> model = new HashMap<>();
 		URLredireccion urlRedireccion = urlRedirecciones.obtenerRedireccion(sufijo);
 		String urlOriginal = urlRedireccion.getUrlOriginal();
+
+		urlRedireccion.setNumeroVisitas(urlRedireccion.getNumeroVisitas() + 1);
+		urlRedirecciones.addURLredireccion(urlRedireccion);
 		
 		if (! urlRedireccion.isInterna()){
 			model.put("urlRedireccion", urlOriginal);
@@ -69,6 +72,15 @@ public class AcortadorURLcontroller {
 		URLredireccion redireccion = urlRedirecciones.addURLredireccion(urlRedireccion);
 		logger.warn("Sufijo:" + redireccion.getSufijo());
 		return redireccion;		
+	}
+	
+	@RequestMapping(value = Constants.URL_LISTAR_REDIRECCIONES, method = RequestMethod.GET)
+	public ModelAndView listarRedirecciones(HttpServletRequest request){
+		Map<String, Object> model = new HashMap<>();
+		model.put("urlReenviosEfectiva", Constants.URL_REDIRECCIONES);
+		model.put("urlsAcortadas", urlRedirecciones.obtenerRedirecciones());
+		
+		return new ModelAndView("listarRedirecciones", model);
 	}
 
 }
