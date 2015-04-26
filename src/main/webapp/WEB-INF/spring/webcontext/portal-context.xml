@@ -29,6 +29,7 @@
 	<context:component-scan base-package="es.ucm.fdi.espacios.business.boundary" />
 	<context:component-scan base-package="es.ucm.fdi.users.business.boundary" />
 	<context:component-scan base-package="es.ucm.fdi.acortador.business.boundary" />
+	<context:component-scan base-package="es.ucm.fdi.social.web" />
 
 
 	<!-- Packages to search for @Controller beans definitions -->
@@ -62,6 +63,11 @@
 	<data:repositories base-package="es.ucm.fdi.acortador.business.control" 
 		entity-manager-factory-ref="rootEntityManagerFactory"
 		transaction-manager-ref="rootTransactionManager" />
+		
+	<data:repositories base-package="es.ucm.fdi.social.web"
+		entity-manager-factory-ref="rootEntityManagerFactory"
+		transaction-manager-ref="rootTransactionManager" />
+		
 	
 
 	<util:properties id="storagePrefs">
@@ -69,6 +75,7 @@
 <!-- 		<prop key="serviceURL">http://localhost:8080/portal/storage/</prop> -->
 		<prop key="serviceURL">http://localhost:8088/anuncios/storage/</prop>
 	</util:properties>
+
 
 
 
@@ -98,6 +105,9 @@
 	<util:properties id="avisosPrefs">
 		<prop key="bucket">avisos</prop>
 	</util:properties>
+	
+	
+	
 	
 	<!-- Validator --> 
 	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"> 

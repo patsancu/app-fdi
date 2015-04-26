@@ -266,6 +266,62 @@
 		</dependency>
 		<!-- FIN JSON -->
 
+		<!-- Spring Social -->
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-config</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-core</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-security</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-web</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+
+		<!-- Spring Social Facebook -->
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-facebook</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+
+		<!-- Spring Social Twitter -->
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-twitter</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+
+
+		<!-- Útiles -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.commons</groupId> -->
+		<!-- <artifactId>commons-lang3</artifactId> -->
+		<!-- <version>3.1</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.2</version>
+		</dependency>
+
 
 		<!-- *************************************************** TESTING *************************************************** -->
 
@@ -323,6 +379,7 @@
 				<directory>${basedir}/src/main/resources</directory>
 				<excludes>
 					<exclude>db.properties</exclude>
+					<exclude>social.properties</exclude>
 				</excludes>
 			</resource>
 			<resource>
@@ -330,6 +387,7 @@
 				<directory>${basedir}/src/main/resources</directory>
 				<includes>
 					<include>db.properties</include>
+					<include>social.properties</include>
 				</includes>
 			</resource>
 		</resources>
@@ -400,14 +458,14 @@
 				</dependency>
 			</dependencies>
 			<properties>
-				<db.jdbc.driverClassName>org.hsqldb.jdbcDriver</db.jdbc.driverClassName>
-				<db.jdbc.url>jdbc:hsqldb:mem:app;shutdown=true</db.jdbc.url>
-				<db.jdbc.username>sa</db.jdbc.username>
-				<db.jdbc.password></db.jdbc.password>
-				<db.hibernate.dialect>org.hibernate.dialect.HSQLDialect</db.hibernate.dialect>
-				<db.hibernate.hbm2ddl.auto>create-drop</db.hibernate.hbm2ddl.auto>
-				<db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</db.hibernate.hbm2ddl.import_files>
-				<db.hibernate.show_sql>true</db.hibernate.show_sql>
+				<!-- <db.jdbc.driverClassName>org.hsqldb.jdbcDriver</db.jdbc.driverClassName> -->
+				<!-- <db.jdbc.url>jdbc:hsqldb:mem:app;shutdown=true</db.jdbc.url> -->
+				<!-- <db.jdbc.username>sa</db.jdbc.username> -->
+				<!-- <db.jdbc.password></db.jdbc.password> -->
+				<!-- <db.hibernate.dialect>org.hibernate.dialect.HSQLDialect</db.hibernate.dialect> -->
+				<!-- <db.hibernate.hbm2ddl.auto>create-drop</db.hibernate.hbm2ddl.auto> -->
+				<!-- <db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</db.hibernate.hbm2ddl.import_files> -->
+				<!-- <db.hibernate.show_sql>true</db.hibernate.show_sql> -->
 			</properties>
 		</profile>
 		<profile>

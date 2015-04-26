@@ -4,6 +4,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
+
+<meta name="_csrf" content="${_csrf.token}" />
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}" />
+
 <section class="container">
 	<table id="avisos" class="table table-hover">
 		<thead>
@@ -17,6 +22,7 @@
 				<th><spring:message code="listado.fecha.creacion"></spring:message></th>
 				<th><spring:message code="listado.fecha.publicacion.comienzo"></spring:message></th>
 				<th><spring:message code="listado.fecha.publicacion.fin"></spring:message></th>
+				<th><spring:message code="listado.twitter"></spring:message></th>
 				<th><spring:message code="listado.acciones"></spring:message></th>
 			</tr>
 		</thead>
@@ -92,7 +98,12 @@
 						<td>${item.autor.username}</td>
 						<td><joda:format value="${item.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" /></td>
 						<td><joda:format value="${item.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
-						<td><joda:format value="${item.finPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
+						<td><joda:format value="${item.finPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>						
+						
+						<td>
+							<img id="${item.id}" class="botonTweet" alt="Tweet" src="<spring:url value="/static/img/twitter.png" />" width="30"> 
+						</td>						
+						
 						<td><a class="btn btn-success"
 							href="<spring:url value="/avisos/{id}"><spring:param name="id" value="${item.id}" /></spring:url>">
 								<span class="glyphicon glyphicon-edit"></span>
@@ -129,43 +140,106 @@
 		</c:forEach>
 		</tbody>
 	</table>
+
+	<div id="modalTweetCreado" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header bg-primary">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">
+						<spring:message code="listado.twitter.tweet.creado"></spring:message>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<spring:message code="listado.twitter.tweet.disponible"></spring:message> <a id="enlaceTweet"></a>						
+				</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-success " data-dismiss="modal"><spring:message code="listado.twitter.modal.ok"></spring:message>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Fin de  Popup de confirmación de eliminación -->
+
+
 </section>
 <script type="text/javascript">
-	$(document).ready(function() { /* Se deshabilita el orden por estos campos */
-		$('#myModal').modal({
-			show : false,
-			keyboard : false
+	$(document).ready(
+		function() { /* Se deshabilita el orden por estos campos */
+			$('#myModal').modal({
+				show : false,
+				keyboard : false
+			});
+			$('#avisos')
+				.DataTable(
+					{
+						"aoColumnDefs" : 
+						[
+						 {
+							'bSortable' : false,
+							'aTargets' : [ 7 ]
+						 }, //info
+						 {
+							'bSortable' : false,
+							'aTargets' : [ 8 ]
+						 }, //editar
+						 {
+							'bSortable' : false,
+							'aTargets' : [ 9 ]
+						 } //eliminar
+						],
+						//Cambio de texto de menus
+						"language" : {
+							"lengthMenu" : <spring:message code="listado.datatables.lengthmenu"></spring:message>,
+							"zeroRecords" : <spring:message code="listado.datatables.zerorecords"></spring:message>,
+							"info" : <spring:message code="listado.datatables.info"></spring:message>,
+							"infoEmpty" : <spring:message code="listado.datatables.infoempty"></spring:message>,
+							"infoFiltered" : <spring:message code="listado.datatables.infofiltered"></spring:message>,
+							"search" : <spring:message code="listado.datatables.search"></spring:message>,
+							"paginate" : {
+								"first" : <spring:message code="listado.datatables.first"></spring:message>,
+								"last" : <spring:message code="listado.datatables.last"></spring:message>,
+								"next" : <spring:message code="listado.datatables.next"></spring:message>,
+								"previous" : <spring:message code="listado.datatables.previous"></spring:message>
+							},
+						}
+				});
 		});
-		$('#avisos').DataTable({
-			"aoColumnDefs" : [ {
-				'bSortable' : false,
-				'aTargets' : [ 7 ]
-			}, //info
-			{
-				'bSortable' : false,
-				'aTargets' : [ 8 ]
-			}, //editar
-			{
-				'bSortable' : false,
-				'aTargets' : [ 9 ]
-			} //eliminar
-			],
+</script>
 
-			//Cambio de texto de menus
-			"language" : {
-				"lengthMenu" : <spring:message code="listado.datatables.lengthmenu"></spring:message>,
-				"zeroRecords" : <spring:message code="listado.datatables.zerorecords"></spring:message>,
-				"info" : <spring:message code="listado.datatables.info"></spring:message>,
-				"infoEmpty" : <spring:message code="listado.datatables.infoempty"></spring:message>,
-				"infoFiltered" : <spring:message code="listado.datatables.infofiltered"></spring:message>,
-				"search" : <spring:message code="listado.datatables.search"></spring:message>,
-				"paginate" : { 
-					"first" : <spring:message code="listado.datatables.first"></spring:message>,
-					"last" : <spring:message code="listado.datatables.last"></spring:message>,
-					"next" : <spring:message code="listado.datatables.next"></spring:message>,
-					"previous" : <spring:message code="listado.datatables.previous"></spring:message>
+<!-- AJAX para tweetear -->
+<script>
+
+$(document).ready(
+	function() {  
+		$('.botonTweet').click(  function(event) {
+			var header = $("meta[name='_csrf_header']").attr("content"); 
+			var token = $("meta[name='_csrf']").attr("content"); console.log("Token " + token);
+			var urlRest = "http://localhost:8088/anuncios/tweets/rest";
+			var data = JSON.stringify($(this).attr('id'));
+			$.ajax({  					
+				contentType: "application/json",
+ 				url: urlRest,
+ 				data: data, 
+ 				method: "POST",
+				beforeSend : function( xhr ) { 
+					xhr.setRequestHeader(header, token);
 				},
-			}
-		});
-	});
+				mimeType: 'application/json',
+				success: function(data){					
+					var urlTweet = "https://twitter.com/mortadeloTIA/";	    	
+	 		    	$('#enlaceTweet').attr('href', urlTweet); 
+	 		    	$('#enlaceTweet').text(urlTweet);
+					$('#modalTweetCreado').modal('show');
+				},
+				error:function(data, textStatus, jqXHR){
+					alert("Error" + data);
+				},
+				complete:function(data, textStatus, jqXHR){
+					alert("Complete" + data);
+				},
+			});
+		});  
+	});			
 </script>

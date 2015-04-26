@@ -28,8 +28,8 @@
 	<!-- Database -->
 	<!--  -->
 		
-	<!-- Database and JPA properties -->
-	<context:property-placeholder location="classpath:db.properties" />
+	<!-- Twitter, Database and JPA properties -->
+	<context:property-placeholder location="classpath:db.properties, classpath:social.properties" />
 
 	<bean id="rootEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -45,6 +45,7 @@
 				<value>es.ucm.fdi.storage.business.entity</value>
 				<value>es.ucm.fdi.espacios.business.entity</value>
 				<value>es.ucm.fdi.acortador.business.entity</value>
+				<value>es.ucm.fdi.social.web</value>
 			</array>
 		</property>
 		<property name="jpaVendorAdapter" ref="rootVendorAdapter" />
@@ -60,6 +61,15 @@
 			</props>
 		</property>
 	</bean>
+	
+		
+	
+	<util:properties id="twitterData" >
+		<prop key="consumerKey">${cfg.twitter.consumerKey}</prop>
+		<prop key="consumerSecret">${cfg.twitter.consumerSecret}</prop>
+		<prop key="accessToken">${cfg.twitter.accessToken}</prop>
+		<prop key="accessTokenSecret">${cfg.twitter.accessTokenSecret}</prop>
+	</util:properties>
 
 	<bean id="rootVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
@@ -70,6 +80,8 @@
 		<property name="username" value="${cfg.jdbc.username}" />
 		<property name="password" value="${cfg.jdbc.password}" />
 	</bean>
+	
+	
 
 	<tx:annotation-driven transaction-manager="rootTransactionManager" />
 	
