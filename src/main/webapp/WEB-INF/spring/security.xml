@@ -53,9 +53,8 @@
 		<form-login login-processing-url="/login" login-page="/loginPage"
 			username-parameter="username" password-parameter="password"
 			default-target-url="/avisos/" authentication-failure-url="/loginPage?auth=error" />
-
-		<!-- http://www.waitingforcode.com/spring-security/csrf-protection-in-spring-security/read -->
-		<logout />
+		<logout />		
+		<remember-me key="${cfg.remember.me.secret}" token-validity-seconds="7200" />
 	</http>
 
 	<beans:bean id="passwordEncoder" class="es.ucm.fdi.users.util.PBKDF2PasswordEncoder" />

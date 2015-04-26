@@ -29,7 +29,7 @@
 	<!--  -->
 		
 	<!-- Twitter, Database and JPA properties -->
-	<context:property-placeholder location="classpath:db.properties, classpath:social.properties" />
+	<context:property-placeholder location="classpath:db.properties, classpath:social.properties, classpath:security.properties" />
 
 	<bean id="rootEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -70,6 +70,8 @@
 		<prop key="accessToken">${cfg.twitter.accessToken}</prop>
 		<prop key="accessTokenSecret">${cfg.twitter.accessTokenSecret}</prop>
 	</util:properties>
+	
+	
 
 	<bean id="rootVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
