@@ -1,7 +1,6 @@
 package es.ucm.fdi.users.business.entity;
 
 import java.util.Collection;
-import java.util.Collections;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -19,10 +18,15 @@ import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.security.SocialUser;
+
+import es.ucm.fdi.social.entity.SocialMediaService;
+
+
 
 @Entity
 @Table(name="USER")
-public class User implements UserDetails, CredentialsContainer {
+public class User extends SocialUser implements UserDetails, CredentialsContainer {
 	
 	/**
 	 * @see java.io.Serializable
@@ -36,6 +40,9 @@ public class User implements UserDetails, CredentialsContainer {
 
 	@Column(unique=true)
 	private String username;
+	
+    private SocialMediaService socialSignInProvider;
+
 	
 	@Column(unique=true)
 	@Email
@@ -56,22 +63,41 @@ public class User implements UserDetails, CredentialsContainer {
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="USER_ROLES", joinColumns=@JoinColumn(name="user"),  uniqueConstraints=@UniqueConstraint(columnNames={"user", "role"}))
 	private Collection<UserRole> roles;
+		
+//	public User() {
+//		this.accountNonExpired = true;
+//		this.accountNonLocked = true;
+//		this.credentialsNonExpired = true;		
+//		this.enabled = true;
+//	}
 	
-	public User() {
-		this.accountNonExpired = true;
-		this.accountNonLocked = true;
-		this.credentialsNonExpired = true;		
-		this.enabled = true;
-	}
 	
-	public User(String email) {
-		this.email = email;
+	
+	public User(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities)  
+	{
+		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+//		this.id = id;
+//		username = username2;
+//		this.email = email;
+//		password = password2;
+//		this.salt = salt;
+//		this.enabled = enabled;
+//		this.accountNonExpired = accountNonExpired;
+//		this.accountNonLocked = accountNonLocked;
+//		this.credentialsNonExpired = credentialsNonExpired;
+//		this.roles = roles;
 	}
 
-	public User(Long id) {
-		this();
-		this.id = id;		
-	}
+
+
+//	public User(String email) {		
+//		this.email = email;
+//	}
+
+//	public User(Long id) {
+//		this();
+//		this.id = id;		
+//	}
 	
 
 	public Long getId() {
@@ -198,8 +224,8 @@ public class User implements UserDetails, CredentialsContainer {
 		return this.enabled;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.unmodifiableCollection(this.roles);
-	}
+//	@Override
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		return Collections.unmodifiableCollection(this.roles);
+//	}
 }
