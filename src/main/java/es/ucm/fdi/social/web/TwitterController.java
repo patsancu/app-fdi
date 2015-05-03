@@ -48,6 +48,7 @@ public class TwitterController {
 		TwitterTemplate twitter = new TwitterTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);
 		try {
 			Tweet tweet = twitter.timelineOperations().updateStatus(textoTweet);
+			avisoService.actualizaInfoTwitter(avisoTweet, tweet.getId(), tweet.getUser().getId());
 			logger.warn("Creado tweet: https://twitter.com/mortadeloTIA/status/" + tweet.getId());
 			return tweet.getId()+"";
 		} catch (DuplicateStatusException e) {

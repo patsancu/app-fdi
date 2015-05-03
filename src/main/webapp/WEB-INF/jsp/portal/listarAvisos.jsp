@@ -18,6 +18,7 @@
 				<th><spring:message code="listado.titulo"></spring:message></th>
 				<th><spring:message code="listado.contenido.aviso"></spring:message></th>
 				<th><spring:message code="listado.etiqueta"></spring:message></th>
+				<th><spring:message code="listado.tweet"></spring:message></th>
 				<th><spring:message code="listado.autor"></spring:message></th>
 				<th><spring:message code="listado.fecha.creacion"></spring:message></th>
 				<th><spring:message code="listado.fecha.publicacion.comienzo"></spring:message></th>
@@ -87,14 +88,17 @@
 											'<div class="popover-content"></div></div>'
 									});
 								</script>
-
-
-								</c:if>
-						
-						
+							</c:if>
 						</td>
 						
 						<td>${item.etiqueta}</td>
+						<td>
+							<c:if test="${ item.idTweetAsociado > 0 }">
+								<a href="${urlTwitterUsuario}${item.idTweetAsociado}">
+									Tweet
+								</a>
+							</c:if>
+						</td>
 						<td>${item.autor.username}</td>
 						<td><joda:format value="${item.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" /></td>
 						<td><joda:format value="${item.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
@@ -228,16 +232,16 @@ $(document).ready(
 				},
 				mimeType: 'application/json',
 				success: function(data){					
-					var urlTweet = "https://twitter.com/mortadeloTIA/";	    	
-	 		    	$('#enlaceTweet').attr('href', urlTweet); 
-	 		    	$('#enlaceTweet').text(urlTweet);
-					$('#modalTweetCreado').modal('show');
+					
 				},
 				error:function(data, textStatus, jqXHR){
 					alert("Error" + data);
 				},
 				complete:function(data, textStatus, jqXHR){
-					alert("Complete" + data);
+					var urlTweet = "${urlTwitterUsuario}" + data.responseText;
+	 		    	$('#enlaceTweet').attr('href', urlTweet); 
+	 		    	$('#enlaceTweet').text(urlTweet);
+					$('#modalTweetCreado').modal('show');
 				},
 			});
 		});  

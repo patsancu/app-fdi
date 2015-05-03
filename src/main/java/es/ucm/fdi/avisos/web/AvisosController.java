@@ -34,8 +34,7 @@ import es.ucm.fdi.util.Constants;
 @Controller
 public class AvisosController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger("es.ucm.fdi.avisos");
+	private static final Logger logger = LoggerFactory.getLogger("es.ucm.fdi.avisos");
 
 	@Autowired
 	private Avisos avisoService;
@@ -48,12 +47,12 @@ public class AvisosController {
 		Map<String, Object> model = new HashMap<>();
 		model.put("avisos", avisoService.getAvisos());
 		model.put("deleteAction", request.getContextPath()+"/avisos");
+		model.put("urlTwitterUsuario", Constants.URL_TWITTER_USUARIO);
 		return new ModelAndView("listarAvisos", model);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_AVISO_INDIVIDUAL + "/ver")
-	public String avisoIndividual(@PathVariable("id") Long avisoID,
-			Model model) {
+	public String avisoIndividual(@PathVariable("id") Long avisoID, Model model) {
 		model.addAttribute("a", avisoService.getAviso(avisoID));
 		return "verAviso";
 	}
@@ -75,8 +74,9 @@ public class AvisosController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = Constants.URL_NUEVO_AVISO)
-	public ModelAndView creaNuevoAviso(@ModelAttribute("aviso") @Validated AvisoBuilder aviso,
-			BindingResult result) throws IOException {
+	public ModelAndView creaNuevoAviso(@ModelAttribute("aviso") @Validated AvisoBuilder aviso, BindingResult result) 
+			throws IOException 
+	{
 		logger.debug("Creando aviso: " + aviso);
 		Map<String, Object> model = new HashMap<>();
 

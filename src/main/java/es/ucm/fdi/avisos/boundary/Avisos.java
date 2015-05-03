@@ -129,4 +129,10 @@ public class Avisos {
 		BeanUtils.copyProperties(newAviso, aviso);
 		return avisoRepository.save(aviso);
 	}
+	
+	public Aviso actualizaInfoTwitter(Aviso aviso,Long idTweetAsociado, Long idAutorTwitterAsociado){
+		aviso.setIdAutorTwitterAsociado(idAutorTwitterAsociado);
+		aviso.setIdTweetAsociado(idTweetAsociado);
+		return avisoRepository.save(aviso);
+	}
 }

@@ -35,12 +35,15 @@ public class Aviso {
 
 	private String etiqueta;
 
-//	private String autor;
 	@ManyToOne(optional=true)
 	@JoinColumn(name="USER_ID")
 	private User autor;
 	
 	private String urlDestino;
+	
+	private Long idTweetAsociado;
+	
+	private Long idAutorTwitterAsociado;
 
 	// Fechas
 
@@ -59,7 +62,8 @@ public class Aviso {
 	private String adjunto;
 
 	public Aviso() {
-		
+		this.idAutorTwitterAsociado = (long) 0;
+		this.idTweetAsociado = (long) 0;
 	}
 	
 	Aviso(Long id) {
@@ -97,15 +101,6 @@ public class Aviso {
 	public void setEtiqueta(String etiqueta) {
 		this.etiqueta = etiqueta;
 	}
-
-//	public String getAutor() {
-//		return autor;
-//	}
-//
-//	public void setAutor(String autor) {
-//		this.autor = autor;
-//	}
-	
 	
 
 	public User getAutor() {
@@ -162,6 +157,22 @@ public class Aviso {
 
 	public void setPrioridadAviso(PrioridadesAvisoEnum prioridadAviso) {
 		this.prioridadAviso = prioridadAviso;
+	}
+
+	public Long getIdTweetAsociado() {
+		return idTweetAsociado;
+	}
+
+	public void setIdTweetAsociado(Long idTweetAsociado) {
+		this.idTweetAsociado = idTweetAsociado;
+	}
+
+	public Long getIdAutorTwitterAsociado() {
+		return idAutorTwitterAsociado;
+	}
+
+	public void setIdAutorTwitterAsociado(Long idAutorTwitterAsociado) {
+		this.idAutorTwitterAsociado = idAutorTwitterAsociado;
 	}
 
 	/**

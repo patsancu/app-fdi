@@ -24,6 +24,9 @@ public class Constants {
 	public static final String URL_NUEVO_ESPACIO = "/espacios/nuevo";
 	public static final String URL_LISTAR_ESPACIOS = "/espacios";
 	public static final String URL_ESPACIO_INDIVIDUAL = "/espacios/{id}";
+	
+	//Tweets
+	public static final String URL_TWITTER_USUARIO = "http://twitter.com/mortadeloTIA/status/";
 }
 
 
