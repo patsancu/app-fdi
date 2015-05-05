@@ -172,7 +172,7 @@
 					<button id="botonTuitear" type="button" class="btn btn-primary ">
 						<spring:message code="listado.twitter"></spring:message>						
 					</button>
-					<button  type="button" class="btn btn-danger " data-dismiss="modal">
+					<button id="botonCerrar" type="button" class="btn btn-danger " data-dismiss="modal">
 						<spring:message code="listado.twitter.tweet.cerrar"></spring:message>
 					</button>
 					</div>
@@ -234,7 +234,11 @@
 
 
 $(document).ready(
-		function() {			
+		function() {		
+			
+			$('#botonCerrar').click(function(event){
+				location.reload();
+			});
 			
 			$('#textoTweet').keydown(function(){
 				var longitud = $('#textoTweet').text().length;
