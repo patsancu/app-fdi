@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -18,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.ucm.fdi.acortador.tutorias.boundary.Tutorias;
-import es.ucm.fdi.tutorias.business.entity.Tutoria;
 import es.ucm.fdi.tutorias.business.entity.TutoriaBuilder;
 import es.ucm.fdi.users.business.boundary.UsersManager;
+import es.ucm.fdi.users.business.entity.User;
 import es.ucm.fdi.util.Constants;
 
 @Controller
@@ -34,11 +36,20 @@ public class TutoriasController {
 	@Autowired
 	private UsersManager userService;
 	
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_ADMIN_LISTAR_TUTORIAS)
+	public ModelAndView listarTutoriasAdmin(HttpServletRequest request) {
+		Map<String, Object> model = new HashMap<>();
+		model.put("tutorias", tutoriaService.getTutorias());
+		model.put("deleteAction", request.getContextPath()+"/tutorias");
+		return new ModelAndView("listarTutorias", model);
+	}	
 	
 	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_LISTAR_TUTORIAS)
 	public ModelAndView listarTutorias(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<>();
-		model.put("tutorias", tutoriaService.getTutorias());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    User emisor = (User)auth.getPrincipal();
+		model.put("tutorias", tutoriaService.getTutoriasForUser(emisor.getId()));
 		model.put("deleteAction", request.getContextPath()+"/tutorias");
 		return new ModelAndView("listarTutorias", model);
 	}

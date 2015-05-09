@@ -27,6 +27,11 @@ public class Tutorias {
 		return tutoriaRepository.findAll();
 	}
 	
+	public Iterable<Tutoria> getTutoriasForUser(Long idUser) {
+		logger.warn("Buscando tutorías para usuario con id " + idUser + ":" + tutoriaRepository.tutoriasDeUsuario(idUser).toString());
+		return tutoriaRepository.tutoriasDeUsuario(idUser);
+	}
+	
 	public Tutoria getTutoria(Long tutoriaId){
 		return tutoriaRepository.findOne(tutoriaId);
 	}
