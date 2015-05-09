@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import es.ucm.fdi.acortador.business.boundary.URLredirecciones;
 import es.ucm.fdi.avisos.boundary.Avisos;
 import es.ucm.fdi.avisos.business.entity.Aviso;
-import es.ucm.fdi.social.util.TwitterUtils;
+import es.ucm.fdi.social.util.SocialUtils;
 
 @Controller
 public class TwitterController {
@@ -47,7 +47,7 @@ public class TwitterController {
 	public  @ResponseBody String obtenerTweet(@PathVariable String id){
 		logger.warn("DSAASDSA");
 		Aviso avisoTweet = avisoService.getAviso(Long.parseLong(id));
-		String textoTweet = TwitterUtils.crearTweet(urlRedirecciones, avisoTweet);
+		String textoTweet = SocialUtils.crearTweet(urlRedirecciones, avisoTweet);
 		return textoTweet;		
 	}
 	
