@@ -45,6 +45,7 @@
 				<value>es.ucm.fdi.storage.business.entity</value>
 				<value>es.ucm.fdi.espacios.business.entity</value>
 				<value>es.ucm.fdi.acortador.business.entity</value>
+				<value>es.ucm.fdi.tutorias.business.entity</value>
 				<value>es.ucm.fdi.social.web</value>
 			</array>
 		</property>

@@ -1,0 +1,1 @@
+INSERT INTO TUTORIA (ID, resumenDudas, EMISOR_ID, DESTINATARIO_ID, confirmada, asignatura) VALUES (1, 'No tengo ni idea', 0,1, true, 'MTP');

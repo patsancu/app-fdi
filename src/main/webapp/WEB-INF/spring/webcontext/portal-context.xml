@@ -29,7 +29,7 @@
 	<context:component-scan base-package="es.ucm.fdi.espacios.business.boundary" />
 	<context:component-scan base-package="es.ucm.fdi.users.business.boundary" />
 	<context:component-scan base-package="es.ucm.fdi.acortador.business.boundary" />
-	<context:component-scan base-package="es.ucm.fdi.social.web" />
+	<context:component-scan base-package="es.ucm.fdi.acortador.tutorias.boundary" />	
 
 
 	<!-- Packages to search for @Controller beans definitions -->
@@ -39,6 +39,8 @@
 	<context:component-scan base-package="es.ucm.fdi.storage.web" />
 	<context:component-scan base-package="es.ucm.fdi.users.web" />
 	<context:component-scan base-package="es.ucm.fdi.acortador.web" />
+	<context:component-scan base-package="es.ucm.fdi.social.web" />
+	<context:component-scan base-package="es.ucm.fdi.tutorias.web" />
 	
 	<context:component-scan base-package="es.ucm.fdi.avisos.validation" />
 	<context:component-scan base-package="es.ucm.fdi.espacios.validation" />
@@ -65,6 +67,10 @@
 		transaction-manager-ref="rootTransactionManager" />
 		
 	<data:repositories base-package="es.ucm.fdi.social.web"
+		entity-manager-factory-ref="rootEntityManagerFactory"
+		transaction-manager-ref="rootTransactionManager" />		
+	
+	<data:repositories base-package="es.ucm.fdi.tutorias.business.control"
 		entity-manager-factory-ref="rootEntityManagerFactory"
 		transaction-manager-ref="rootTransactionManager" />
 		

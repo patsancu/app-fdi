@@ -458,17 +458,7 @@
 					<artifactId>hsqldb</artifactId>
 					<version>2.3.1</version>
 				</dependency>
-			</dependencies>
-			<properties>
-				<!-- <db.jdbc.driverClassName>org.hsqldb.jdbcDriver</db.jdbc.driverClassName> -->
-				<!-- <db.jdbc.url>jdbc:hsqldb:mem:app;shutdown=true</db.jdbc.url> -->
-				<!-- <db.jdbc.username>sa</db.jdbc.username> -->
-				<!-- <db.jdbc.password></db.jdbc.password> -->
-				<!-- <db.hibernate.dialect>org.hibernate.dialect.HSQLDialect</db.hibernate.dialect> -->
-				<!-- <db.hibernate.hbm2ddl.auto>create-drop</db.hibernate.hbm2ddl.auto> -->
-				<!-- <db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</db.hibernate.hbm2ddl.import_files> -->
-				<!-- <db.hibernate.show_sql>true</db.hibernate.show_sql> -->
-			</properties>
+			</dependencies>			
 		</profile>
 		<profile>
 			<id>postgresql</id>
@@ -487,7 +477,7 @@
 				<db.jdbc.password>notSecure</db.jdbc.password>
 				<db.hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</db.hibernate.dialect>
 				<db.hibernate.hbm2ddl.auto>create-drop</db.hibernate.hbm2ddl.auto>
-				<db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</db.hibernate.hbm2ddl.import_files>
+				<db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql, tutorias-init.sql</db.hibernate.hbm2ddl.import_files>
 				<db.hibernate.show_sql>true</db.hibernate.show_sql>
 			</properties>
 		</profile>

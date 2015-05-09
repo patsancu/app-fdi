@@ -147,6 +147,38 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/calendarioReservas.jsp" />
 	</definition>
 	
+	<!--***********************************************************************
+ 		TUTORIAS
+ 	***********************************************************************-->
+	
+	<!-- Listado de reservas -->
+	<definition name="listarTutorias" extends="baseLayout">
+		<put-attribute name="title" value="tutoria.listar.title" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/listarTutorias_resources.jsp" />
+		<put-attribute name="heading" value="tutoria.listar.title" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarTutorias.jsp" />
+	</definition>
+	
+	
+	<!-- Creador de reservas -->
+	<definition name="editorTutorias" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/editorTutorias_resources.jsp" />
+		<put-attribute name="heading" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorTutorias.jsp" />
+	</definition>
+	
+	<!-- Calendario de reservas -->
+<!-- 	<definition name="calendarioReservas" extends="baseLayoutWithoutJumbotron"> -->
+<!-- 		<put-attribute name="title" value="listado.reservas.titulo" /> -->
+<!-- 		<put-attribute name="resources" value="/WEB-INF/jsp/portal/calendarioReservas_resources.jsp" /> -->
+<!-- 		<put-attribute name="heading" value="" /> -->
+<!-- 		<put-attribute name="tagline" value="" /> -->
+<!-- 		<put-attribute name="content" value="/WEB-INF/jsp/portal/calendarioReservas.jsp" /> -->
+<!-- 	</definition> -->
+	
 	
 	<!--***********************************************************************
  	REDIRECCIONES 

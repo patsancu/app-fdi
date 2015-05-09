@@ -31,6 +31,18 @@
 					<form:input path="asignatura" type="text" class="form:input-large" />
 				</div>
 			</div>
+			
+			<!-- Profesor -->
+			<div id="destinatario_id" class="form-group">
+				<label class="control-label col-lg-2" for="id_espacio">Profesor</label>
+				<div class="col-lg-10">
+					<form:select path="destinatario_id">
+						<c:forEach items="${users}" var="item">
+							<form:option value="${item.id}" label="${item.username}"></form:option>
+						</c:forEach>
+					</form:select>
+				</div>
+			</div>
 
 
 			<!-- Botón crear aviso -->
@@ -43,14 +55,3 @@
 		</fieldset>
 	</form:form>
 </section>
-<script>
-	tinymce.init({
-		selector : '.notas'
-	});
-</script>
-
-<style>
-#tabbedContent {
-	margin-top: 20px;
-}
-</style>
