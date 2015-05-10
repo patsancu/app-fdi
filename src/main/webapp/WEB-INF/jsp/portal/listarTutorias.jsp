@@ -12,18 +12,19 @@
 				<button type="button" class="close" data-dismiss="alert"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-				</button>
-				<strong>¡Atención!</strong> No hay avisos que mostrar
+				</button>				
+				<strong><spring:message code="generico.atencion" /></strong>
+				<spring:message code="tutoria.listar.vacio" />
 			</div>
 		</c:when>
 		<c:otherwise>
 			<table id="tutorias" class="table table-hover">
 				<thead>
 					<tr>
-						<th>Emisor</th>
-						<th>Destinatario</th>
-						<th>Asignatura</th>
-						<th>Resumen dudas</th>
+						<th><spring:message code="tutoria.listar.emisor" /></th>
+						<th><spring:message code="tutoria.listar.destinatario" /></th>
+						<th><spring:message code="tutoria.listar.asignatura" /></th>
+						<th><spring:message code="tutoria.listar.resumen" /></th>
 					</tr>
 				</thead>
 				<tbody>
