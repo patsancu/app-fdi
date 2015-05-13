@@ -321,6 +321,12 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.8.2</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 
 		<!-- *************************************************** TESTING *************************************************** -->
@@ -381,6 +387,7 @@
 					<exclude>db.properties</exclude>
 					<exclude>social.properties</exclude>
 					<exclude>security.properties</exclude>
+					<exclude>gmail.properties</exclude>
 				</excludes>
 			</resource>
 			<resource>
@@ -390,6 +397,7 @@
 					<include>db.properties</include>
 					<include>social.properties</include>
 					<include>security.properties</include>
+					<include>gmail.properties</include>
 				</includes>
 			</resource>
 		</resources>

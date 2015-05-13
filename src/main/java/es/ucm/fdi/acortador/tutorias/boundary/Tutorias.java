@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import es.ucm.fdi.tutorias.business.control.TutoriaRepository;
 import es.ucm.fdi.tutorias.business.entity.Tutoria;
 import es.ucm.fdi.tutorias.business.entity.TutoriaBuilder;
+import es.ucm.fdi.users.business.boundary.UsersManager;
+import es.ucm.fdi.users.business.control.UserRepository;
 import es.ucm.fdi.users.business.entity.User;
 
 
@@ -21,6 +23,12 @@ public class Tutorias {
 	
 	@Autowired
 	TutoriaRepository tutoriaRepository; 
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	UsersManager usersManager;
 	
 	public Iterable<Tutoria> getTutorias() {
 		logger.warn(tutoriaRepository.findAll().toString());
@@ -41,9 +49,16 @@ public class Tutorias {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    User emisor = (User)auth.getPrincipal();
-	    
 	    tutoria.setEmisor(emisor);
+	    
+	    User receptor = (User)usersManager.loadUserByUsername(tutoriaBuilder.getDestinatarioUsername());
+	    tutoria.setDestinatario(receptor);
+	    
 		return tutoriaRepository.save(tutoria);
+	}
+	
+	public void confirmarTutoria(String id){
+		tutoriaRepository.confirmarTutoria(Long.parseLong(id));
 	}
 
 }

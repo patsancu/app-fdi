@@ -3,11 +3,12 @@ package es.ucm.fdi.tutorias.business.entity;
 import org.springframework.beans.BeanUtils;
 
 public class TutoriaBuilder {
+	
 	private Long id;
 
 	private String resumenDudas;
 
-	private Long destinatario_id;
+	private String destinatarioUsername;	
 
 	private String asignatura;
 
@@ -40,14 +41,6 @@ public class TutoriaBuilder {
 	public void setResumenDudas(String resumenDudas) {
 		this.resumenDudas = resumenDudas;
 	}
-	
-	public Long getDestinatario_id() {
-		return destinatario_id;
-	}
-
-	public void setDestinatario_id(Long destinatario_id) {
-		this.destinatario_id = destinatario_id;
-	}
 
 	public TutoriaBuilder(){
 
@@ -61,5 +54,19 @@ public class TutoriaBuilder {
 		Tutoria nuevo = new Tutoria();
 		BeanUtils.copyProperties(this, nuevo);
 		return nuevo;
+	}
+
+	/**
+	 * @return the destinatarioUsername
+	 */
+	public String getDestinatarioUsername() {
+		return destinatarioUsername;
+	}
+
+	/**
+	 * @param destinatarioUsername the destinatarioUsername to set
+	 */
+	public void setDestinatarioUsername(String destinatarioUsername) {
+		this.destinatarioUsername = destinatarioUsername;
 	}
 }

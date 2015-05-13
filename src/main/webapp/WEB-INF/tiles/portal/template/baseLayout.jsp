@@ -59,7 +59,16 @@
 				<c:set var="taglineKey">
 					<tiles:insertAttribute name="tagline" />
 				</c:set>
-				${taglineKey}
+
+				<c:choose>
+					<c:when test="${not empty taglineKey}">
+						<spring:message code="${taglineKey}"></spring:message>
+					</c:when>
+					<c:otherwise>
+						${taglineKey}
+					</c:otherwise>
+				</c:choose>
+
 			</p>
 
 		</div>

@@ -45,7 +45,6 @@ public class TwitterController {
 	
 	@RequestMapping(value = "/tweets/rest/{id}", method = RequestMethod.GET)
 	public  @ResponseBody String obtenerTweet(@PathVariable String id){
-		logger.warn("DSAASDSA");
 		Aviso avisoTweet = avisoService.getAviso(Long.parseLong(id));
 		String textoTweet = SocialUtils.crearTweet(urlRedirecciones, avisoTweet);
 		return textoTweet;		
@@ -54,7 +53,6 @@ public class TwitterController {
 	
 	@RequestMapping(value = "/tweets/rest/{id}", method = RequestMethod.POST)
 	public  @ResponseBody String tuitear(@RequestBody String textoTweet, @PathVariable String id){
-		logger.warn("DSAASDSA");
 		TwitterTemplate twitter = new TwitterTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);
 		try {
 			Tweet tweet = twitter.timelineOperations().updateStatus(textoTweet);

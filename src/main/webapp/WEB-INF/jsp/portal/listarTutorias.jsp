@@ -25,6 +25,7 @@
 						<th><spring:message code="tutoria.listar.destinatario" /></th>
 						<th><spring:message code="tutoria.listar.asignatura" /></th>
 						<th><spring:message code="tutoria.listar.resumen" /></th>
+						<th><spring:message code="tutoria.listar.confirmada" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,6 +37,7 @@
 									<td>${item.destinatario.username}</td>
 									<td>${item.asignatura}</td>
 									<td>${item.resumenDudas}</td>
+									<td>${item.confirmada}</td>
 								</tr>
 							</div>
 						</div>

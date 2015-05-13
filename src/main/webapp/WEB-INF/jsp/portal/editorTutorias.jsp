@@ -33,12 +33,12 @@
 			</div>
 			
 			<!-- Profesor -->
-			<div id="destinatario_id" class="form-group">
-				<label class="control-label col-lg-2" for="id_espacio">Profesor</label>
+			<div id="destinatarioUsername" class="form-group">
+				<label class="control-label col-lg-2" for="destinatarioUsername">Profesor</label>
 				<div class="col-lg-10">
-					<form:select path="destinatario_id">
+					<form:select path="destinatarioUsername">
 						<c:forEach items="${users}" var="item">
-							<form:option value="${item.id}" label="${item.username}"></form:option>
+							<form:option value="${item.username}" label="${item.username}"></form:option>
 						</c:forEach>
 					</form:select>
 				</div>

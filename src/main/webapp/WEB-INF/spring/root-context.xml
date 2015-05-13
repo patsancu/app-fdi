@@ -29,14 +29,13 @@
 	<!--  -->
 		
 	<!-- Twitter, Database and JPA properties -->
-	<context:property-placeholder location="classpath:db.properties, classpath:social.properties, classpath:security.properties" />
+	<context:property-placeholder location="classpath:db.properties, classpath:social.properties, classpath:security.properties, classpath:gmail.properties" />
 
 	<bean id="rootEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="rootDataSource" />
 		<property name="loadTimeWeaver">
-			<bean
-				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+			<bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
 		</property>
 		<property name="packagesToScan">
 			<array>
@@ -47,6 +46,7 @@
 				<value>es.ucm.fdi.acortador.business.entity</value>
 				<value>es.ucm.fdi.tutorias.business.entity</value>
 				<value>es.ucm.fdi.social.web</value>
+				<value>es.ucm.fdi.util</value>
 			</array>
 		</property>
 		<property name="jpaVendorAdapter" ref="rootVendorAdapter" />
@@ -70,6 +70,15 @@
 		<prop key="consumerSecret">${cfg.twitter.consumerSecret}</prop>
 		<prop key="accessToken">${cfg.twitter.accessToken}</prop>
 		<prop key="accessTokenSecret">${cfg.twitter.accessTokenSecret}</prop>
+	</util:properties>
+	
+	<util:properties id="gmailData" >
+		<prop key="username">${cfg.mail.username}</prop>
+		<prop key="password">${cfg.mail.password}</prop>
+		<prop key="starttls">${cfg.mail.starttls.enable}</prop>
+		<prop key="host">${cfg.mail.host}</prop>
+		<prop key="port">${cfg.mail.port}</prop>
+		<prop key="auth">${cfg.mail.auth}</prop>		
 	</util:properties>
 	
 	

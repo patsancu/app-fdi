@@ -39,6 +39,8 @@ public class AcortadorURLcontroller {
 		
 		if (! urlRedireccion.isInterna()){
 			model.put("urlRedireccion", urlOriginal);
+			model.put("texto1", "Está siendo redirigido a: ");
+			model.put("texto2", "");
 			return new ModelAndView("temporal", model );
 		}
 		return new ModelAndView("redirect:" + urlOriginal, model);		

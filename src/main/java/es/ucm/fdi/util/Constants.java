@@ -32,6 +32,7 @@ public class Constants {
 	public static final String URL_LISTAR_TUTORIAS = "/tutorias";	
 	public static final String URL_ADMIN_LISTAR_TUTORIAS = "/tutorias/admin";
 	public static final String URL_NUEVA_TUTORIA = "/tutorias/nueva";
+	public static final String URL_CONFIRMAR_TUTORIA = "/tutorias/confirmar";
 }
 
 

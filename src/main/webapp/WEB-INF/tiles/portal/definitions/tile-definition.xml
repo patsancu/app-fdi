@@ -202,12 +202,12 @@
 		<put-attribute name="tagline" value="" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorRedireccion.jsp" />
 	</definition>
-	
+
 	<!-- Página temporal redirección -->
 	<definition name="temporal" extends="baseLayout">
-		<put-attribute name="title" value="redireccion.titulo" />
-		<put-attribute name="heading" value="redireccion.aviso	" />
-		<put-attribute name="tagline" expression="${urlRedireccion}" />
+		<put-attribute name="title" value="temporal.title" />
+		<put-attribute name="heading" expression="${texto1}	" />
+		<put-attribute name="tagline" expression="${texto2}" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/temporal.jsp" />
 	</definition>
 	
