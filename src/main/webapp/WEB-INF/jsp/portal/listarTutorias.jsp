@@ -12,7 +12,7 @@
 				<button type="button" class="close" data-dismiss="alert"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-				</button>				
+				</button>
 				<strong><spring:message code="generico.atencion" /></strong>
 				<spring:message code="tutoria.listar.vacio" />
 			</div>
@@ -28,19 +28,26 @@
 						<th><spring:message code="tutoria.listar.confirmada" /></th>
 					</tr>
 				</thead>
+
 				<tbody>
 					<c:forEach items="${tutorias}" var="item">
-						<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-							<div class="caption">
-								<tr>
-									<td>${item.emisor.username}</td>
-									<td>${item.destinatario.username}</td>
-									<td>${item.asignatura}</td>
-									<td>${item.resumenDudas}</td>
-									<td>${item.confirmada}</td>
-								</tr>
-							</div>
-						</div>
+						<c:choose>
+							<c:when test="${item.confirmada}">
+								<c:set var="clase" value="success" />
+							</c:when>
+							<c:otherwise>
+								<c:set var="clase" value="warning" />
+							</c:otherwise>
+						</c:choose>
+						<tr class="${clase}">
+							<td>${item.emisor.username}</td>
+							<td>${item.destinatario.username}</td>
+							<td>${item.asignatura}</td>
+							<td>${item.resumenDudas}</td>
+							<td>${item.confirmada}</td>
+						</tr>
+						<!-- 							</div> -->
+						<!-- 						</div> -->
 					</c:forEach>
 				</tbody>
 			</table>
