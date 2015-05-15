@@ -254,7 +254,7 @@ $(document).ready(
 				
 				var header = $("meta[name='_csrf_header']").attr("content"); 
 				var token = $("meta[name='_csrf']").attr("content"); console.log("Token " + token);
-				var urlRest = "http://localhost:8088/anuncios/tweets/rest/" + $('.modal-footer').attr('id');
+				var urlRest = "http://localhost:8088/portal/tweets/rest/" + $('.modal-footer').attr('id');
 				var data = $('#textoTweet').text();				
 				$('#resultadoTweet').attr('class', '');
 				$('#resultadoTweet').text("");
@@ -302,7 +302,7 @@ $(document).ready(
 			$('.botonTweet').click(  function(event) {
 				var header = $("meta[name='_csrf_header']").attr("content"); 
 				var token = $("meta[name='_csrf']").attr("content"); console.log("Token " + token);
-				var urlRest = "http://localhost:8088/anuncios/tweets/rest/" + $(this).attr('id');
+				var urlRest = "http://localhost:8088/portal/tweets/rest/" + $(this).attr('id');
 				var data = JSON.stringify($(this).attr('id'));
 				$('.modal-footer').attr('id', $(this).attr('id'));
 				$.ajax({  					

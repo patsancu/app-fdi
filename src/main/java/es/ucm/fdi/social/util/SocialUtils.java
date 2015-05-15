@@ -27,7 +27,7 @@ public class SocialUtils {
 			URLredireccionBuilder urlRedireccion = new URLredireccionBuilder();
 			urlRedireccion.setUrl(aviso.getUrlDestino());
 			URLredireccion u = urlRedirecciones.addURLredireccion(urlRedireccion);
-			textoTweet += "http://localhost:8088/anuncios/u/" + u.getSufijo();
+			textoTweet += "http://localhost:8088/portal/u/" + u.getSufijo();
 		}
 		return textoTweet;
 	}

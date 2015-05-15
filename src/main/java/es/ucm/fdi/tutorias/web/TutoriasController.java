@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,13 +21,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.ucm.fdi.acortador.tutorias.boundary.Tutorias;
+import es.ucm.fdi.tutorias.business.boundary.Emails;
+import es.ucm.fdi.tutorias.business.boundary.Tutorias;
 import es.ucm.fdi.tutorias.business.entity.Tutoria;
 import es.ucm.fdi.tutorias.business.entity.TutoriaBuilder;
 import es.ucm.fdi.users.business.boundary.UsersManager;
 import es.ucm.fdi.users.business.entity.User;
 import es.ucm.fdi.util.Constants;
-import es.ucm.fdi.util.EmailUtils;
 
 @Controller
 public class TutoriasController {
@@ -39,14 +40,18 @@ public class TutoriasController {
 	@Autowired
 	private UsersManager userService;
 	
+	@Autowired
+	private Emails emailUtils;
 	
-	private EmailUtils emailUtils;
+	@Autowired
+	private MessageSource messageSource;
 		
 	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_ADMIN_LISTAR_TUTORIAS)
 	public ModelAndView listarTutoriasAdmin(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<>();
 		model.put("tutorias", tutoriaService.getTutorias());
 		model.put("deleteAction", request.getContextPath()+"/tutorias");
+		model.put("rutaConfirmarTutoria", request.getContextPath()+ Constants.URL_CONFIRMAR_TUTORIA + "?id=");
 		return new ModelAndView("listarTutorias", model);
 	}	
 
@@ -57,6 +62,7 @@ public class TutoriasController {
 		User emisor = (User)auth.getPrincipal();
 		model.put("tutorias", tutoriaService.getTutoriasForUser(emisor.getId()));
 		model.put("deleteAction", request.getContextPath()+"/tutorias");
+		model.put("rutaConfirmarTutoria", request.getContextPath()+ Constants.URL_CONFIRMAR_TUTORIA + "?id=");
 		return new ModelAndView("listarTutorias", model);
 	}
 
@@ -71,7 +77,7 @@ public class TutoriasController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = Constants.URL_NUEVA_TUTORIA)
-	public ModelAndView creaNuevaTutoria(@ModelAttribute("tutoria")TutoriaBuilder tutoria, BindingResult result) throws IOException {
+	public ModelAndView creaNuevaTutoria(@ModelAttribute("tutoria")TutoriaBuilder tutoria, BindingResult result, HttpServletRequest request) throws IOException {
 		logger.warn("Creando tutoría: " + tutoria);
 		Map<String, Object> model = new HashMap<>();
 
@@ -96,8 +102,7 @@ public class TutoriasController {
 
 		Tutoria tutoriaCompleta = tutoriaService.addTutoria(tutoria);
 		
-		EmailUtils emailUtils = new EmailUtils();		
-		String mensaje = emailUtils.generarMensajeSolicitudTutoria(tutoriaCompleta); 
+		String mensaje = emailUtils.generarMensajeSolicitudTutoria(tutoriaCompleta, request.getContextPath()); 
 		String asunto = emailUtils.generarAsuntoSolicitudTutoria(tutoriaCompleta);
 		emailUtils.enviarEmail("pruebasfdiaplicacion@gmail.com", tutoriaCompleta, mensaje, asunto);
 
@@ -114,12 +119,11 @@ public class TutoriasController {
 		if (tutoria != null){
 			if (tutoria.isConfirmada()){
 				logger.warn("Se ha confirmado la tutoría con id:" + id);
-				EmailUtils emailUtils = new EmailUtils();		
 				String mensaje = emailUtils.generarMensajeConfirmacionTutoria(tutoria);
 				String asunto = emailUtils.generarAsuntoSolicitudTutoria(tutoria);
 				emailUtils.enviarEmail("pruebasfdiaplicacion@gmail.com", tutoria, mensaje, asunto);
 				model.put("texto1", "tutoria.confirmar.confirmada");
-				model.put("texto2", "tutoria.confirmar.confirmada.descripcion");
+				model.put("texto", messageSource.getMessage("tutoria.confirmar.confirmada.descripcion", new String[]{tutoria.getAsignatura(), tutoria.getDestinatario().getUsername()}, request.getLocale()));
 				return new ModelAndView("temporal", model );
 			}
 		}

@@ -45,9 +45,14 @@
 							<td>${item.asignatura}</td>
 							<td>${item.resumenDudas}</td>
 							<td>${item.confirmada}</td>
+<%-- 							<td><button type="button" class="btn btn-success"><a href="${rutaConfirmarTutoria}${item.id}">Confirmar</a></button></td> --%>
+
+							<c:if test="${not item.confirmada}">
+								<td><a class="btn btn-success" href="${rutaConfirmarTutoria}${item.id}">Confirmar</a></td>
+							</c:if>
+							
 						</tr>
-						<!-- 							</div> -->
-						<!-- 						</div> -->
+
 					</c:forEach>
 				</tbody>
 			</table>

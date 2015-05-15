@@ -1,4 +1,4 @@
-package es.ucm.fdi.acortador.tutorias.boundary;
+package es.ucm.fdi.tutorias.business.boundary;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

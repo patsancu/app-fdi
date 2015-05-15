@@ -11,8 +11,8 @@
 		<form:errors path="*" cssClass="alert alert-danger" element="div" />
 		<fieldset>
 			<legend>
-				<c:out value="${modo}"></c:out>
-				espacio
+				<c:out value="${modo}"></c:out> tutoría
+				
 			</legend>
 
 
