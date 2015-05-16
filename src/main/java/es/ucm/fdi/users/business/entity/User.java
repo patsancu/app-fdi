@@ -42,6 +42,10 @@ public class User implements UserDetails, CredentialsContainer {
 	private String email;
 
 	private String password;
+	
+	private String userGivenName;
+	
+	private String userSurname;
 
 	private String salt;
 
@@ -201,5 +205,21 @@ public class User implements UserDetails, CredentialsContainer {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Collections.unmodifiableCollection(this.roles);
+	}
+
+	public String getUserGivenName() {
+		return userGivenName;
+	}
+
+	public void setUserGivenName(String userGivenName) {
+		this.userGivenName = userGivenName;
+	}
+
+	public String getUserSurname() {
+		return userSurname;
+	}
+
+	public void setUserSurname(String userSurname) {
+		this.userSurname = userSurname;
 	}
 }

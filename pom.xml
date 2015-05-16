@@ -388,6 +388,7 @@
 					<exclude>social.properties</exclude>
 					<exclude>security.properties</exclude>
 					<exclude>gmail.properties</exclude>
+					<exclude>users-init.sql</exclude>
 				</excludes>
 			</resource>
 			<resource>
@@ -398,6 +399,7 @@
 					<include>social.properties</include>
 					<include>security.properties</include>
 					<include>gmail.properties</include>
+					<include>users-init.sql</include>
 				</includes>
 			</resource>
 		</resources>

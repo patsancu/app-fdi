@@ -26,6 +26,10 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
+			
+				<!-- #################### -->
+				<!-- Anuncios -->
+				<!-- #################### -->
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						<spring:message code="nav.bar.anuncios.title" /> 
@@ -50,6 +54,10 @@
 						</li>
 					</ul>
 				</li>
+				
+				<!-- #################### -->
+				<!-- Reservas -->
+				<!-- #################### -->
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						<spring:message code="nav.bar.reservas.title" />
@@ -95,27 +103,33 @@
 
 
 					</ul></li>
+				
+				<!-- #################### -->
+				<!-- Usuarios -->
+				<!-- #################### -->
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						<spring:message code="nav.bar.users.title" />
 							<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="<spring:url value="/users"/>" role="button">
 									<span class="glyphicon glyphicon-info-sign"></span> 
-									<spring:message code="nav.signin" />
+									<spring:message code="nav.bar.users.show" />
 							</a></li>
 
 
 							<li><a href="${urlNuevoUsuario}" role="button"> <span
 									class="glyphicon glyphicon-plus"></span> 
-									<spring:message code="nav.bar.users.show" />
+									<spring:message code="nav.bar.users.create" />
 							</a></li>
 
 						</ul></li>
 				</sec:authorize>
 				
+				<!-- #################### -->
+				<!-- URLs -->
+				<!-- #################### -->
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						<spring:message code="nav.bar.urls.title" />
@@ -160,7 +174,8 @@
 					
 						<a href="#" class="btn btn-info btn-lg" role="button" href="#">
 						<span class="glyphicon glyphicon-user"></span>
-							<sec:authentication property="principal.username" />
+							<sec:authentication property="principal.userGivenName" />
+							<sec:authentication property="principal.userSurname" />
 						</a>
 					</li>
 				</sec:authorize>
