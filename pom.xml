@@ -14,6 +14,12 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<org.hibernate.version>4.3.6.Final</org.hibernate.version>
+		<!-- This properties must be overridden in ~/.m2/settings.xml -->
+		<twitter.consumerKey>twitterKeyChangeMe</twitter.consumerKey>
+		<twitter.consumerSecret>twitterSecretChangeMe</twitter.consumerSecret>
+		<twitter.accessToken>twitterAccessTokenChangeMe</twitter.accessToken>
+		<twitter.accessTokenSecret>twitterAccessTokenSecretChangeMe</twitter.accessTokenSecret>
+		<rememberMe.secret>rememberMeKeyChangeMe</rememberMe.secret>
 	</properties>
 	<repositories>
 		<repository>
@@ -460,14 +466,14 @@
 				</dependency>
 			</dependencies>
 			<properties>
-				<!-- <db.jdbc.driverClassName>org.hsqldb.jdbcDriver</db.jdbc.driverClassName> -->
-				<!-- <db.jdbc.url>jdbc:hsqldb:mem:app;shutdown=true</db.jdbc.url> -->
-				<!-- <db.jdbc.username>sa</db.jdbc.username> -->
-				<!-- <db.jdbc.password></db.jdbc.password> -->
-				<!-- <db.hibernate.dialect>org.hibernate.dialect.HSQLDialect</db.hibernate.dialect> -->
-				<!-- <db.hibernate.hbm2ddl.auto>create-drop</db.hibernate.hbm2ddl.auto> -->
-				<!-- <db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</db.hibernate.hbm2ddl.import_files> -->
-				<!-- <db.hibernate.show_sql>true</db.hibernate.show_sql> -->
+				<jdbc.driverClassName>org.hsqlcfg.jdbcDriver</jdbc.driverClassName>
+				<jdbc.url>jdbc:hsqldb:mem:app;shutdown=true</jdbc.url>
+				<jdbc.username>sa</jdbc.username>
+				<jdbc.password></jdbc.password>
+				<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
+				<hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
+				<hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</hibernate.hbm2ddl.import_files>
+				<hibernate.show_sql>true</hibernate.show_sql>
 			</properties>
 		</profile>
 		<profile>
@@ -481,14 +487,14 @@
 				</dependency>
 			</dependencies>
 			<properties>
-				<db.jdbc.driverClassName>org.postgresql.Driver</db.jdbc.driverClassName>
-				<db.jdbc.url>jdbc:postgresql://localhost:5432/portal</db.jdbc.url>
-				<db.jdbc.username>postgres</db.jdbc.username>
-				<db.jdbc.password>notSecure</db.jdbc.password>
-				<db.hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</db.hibernate.dialect>
-				<db.hibernate.hbm2ddl.auto>create-drop</db.hibernate.hbm2ddl.auto>
-				<db.hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</db.hibernate.hbm2ddl.import_files>
-				<db.hibernate.show_sql>true</db.hibernate.show_sql>
+				<jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
+				<jdbc.url>jdbc:postgresql://localhost:5432/portal</jdbc.url>
+				<jdbc.username>postgres</jdbc.username>
+				<jdbc.password>notSecure</jdbc.password>
+				<hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
+				<hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
+				<hibernate.hbm2ddl.import_files>users-init.sql,espacios-init.sql,avisos-init.sql</hibernate.hbm2ddl.import_files>
+				<hibernate.show_sql>true</hibernate.show_sql>
 			</properties>
 		</profile>
 	</profiles>
