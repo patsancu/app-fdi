@@ -1,2 +1,2 @@
-INSERT INTO TUTORIA (ID, resumenDudas, EMISOR_ID, DESTINATARIO_ID, confirmada, asignatura) VALUES (0, 'No tengo ni idea', 0,2, false, 'MTP');
-INSERT INTO TUTORIA (ID, resumenDudas, EMISOR_ID, DESTINATARIO_ID, confirmada, asignatura) VALUES (1, 'Dudas sobre los puntos 3, 4 y 6 ', 2,1, true, 'Matemática Discreta');
+INSERT INTO TUTORIA (ID, resumenDudas, comienzoTutoria, finTutoria, EMISOR_ID, DESTINATARIO_ID, confirmada, asignatura) VALUES (0, 'No tengo ni idea', '2015-05-16 12:30:00', '2015-05-16 14:30:00', 0,2, false, 'MTP');
+INSERT INTO TUTORIA (ID, resumenDudas, comienzoTutoria, finTutoria, EMISOR_ID, DESTINATARIO_ID, confirmada, asignatura) VALUES (1, 'Dudas sobre los puntos 3, 4 y 6 ', '2015-05-26 10:00:00', '2015-05-26 11:30:00', 2,1, true, 'Matemática Discreta');

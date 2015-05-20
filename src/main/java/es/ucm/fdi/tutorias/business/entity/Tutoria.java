@@ -8,6 +8,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import es.ucm.fdi.users.business.entity.User;
 
 @Entity
@@ -30,6 +34,20 @@ public class Tutoria {
 	private boolean confirmada;
 	
 	private String asignatura;
+	
+	// Fechas
+
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	private DateTime fechaCreacion;
+	
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	private DateTime comienzoTutoria;
+
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm")
+	private DateTime finTutoria;
 	
 	public Long getId() {
 		return id;
@@ -77,6 +95,30 @@ public class Tutoria {
 
 	public void setAsignatura(String asignatura) {
 		this.asignatura = asignatura;
+	}
+
+	public DateTime getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(DateTime fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public DateTime getComienzoTutoria() {
+		return comienzoTutoria;
+	}
+
+	public void setComienzoTutoria(DateTime comienzoTutoria) {
+		this.comienzoTutoria = comienzoTutoria;
+	}
+
+	public DateTime getFinTutoria() {
+		return finTutoria;
+	}
+
+	public void setFinTutoria(DateTime finTutoria) {
+		this.finTutoria = finTutoria;
 	}
 
 	@Override

@@ -24,7 +24,9 @@
 						<th><spring:message code="tutoria.listar.emisor" /></th>
 						<th><spring:message code="tutoria.listar.destinatario" /></th>
 						<th><spring:message code="tutoria.listar.asignatura" /></th>
-						<th><spring:message code="tutoria.listar.resumen" /></th>
+						<th><spring:message code="tutoria.listar.resumen" /></th>						
+						<th><spring:message code="tutoria.listar.comienzo" /></th>
+						<th><spring:message code="tutoria.listar.fin" /></th>
 						<th><spring:message code="tutoria.listar.confirmada" /></th>
 					</tr>
 				</thead>
@@ -43,14 +45,19 @@
 							<td>${item.emisor.username}</td>
 							<td>${item.destinatario.username}</td>
 							<td>${item.asignatura}</td>
-							<td>${item.resumenDudas}</td>
-							<td>${item.confirmada}</td>
-<%-- 							<td><button type="button" class="btn btn-success"><a href="${rutaConfirmarTutoria}${item.id}">Confirmar</a></button></td> --%>
-
-							<c:if test="${not item.confirmada}">
-								<td><a class="btn btn-success" href="${rutaConfirmarTutoria}${item.id}">Confirmar</a></td>
-							</c:if>
-							
+							<td>${item.resumenDudas}</td>													
+							<td><joda:format value="${item.comienzoTutoria}" pattern="yyyy/MM/dd HH:mm" /></td>
+							<td><joda:format value="${item.finTutoria}" pattern="yyyy/MM/dd HH:mm" /></td>
+							<td>
+								<c:choose>
+									<c:when test="${item.confirmada}">
+										${item.confirmada}
+									</c:when>
+									<c:otherwise>
+										<a class="btn btn-success" href="${rutaConfirmarTutoria}${item.id}">Confirmar</a>
+									</c:otherwise>
+								</c:choose>
+							</td>	
 						</tr>
 
 					</c:forEach>

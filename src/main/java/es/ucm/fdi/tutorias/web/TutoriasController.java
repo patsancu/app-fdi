@@ -6,6 +6,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +76,9 @@ public class TutoriasController {
 		model.put("method", "POST");
 		model.put("users", userService.listUsers());
 		model.put("tutoria", new TutoriaBuilder() );
+		DateTime ahora = DateTime.now();
+		model.put("fecha_defecto_inicio", ahora.plusHours(2));
+		model.put("fecha_defecto_fin", ahora.plusHours(3));
 		return new ModelAndView("editorTutorias", model);		
 	}
 
@@ -102,9 +108,7 @@ public class TutoriasController {
 
 		Tutoria tutoriaCompleta = tutoriaService.addTutoria(tutoria);
 		
-		String mensaje = emailUtils.generarMensajeSolicitudTutoria(tutoriaCompleta, request.getContextPath()); 
-		String asunto = emailUtils.generarAsuntoSolicitudTutoria(tutoriaCompleta);
-		emailUtils.enviarEmail("pruebasfdiaplicacion@gmail.com", tutoriaCompleta, mensaje, asunto);
+		emailUtils.enviarEmailSolicitudTutoria(tutoriaCompleta, request.getContextPath());
 
 		return new ModelAndView("redirect:/tutorias", model);
 	}
@@ -119,11 +123,13 @@ public class TutoriasController {
 		if (tutoria != null){
 			if (tutoria.isConfirmada()){
 				logger.warn("Se ha confirmado la tutoría con id:" + id);
-				String mensaje = emailUtils.generarMensajeConfirmacionTutoria(tutoria);
-				String asunto = emailUtils.generarAsuntoSolicitudTutoria(tutoria);
-				emailUtils.enviarEmail("pruebasfdiaplicacion@gmail.com", tutoria, mensaje, asunto);
+				emailUtils.enviarEmailConfirmacionTutoria(tutoria);
 				model.put("texto1", "tutoria.confirmar.confirmada");
-				model.put("texto", messageSource.getMessage("tutoria.confirmar.confirmada.descripcion", new String[]{tutoria.getAsignatura(), tutoria.getDestinatario().getUsername()}, request.getLocale()));
+				DateTimeFormatter dtfOut = DateTimeFormat.forPattern("MM/dd/yyyy hh:mm");
+				String asignatura = tutoria.getAsignatura();
+				String destinatario = tutoria.getDestinatario().getUserGivenName() + " " + tutoria.getDestinatario().getUserSurname(); 
+				String fecha = dtfOut.print(tutoria.getComienzoTutoria());
+				model.put("texto", messageSource.getMessage("tutoria.confirmar.confirmada.descripcion", new String[]{ asignatura, destinatario, fecha}, request.getLocale()));
 				return new ModelAndView("temporal", model );
 			}
 		}

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
 <title><c:out value="${modo}"></c:out> tutoría</title>
 <section class="container center">
@@ -44,6 +45,32 @@
 				</div>
 			</div>
 
+			<!-- 
+				Fechas
+			 -->
+
+			<!-- Comienzo Publicación-->
+			<div class="form-group fecha">
+				<label class="control-label col-md-2" for="comienzoTutoria">Comienzo de tutoría</label>
+				<div class="col-md-2">
+					<c:set var="horaDefectoInicio">
+						<joda:format value="${fecha_defecto_inicio}" pattern="yyyy/MM/dd HH:mm" />
+					</c:set>
+					<form:input path="comienzoTutoria" value="${horaDefectoInicio}" />
+				</div>
+			</div>
+
+			<!-- Fin Publicación -->
+			<div class="form-group fecha">
+				<label class="control-label col-md-2" for="finTutoria">Fin de tutoría</label>
+				<div class="col-md-2">
+					<c:set var="horaDefectoFin">
+						<joda:format value="${fecha_defecto_fin}" pattern="yyyy/MM/dd HH:mm" />
+					</c:set>
+					<form:input path="finTutoria" value="${horaDefectoFin}" />					
+				</div>
+			</div>
+
 
 			<!-- Botón crear aviso -->
 			<div class="form-group add">
@@ -55,3 +82,18 @@
 		</fieldset>
 	</form:form>
 </section>
+
+
+
+
+<!-- Date & Time picker -->
+<script>
+	$(function() {
+		$("#comienzoTutoria").datetimepicker({
+			format : 'Y/m/d H:i'
+		});
+		$('#finTutoria').datetimepicker({
+			format : 'Y/m/d H:i'
+		});
+	});
+</script>
