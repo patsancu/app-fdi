@@ -1,5 +1,6 @@
 package es.ucm.fdi.tutorias.business.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,8 @@ public class Tutoria {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Size(min = 4, max = 100, message = "{error.tutoria.resumen.size}")
+	@Size(min = 4, max = 512, message = "{error.tutoria.resumen.size}")
+	@Column(length=512)
 	private String resumenDudas;
 	
 	@ManyToOne(optional=true)

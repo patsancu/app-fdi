@@ -1,5 +1,6 @@
 package es.ucm.fdi.avisos.business.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,6 +26,7 @@ public class Aviso {
 	@Size(min = 4, max = 50, message = "{Size.Aviso.titulo.validation}")
 	private String titulo;
 
+	@Column(length=512)
 	private String contenidoAviso;
 
 	@Enumerated(EnumType.ORDINAL)
