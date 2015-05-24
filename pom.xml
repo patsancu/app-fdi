@@ -506,7 +506,7 @@
 				</dependency>
 			</dependencies>
 			<properties>
-				<jdbc.driverClassName>org.hsqlcfg.jdbcDriver</jdbc.driverClassName>
+				<jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
 				<jdbc.url>jdbc:hsqldb:mem:app;shutdown=true</jdbc.url>
 				<jdbc.username>sa</jdbc.username>
 				<jdbc.password></jdbc.password>
