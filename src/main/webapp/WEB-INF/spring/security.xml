@@ -54,7 +54,7 @@
 			username-parameter="username" password-parameter="password"
 			default-target-url="/avisos/" authentication-failure-url="/loginPage?auth=error" />
 		<logout />		
-		<remember-me key="${cfg.remember.me.secret}" token-validity-seconds="7200" />
+		<remember-me key="${rememberMe.secret}" token-validity-seconds="7200" />
 	</http>
 
 	<beans:bean id="passwordEncoder" class="es.ucm.fdi.users.util.PBKDF2PasswordEncoder" />

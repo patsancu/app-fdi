@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,9 +28,12 @@ public class AcortadorURLcontroller {
 	
 	@Autowired
 	URLredirecciones urlRedirecciones;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	@RequestMapping(value = Constants.URL_REDIRECCIONES + "/{sufijo}", method = RequestMethod.GET)
-	public ModelAndView redirigir(@PathVariable("sufijo") String sufijo){
+	public ModelAndView redirigir(@PathVariable("sufijo") String sufijo, HttpServletRequest request){
 		Map<String, Object> model = new HashMap<>();
 		URLredireccion urlRedireccion = urlRedirecciones.obtenerRedireccion(sufijo);
 		String urlOriginal = urlRedireccion.getUrlOriginal();
@@ -39,6 +43,8 @@ public class AcortadorURLcontroller {
 		
 		if (! urlRedireccion.isInterna()){
 			model.put("urlRedireccion", urlOriginal);
+			model.put("texto1", "redireccion.aviso");
+			model.put("texto", "<b>" + urlOriginal + "</b>");
 			return new ModelAndView("temporal", model );
 		}
 		return new ModelAndView("redirect:" + urlOriginal, model);		

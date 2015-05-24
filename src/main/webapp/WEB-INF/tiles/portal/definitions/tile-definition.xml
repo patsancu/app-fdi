@@ -147,6 +147,29 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/calendarioReservas.jsp" />
 	</definition>
 	
+	<!--***********************************************************************
+ 		TUTORIAS
+ 	***********************************************************************-->
+	
+	<!-- Listado de tutorias -->
+	<definition name="listarTutorias" extends="baseLayout">
+		<put-attribute name="title" value="tutoria.listar.title" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/listarTutorias_resources.jsp" />
+		<put-attribute name="heading" value="tutoria.listar.title" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/listarTutorias.jsp" />
+	</definition>
+	
+	
+	<!-- Creador de tutorias -->
+	<definition name="editorTutorias" extends="baseLayoutWithoutJumbotron">
+		<put-attribute name="title" value="" />
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/editorTutorias_resources.jsp" />
+		<put-attribute name="heading" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorTutorias.jsp" />
+	</definition>
+	
 	
 	<!--***********************************************************************
  	REDIRECCIONES 
@@ -170,12 +193,11 @@
 		<put-attribute name="tagline" value="" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/editorRedireccion.jsp" />
 	</definition>
-	
+
 	<!-- Página temporal redirección -->
 	<definition name="temporal" extends="baseLayout">
-		<put-attribute name="title" value="redireccion.titulo" />
-		<put-attribute name="heading" value="redireccion.aviso	" />
-		<put-attribute name="tagline" expression="${urlRedireccion}" />
+		<put-attribute name="title" value="temporal.title" />
+		<put-attribute name="heading" expression="${texto1}	" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/temporal.jsp" />
 	</definition>
 	

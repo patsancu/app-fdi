@@ -29,7 +29,7 @@
 	<context:component-scan base-package="es.ucm.fdi.espacios.business.boundary" />
 	<context:component-scan base-package="es.ucm.fdi.users.business.boundary" />
 	<context:component-scan base-package="es.ucm.fdi.acortador.business.boundary" />
-	<context:component-scan base-package="es.ucm.fdi.social.web" />
+	<context:component-scan base-package="es.ucm.fdi.tutorias.business.boundary" />	
 
 
 	<!-- Packages to search for @Controller beans definitions -->
@@ -39,6 +39,8 @@
 	<context:component-scan base-package="es.ucm.fdi.storage.web" />
 	<context:component-scan base-package="es.ucm.fdi.users.web" />
 	<context:component-scan base-package="es.ucm.fdi.acortador.web" />
+	<context:component-scan base-package="es.ucm.fdi.social.web" />
+	<context:component-scan base-package="es.ucm.fdi.tutorias.web" />
 	
 	<context:component-scan base-package="es.ucm.fdi.avisos.validation" />
 	<context:component-scan base-package="es.ucm.fdi.espacios.validation" />
@@ -66,6 +68,10 @@
 		
 	<data:repositories base-package="es.ucm.fdi.social.web"
 		entity-manager-factory-ref="rootEntityManagerFactory"
+		transaction-manager-ref="rootTransactionManager" />		
+	
+	<data:repositories base-package="es.ucm.fdi.tutorias.business.control"
+		entity-manager-factory-ref="rootEntityManagerFactory"
 		transaction-manager-ref="rootTransactionManager" />
 		
 	
@@ -73,7 +79,7 @@
 	<util:properties id="storagePrefs">
 		<prop key="rootPath">WEB-INF/storage</prop>
 <!-- 		<prop key="serviceURL">http://localhost:8080/portal/storage/</prop> -->
-		<prop key="serviceURL">http://localhost:8088/anuncios/storage/</prop>
+		<prop key="serviceURL">http://localhost:8088/portal/storage/</prop>
 	</util:properties>
 
 

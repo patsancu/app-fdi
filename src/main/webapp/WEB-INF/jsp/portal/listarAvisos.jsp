@@ -18,6 +18,7 @@
 				<th><spring:message code="listado.titulo"></spring:message></th>
 				<th><spring:message code="listado.contenido.aviso"></spring:message></th>
 				<th><spring:message code="listado.etiqueta"></spring:message></th>
+				<th><spring:message code="listado.tweet"></spring:message></th>
 				<th><spring:message code="listado.autor"></spring:message></th>
 				<th><spring:message code="listado.fecha.creacion"></spring:message></th>
 				<th><spring:message code="listado.fecha.publicacion.comienzo"></spring:message></th>
@@ -87,14 +88,17 @@
 											'<div class="popover-content"></div></div>'
 									});
 								</script>
-
-
-								</c:if>
-						
-						
+							</c:if>
 						</td>
 						
 						<td>${item.etiqueta}</td>
+						<td>
+							<c:if test="${ item.idTweetAsociado > 0 }">
+								<a href="${urlTwitterUsuario}${item.idTweetAsociado}">
+									Tweet
+								</a>
+							</c:if>
+						</td>
 						<td>${item.autor.username}</td>
 						<td><joda:format value="${item.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" /></td>
 						<td><joda:format value="${item.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
@@ -141,26 +145,43 @@
 		</tbody>
 	</table>
 
+	<!-- Popup de confirmación de tweet -->
 	<div id="modalTweetCreado" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header bg-primary">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">
-						<spring:message code="listado.twitter.tweet.creado"></spring:message>
+						<spring:message code="listado.twitter.tweet.crear"></spring:message>						
 					</h4>
 				</div>
 				<div class="modal-body">
-					<spring:message code="listado.twitter.tweet.disponible"></spring:message> <a id="enlaceTweet"></a>						
+					<div class="form-group">
+						<label><spring:message code="listado.twitter.tweet.publicacion"></spring:message></label>
+						
+						<p  style="overflow:auto;resize: vertical;" id="textoTweet" contenteditable="false" class="form-control"  id="comment"></p>
+						<div id="caracteresRestantes"></div>
+					</div>
+					<div id="resultadoTweet"></div>
 				</div>
 				<div class="modal-footer ">
-					<button type="button" class="btn btn-success " data-dismiss="modal"><spring:message code="listado.twitter.modal.ok"></spring:message>
+					<div class="btn-group" role="group" aria-label="...">
+					<button id="botonEditarTweet" type="button" class="btn btn-warning ">
+						<spring:message code="listado.twitter.tweet.editar"></spring:message>
 					</button>
+					<button id="botonTuitear" type="button" class="btn btn-primary ">
+						<spring:message code="listado.twitter"></spring:message>						
+					</button>
+					<button id="botonCerrar" type="button" class="btn btn-danger " data-dismiss="modal">
+						<spring:message code="listado.twitter.tweet.cerrar"></spring:message>
+					</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Fin de  Popup de confirmación de eliminación -->
+
+
 
 
 </section>
@@ -211,35 +232,98 @@
 <!-- AJAX para tweetear -->
 <script>
 
+
 $(document).ready(
-	function() {  
-		$('.botonTweet').click(  function(event) {
-			var header = $("meta[name='_csrf_header']").attr("content"); 
-			var token = $("meta[name='_csrf']").attr("content"); console.log("Token " + token);
-			var urlRest = "http://localhost:8088/anuncios/tweets/rest";
-			var data = JSON.stringify($(this).attr('id'));
-			$.ajax({  					
-				contentType: "application/json",
- 				url: urlRest,
- 				data: data, 
- 				method: "POST",
-				beforeSend : function( xhr ) { 
-					xhr.setRequestHeader(header, token);
-				},
-				mimeType: 'application/json',
-				success: function(data){					
-					var urlTweet = "https://twitter.com/mortadeloTIA/";	    	
-	 		    	$('#enlaceTweet').attr('href', urlTweet); 
-	 		    	$('#enlaceTweet').text(urlTweet);
-					$('#modalTweetCreado').modal('show');
-				},
-				error:function(data, textStatus, jqXHR){
-					alert("Error" + data);
-				},
-				complete:function(data, textStatus, jqXHR){
-					alert("Complete" + data);
-				},
+		function() {		
+			
+			$('#botonCerrar').click(function(event){
+				location.reload();
 			});
-		});  
-	});			
+			
+			$('#textoTweet').keydown(function(){
+				var longitud = $('#textoTweet').text().length;
+				console.log("Caracteres escritos: " + longitud);
+				var caracteresRestantes = 140 - longitud;
+				$('#caracteresRestantes').text(caracteresRestantes + " caracteres restantes");
+				if (longitud >= 140){
+					$('#textoTweet').attr('contenteditable', 'false');	
+				}
+			});
+			
+			$('#botonTuitear').click(  function(event) {
+				
+				var header = $("meta[name='_csrf_header']").attr("content"); 
+				var token = $("meta[name='_csrf']").attr("content"); console.log("Token " + token);
+				var urlRest = "http://localhost:8088/portal/tweets/rest/" + $('.modal-footer').attr('id');
+				var data = $('#textoTweet').text();				
+				$('#resultadoTweet').attr('class', '');
+				$('#resultadoTweet').text("");
+				$.ajax({  					
+					contentType: "application/json",
+	 				url: urlRest,
+	 				data: data,
+	 				method: "POST",
+					beforeSend : function( xhr ) { 
+						xhr.setRequestHeader(header, token);
+					},
+					success: function(data){					
+						
+					},
+					error:function(data, textStatus, jqXHR){
+						alert("Error" + data);
+					},
+					complete:function(data, textStatus, jqXHR){
+						if (data.responseText === ''){
+							$('#resultadoTweet').attr('class', 'alert alert-danger');
+							$('#resultadoTweet').text('<spring:message code="listado.twitter.tweet.error"></spring:message>');
+						}
+						else{							
+							$('#resultadoTweet').attr('class', 'alert alert-success');
+							$('#resultadoTweet').text('<spring:message code="listado.twitter.tweet.creado"></spring:message>');
+						}
+					},
+				});
+				
+			});
+			
+			$('#botonEditarTweet').click(  function(event) {
+				$('#resultadoTweet').attr('class', '');
+				$('#resultadoTweet').text("");
+				var longitud = $('#textoTweet').text().length;
+				if (longitud < 140){
+					$('#textoTweet').attr('contenteditable', 'true');
+					console.log("Caracteres escritos: " + longitud);
+					var caracteresRestantes = 140 - longitud;
+					$('#caracteresRestantes').text( caracteresRestantes + " caracteres restantes");	
+				}
+				
+			});
+			
+			$('.botonTweet').click(  function(event) {
+				var header = $("meta[name='_csrf_header']").attr("content"); 
+				var token = $("meta[name='_csrf']").attr("content"); console.log("Token " + token);
+				var urlRest = "http://localhost:8088/portal/tweets/rest/" + $(this).attr('id');
+				var data = JSON.stringify($(this).attr('id'));
+				$('.modal-footer').attr('id', $(this).attr('id'));
+				$.ajax({  					
+					contentType: "application/json",
+	 				url: urlRest, 
+	 				method: "GET",
+					beforeSend : function( xhr ) { 
+						xhr.setRequestHeader(header, token);
+					},
+					success: function(data){					
+						
+					},
+					error:function(data, textStatus, jqXHR){
+						alert("Error" + data + textStatus);
+						console.log(data);
+					},
+					complete:function(data, textStatus, jqXHR){
+						$('#textoTweet').text(data.responseText);
+						$('#modalTweetCreado').modal('show');
+					},
+				});
+			});  
+		});
 </script>

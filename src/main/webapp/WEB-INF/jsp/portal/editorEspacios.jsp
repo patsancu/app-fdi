@@ -4,9 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<title><c:out value="${modo}"></c:out> espacio</title>
+<title><c:out value="${modo}"></c:out> tutoría</title>
 <section class="container center">
-	<form:form modelAttribute="espacio" class="form-horizontal"
+	<form:form modelAttribute="tutoria" class="form-horizontal"
 		method="${method}">
 		<form:errors path="*" cssClass="alert alert-danger" element="div" />
 		<fieldset>
@@ -16,52 +16,28 @@
 			</legend>
 
 
-			<!-- Nombre de espacio -->
+			<!-- Resumen -->
 			<div id="nombre" class="form-group">
-				<label class="control-label col-lg-2" for="nombre">Nombre
-					Espacio</label>
+				<label class="control-label col-lg-2" for="resumenDudas">Resumen</label>
 				<div class="col-lg-10">
-					<form:input path="nombre" type="text"
-						class="form:input-large" />
+					<form:input path="resumenDudas" type="text" class="form:input-large" />
 				</div>
 			</div>
 
-			<!-- Aforo -->
-			<div id="aforo" class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="titulo">Aforo</label>
+			<!-- asignatura -->
+			<div id="asignatura" class="form-group">
+				<label class="control-label col-lg-2 col-lg-2" for="asignatura">Asignatura</label>
 				<div class="col-lg-10">
-					<form:input path="aforo" type="text" class="form:input-large" />
+					<form:input path="asignatura" type="text" class="form:input-large" />
 				</div>
 			</div>
-
-			<!-- Notas -->
-			<div id="notas" class="form-group">
-				<label class="control-label col-lg-2" for="notas">Notas</label>
-				<div class="col-lg-10">
-					<form:textarea path="notas" type="text" class="form:input-large" />
-				</div>
-			</div>
-			
-
-
-			<!-- Tipo de Aviso -->
-			<div id="tipoAviso" class="form-group">
-				<label class="control-label col-lg-2" for="tipoEspacioEnum">Tipo</label>
-				<div class="col-lg-10">
-					<form:select path="tipoEspacio">
-						<form:option value="-" label="Selecciona Uno" />
-						<form:options items="${tiposEspacios}" />
-					</form:select>
-				</div>
-			</div>
-
 
 
 			<!-- Botón crear aviso -->
 			<div class="form-group add">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnAdd" class="btn btn-primary"
-						value="<c:out value="${modo}"></c:out>	espacio" />
+						value="<c:out value="${modo}"></c:out>	tutoria" />
 				</div>
 			</div>
 		</fieldset>
