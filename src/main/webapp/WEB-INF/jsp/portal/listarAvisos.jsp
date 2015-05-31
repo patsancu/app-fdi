@@ -130,7 +130,7 @@
 										</div>										
 										<div class="modal-body"><spring:message code="listado.acciones.eliminar.warning"></spring:message></div>
 										<div class="modal-footer ">
-											<button type="submit" class="btn btn-danger"><spring:message code="listado.acciones.eliminar"></spring:message></button>											
+											<button type="submit" class="btn btn-danger"><spring:message code="listado.acciones.eliminar">"${item.titulo}"?</spring:message></button>											
 											<button type="button" class="btn btn-warning " data-dismiss="modal"><spring:message code="listado.acciones.cancelar"></spring:message></button>
 										</div>
 									</div>
