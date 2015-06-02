@@ -46,6 +46,8 @@
 
 	<http auto-config="true" create-session="always">
 		<intercept-url pattern="/login*" access="isAnonymous()" />
+		<intercept-url pattern="/avisos/feed*" access="permitAll" />
+		<intercept-url pattern="/avisos" access="permitAll" />
 
 		<intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')" />
 

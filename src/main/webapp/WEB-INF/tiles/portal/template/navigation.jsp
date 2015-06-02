@@ -42,22 +42,28 @@
 								<spring:message code="nav.bar.anuncios.show" />
 							</a>
 						</li>
-						<li class="divider"></li>
-						<li class="dropdown-header">
-							<spring:message code="nav.bar.shortcuts" />
-						</li>
-						<li>
-							<a href="<spring:url value="/avisos/nuevo"></spring:url>">
-								<span class="glyphicon glyphicon-plus"></span> 
-								<spring:message code="nav.bar.anuncios.create" />
-							</a>
-						</li>
+						
+						<sec:authorize access="hasRole('ROLE_USER')">
+							<li class="divider"></li>
+						
+							<li class="dropdown-header">
+								<spring:message code="nav.bar.shortcuts" />
+							</li>
+						
+							<li>
+								<a href="<spring:url value="/avisos/nuevo"></spring:url>">
+									<span class="glyphicon glyphicon-plus"></span> 
+									<spring:message code="nav.bar.anuncios.create" />
+								</a>
+							</li>
+						</sec:authorize>
 					</ul>
 				</li>
 				
 				<!-- #################### -->
 				<!-- Reservas -->
 				<!-- #################### -->
+				<sec:authorize access="hasRole('ROLE_USER')">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						<spring:message code="nav.bar.reservas.title" />
@@ -103,6 +109,7 @@
 
 
 					</ul></li>
+				</sec:authorize>
 				
 				<!-- #################### -->
 				<!-- Usuarios -->
@@ -130,41 +137,55 @@
 				<!-- #################### -->
 				<!-- URLs -->
 				<!-- #################### -->
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						<spring:message code="nav.bar.urls.title" />
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu" role="menu">
-						<li>
-							<a href="<spring:url value="/urls/nueva"></spring:url>">
-								<span class="glyphicon glyphicon-plus"></span> 
-								<spring:message code="nav.bar.urls.create" />
-							</a>
-						</li>
-					</ul>
-				</li>
+				<sec:authorize access="hasRole('ROLE_USER')">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<spring:message code="nav.bar.urls.title" />
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="<spring:url value="/urls/nueva"></spring:url>">
+									<span class="glyphicon glyphicon-plus"></span> 
+									<spring:message code="nav.bar.urls.create" />
+								</a>
+							</li>
+							<li>
+								<a href="<spring:url value="/urls/"></spring:url>">
+									<span class="glyphicon glyphicon-info-sign"></span> 
+									<spring:message code="nav.bar.urls.show" />
+								</a>
+							</li>
+						</ul>
+					</li>
+				</sec:authorize>
 				
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						<spring:message code="nav.bar.tutorias.title" /> 
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu" role="menu">
-						<li>
-							<a href="<spring:url value="/tutorias"/>" role="button">
-								<span class="glyphicon glyphicon-info-sign"></span> 
-								<spring:message code="nav.bar.tutorias.show" />
-							</a>
-						</li>						
-						<li>
-							<a href="<spring:url value="/tutorias/nueva"></spring:url>">
-								<span class="glyphicon glyphicon-plus"></span> 
-								<spring:message code="nav.bar.tutorias.create" />
-							</a>
-						</li>
-					</ul>
-				</li>
+				
+				<!-- #################### -->
+				<!-- Tutorias -->
+				<!-- #################### -->
+				<sec:authorize access="hasRole('ROLE_USER')">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<spring:message code="nav.bar.tutorias.title" /> 
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="<spring:url value="/tutorias"/>" role="button">
+									<span class="glyphicon glyphicon-info-sign"></span> 
+									<spring:message code="nav.bar.tutorias.show" />
+								</a>
+							</li>						
+							<li>
+								<a href="<spring:url value="/tutorias/nueva"></spring:url>">
+									<span class="glyphicon glyphicon-plus"></span> 
+									<spring:message code="nav.bar.tutorias.create" />
+								</a>
+							</li>
+						</ul>
+					</li>
+				</sec:authorize>
 
 			</ul>
 				<ul class="nav nav-pills navbar-right">
@@ -181,10 +202,15 @@
 				</sec:authorize>
 				
 				
-
-				<li role="presentation"><a href="#"><spring:message code="nav.signin" /></a></li>
-				<li role="presentation"><a href="#"><spring:message code="nav.signup" /></a></li>
-				<sec:authorize access="hasRole('ROLE_USER')">
+				<sec:authorize access="isAnonymous()">
+					<li role="presentation">				
+						<a href="<spring:url value="/loginPage"></spring:url>">
+							<spring:message code="nav.signin" />
+						</a>
+					</li>
+				</sec:authorize>
+				
+				<sec:authorize access="isAuthenticated()">
 					<li >
 						<a class="btn btn-danger" href="#"> 
 							<span id="logoutClick" class="glyphicon glyphicon-log-out"></span>

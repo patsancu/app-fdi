@@ -73,6 +73,7 @@ public class AvisosController {
 		return new ModelAndView("editorAvisos", model);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, value = Constants.URL_NUEVO_AVISO)
 	public ModelAndView creaNuevoAviso(@ModelAttribute("aviso") @Validated AvisoBuilder aviso, BindingResult result) 
 			throws IOException 
@@ -118,12 +119,14 @@ public class AvisosController {
 		return new ModelAndView("editorAvisos", model);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(method=RequestMethod.DELETE , value = Constants.URL_AVISO_INDIVIDUAL)
 	public String eliminarAviso(@PathVariable("id") Long avisoID) throws IOException {
 		avisoService.eliminarAviso(avisoID);
 		return "redirect:/avisos";
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, value = Constants.URL_AVISO_INDIVIDUAL)
 	public String actualizarAviso(@PathVariable("id") Long avisoID, @ModelAttribute("aviso") @Validated AvisoBuilder aviso,
 			BindingResult result, HttpServletRequest request) throws IOException {
