@@ -131,10 +131,20 @@ public class TutoriasController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_CONFIRMAR_TUTORIA)
 	public ModelAndView confirmarTutoria(@RequestParam("id") String id, HttpServletRequest request){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User usuarioLogueado = (User)auth.getPrincipal();
+		
+		 
 		Map<String, Object> model = new HashMap<>();
 		logger.warn("Se quiere confirmar la tutoría con id:" + id);
-		tutoriaService.confirmarTutoria(id);
+		
 		Tutoria tutoria = tutoriaService.getTutoria(Long.parseLong(id));
+		//Solo puede confirmar una tutoría su destinatario
+		boolean esDestinatario = usuarioLogueado.getId().intValue() == tutoria.getDestinatario().getId().intValue();
+		if (esDestinatario){
+			tutoriaService.confirmarTutoria(id);
+		}		
+		logger.warn("usuarioLogueado:" + usuarioLogueado.getId().intValue() + " " + (usuarioLogueado.getId().intValue() == tutoria.getDestinatario().getId().intValue() ? "cierto" : "falso")+ " " + tutoria.getDestinatario().getId().intValue() + ": Receptor");
 		model.put("urlRedireccion", request.getContextPath() + Constants.URL_LISTAR_TUTORIAS);
 		if (tutoria != null){
 			if (tutoria.isConfirmada()){
