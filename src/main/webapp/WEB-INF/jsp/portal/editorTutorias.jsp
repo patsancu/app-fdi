@@ -39,7 +39,7 @@
 			<div id="nombre" class="form-group">
 				<label class="control-label col-lg-2" for="resumenDudas">Resumen</label>
 				<div class="col-lg-10">
-					<form:input path="resumenDudas" type="text" class="form:input-large" />
+					<form:textarea path="resumenDudas" type="text" class="form:input-large" />
 				</div>
 			</div>
 
