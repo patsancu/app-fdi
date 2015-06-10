@@ -131,7 +131,7 @@ public class Emails {
 		String nombreArchivo = tutoria.getEmisor().getUsername() + tutoria.getId(); 
 		if (crearArchivoCSV( nombreArchivo + ".csv",tutoria) && crearArchivoCal(nombreArchivo  + ".ics", tutoria)){
 //		if (crearArchivoCSV( nombreArchivo + ".csv",tutoria) ){
-			enviarEmail(tutoria.getDestinatario().getEmail(), tutoria, mensaje, asunto, nombreArchivo + ".csv", nombreArchivo  + ".ics");
+			enviarEmail(tutoria.getDestinatario().getEmail(), tutoria, mensaje, asunto, nombreArchivo + ".csv", nombreArchivo  + ".ics", true);
 		}
 		
 	}
@@ -139,7 +139,7 @@ public class Emails {
 	public void enviarEmailConfirmacionTutoria(Tutoria tutoria){
 		String mensaje = generarMensajeConfirmacionTutoria(tutoria); 
 		String asunto = generarAsuntoConfirmacionTutoria(tutoria);
-		enviarEmail(tutoria.getDestinatario().getEmail(), tutoria, mensaje, asunto,"","");
+		enviarEmail(tutoria.getDestinatario().getEmail(), tutoria, mensaje, asunto,"","", false);
 	}
 	
 	private boolean crearArchivoCSV(String nombreArchivo, Tutoria tutoria){
@@ -262,7 +262,7 @@ public class Emails {
 		}
 	}
 
-	private void enviarEmail(String to, Tutoria tutoria, String mensaje, String asunto, String nombreCSV, String nombreCal){
+	private void enviarEmail(String to, Tutoria tutoria, String mensaje, String asunto, String nombreCSV, String nombreCal, boolean solicitudTutoria){
 		Properties props = new Properties();
 
 		Session session = Session.getDefaultInstance(props);
@@ -289,29 +289,31 @@ public class Emails {
 			mbp1.setText(mensaje);
 			mbp1.setContent(mensaje, "text/html");
 			
-			// Creación de segunda parte 
-			MimeBodyPart mbp2 = new MimeBodyPart();			
-			// Se adjunta el archivo csv
-			FileDataSource fds = new FileDataSource(nombreCSV);
-			mbp2.setDataHandler(new DataHandler(fds));
-			mbp2.setFileName(fds.getName());
-			
-			
-			// Creación de tercera parte 
-			MimeBodyPart mbp3 = new MimeBodyPart();			
-			// Se adjunta el archivo ical
-			FileDataSource fds2 = new FileDataSource(nombreCal);
-			mbp3.setDataHandler(new DataHandler(fds2));
-			mbp3.setFileName(fds2.getName());
-			
-			// Se crea el Multipart y se añaden sus partes
-			Multipart mp = new MimeMultipart();
-			mp.addBodyPart(mbp1);
-			mp.addBodyPart(mbp2);
-			mp.addBodyPart(mbp3);
-			
-			// Se añade el Multipart to the message
-			message.setContent(mp);
+			if (solicitudTutoria){
+				// Creación de segunda parte 
+				MimeBodyPart mbp2 = new MimeBodyPart();			
+				// Se adjunta el archivo csv
+				FileDataSource fds = new FileDataSource(nombreCSV);
+				mbp2.setDataHandler(new DataHandler(fds));
+				mbp2.setFileName(fds.getName());
+				
+				
+				// Creación de tercera parte 
+				MimeBodyPart mbp3 = new MimeBodyPart();			
+				// Se adjunta el archivo ical
+				FileDataSource fds2 = new FileDataSource(nombreCal);
+				mbp3.setDataHandler(new DataHandler(fds2));
+				mbp3.setFileName(fds2.getName());
+				
+				// Se crea el Multipart y se añaden sus partes
+				Multipart mp = new MimeMultipart();
+				mp.addBodyPart(mbp1);
+				mp.addBodyPart(mbp2);
+				mp.addBodyPart(mbp3);
+				
+				// Se añade el Multipart to the message
+				message.setContent(mp);	
+			}			
 			
 			message.setSentDate(new Date());
 			
