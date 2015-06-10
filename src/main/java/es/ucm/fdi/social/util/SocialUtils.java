@@ -26,7 +26,7 @@ import es.ucm.fdi.avisos.business.entity.TipoAvisoEnum;
 
 public class SocialUtils {
 	
-	public static String crearTweet(URLredirecciones urlRedirecciones, Aviso aviso){
+	public static String crearTweet(URLredirecciones urlRedirecciones, Aviso aviso, String path){
 		String textoTweet = aviso.getTitulo();		
 		if (aviso.getTipoAviso() == TipoAvisoEnum.HTML){
 			textoTweet += " - ";
@@ -43,7 +43,7 @@ public class SocialUtils {
 			URLredireccionBuilder urlRedireccion = new URLredireccionBuilder();
 			urlRedireccion.setUrl(aviso.getUrlDestino());
 			URLredireccion u = urlRedirecciones.addURLredireccion(urlRedireccion);
-			textoTweet += "http://localhost:8088/portal/u/" + u.getSufijo();
+			textoTweet += path + u.getSufijo();
 		}
 		return textoTweet;
 	}

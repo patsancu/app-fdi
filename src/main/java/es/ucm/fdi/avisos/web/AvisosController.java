@@ -64,6 +64,7 @@ public class AvisosController {
 		model.put("avisos", avisoService.getAvisos());
 		model.put("deleteAction", request.getContextPath()+"/avisos");
 		model.put("urlTwitterUsuario", Constants.URL_TWITTER_USUARIO);
+		model.put("urlRESTbase", Constants.URL_REST_TWITTER);
 		return new ModelAndView("listarAvisos", model);
 	}
 

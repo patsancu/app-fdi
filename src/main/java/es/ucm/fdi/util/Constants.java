@@ -43,6 +43,7 @@ public class Constants {
 	
 	//Tweets
 	public static final String URL_TWITTER_USUARIO = "http://twitter.com/mortadeloTIA/status/";
+	public static final String URL_REST_TWITTER = "/tweets/rest/";
 	
 	//Tutorias
 	public static final String URL_LISTAR_TUTORIAS = "/tutorias";	

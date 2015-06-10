@@ -16,6 +16,8 @@
  */
 package es.ucm.fdi.social.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,7 @@ import es.ucm.fdi.acortador.business.boundary.URLredirecciones;
 import es.ucm.fdi.avisos.boundary.Avisos;
 import es.ucm.fdi.avisos.business.entity.Aviso;
 import es.ucm.fdi.social.util.SocialUtils;
+import es.ucm.fdi.util.Constants;
 
 @Controller
 public class TwitterController {
@@ -60,9 +63,13 @@ public class TwitterController {
 
 	
 	@RequestMapping(value = "/tweets/rest/{id}", method = RequestMethod.GET)
-	public  @ResponseBody String obtenerTweet(@PathVariable String id){
-		Aviso avisoTweet = avisoService.getAviso(Long.parseLong(id));
-		String textoTweet = SocialUtils.crearTweet(urlRedirecciones, avisoTweet);
+	public  @ResponseBody String obtenerTweet(@PathVariable String id, HttpServletRequest request){
+		Aviso avisoTweet = avisoService.getAviso(Long.parseLong(id));		
+		String [] partesURLpeticion = request.getRequestURL().toString().split("/");
+		String urlBaseRedirecciones = partesURLpeticion[0] + "/"+ partesURLpeticion[1] + "/" + partesURLpeticion[2]+ "/" + partesURLpeticion[3];
+		urlBaseRedirecciones += Constants.URL_REDIRECCIONES + "/";
+		String textoTweet = SocialUtils.crearTweet(urlRedirecciones, avisoTweet, urlBaseRedirecciones);
+		
 		return textoTweet;		
 	}
 	
