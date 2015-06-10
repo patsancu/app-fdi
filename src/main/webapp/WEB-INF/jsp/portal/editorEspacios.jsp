@@ -22,9 +22,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<title><c:out value="${modo}"></c:out> tutoría</title>
+<title><c:out value="${modo}"></c:out> espacio</title>
 <section class="container center">
-	<form:form modelAttribute="tutoria" class="form-horizontal"
+	<form:form modelAttribute="espacio" class="form-horizontal"
 		method="${method}">
 		<form:errors path="*" cssClass="alert alert-danger" element="div" />
 		<fieldset>
@@ -34,28 +34,38 @@
 			</legend>
 
 
-			<!-- Resumen -->
+			<!-- nombre -->
 			<div id="nombre" class="form-group">
-				<label class="control-label col-lg-2" for="resumenDudas">Resumen</label>
+				<label class="control-label col-lg-2" for="nombre">Nombre</label>
 				<div class="col-lg-10">
-					<form:input path="resumenDudas" type="text" class="form:input-large" />
+					<form:input path="nombre" type="text" />
 				</div>
 			</div>
 
-			<!-- asignatura -->
-			<div id="asignatura" class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="asignatura">Asignatura</label>
+			<!-- Tipo del espacio -->
+			<div id="tipoEspacio" class="form-group">
+				<label class="control-label col-lg-2" for="tipoEspacio">Tipo espacio</label>
 				<div class="col-lg-10">
-					<form:input path="asignatura" type="text" class="form:input-large" />
+					<form:select path="tipoEspacio">
+						<form:options items="${espacio.tipoEspacio}" />
+					</form:select>
+				</div>
+			</div>
+
+			<!-- aforo -->
+			<div id="aforo" class="form-group">
+				<label class="control-label col-lg-2 col-lg-2" for="aforo">Aforo</label>
+				<div class="col-lg-10">
+					<form:input path="aforo" type="numeric" class="form:input-large" />
 				</div>
 			</div>
 
 
-			<!-- Botón crear aviso -->
+			<!-- Botón crear espacio -->
 			<div class="form-group add">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnAdd" class="btn btn-primary"
-						value="<c:out value="${modo}"></c:out>	tutoria" />
+						value="<c:out value="${modo}"></c:out>	espacio" />
 				</div>
 			</div>
 		</fieldset>
