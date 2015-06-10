@@ -22,6 +22,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <meta name="_csrf" content="${_csrf.token}" />
 <!-- default header name is X-CSRF-TOKEN -->
@@ -41,8 +42,11 @@
 				<th><spring:message code="listado.fecha.creacion"></spring:message></th>
 				<th><spring:message code="listado.fecha.publicacion.comienzo"></spring:message></th>
 				<th><spring:message code="listado.fecha.publicacion.fin"></spring:message></th>
-				<th><spring:message code="listado.twitter"></spring:message></th>
-				<th><spring:message code="listado.acciones"></spring:message></th>
+				<sec:authorize access="isAuthenticated()">
+					<th><spring:message code="listado.twitter"></spring:message></th>
+				
+					<th><spring:message code="listado.acciones"></spring:message></th>
+				</sec:authorize>
 			</tr>
 		</thead>
 		<tbody>
@@ -50,9 +54,11 @@
 			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 				<div class="caption">
 					<tr>
-						<td><c:if test="${item.prioridadAviso.description eq 'IMPORTANTE'}">
+						<td>
+							<c:if test="${item.prioridadAviso.description eq 'Importante'}">
 								<span class=" glyphicon glyphicon-exclamation-sign"></span>
-							</c:if></td>
+							</c:if>
+						</td>
 						<td>
 							<!-- Tipo de destino: Post, URL o archivo adjunto --> <c:choose>
 								<c:when test="${item.tipoAviso.name() eq 'POST'}">
@@ -122,40 +128,44 @@
 						<td><joda:format value="${item.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>
 						<td><joda:format value="${item.finPublicacion}" pattern="yyyy/MM/dd HH:mm" /></td>						
 						
-						<td>
-							<img id="${item.id}" class="botonTweet" alt="Tweet" src="<spring:url value="/static/img/twitter.png" />" width="30"> 
-						</td>						
+						<sec:authorize access="isAuthenticated()">
+							<td>
+								<img id="${item.id}" class="botonTweet" alt="Tweet" src="<spring:url value="/static/img/twitter.png" />" width="30"> 
+							</td>						
+						</sec:authorize>
 						
-						<td><a class="btn btn-success"
-							href="<spring:url value="/avisos/{id}"><spring:param name="id" value="${item.id}" /></spring:url>">
-								<span class="glyphicon glyphicon-edit"></span>
-						</a>
-						<form:form action="${deleteAction}/${item.id}" method="DELETE">
-							<!-- Botón eliminar -->
-							<button type="button" class="btn btn-danger" data-toggle="modal"
-								data-target=".bs-delete-modal-sm${item.id}">
-								<span class="glyphicon glyphicon-remove"></span>
-							</button> <!-- Popup de confirmación de eliminación -->
-							<div class="modal fade bs-delete-modal-sm${item.id}"
-								tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-								aria-hidden="true">
-								<div class="modal-dialog modal-sm">
-									<div class="modal-content">
-										<div class="modal-header bg-primary">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>
-											<h4 class="modal-title" id="myModalLabel"><spring:message code="listado.acciones.eliminar.anuncio"></spring:message></h4>
-										</div>										
-										<div class="modal-body"><spring:message code="listado.acciones.eliminar.warning"></spring:message></div>
-										<div class="modal-footer ">
-											<button type="submit" class="btn btn-danger"><spring:message code="listado.acciones.eliminar">"${item.titulo}"?</spring:message></button>											
-											<button type="button" class="btn btn-warning " data-dismiss="modal"><spring:message code="listado.acciones.cancelar"></spring:message></button>
+						<sec:authorize access="isAuthenticated()">
+							<td><a class="btn btn-success"
+								href="<spring:url value="/avisos/{id}"><spring:param name="id" value="${item.id}" /></spring:url>">
+									<span class="glyphicon glyphicon-edit"></span>
+							</a>
+							<form:form action="${deleteAction}/${item.id}" method="DELETE">
+								<!-- Botón eliminar -->
+								<button type="button" class="btn btn-danger" data-toggle="modal"
+									data-target=".bs-delete-modal-sm${item.id}">
+									<span class="glyphicon glyphicon-remove"></span>
+								</button> <!-- Popup de confirmación de eliminación -->
+								<div class="modal fade bs-delete-modal-sm${item.id}"
+									tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog modal-sm">
+										<div class="modal-content">
+											<div class="modal-header bg-primary">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">&times;</button>
+												<h4 class="modal-title" id="myModalLabel"><spring:message code="listado.acciones.eliminar.anuncio"></spring:message></h4>
+											</div>										
+											<div class="modal-body"><spring:message code="listado.acciones.eliminar.warning"></spring:message></div>
+											<div class="modal-footer ">
+												<button type="submit" class="btn btn-danger"><spring:message code="listado.acciones.eliminar">"${item.titulo}"?</spring:message></button>											
+												<button type="button" class="btn btn-warning " data-dismiss="modal"><spring:message code="listado.acciones.cancelar"></spring:message></button>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div> <!-- Fin de  Popup de confirmación de eliminación -->
-						</form:form>
-						</td>
+								</div> <!-- Fin de  Popup de confirmación de eliminación -->
+							</form:form>
+							</td>
+						</sec:authorize>
 					</tr>
 				</div>
 			</div>
