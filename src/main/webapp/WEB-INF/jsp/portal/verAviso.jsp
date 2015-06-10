@@ -40,24 +40,28 @@
 		</div>
 		<div class="panel-body clearfix" style="padding-top: 7.5px;">
 			<p>${a.contenidoAviso}</p>
-			<p><strong>Creado por: </strong>${a.autor}</p>
 			<p>
-				<strong>Etiqueta : </strong> <span class=" label label-warning">${a.etiqueta}</span>
+				<strong> <spring:message code="ver.aviso.creado"/> </strong>
+				${a.autor.userGivenName} ${a.autor.userSurname}</p>
+			<p>
+				<strong> <spring:message code="ver.aviso.etiqueta"/> </strong> 
+				<span class=" label label-warning">${a.etiqueta}</span>
 			</p>
 			<p>
-				<strong>Tipo aviso</strong> : ${a.tipoAviso.description}
+				<strong> <spring:message code="ver.aviso.tipo"/> </strong>
+				${a.tipoAviso.description}
 			</p>
 			<p>
-				<strong>Fecha creación:</strong>
+				<strong> <spring:message code="ver.aviso.fecha.creacion"/> </strong>
 				<joda:format value="${a.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
 				
 			</p>
 			<p>
-				<strong>Comienzo Publicación (desde, inclusive):</strong>
+				<strong> <spring:message code="ver.aviso.fecha.publicacion.inicio"/></strong>
 				<joda:format value="${a.comienzoPublicacion}" pattern="yyyy/MM/dd HH:mm" />
 			</p>
 			<p>
-				<strong>Fin Publicación (hasta, inclusive):</strong>
+				<strong><spring:message code="ver.aviso.fecha.publicacion.hasta"/></strong>
 				<joda:format value="${a.fechaCreacion}" pattern="yyyy/MM/dd HH:mm" />
 			</p>
 		</div>

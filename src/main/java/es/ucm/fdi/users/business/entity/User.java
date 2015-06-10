@@ -175,12 +175,6 @@ public class User implements UserDetails, CredentialsContainer {
 		return true;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "User [username=" + username + ", email=" + email
-				+ ", password=" + password + ", roles=" + roles + "]";
-	}
 
 	@Override
 	public void eraseCredentials() {
@@ -238,4 +232,17 @@ public class User implements UserDetails, CredentialsContainer {
 	public void setUserSurname(String userSurname) {
 		this.userSurname = userSurname;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email
+				+ ", password=" + password + ", userGivenName=" + userGivenName
+				+ ", userSurname=" + userSurname + ", salt=" + salt
+				+ ", enabled=" + enabled + ", accountNonExpired="
+				+ accountNonExpired + ", accountNonLocked=" + accountNonLocked
+				+ ", credentialsNonExpired=" + credentialsNonExpired
+				+ ", roles=" + roles + "]";
+	}
+	
+	
 }
