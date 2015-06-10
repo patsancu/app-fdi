@@ -27,4 +27,9 @@ public class LoginController {
 	public String loginForm() {
 		return "login";
 	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/logoutPage")
+	public String logout() {
+		return "logout";
+	}
 }

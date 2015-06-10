@@ -55,6 +55,15 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/login.jsp" />
 	</definition>
 	
+	<!-- Logout -->
+	<definition name="logout" extends="baseLayout">
+		<put-attribute name="resources" value="/WEB-INF/jsp/portal/logout_resources.jsp" />
+		<put-attribute name="title" value="logout.titulo" />
+		<put-attribute name="heading" value="logout.text" />		
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/portal/logout.jsp" />
+	</definition>
+	
 	<!--***********************************************************************
  		AVISOS
  	***********************************************************************-->
@@ -160,7 +169,7 @@
 	<definition name="calendarioReservas" extends="baseLayoutWithoutJumbotron">
 		<put-attribute name="title" value="listado.reservas.titulo" />
 		<put-attribute name="resources" value="/WEB-INF/jsp/portal/calendarioReservas_resources.jsp" />
-		<put-attribute name="heading" value="" />
+		<put-attribute name="heading" value="logout.text" />
 		<put-attribute name="tagline" value="" />
 		<put-attribute name="content" value="/WEB-INF/jsp/portal/calendarioReservas.jsp" />
 	</definition>

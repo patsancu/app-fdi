@@ -64,6 +64,7 @@
 
 	<http auto-config="true" create-session="always">
 		<intercept-url pattern="/login*" access="isAnonymous()" />
+		<intercept-url pattern="/logout*" access="isAnonymous()" />
 		<intercept-url pattern="/avisos/feed*" access="permitAll" />
 		<intercept-url pattern="/avisos" access="permitAll" />
 
@@ -73,7 +74,7 @@
 		<form-login login-processing-url="/login" login-page="/loginPage"
 			username-parameter="username" password-parameter="password"
 			default-target-url="/avisos/" authentication-failure-url="/loginPage?auth=error" />
-		<logout />		
+		<logout logout-success-url="/logoutPage"  />		
 		<remember-me key="${rememberMe.secret}" token-validity-seconds="7200" />
 	</http>
 
