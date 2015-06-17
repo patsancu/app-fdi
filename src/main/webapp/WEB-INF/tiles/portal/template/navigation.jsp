@@ -19,8 +19,8 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"
 	session="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <spring:url value="/users/nuevo" var="urlNuevoUsuario" />
@@ -210,8 +210,11 @@
 
 				<sec:authorize access="hasRole('ROLE_USER')">
 					<li>
-					
-						<a href="#" class="btn btn-info btn-lg" role="button" href="#">
+						<c:set var="idUsuario" >
+							<sec:authentication property="principal.username" />
+						</c:set>
+
+						<a href="<spring:url value="/users/username/{idUsuarioParam}"><spring:param name="idUsuarioParam" value="${idUsuario}" /></spring:url>" class="btn btn-info btn-lg" role="button" >
 						<span class="glyphicon glyphicon-user"></span>
 							<sec:authentication property="principal.userGivenName" />
 							<sec:authentication property="principal.userSurname" />
