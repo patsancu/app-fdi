@@ -33,6 +33,14 @@
 				<spring:message code="crear.usuario.user"/>
 			</legend>
 
+			<div class="alert alert-danger alert-dismissible" hidden="true" id="errores" role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong><spring:message code="generico.atencion" /></strong>
+				Las contraseñas no coinciden
+			</div>
 
 			<!-- Nombre de usuario -->
 			<div id="username" class="form-group">
@@ -49,25 +57,58 @@
 					<form:input path="email" type="text" class="form:input-large" />
 				</div>
 			</div>
+			
+			<!-- Nombre -->
+			<div id="nombre" class="form-group">
+				<label class="control-label col-lg-2 col-lg-2" for="nombre"><spring:message code="crear.usuario.user.name"/></label>
+				<div class="col-lg-10">
+					<form:input path="userGivenName" type="text" class="form:input-large" />
+				</div>
+			</div>
+			
+			<!-- Apellidos -->
+			<div id="apellidos" class="form-group">
+				<label class="control-label col-lg-2 col-lg-2" for="apellidos"><spring:message code="crear.usuario.user.surname"/></label>
+				<div class="col-lg-10">
+					<form:input path="userSurname" type="text" class="form:input-large" />
+				</div>
+			</div>
 
 			<!-- Password -->
 			<div id="password" class="form-group">
 				<label class="control-label col-lg-2" for="password"><spring:message code="crear.usuario.user.password"/></label>
 				<div class="col-lg-10">
-					<form:input path="password" type="password" class="form:input-large" />
+					<form:input id="passwordInput" path="password" type="password" class="form:input-large" />
+				</div>
+			</div>
+			
+			<!-- Repite Password -->
+			<div id="passwordRepeat" class="form-group">
+				<label class="control-label col-lg-2" for="password"><spring:message code="crear.usuario.user.repeat.password"/></label>
+				<div class="col-lg-10">
+					<input id="passwordRepeatInput" type="password" class="form:input-large" />
 				</div>
 			</div>
 
-
+			
 
 
 			<!-- Botón crear usuario -->
 			<div class="form-group add">
 				<div class="col-lg-offset-2 col-lg-10">
-					<input type="submit" id="btnAdd" class="btn btn-primary"
+					<input id="botonCrearUsuario" type="submit" id="btnAdd" class="btn btn-primary"
 						value="<c:out value="${modo}"></c:out>	<spring:message code="crear.usuario.user"/>" />
 				</div>
 			</div>
 		</fieldset>
 	</form:form>
 </section>
+
+<script>
+$('#botonCrearUsuario').click(  function(event) {	
+	if ( $('#passwordInput').val() != $('#passwordRepeatInput').val() ){
+		event.preventDefault();
+		$('#errores').show();//attr('hidden', 'false');
+	}
+});
+</script>

@@ -50,6 +50,12 @@ public class Constants {
 	public static final String URL_ADMIN_LISTAR_TUTORIAS = "/tutorias/admin";
 	public static final String URL_NUEVA_TUTORIA = "/tutorias/nueva";
 	public static final String URL_CONFIRMAR_TUTORIA = "/tutorias/confirmar";
+	
+	//Usuarios
+	public static final String URL_LISTAR_USUARIOS = "/users";
+	public static final String URL_USUARIO_INDIVIDIDUAL = "/users/{id}";
+	public static final String URL_NUEVO_USUARIO = "/users/nuevo";
+	public static final String URL_USUARIO_INDIVIDIDUAL_USERNAME = "/users/username/{username}";
 }
 
 

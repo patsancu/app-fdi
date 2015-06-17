@@ -28,7 +28,11 @@
 		<thead>
 			<tr>
 				<th><spring:message code="crear.usuario.username"></spring:message></th>
-				<th><spring:message code="crear.usuario.user.password"></spring:message></th>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<th><spring:message code="crear.usuario.user.password"></spring:message></th>
+				</sec:authorize>				
+				<th><spring:message code="crear.usuario.user.surname"></spring:message></th>
+				<th><spring:message code="crear.usuario.user.name"></spring:message></th>
 				<th><spring:message code="crear.usuario.user.email"></spring:message></th>				
 			</tr>
 		</thead>
@@ -38,7 +42,11 @@
 					<div class="caption">
 						<tr>
 							<td>${item.username}</td>
-							<td>${item.password}</td>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<td>${item.password}</td>
+							</sec:authorize>
+							<td>${item.userGivenName}</td>
+							<td>${item.userSurname}</td>
 							<td>${item.email}</td>
 						</tr>
 					</div>

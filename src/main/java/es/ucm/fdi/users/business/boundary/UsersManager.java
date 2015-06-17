@@ -21,6 +21,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -78,6 +79,32 @@ public class UsersManager implements UserDetailsService {
 
 	public Iterable<User> listUsers() {
 		return repository.findAll();
+	}
+	
+	public User getUser(Long id){
+		return repository.findOne(id);
+	}
+	
+	public User updateUser(UserBuilder builder){
+		User newUser = builder.build();		
+		User currentUser = repository.findOne(builder.getId());
+		String currentPassword = currentUser.getPassword();
+		
+		BeanUtils.copyProperties(newUser, currentUser);
+		
+		if (newUser.getPassword() == null || "".equals(newUser.getPassword()) ){
+			newUser.setPassword(currentPassword);
+		}
+		else{
+			try {
+				newUser.setPassword(PasswordHash.createHash(builder.getPassword()));
+			} catch (NoSuchAlgorithmException e) {			
+				e.printStackTrace();
+			} catch (InvalidKeySpecException e) {
+				e.printStackTrace();
+			}
+		}		
+		return repository.save(newUser);
 	}
 
 	

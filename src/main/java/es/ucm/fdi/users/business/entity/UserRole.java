@@ -44,6 +44,10 @@ public class UserRole implements GrantedAuthority, Serializable {
 		
 	}
 	
+	public String getRole(){
+		return this.role;
+	}
+	
 	public UserRole(String role) {
 		this.role = role;
 	}

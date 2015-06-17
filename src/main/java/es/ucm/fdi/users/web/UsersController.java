@@ -26,12 +26,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,6 +44,7 @@ import es.ucm.fdi.users.business.boundary.UsersManager;
 import es.ucm.fdi.users.business.entity.User;
 import es.ucm.fdi.users.business.entity.UserBuilder;
 import es.ucm.fdi.users.business.entity.UserRole;
+import es.ucm.fdi.util.Constants;
 
 @Controller
 public class UsersController {
@@ -48,7 +53,7 @@ public class UsersController {
 	@Autowired
 	private UsersManager usersManager;
 
-	@RequestMapping(method = RequestMethod.GET, value = "/users")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_LISTAR_USUARIOS )
 	public ModelAndView listUsers(HttpServletRequest request){
 		Map<String, Object> model = new HashMap<>();
 		model.put("users",usersManager.listUsers());
@@ -57,7 +62,7 @@ public class UsersController {
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@RequestMapping(method = RequestMethod.GET, value = "/users/nuevo")
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_NUEVO_USUARIO )
 	public ModelAndView nuevoUsuario() {
 		Map<String, Object> model = new HashMap<>();
 		model.put("modo", "Crear");
@@ -70,9 +75,8 @@ public class UsersController {
 		return new ModelAndView("editorUsuarios", model);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/users/nuevo")
-	public ModelAndView creaNuevoAviso(@ModelAttribute("user") UserBuilder user,
-			BindingResult result) throws IOException {
+	@RequestMapping(method = RequestMethod.POST, value = Constants.URL_NUEVO_USUARIO )
+	public ModelAndView creaNuevoAviso(@ModelAttribute("user") UserBuilder user, BindingResult result) throws IOException {
 		logger.debug("Creando usuario: " + user);
 		Map<String, Object> model = new HashMap<>();
 
@@ -99,5 +103,56 @@ public class UsersController {
 		logger.warn(nuevoUsuario.toString());
 
 		return new ModelAndView("redirect:/users", model);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_USUARIO_INDIVIDIDUAL)
+	public ModelAndView editarUsuario(@PathVariable("id") Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User usuarioLogueado = (User)auth.getPrincipal();		
+		boolean esDestinatario = usuarioLogueado.getId().intValue() == id;
+		boolean administrador = usuarioLogueado.getRoles().contains("ROLE_ADMIN");
+		
+		for (UserRole rol : usuarioLogueado.getRoles()){
+			logger.warn(rol.toString());
+			if ("ROLE_ADMIN".equals(rol.getRole()) ){
+				administrador = true;
+				break;
+			}
+		}
+
+		if (! esDestinatario && !administrador){
+			logger.warn("El usuario no es admin, y no está modificando sus propios datos");
+			return new ModelAndView("redirect:/", null);	
+		}	
+		
+		
+		Map<String, Object> model = new HashMap<>();
+		
+		UserBuilder userForm = new UserBuilder();
+		User user = usersManager.getUser(id);
+		BeanUtils.copyProperties(user, userForm);
+		userForm.setPassword("");
+		
+		model.put("modo", "Editar");
+		model.put("method", "PUT");
+		model.put("user", userForm);		
+		
+		return new ModelAndView("editorUsuarios", model);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = Constants.URL_USUARIO_INDIVIDIDUAL_USERNAME)
+	public String editarUsuarioUsername(@PathVariable("username") String username){
+		User user = (User) usersManager.loadUserByUsername(username);
+		
+		return "redirect:/" + "users/" + user.getId();
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = Constants.URL_USUARIO_INDIVIDIDUAL)
+	public String actualizaUsuario(@PathVariable("id") Long userId, @ModelAttribute("user") UserBuilder userBuilder){		
+		logger.debug("Actualizando usuario:" + userBuilder);
+		userBuilder.setId(userId);
+		usersManager.updateUser(userBuilder);
+		
+		return "redirect:/";
 	}
 }

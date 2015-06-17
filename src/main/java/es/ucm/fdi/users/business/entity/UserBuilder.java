@@ -35,6 +35,10 @@ public class UserBuilder {
 
 	private String password;
 	
+	private String userGivenName;
+	
+	private String userSurname;
+	
 	private List<Integer> role_ids;
 
 	public User build() {
@@ -83,6 +87,22 @@ public class UserBuilder {
 
 	public void setRole_ids(List<Integer> role_ids) {
 		this.role_ids = role_ids;
+	}
+
+	public String getUserGivenName() {
+		return userGivenName;
+	}
+
+	public void setUserGivenName(String userGivenName) {
+		this.userGivenName = userGivenName;
+	}
+
+	public String getUserSurname() {
+		return userSurname;
+	}
+
+	public void setUserSurname(String userSurname) {
+		this.userSurname = userSurname;
 	}
 	
 	
