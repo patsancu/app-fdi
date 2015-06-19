@@ -68,8 +68,6 @@
 		<intercept-url pattern="/avisos/feed*" access="permitAll" />
 		<intercept-url pattern="/avisos" access="permitAll" />
 
-		<intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')" />
-
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		<form-login login-processing-url="/login" login-page="/loginPage"
 			username-parameter="username" password-parameter="password"
