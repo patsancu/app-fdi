@@ -139,30 +139,37 @@ public class TutoriasController {
 		logger.warn("Se quiere confirmar la tutoría con id:" + id);
 		
 		Tutoria tutoria = tutoriaService.getTutoria(Long.parseLong(id));
-		//Solo puede confirmar una tutoría su destinatario
-		boolean esDestinatario = usuarioLogueado.getId().intValue() == tutoria.getDestinatario().getId().intValue();
-		if (esDestinatario){
-			tutoriaService.confirmarTutoria(id);
-		}		
-		logger.warn("usuarioLogueado:" + usuarioLogueado.getId().intValue() + " " + (usuarioLogueado.getId().intValue() == tutoria.getDestinatario().getId().intValue() ? "cierto" : "falso")+ " " + tutoria.getDestinatario().getId().intValue() + ": Receptor");
 		model.put("urlRedireccion", request.getContextPath() + Constants.URL_LISTAR_TUTORIAS);
 		if (tutoria != null){
-			if (tutoria.isConfirmada()){
-				logger.warn("Se ha confirmado la tutoría con id:" + id);
-				emailUtils.enviarEmailConfirmacionTutoria(tutoria);
-				model.put("texto1", "tutoria.confirmar.confirmada");
-				DateTimeFormatter dtfOut = DateTimeFormat.forPattern("MM/dd/yyyy hh:mm");
-				String asignatura = tutoria.getAsignatura();
-				String destinatario = tutoria.getDestinatario().getUserGivenName() + " " + tutoria.getDestinatario().getUserSurname(); 
-				String fecha = dtfOut.print(tutoria.getComienzoTutoria());
-				model.put("texto", messageSource.getMessage("tutoria.confirmar.confirmada.descripcion", new String[]{ asignatura, destinatario, fecha}, request.getLocale()));
-				return new ModelAndView("temporal", model );
-			}
+			//Solo puede confirmar una tutoría su destinatario
+			boolean esDestinatario = usuarioLogueado.getId().intValue() == tutoria.getDestinatario().getId().intValue();
+			if (esDestinatario){
+				tutoriaService.confirmarTutoria(id);
+			}		
+			logger.warn("usuarioLogueado:" + usuarioLogueado.getId().intValue() + " " + (usuarioLogueado.getId().intValue() == tutoria.getDestinatario().getId().intValue() ? "cierto" : "falso")+ " " + tutoria.getDestinatario().getId().intValue() + ": Receptor");			
+			if (tutoria != null){
+				if (! tutoria.isConfirmada()){
+					logger.warn("Se ha confirmado la tutoría con id:" + id);
+					emailUtils.enviarEmailConfirmacionTutoria(tutoria);
+					model.put("texto1", "tutoria.confirmar.confirmada");
+					DateTimeFormatter dtfOut = DateTimeFormat.forPattern("MM/dd/yyyy hh:mm");
+					String asignatura = tutoria.getAsignatura();
+					String destinatario = tutoria.getDestinatario().getUserGivenName() + " " + tutoria.getDestinatario().getUserSurname(); 
+					String fecha = dtfOut.print(tutoria.getComienzoTutoria());
+					model.put("texto", messageSource.getMessage("tutoria.confirmar.confirmada.descripcion", new String[]{ asignatura, destinatario, fecha}, request.getLocale()));
+					return new ModelAndView("temporal", model );
+				}
+			}	
+			model.put("texto1", "tutoria.confirmar.no.confirmada");
+			model.put("texto2", "tutoria.confirmar.no.confirmada.descripcion");
+			return new ModelAndView("temporal", model );
 		}
-			
-		model.put("texto1", "tutoria.confirmar.no.confirmada");
-		model.put("texto2", "tutoria.confirmar.no.confirmada.descripcion");
-		return new ModelAndView("temporal", model );
+		
+		model.put("texto1", "tutoria.confirmar.no.existe");
+		model.put("texto2", "tutoria.confirmar.no.existe.descripcion");
+		
+		
+		return new ModelAndView("temporal", model );		
 	}
 
 	
